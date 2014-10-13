@@ -1,5 +1,5 @@
 {
-    "name": "gzero/gzero-admin",
+    "name": "gzero/admin",
     "description": "Gzero Admin Panel",
     "keywords": ["laravel", "admin panel"],
     "license": "MIT",
@@ -11,10 +11,7 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "illuminate/support": "4.1.*"
-    },
-    "require-dev": {
-        "gzero/gzero-cms": "dev-master"
+        "illuminate/support": "4.2.*"
     },
     "autoload": {
         "classmap": [
