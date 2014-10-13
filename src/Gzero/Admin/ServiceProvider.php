@@ -1,4 +1,7 @@
 <?php namespace Gzero\Admin;
+
+use Illuminate\Support\ServiceProvider as SP;
+
 /**
  * This file is part of the GZERO CMS package.
  *
@@ -9,7 +12,7 @@
  * @author     Adrian Skierniewski <adrian.skierniewski@gmail.com>
  * @copyright  Copyright (c) 2014, Adrian Skierniewski
  */
-class ServiceProvider {
+class ServiceProvider extends SP {
 
     /**
      * Bootstrap the application events.
