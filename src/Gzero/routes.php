@@ -1,5 +1,5 @@
 <?php
 Route::get('admin', function(){
         \Debugbar::disable();
-        return 'You have arrived!';
+        return View::make('gzero-admin::layout');
     });

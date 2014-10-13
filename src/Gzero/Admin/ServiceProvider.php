@@ -22,6 +22,7 @@ class ServiceProvider extends SP {
     public function boot()
     {
         $this->registerRoutes();
+        $this->package('gzero/admin', 'gzero-admin');
     }
 
     /**
