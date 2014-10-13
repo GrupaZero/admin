@@ -1,5 +1,5 @@
 <?php
-Route::get('{lang}/admin', function(){
+Route::get('admin', function(){
         \Debugbar::disable();
         return 'You have arrived!';
     });
