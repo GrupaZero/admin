@@ -1,0 +1,27 @@
+{
+    "name": "gzero/gzero-admin",
+    "description": "Gzero Admin Panel",
+    "keywords": ["laravel", "admin panel"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Adrian Skierniewski",
+            "email": "adrian.skierniewski@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "4.1.*"
+    },
+    "require-dev": {
+        "gzero/gzero-cms": "dev-master"
+    },
+    "autoload": {
+        "classmap": [
+        ],
+        "psr-4": {
+            "Gzero\\": "src/Gzero"
+        }
+    },
+    "minimum-stability": "dev"
+}
