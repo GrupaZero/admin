@@ -37,7 +37,20 @@ gulp.task('scripts', function () {
     gulp.src(assetsPath + 'js/src/app.js')
         .pipe(browserify({
             insertGlobals: true,
-            debug: true
+            debug: true,
+            shim: {
+                angular: {
+                    path: './node_modules/angular/lib/angular.js',
+                    exports: 'angular'
+                },
+                'angular-bootstrap': {
+                    path: './node_modules/angular-bootstrap/ui-bootstrap.js',
+                    exports: 'lol',
+                    depends: {
+                        angular: 'angular'
+                    }
+                }
+            }
         }))
         .pipe(rename('all.js'))
         .pipe(gulp.dest(assetsPath + 'js'))
