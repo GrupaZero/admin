@@ -191,6 +191,8 @@
             <h2 class="sub-header">Section title</h2>
             <div ng-controller="BaseCtrl">
                 <p ng-bind="testVar"></p>
+                <alert ng-repeat="alert in alerts" type="success" ng-bind="alert.msg" close="closeAlert($index)"></alert>
+                <button class='btn btn-default' ng-click="addAlert()">Add Alert</button>
             </div>
             <div class="table-responsive">
                 <table class="table table-striped">
