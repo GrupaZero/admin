@@ -28,7 +28,13 @@ require('angular')
                 })
                 .state('content-show', {
                     url: "/content/{contentId}/show",
-                    templateUrl: viewPath + "content/show.html"
+                    templateUrl: viewPath + "content/show.html",
+                    controller: [
+                        '$scope', '$stateParams', function ($scope, $stateParams) {
+                            // get the id
+                            $scope.id = $stateParams.contentId;
+                        }
+                    ]
                 });
 
             RestangularProvider.setBaseUrl('/api/v1');
