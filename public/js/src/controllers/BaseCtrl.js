@@ -1,6 +1,12 @@
 'use strict';
 
-module.exports = function BaseCtrl ($scope) {
+module.exports = function BaseCtrl ($scope, Restangular) {
+    var contents = Restangular.all('contents');
+
+    contents.getList().then(function(contents) {
+        $scope.contents = contents;
+    });
+
     $scope.testVar = 'We are up and running from a required module!';
     $scope.alerts = [
         { type: 'danger', msg: 'Oh snap! Change a few things up and try submitting again.' },
