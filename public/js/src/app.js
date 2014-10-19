@@ -10,33 +10,25 @@ require('angular')
         '$urlRouterProvider',
         'RestangularProvider',
         function ($stateProvider, $urlRouterProvider, RestangularProvider) {
+            var viewPath = 'packages/gzero/admin/js/views/';
 
             // For any unmatched url, redirect to /state1
             $urlRouterProvider.otherwise("/");
 
             // Now set up the states
             $stateProvider
-                .state('state1', {
-                    url: "/state1",
-                    templateUrl: "partials/state1.html"
+                .state('home', {
+                    url: "/",
+                    templateUrl: viewPath + "home.html"
                 })
-                .state('state1.list', {
-                    url: "/list",
-                    templateUrl: "partials/state1.list.html",
-                    controller: function ($scope) {
-                        $scope.items = ["A", "List", "Of", "Items"];
-                    }
+                .state('content-list', {
+                    url: "/content/list",
+                    templateUrl: viewPath + "content/list.html",
+                    controller: "BaseCtrl"
                 })
-                .state('state2', {
-                    url: "/state2",
-                    templateUrl: "partials/state2.html"
-                })
-                .state('state2.list', {
-                    url: "/list",
-                    templateUrl: "partials/state2.list.html",
-                    controller: function ($scope) {
-                        $scope.things = ["A", "Set", "Of", "Things"];
-                    }
+                .state('content-show', {
+                    url: "/content/:contentId/show",
+                    templateUrl: viewPath + "content/show.html"
                 });
 
             RestangularProvider.setBaseUrl('/api/v1');
