@@ -27,7 +27,7 @@ require('angular')
                     controller: "BaseCtrl"
                 })
                 .state('content-show', {
-                    url: "/content/:contentId/show",
+                    url: "/content/{contentId}/show",
                     templateUrl: viewPath + "content/show.html"
                 });
 
