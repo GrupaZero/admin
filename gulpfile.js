@@ -2,6 +2,7 @@
 var gulp = require('gulp');
 var sass = require('gulp-sass');
 var uglify = require('gulp-uglify');
+var concat = require('gulp-concat');
 var rename = require("gulp-rename");
 var imagemin = require('gulp-imagemin');
 var browserify = require('gulp-browserify');
@@ -37,20 +38,7 @@ gulp.task('scripts', function () {
     gulp.src(assetsPath + 'js/src/app.js')
         .pipe(browserify({
             insertGlobals: true,
-            debug: true,
-            shim: {
-                angular: {
-                    path: './node_modules/angular/lib/angular.js',
-                    exports: 'angular'
-                },
-                'angular-bootstrap': {
-                    path: './node_modules/angular-bootstrap/ui-bootstrap.js',
-                    exports: 'lol',
-                    depends: {
-                        angular: 'angular'
-                    }
-                }
-            }
+            debug: true
         }))
         .pipe(rename('all.js'))
         .pipe(gulp.dest(assetsPath + 'js'))
@@ -62,6 +50,21 @@ gulp.task('compress', function () {
         .pipe(sourcemaps.init({loadMaps: true}))
         .pipe(uglify())
         .pipe(rename('all.min.js'))
+        .pipe(sourcemaps.write('.'))
+        .pipe(gulp.dest(assetsPath + 'js'));
+});
+
+gulp.task('compress-vendor', function () {
+    gulp.src([
+        assetsPath + 'js/vendor/lodash.min.js',
+        assetsPath + 'js/vendor/angular/angular.min.js',
+        assetsPath + 'js/vendor/angular/angular-ui-router.min.js',
+        assetsPath + 'js/vendor/angular/restangular.min.js'
+    ])
+        .pipe(sourcemaps.init({loadMaps: true}))
+        .pipe(concat('vendor.js'))
+        .pipe(uglify())
+        .pipe(rename('vendor.min.js'))
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest(assetsPath + 'js'));
 });

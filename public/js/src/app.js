@@ -1,10 +1,6 @@
 'use strict';
 
-window._ = require('lodash');
-require('angular-bootstrap');
-require('restangular');
-require('angular')
-    .module('admin', ['ui.bootstrap', 'restangular', require('angular-ui-router')])
+angular.module('admin', ['restangular', 'ui.router'])
     .config([
         '$stateProvider',
         '$urlRouterProvider',
