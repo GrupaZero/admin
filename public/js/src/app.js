@@ -1,6 +1,9 @@
 'use strict';
 
-angular.module('admin', ['restangular', 'ui.router'])
+require('./content/module.js');
+require('./user/module.js');
+
+angular.module('admin', ['restangular', 'ui.router', 'admin.content', 'admin.user'])
     .config([
         '$stateProvider',
         '$urlRouterProvider',
@@ -16,21 +19,6 @@ angular.module('admin', ['restangular', 'ui.router'])
                 .state('home', {
                     url: "/",
                     templateUrl: viewPath + "home.html"
-                })
-                .state('content-list', {
-                    url: "/content/list",
-                    templateUrl: viewPath + "content/list.html",
-                    controller: "BaseCtrl"
-                })
-                .state('content-show', {
-                    url: "/content/{contentId}/show",
-                    templateUrl: viewPath + "content/show.html",
-                    controller: [
-                        '$scope', '$stateParams', function ($scope, $stateParams) {
-                            // get the id
-                            $scope.id = $stateParams.contentId;
-                        }
-                    ]
                 });
 
             RestangularProvider.setBaseUrl('/api/v1');
@@ -38,4 +26,11 @@ angular.module('admin', ['restangular', 'ui.router'])
                 return response.data;
             });
         }
-    ]).controller('BaseCtrl', ['$scope', 'Restangular', require('./controllers/BaseCtrl')]);
+    ]).run([
+        '$rootScope',
+        function ($rootScope) {
+            $rootScope.$on('test', function (event, args) {
+                console.log('Test event');
+            });
+        }
+    ]);
