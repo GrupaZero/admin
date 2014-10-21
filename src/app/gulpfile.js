@@ -7,7 +7,6 @@ var rename = require("gulp-rename");
 var imagemin = require('gulp-imagemin');
 var browserify = require('gulp-browserify');
 var sourcemaps = require('gulp-sourcemaps');
-var livereload = require('gulp-livereload');
 var shim = require('browserify-shim');
 var autoprefixer = require('gulp-autoprefixer');
 
@@ -23,74 +22,76 @@ var AUTOPREFIXER_BROWSERS = [
     'bb >= 10'
 ];
 
-var assetsPath = 'public/';
+var publicPath = '../../public/';
 // Task sass
 gulp.task('styles', function () {
-    gulp.src(assetsPath + 'sass/base.scss')
+    return gulp.src('sass/base.scss')
         .pipe(sass({outputStyle: 'compressed'}))
         .pipe(autoprefixer(AUTOPREFIXER_BROWSERS))
-        .pipe(gulp.dest(assetsPath + 'css'))
-        .pipe(livereload());
+        .pipe(gulp.dest(publicPath + 'css'));
 });
 
 // Task scripts
 gulp.task('scripts', function () {
-    gulp.src(assetsPath + 'js/src/app.js')
+    return gulp.src('src/app.js')
         .pipe(browserify({
             insertGlobals: true,
             debug: true
         }))
-        .pipe(rename('all.js'))
-        .pipe(gulp.dest(assetsPath + 'js'))
-        .pipe(livereload());
+        .pipe(rename('admin.js'))
+        .pipe(gulp.dest(publicPath + 'js'));
 });
 
-gulp.task('compress', function () {
-    gulp.src(assetsPath + 'js/all.js')
+// Task compress
+gulp.task('compress', ['scripts'], function () {
+    return gulp.src(publicPath + 'js/admin.js')
         .pipe(sourcemaps.init({loadMaps: true}))
         .pipe(uglify())
-        .pipe(rename('all.min.js'))
+        .pipe(rename('admin.min.js'))
         .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest(assetsPath + 'js'));
+        .pipe(gulp.dest(publicPath + 'js'));
 });
 
+// Task compress-vendor
 gulp.task('compress-vendor', function () {
     gulp.src([
-        assetsPath + 'js/vendor/lodash.min.js',
-        assetsPath + 'js/vendor/angular/angular.min.js',
-        assetsPath + 'js/vendor/angular/angular-ui-router.min.js',
-        assetsPath + 'js/vendor/angular/restangular.min.js'
+        'vendor/lodash.js',
+        'vendor/angular/angular.js',
+        'vendor/angular/angular-ui-router.js',
+        'vendor/angular/restangular.js'
     ])
         .pipe(sourcemaps.init({loadMaps: true}))
-        .pipe(concat('vendor.js'))
-        .pipe(uglify())
+        .pipe(concat(publicPath + 'js/vendor.js'))
+        .pipe(sourcemaps.write('.'))
+        .pipe(gulp.dest(publicPath + 'js'));
+
+    gulp.src([
+        'vendor/lodash.min.js',
+        'vendor/angular/angular.min.js',
+        'vendor/angular/angular-ui-router.min.js',
+        'vendor/angular/restangular.min.js'
+    ])
+        .pipe(sourcemaps.init({loadMaps: true}))
+        .pipe(concat(publicPath + 'js/vendor.js'))
         .pipe(rename('vendor.min.js'))
         .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest(assetsPath + 'js'));
+        .pipe(gulp.dest(publicPath + 'js'));
 });
 
 // Task images
 gulp.task('images', function () {
-    //common
-    gulp.src(assetsPath + 'images-orig/*.{png,gif,jpg}')
+    return gulp.src('img/**/*.{png,gif,jpg}')
         .pipe(imagemin())
-        .pipe(gulp.dest(assetsPath + 'images/'));
+        .pipe(gulp.dest(publicPath + 'img/'));
 });
 
 // Task watch
 gulp.task('watch', function () {
-
-    var server = livereload();
-
-    gulp.watch(assetsPath + 'sass/**/*.scss', ['styles']);
-    gulp.watch(assetsPath + 'js/src/**.js', ['scripts']);
-    gulp.watch(assetsPath + 'js/all.js', ['compress']);
-    gulp.watch(assetsPath + 'images-orig/**', ['images']);
-    //gulp.watch('app/views/**/*.twig').on('change', function (file) {
-    //    server.changed(file.path);
-    //});
-
+    gulp.watch('sass/**/*.scss', ['styles']);
+    gulp.watch('src/**/*.js', ['compress']);
+    //gulp.watch('src/app.js', ['compress']);
+    gulp.watch('img/**/*', ['images']);
 });
 
 // The default task (called when you run `gulp` from cli)
-gulp.task('default', ['styles', 'scripts', 'images', 'watch']);
+gulp.task('default', ['watch']);

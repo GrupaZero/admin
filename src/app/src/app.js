@@ -9,7 +9,7 @@ angular.module('admin', ['restangular', 'ui.router', 'admin.content', 'admin.use
         '$urlRouterProvider',
         'RestangularProvider',
         function ($stateProvider, $urlRouterProvider, RestangularProvider) {
-            var viewPath = 'packages/gzero/admin/js/views/';
+            var viewPath = 'packages/gzero/admin/views/';
 
             // For any unmatched url, redirect to /state1
             $urlRouterProvider.otherwise("/");

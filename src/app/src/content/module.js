@@ -7,7 +7,7 @@ angular.module('admin.content', [])
         'RestangularProvider',
         function ($stateProvider, $urlRouterProvider, RestangularProvider) {
 
-            var viewPath = 'packages/gzero/admin/js/src/content/views/';
+            var viewPath = 'packages/gzero/admin/views/content/';
 
             // Now set up the states
             $stateProvider
