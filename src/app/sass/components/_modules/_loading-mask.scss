@@ -1,4 +1,6 @@
 .loading-mask {
+  background : rgba(0, 0, 0, 0.6) url(#{$img-path}loading.gif) no-repeat center;
+  display    : none;
   position   : absolute;
   width      : 100%;
   height     : 100%;
@@ -6,5 +8,5 @@
   right      : 0;
   top        : 0;
   bottom     : 0;
-  background : rgba(0, 0, 0, 0.75) url(../images/loading_dark.gif) no-repeat center;
+  z-index    : $zindex-navbar-fixed * 2;
 }

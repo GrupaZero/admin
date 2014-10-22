@@ -80,7 +80,7 @@ gulp.task('compress-vendor', function () {
 
 // Task images
 gulp.task('images', function () {
-    return gulp.src('img/**/*.{png,gif,jpg}')
+    return gulp.src('img/**/*.{png,gif,jpg,gif}')
         .pipe(imagemin())
         .pipe(gulp.dest(publicPath + 'img/'));
 });
