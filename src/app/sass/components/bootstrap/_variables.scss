@@ -1,7 +1,8 @@
-// a flag to toggle asset pipeline / compass integration
-// defaults to true if twbs-font-path function is present (no function => twbs-font-path('') parsed as string == right side)
-// in Sass 3.3 this can be improved with: function-exists(twbs-font-path)
+// When true, asset path helpers are used, otherwise the regular CSS `url()` is used.
+// When there no function is defined, `fn('')` is parsed as string that equals the right hand side
+// NB: in Sass 3.3 there is a native function: function-exists(twbs-font-path)
 $bootstrap-sass-asset-helper: (twbs-font-path("") != unquote('twbs-font-path("")')) !default;
+
 //
 // Variables
 // --------------------------------------------------
@@ -13,18 +14,18 @@ $bootstrap-sass-asset-helper: (twbs-font-path("") != unquote('twbs-font-path("")
 
 $black:                  #000 !default;
 $white:                  #fff !default;
-$gray-darker:            #2a303c !default; // #222
+$gray-darker:            lighten($black, 13.5%) !default; // #222
 $gray-dark:              lighten($black, 20%) !default;   // #333
-$gray:                   #909cb1 !default;
-$gray-light:             #b8c6d6 !default;
-$gray-lighter:           #e9eff4 !default;
+$gray:                   lighten($black, 33.5%) !default; // #555
+$gray-light:             lighten($black, 46.7%) !default; // #777
+$gray-lighter:           lighten($black, 93.5%) !default; // #eee
 $gray-ultra-lighter:     #f5f5f5 !default;
 
 $brand-primary:         #0082d4 !default;
 $brand-success:         #6abb4f !default;
 $brand-info:            #5bc0de !default;
 $brand-warning:         #f0ad4e !default;
-$brand-danger:          #ff3838 !default;
+$brand-danger:          #d9534f !default;
 
 
 //== Scaffolding
@@ -46,7 +47,7 @@ $link-hover-color:      darken($link-color, 15%) !default;
 //
 //## Font, line-height, and color for body text, headings, and more.
 
-$font-family-sans-serif:  "Source Sans Pro", Helvetica, Arial, sans-serif !default;
+$font-family-sans-serif:  "Helvetica Neue", Helvetica, Arial, sans-serif !default;
 $font-family-serif:       Georgia, "Times New Roman", Times, serif !default;
 //** Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
 $font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace !default;
@@ -80,7 +81,10 @@ $headings-color:          inherit !default;
 //## Specify custom location and filename of the included Glyphicons icon font. Useful for those including Bootstrap via Bower.
 
 //** Load fonts from this directory.
-$icon-font-path: "../fonts/bootstrap/" !default;
+
+// [converter] Asset helpers such as Sprockets and Node.js Mincer do not resolve relative paths
+$icon-font-path: if($bootstrap-sass-asset-helper, "bootstrap/", "../fonts/bootstrap/") !default;
+
 //** File name for all font files.
 $icon-font-name:          "glyphicons-halflings-regular" !default;
 //** Element ID within SVG icon file.
@@ -106,9 +110,9 @@ $padding-xs-horizontal:     14px !default;
 $line-height-large:         1.33 !default;
 $line-height-small:         1.5 !default;
 
+$border-radius-base:        4px !default;
 $border-radius-large:       6px !default;
 $border-radius-small:       3px !default;
-$border-radius-base:        $border-radius-small !default;
 
 //** Global color for active items (e.g., navs or dropdowns).
 $component-active-color:    $white !default;
@@ -146,7 +150,7 @@ $table-border-color:            $gray-lighter !default;
 //
 //## For each of Bootstrap's buttons, define text, background and border color.
 
-$btn-font-weight:                bold !default;
+$btn-font-weight:                normal !default;
 
 $btn-default-color:              $gray !default;
 $btn-default-bg:                 $white !default;
@@ -154,23 +158,23 @@ $btn-default-border:             $gray !default;
 
 $btn-primary-color:              $white !default;
 $btn-primary-bg:                 $brand-primary !default;
-$btn-primary-border:             $btn-primary-bg !default;
+$btn-primary-border:             darken($btn-primary-bg, 5%) !default;
 
 $btn-success-color:              $white !default;
 $btn-success-bg:                 $brand-success !default;
-$btn-success-border:             $btn-success-bg !default;
+$btn-success-border:             darken($btn-success-bg, 5%) !default;
 
-$btn-info-color:                 $brand-info !default;
-$btn-info-bg:                    $white !default;
-$btn-info-border:                $btn-info-color !default;
+$btn-info-color:                 $white !default;
+$btn-info-bg:                    $brand-info !default;
+$btn-info-border:                darken($btn-info-bg, 5%) !default;
 
 $btn-warning-color:              $white !default;
 $btn-warning-bg:                 $brand-warning !default;
-$btn-warning-border:             $btn-warning-bg !default;
+$btn-warning-border:             darken($btn-warning-bg, 5%) !default;
 
-$btn-danger-color:               $brand-danger !default;
-$btn-danger-bg:                  $white !default;
-$btn-danger-border:              $brand-danger !default;
+$btn-danger-color:               $white !default;
+$btn-danger-bg:                  $brand-danger !default;
+$btn-danger-border:              darken($btn-danger-bg, 5%) !default;
 
 $btn-link-disabled-color:        $gray-light !default;
 
@@ -187,7 +191,7 @@ $input-bg-disabled:              $gray-lighter !default;
 //** Text color for `<input>`s
 $input-color:                    $gray !default;
 //** `<input>` border color
-$input-border:                   $gray-light !default;
+$input-border:                   #ccc !default;
 //** `<input>` border radius
 $input-border-radius:            $border-radius-base !default;
 //** Border color for inputs on focus
@@ -197,7 +201,7 @@ $input-border-focus:             #66afe9 !default;
 $input-color-placeholder:        $gray-light !default;
 
 //** Default `.form-control` height
-$input-height-base:              ($line-height-computed + ($padding-base-vertical * 2) + 14) !default;
+$input-height-base:              ($line-height-computed + ($padding-base-vertical * 2) + 2) !default;
 //** Large `.form-control` height
 $input-height-large:             (ceil($font-size-large * $line-height-large) + ($padding-large-vertical * 2) + 2) !default;
 //** Small `.form-control` height
@@ -355,7 +359,7 @@ $navbar-default-border:            darken($navbar-default-bg, 6.5%) !default;
 
 // Navbar links
 $navbar-default-link-color:                #777 !default;
-$navbar-default-link-hover-color:          #333 !default;
+$navbar-default-link-hover-color:          $gray-dark !default;
 $navbar-default-link-hover-bg:             transparent !default;
 $navbar-default-link-active-color:         #555 !default;
 $navbar-default-link-active-bg:            darken($navbar-default-bg, 6.5%) !default;
@@ -376,7 +380,7 @@ $navbar-default-toggle-border-color:       #ddd !default;
 // Inverted navbar
 // Reset inverted navbar basics
 $navbar-inverse-color:                      $gray-light !default;
-$navbar-inverse-bg:                         #434b5b !default;
+$navbar-inverse-bg:                         #222 !default;
 $navbar-inverse-border:                     darken($navbar-inverse-bg, 10%) !default;
 
 // Inverted navbar links
@@ -394,9 +398,9 @@ $navbar-inverse-brand-hover-color:          $white !default;
 $navbar-inverse-brand-hover-bg:             transparent !default;
 
 // Inverted navbar toggle
-$navbar-inverse-toggle-hover-bg:            #333 !default;
+$navbar-inverse-toggle-hover-bg:            $gray-dark !default;
 $navbar-inverse-toggle-icon-bar-bg:         $white !default;
-$navbar-inverse-toggle-border-color:        #333 !default;
+$navbar-inverse-toggle-border-color:        $gray-dark !default;
 
 
 //== Navs
@@ -551,9 +555,9 @@ $popover-arrow-outer-fallback-color:  darken($popover-fallback-border-color, 20%
 //##
 
 //** Default label background color
-$label-default-bg:            $gray-lighter !default;
+$label-default-bg:            $gray-light !default;
 //** Primary label background color
-$label-primary-bg:            $navbar-inverse-bg !default;
+$label-primary-bg:            $brand-primary !default;
 //** Success label background color
 $label-success-bg:            $brand-success !default;
 //** Info label background color
@@ -593,7 +597,7 @@ $modal-backdrop-bg:           $black !default;
 //** Modal backdrop opacity
 $modal-backdrop-opacity:      .5 !default;
 //** Modal header border color
-$modal-header-border-color:   #e4e9f0 !default;
+$modal-header-border-color:   #e5e5e5 !default;
 //** Modal footer border color
 $modal-footer-border-color:   $modal-header-border-color !default;
 
@@ -679,7 +683,7 @@ $list-group-disabled-text-color: $list-group-disabled-color !default;
 
 $list-group-link-color:         #555 !default;
 $list-group-link-hover-color:   $list-group-link-color !default;
-$list-group-link-heading-color: #333 !default;
+$list-group-link-heading-color: $gray-dark !default;
 
 
 //== Panels
@@ -697,12 +701,12 @@ $panel-inner-border:          #ddd !default;
 $panel-footer-bg:             $gray-ultra-lighter !default;
 
 $panel-default-text:          $gray-dark !default;
-$panel-default-border:        lighten($gray-light, 8%) !default;
-$panel-default-heading-bg:    $gray-lighter !default;
+$panel-default-border:        #ddd !default;
+$panel-default-heading-bg:    $gray-ultra-lighter !default;
 
 $panel-primary-text:          $white !default;
-$panel-primary-border:        $navbar-inverse-border !default;
-$panel-primary-heading-bg:    $navbar-inverse-bg !default;
+$panel-primary-border:        $brand-primary !default;
+$panel-primary-heading-bg:    $brand-primary !default;
 
 $panel-success-text:          $state-success-text !default;
 $panel-success-border:        $state-success-border !default;
@@ -744,7 +748,7 @@ $thumbnail-caption-padding:   9px !default;
 //
 //##
 
-$well-bg:                     $gray-lighter !default;
+$well-bg:                     $gray-ultra-lighter !default;
 $well-border:                 darken($well-bg, 7%) !default;
 
 
@@ -817,7 +821,7 @@ $code-color:                  #c7254e !default;
 $code-bg:                     #f9f2f4 !default;
 
 $kbd-color:                   $white !default;
-$kbd-bg:                      #333 !default;
+$kbd-bg:                      $gray-dark !default;
 
 $pre-bg:                      $gray-ultra-lighter !default;
 $pre-color:                   $gray-dark !default;
@@ -838,7 +842,7 @@ $abbr-border-color:           $gray !default;
 //** Headings small color
 $headings-small-color:        $gray !default;
 //** Blockquote small color
-$blockquote-small-color:      $gray!default;
+$blockquote-small-color:      $gray !default;
 //** Blockquote font size
 $blockquote-font-size:        ($font-size-base * 1.25) !default;
 //** Blockquote border color
@@ -849,5 +853,3 @@ $page-header-border-color:    $gray-lighter !default;
 $dl-horizontal-offset:        $component-offset-horizontal !default;
 //** Horizontal line color.
 $hr-border:                   $gray-lighter !default;
-
-

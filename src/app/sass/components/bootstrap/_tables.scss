@@ -27,7 +27,7 @@ th {
         padding: $table-cell-padding;
         line-height: $line-height-base;
         vertical-align: top;
-        border-bottom: 1px solid $table-border-color;
+        border-top: 1px solid $table-border-color;
       }
     }
   }
@@ -175,6 +175,7 @@ table {
     overflow-y: hidden;
     overflow-x: auto;
     -ms-overflow-style: -ms-autohiding-scrollbar;
+    border: 1px solid $table-border-color;
     -webkit-overflow-scrolling: touch;
 
     // Tighten up spacing

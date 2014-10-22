@@ -42,7 +42,6 @@ a.label {
 // Contextual variations (linked labels get darker on :hover)
 
 .label-default {
-  color: $brand-danger;
   @include label-variant($label-default-bg);
 }
 

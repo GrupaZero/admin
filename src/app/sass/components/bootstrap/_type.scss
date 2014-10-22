@@ -141,26 +141,11 @@ mark,
 // -------------------------
 
 .page-header {
-  padding-bottom : $line-height-computed;
-  margin         : ($line-height-computed * 2) 0 $line-height-computed;
-  border-bottom  : 1px solid $page-header-border-color;
-
-  &.page-title {
-    margin  : ($line-height-computed * 2) 0 0;
-    padding : 0;
-    border  : none;
-  }
-
-  h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-    font-weight   : 600;
-    margin-bottom : 0;
-  }
-
-  .back-link {
-    margin-top: 10px;
-  }
-
+  padding-bottom: (($line-height-computed / 2) - 1);
+  margin: ($line-height-computed * 2) 0 $line-height-computed;
+  border-bottom: 1px solid $page-header-border-color;
 }
+
 
 // Lists
 // -------------------------
