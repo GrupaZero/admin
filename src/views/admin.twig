@@ -51,9 +51,23 @@
     <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
-                <li ui-sref-active="active"><a ui-sref="home">Dashboard</a></li>
-                <li ui-sref-active="active"><a ui-sref="content">Content</a></li>
-                <li ui-sref-active="active"><a ui-sref="user">User</a></li>
+                <li ui-sref-active="active">
+                    <a ui-sref="home">Dashboard</a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="content">Content</a>
+                    <ul class="nav">
+                        <li>
+                            <a>Dummy link</a>
+                        </li>
+                        <li ui-sref-active-eq="active">
+                            <a ui-sref="content-list">Contents list</a>
+                        </li>
+                    </ul>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="user">User</a>
+                </li>
             </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">

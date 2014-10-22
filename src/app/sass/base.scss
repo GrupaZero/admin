@@ -1,5 +1,6 @@
 //Main Stylesheet For Visual Style Guide
 @import "components/components";
+
 /*
 * Base structure
 */
@@ -56,18 +57,46 @@ body {
   margin-right  : -21px; /* 20px padding + 1px border */
   margin-bottom : 20px;
   margin-left   : -20px;
-}
 
-.nav-sidebar > li > a {
-  padding-right : 20px;
-  padding-left  : 20px;
-}
+  & > li {
+    & > a {
+      padding-right : 20px;
+      padding-left  : 20px;
+    }
 
-.nav-sidebar > .active > a,
-.nav-sidebar > .active > a:hover,
-.nav-sidebar > .active > a:focus {
-  color            : $white;
-  background-color : $brand-primary;
+    ul {
+      height     : 0;
+      transition : all .33s ease-in-out;
+      overflow   : hidden;
+      & > li {
+        & > a {
+          padding          : 10px 30px;
+          background-color : $gray-lighter;
+        }
+
+        &.active {
+          & > a {
+            font-weight : bold;
+          }
+        }
+      }
+    }
+
+    &.active {
+      & > a {
+        &,
+        &:hover,
+        &:focus {
+          color            : $white;
+          background-color : $brand-primary;
+        }
+      }
+      ul {
+        height : auto;
+      }
+    }
+  }
+
 }
 
 /*

@@ -7,8 +7,8 @@
             <thead>
             <tr>
                 <th>Id</th>
+                <th>Translations</th>
                 <th>Type</th>
-                <th>Path</th>
                 <th>isActive</th>
                 <th>Action</th>
             </tr>
@@ -19,16 +19,25 @@
                     {{ content.id }}
                 </td>
                 <td>
+                    <h4>{{ content.translations[0].title }}
+                        <small>(<i>{{content.translations[0].url}}</i>)</small>
+                    </h4>
+
+                    <p>{{ content.translations[0].body }}</p>
+
+                    <div ng-repeat="translation in content.translations">
+                        <span class="label label-success">{{ translation.langCode }}</span>
+                        <span class="label label-danger">de</span>
+                    </div>
+                </td>
+                <td>
                     {{ content.typeName }}
                 </td>
-                <td>
-                    {{ content.path }}
+                <td class="text-center">
+                    <i ng-class="{ 'glyphicon glyphicon-ok-circle': content.isActive,'glyphicon glyphicon-ban-circle': !content.isActive }"></i>
                 </td>
                 <td>
-                    {{ content.isActive }}
-                </td>
-                <td>
-                    <a ui-sref="content-show({ contentId: content.id })" class="btn btn-success btn-sm">See the Page</a>
+                    <a ui-sref="content-show({ contentId: content.id })" class="btn btn-success btn-sm">Details</a>
                 </td>
             </tr>
             </tbody>

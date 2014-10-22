@@ -12,12 +12,19 @@ angular.module('admin.content', [])
             // Now set up the states
             $stateProvider
                 .state('content', {
+                    url: "/content",
+                    templateUrl: viewPath + "index.html"
+
+                })
+                .state('content-list', {
                     url: "/content/list",
-                    templateUrl: viewPath + "list.html"
+                    templateUrl: viewPath + "list.html",
+                    parent: 'content'
                 })
                 .state('content-show', {
                     url: "/content/{contentId}/show",
                     templateUrl: viewPath + "show.html",
+                    parent: 'content',
                     controller: [
                         '$scope', '$stateParams', function ($scope, $stateParams) {
                             // get the id
