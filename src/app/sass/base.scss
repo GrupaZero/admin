@@ -99,7 +99,7 @@ body {
 
 }
 
-[ui-view].ng-enter {
+[ui-view='index'].ng-enter {
   @include fadeIn();
 }
 
