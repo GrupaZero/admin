@@ -46,21 +46,18 @@
         </div>
     </div>
 </div>
-
+{% verbatim %}
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
-                <li ui-sref-active="active">
-                    <a ui-sref="home">Dashboard</a>
-                </li>
-                <li ui-sref-active="active">
-                    <a ui-sref="content">Content</a>
-                    <ul class="nav" ui-view="contentNav"></ul>
-                </li>
-                <li ui-sref-active="active">
-                    <a ui-sref="user">User</a>
-                    <ul class="nav" ui-view="userNav"></ul>
+                <li ui-sref-active="active" ng-repeat="link in navBar.getItems()">
+                    <a ui-sref="{{ link.action }}">{{ link.title }}</a>
+                    <ul class="nav">
+                        <li ui-sref-active="active" ng-repeat="subLink in link.children">
+                            <a ui-sref="{{ subLink.action }}">{{ subLink.title }}</a>
+                        </li>
+                    </ul>
                 </li>
             </ul>
         </div>
@@ -69,7 +66,18 @@
         </div>
     </div>
 </div>
-
+{% endverbatim %}
+{#<li ui-sref-active="active">#}
+{#<a ui-sref="home">Dashboard</a>#}
+{#</li>#}
+{#<li ui-sref-active="active">#}
+{#<a ui-sref="content">Content</a>#}
+{#<ul class="nav" ui-view="contentNav"></ul>#}
+{#</li>#}
+{#<li ui-sref-active="active">#}
+{#<a ui-sref="user">User</a>#}
+{#<ul class="nav" ui-view="userNav"></ul>#}
+{#</li>#}
 <div class="loading-mask"><!-- Loading Mask --></div>
 <!-- core JavaScript
 ================================================== -->

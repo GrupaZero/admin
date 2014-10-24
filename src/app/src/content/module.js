@@ -16,10 +16,8 @@ angular.module('admin.content', [])
                     views: {
                         "index": {
                             templateUrl: viewPath + "index.html"
-                        },
-                        "contentNav": {templateUrl: viewPath + "nav.html"}
+                        }
                     }
-
                 })
                 .state('content-list', {
                     url: "/content/list",
@@ -46,10 +44,16 @@ angular.module('admin.content', [])
                     }
 
                 });
-
-            //RestangularProvider.setBaseUrl('/api/v1');
-            //RestangularProvider.setResponseExtractor(function (response, operation) {
-            //    return response.data;
-            //});
         }
-    ]).controller('ContentCtrl', require('./controllers/ContentCtrl'));
+    ])
+    .controller('ContentCtrl', require('./controllers/ContentCtrl'))
+    .run([
+        '$rootScope',
+        function ($rootScope) {
+            $rootScope.navBar.add({
+                title: 'Content', action: 'content', children: [
+                    {title: 'Content List', action: 'content-list'}
+                ]
+            });
+        }
+    ]);

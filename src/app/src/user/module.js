@@ -16,11 +16,16 @@ angular.module('admin.user', [])
                     views: {
                         "index": {
                             templateUrl: viewPath + "list.html"
-                        },
-                        "userNav": {
-                            templateUrl: viewPath + "nav.html"
                         }
                     }
                 });
         }
-    ]).controller('UserCtrl', require('./controllers/UserCtrl'));
+    ])
+    .controller('UserCtrl', require('./controllers/UserCtrl'))
+    .run([
+        '$rootScope',
+        function ($rootScope) {
+            $rootScope.navBar.add({title: 'User', action: 'user'});
+        }
+    ]);
+
