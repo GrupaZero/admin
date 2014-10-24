@@ -13,7 +13,14 @@ angular.module('admin.user', [])
             $stateProvider
                 .state('user', {
                     url: "/user",
-                    templateUrl: viewPath + "list.html"
+                    views: {
+                        "index": {
+                            templateUrl: viewPath + "list.html"
+                        },
+                        "userNav": {
+                            templateUrl: viewPath + "nav.html"
+                        }
+                    }
                 });
         }
     ]).controller('UserCtrl', require('./controllers/UserCtrl'));

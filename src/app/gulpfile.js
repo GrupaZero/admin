@@ -58,7 +58,8 @@ gulp.task('compress-vendor', function () {
         'vendor/lodash.js',
         'vendor/angular/angular.js',
         'vendor/angular/angular-ui-router.js',
-        'vendor/angular/restangular.js'
+        'vendor/angular/restangular.js',
+        'vendor/angular/angular-animate.js'
     ])
         .pipe(sourcemaps.init({loadMaps: true}))
         .pipe(concat(publicPath + 'js/vendor.js'))
@@ -69,7 +70,8 @@ gulp.task('compress-vendor', function () {
         'vendor/lodash.min.js',
         'vendor/angular/angular.min.js',
         'vendor/angular/angular-ui-router.min.js',
-        'vendor/angular/restangular.min.js'
+        'vendor/angular/restangular.min.js',
+        'vendor/angular/angular-animate.min.js'
     ])
         .pipe(sourcemaps.init({loadMaps: true}))
         .pipe(concat(publicPath + 'js/vendor.js'))

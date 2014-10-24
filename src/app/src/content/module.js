@@ -13,24 +13,38 @@ angular.module('admin.content', [])
             $stateProvider
                 .state('content', {
                     url: "/content",
-                    templateUrl: viewPath + "index.html"
+                    views: {
+                        "index": {
+                            templateUrl: viewPath + "index.html"
+                        },
+                        "contentNav": {templateUrl: viewPath + "nav.html"}
+                    }
 
                 })
                 .state('content-list', {
                     url: "/content/list",
-                    templateUrl: viewPath + "list.html",
-                    parent: 'content'
+                    parent: 'content',
+                    views: {
+                        "index@": {
+                            templateUrl: viewPath + "list.html"
+                        }
+                    }
                 })
                 .state('content-show', {
                     url: "/content/{contentId}/show",
-                    templateUrl: viewPath + "show.html",
                     parent: 'content',
-                    controller: [
-                        '$scope', '$stateParams', function ($scope, $stateParams) {
-                            // get the id
-                            $scope.id = $stateParams.contentId;
+                    views: {
+                        "index@": {
+                            templateUrl: viewPath + "show.html",
+                            controller: [
+                                '$scope', '$stateParams', function ($scope, $stateParams) {
+                                    // get the id
+                                    $scope.id = $stateParams.contentId;
+                                }
+                            ]
                         }
-                    ]
+                    }
+
                 });
 
             //RestangularProvider.setBaseUrl('/api/v1');

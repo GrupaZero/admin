@@ -3,7 +3,7 @@
 require('./content/module.js');
 require('./user/module.js');
 
-angular.module('admin', ['restangular', 'ui.router', 'admin.content', 'admin.user'])
+angular.module('admin', ['restangular', 'ui.router','ngAnimate', 'admin.content', 'admin.user'])
     .config([
         '$stateProvider',
         '$urlRouterProvider',
@@ -18,7 +18,11 @@ angular.module('admin', ['restangular', 'ui.router', 'admin.content', 'admin.use
             $stateProvider
                 .state('home', {
                     url: "/",
-                    templateUrl: viewPath + "home.html"
+                    views: {
+                        "index@": {
+                            templateUrl: viewPath + "home.html"
+                        }
+                    }
                 });
 
             RestangularProvider.setBaseUrl('/api/v1');
