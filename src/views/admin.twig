@@ -53,6 +53,10 @@
             <form class="navbar-form navbar-right">
                 <input type="text" class="form-control" placeholder="Search..." ng-model="yourName">
             </form>
+            <ul class="nav navbar-nav" ng-controller="CoreCtrl">
+                <li><a ng-click="changeLanguage('en_US')" translate="ENGLISH" class="btn"></a></li>
+                <li><a ng-click="changeLanguage('pl_PL')" translate="POLISH" class="btn"></a></li>
+            </ul>
         </div>
     </div>
 </div>
@@ -65,7 +69,7 @@
                     <a ui-sref="{{ link.action }}">{{ link.title | translate }}</a>
                     <ul class="nav">
                         <li ui-sref-active="active" ng-repeat="subLink in link.children">
-                            <a ui-sref="{{ subLink.action }}">{{ subLink.title }}</a>
+                            <a ui-sref="{{ subLink.action }}">{{ subLink.title | translate }}</a>
                         </li>
                     </ul>
                 </li>
@@ -84,7 +88,7 @@
 <script src="/packages/gzero/admin/js/vendor.min.js"></script>
 
 {% for module in modules %}
-<script src="{{ module.path }}"></script>,
+    <script src="{{ module.path }}"></script>,
 {% endfor %}
 <script src="/packages/gzero/admin/js/admin.min.js"></script>
 </body>

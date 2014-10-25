@@ -34,8 +34,8 @@ angular.module('admin.user', [])
         '$rootScope',
         function ($rootScope) {
             $rootScope.navBar.add({
-                title: 'User', action: 'user', children: [
-                    {title: 'Users List', action: 'user.list'}
+                title: 'USER', action: 'user', children: [
+                    {title: 'USER_LIST', action: 'user.list'}
                 ]
             });
         }

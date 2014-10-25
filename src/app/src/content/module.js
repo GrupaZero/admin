@@ -49,8 +49,8 @@ angular.module('admin.content', [])
         '$rootScope',
         function ($rootScope) {
             $rootScope.navBar.add({
-                title: 'Content', action: 'content', children: [
-                    {title: 'Contents List', action: 'content.list'}
+                title: 'CONTENT', action: 'content', children: [
+                    {title: 'CONTENT_LIST', action: 'content.list'}
                 ]
             });
         }
