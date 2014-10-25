@@ -23,6 +23,7 @@ angular.module('admin', dependencies).config([
     '$translateProvider',
     function ($stateProvider, $urlRouterProvider, RestangularProvider, $translateProvider) {
         var viewPath = 'packages/gzero/admin/views/';
+        var translationsPath = 'packages/gzero/admin/languages/';
 
         // For any unmatched url, redirect to /state1
         $urlRouterProvider.otherwise("/");
@@ -38,6 +39,14 @@ angular.module('admin', dependencies).config([
                 }
             });
 
+        $translateProvider.useStaticFilesLoader({
+            prefix: translationsPath,
+            suffix: '.json'
+        });
+
+        $translateProvider.preferredLanguage('pl_PL');
+        //$translateProvider.preferredLanguage('en_US');
+
         RestangularProvider.setBaseUrl('/api/v1');
         RestangularProvider.setResponseExtractor(function (response, operation) {
             return response.data;
@@ -46,6 +55,6 @@ angular.module('admin', dependencies).config([
 ]).run([
     '$rootScope',
     function ($rootScope) {
-        $rootScope.navBar.addFirst({title: 'Dashboard', action: 'home'});
+        $rootScope.navBar.addFirst({title: 'DASHBOARD', action: 'home'});
     }
 ]);
