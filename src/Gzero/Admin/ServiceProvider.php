@@ -9,6 +9,7 @@ use Illuminate\Support\ServiceProvider as SP;
  * file that was distributed with this source code.
  *
  * Class ServiceProvider
+ *
  * @author     Adrian Skierniewski <adrian.skierniewski@gmail.com>
  * @copyright  Copyright (c) 2014, Adrian Skierniewski
  */
@@ -32,7 +33,12 @@ class ServiceProvider extends SP {
      */
     public function register()
     {
-
+        $this->app->singleton(
+            'admin.module',
+            function ($app) {
+                return new ModuleRegistry();
+            }
+        );
     }
 
     private function registerRoutes()
