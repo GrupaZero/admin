@@ -9,6 +9,7 @@ var dependencies = [
     'ui.router',
     'ngAnimate',
     'ui.grid',
+    'pascalprecht.translate',
     'admin.core',
     'admin.content',
     'admin.user'
@@ -19,7 +20,8 @@ angular.module('admin', dependencies).config([
     '$stateProvider',
     '$urlRouterProvider',
     'RestangularProvider',
-    function ($stateProvider, $urlRouterProvider, RestangularProvider) {
+    '$translateProvider',
+    function ($stateProvider, $urlRouterProvider, RestangularProvider, $translateProvider) {
         var viewPath = 'packages/gzero/admin/views/';
 
         // For any unmatched url, redirect to /state1
