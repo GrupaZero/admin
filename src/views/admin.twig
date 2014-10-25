@@ -23,7 +23,7 @@
         {% autoescape false %}
         var modules = [
             {% for module in modules %}
-            {name: "{{ module.name}}", path: "{{ module.path }}"},
+            "{{ module.name}}",
             {% endfor %}
         ];
         {% endautoescape %}
@@ -93,6 +93,10 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="/packages/gzero/admin/js/vendor.min.js"></script>
+
+{% for module in modules %}
+<script src="{{ module.path }}"></script>,
+{% endfor %}
 <script src="/packages/gzero/admin/js/admin.min.js"></script>
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="/packages/gzero/admin/js/ie10-viewport-bug-workaround.js"></script>

@@ -4,14 +4,15 @@ require('./core/module.js');
 require('./content/module.js');
 require('./user/module.js');
 
-var dependencies = _.merge([
+var dependencies = [
     'restangular',
     'ui.router',
     'ngAnimate',
     'admin.core',
     'admin.content',
     'admin.user'
-], modules); // Other modules are loaded by twig
+];
+dependencies.push.apply(dependencies, modules); // Other modules are loaded by twig
 
 angular.module('admin', dependencies).config([
     '$stateProvider',
