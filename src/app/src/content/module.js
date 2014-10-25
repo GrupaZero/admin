@@ -19,18 +19,16 @@ angular.module('admin.content', [])
                         }
                     }
                 })
-                .state('content-list', {
-                    url: "/content/list",
-                    parent: 'content',
+                .state('content.list', {
+                    url: "/list",
                     views: {
                         "index@": {
                             templateUrl: viewPath + "list.html"
                         }
                     }
                 })
-                .state('content-show', {
-                    url: "/content/{contentId}/show",
-                    parent: 'content',
+                .state('content.show', {
+                    url: "/{contentId}/show",
                     views: {
                         "index@": {
                             templateUrl: viewPath + "show.html",
@@ -52,7 +50,7 @@ angular.module('admin.content', [])
         function ($rootScope) {
             $rootScope.navBar.add({
                 title: 'Content', action: 'content', children: [
-                    {title: 'Content List', action: 'content-list'}
+                    {title: 'Content List', action: 'content.list'}
                 ]
             });
         }
