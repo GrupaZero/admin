@@ -15,6 +15,14 @@ angular.module('admin.user', [])
                     url: "/user",
                     views: {
                         "index": {
+                            templateUrl: viewPath + "index.html"
+                        }
+                    }
+                })
+                .state('user.list', {
+                    url: "/list",
+                    views: {
+                        "index@": {
                             templateUrl: viewPath + "list.html"
                         }
                     }
@@ -25,7 +33,11 @@ angular.module('admin.user', [])
     .run([
         '$rootScope',
         function ($rootScope) {
-            $rootScope.navBar.add({title: 'User', action: 'user'});
+            $rootScope.navBar.add({
+                title: 'User', action: 'user', children: [
+                    {title: 'Users List', action: 'user.list'}
+                ]
+            });
         }
     ]);
 
