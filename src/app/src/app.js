@@ -44,6 +44,6 @@ angular.module('admin', dependencies).config([
 ]).run([
     '$rootScope',
     function ($rootScope) {
-
+        $rootScope.navBar.add({title: 'Dashboard', action: 'home'});
     }
 ]);
