@@ -4,6 +4,9 @@ function Navigation() {
         add: function (item) {
             items.push(item);
         },
+        addFirst: function (item) {
+            items.unshift(item);
+        },
         getItems: function () {
             return items;
         }
