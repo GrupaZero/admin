@@ -34,7 +34,7 @@ angular.module('admin.content', [])
                             templateUrl: viewPath + "show.html",
                             controller: [
                                 '$scope', '$stateParams', function ($scope, $stateParams) {
-                                    // get the id
+                                    // get the ids
                                     $scope.id = $stateParams.contentId;
                                 }
                             ]

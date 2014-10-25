@@ -6,7 +6,17 @@ function ContentCtrl($scope, $rootScope, Restangular) {
 
     contents.getList().then(function (contents) {
         $scope.contents = contents;
+        //$scope.gridOptions.data = contents;
     });
+    // ui-grid
+    //$scope.gridOptions = {
+    //    enableSorting: true,
+    //    columnDefs: [
+    //        { field: 'id' },
+    //        { field: 'typeName' },
+    //        { field: 'isActive', enableSorting: false }
+    //    ]
+    //};
 }
 
 ContentCtrl.$inject = ['$scope', '$rootScope', 'Restangular'];

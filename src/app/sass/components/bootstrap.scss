@@ -7,6 +7,13 @@
 @import "bootstrap/print";
 @import "bootstrap/glyphicons";
 
+// IE10 viewport hack for Surface/desktop Windows 8 bug
+@-webkit-viewport   { width: device-width; }
+@-moz-viewport      { width: device-width; }
+@-ms-viewport       { width: device-width; }
+@-o-viewport        { width: device-width; }
+@viewport           { width: device-width; }
+
 // Core CSS
 @import "bootstrap/scaffolding";
 @import "bootstrap/type";

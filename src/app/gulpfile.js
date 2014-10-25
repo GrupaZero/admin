@@ -59,7 +59,9 @@ gulp.task('compress-vendor', function () {
         'vendor/angular/angular.js',
         'vendor/angular/angular-ui-router.js',
         'vendor/angular/restangular.js',
-        'vendor/angular/angular-animate.js'
+        'vendor/angular/angular-animate.js',
+        'vendor/angular/ui-grid.js',
+        'vendor/ie10-viewport-bug-workaround.js'
     ])
         .pipe(sourcemaps.init({loadMaps: true}))
         .pipe(concat(publicPath + 'js/vendor.js'))
@@ -71,7 +73,9 @@ gulp.task('compress-vendor', function () {
         'vendor/angular/angular.min.js',
         'vendor/angular/angular-ui-router.min.js',
         'vendor/angular/restangular.min.js',
-        'vendor/angular/angular-animate.min.js'
+        'vendor/angular/angular-animate.min.js',
+        'vendor/angular/ui-grid.min.js',
+        'vendor/ie10-viewport-bug-workaround.min.js'
     ])
         .pipe(sourcemaps.init({loadMaps: true}))
         .pipe(concat(publicPath + 'js/vendor.js'))

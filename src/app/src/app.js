@@ -8,6 +8,7 @@ var dependencies = [
     'restangular',
     'ui.router',
     'ngAnimate',
+    'ui.grid',
     'admin.core',
     'admin.content',
     'admin.user'
