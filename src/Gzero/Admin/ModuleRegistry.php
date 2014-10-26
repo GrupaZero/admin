@@ -27,8 +27,10 @@ class ModuleRegistry {
     }
 
     /**
-     * @param $name
-     * @param $path
+     * Returning new admin modules
+     *
+     * @param string $name AngularJS module name
+     * @param string $path Path to AngularJS module file
      */
     public function register($name, $path)
     {
@@ -36,11 +38,41 @@ class ModuleRegistry {
     }
 
     /**
+     * Returning registered modules
+     *
      * @return Collection
      */
     public function getModules()
     {
         return $this->modules;
+    }
+
+    /**
+     * Returning registered modules AngularJS names
+     *
+     * @return Collection
+     */
+    public function getModulesNames()
+    {
+        return $this->modules->map(
+            function ($module) {
+                return $module['name'];
+            }
+        );
+    }
+
+    /**
+     * Returning registered modules paths (to JS file)
+     *
+     * @return Collection
+     */
+    public function getModulesPaths()
+    {
+        return $this->modules->map(
+            function ($module) {
+                return $module['path'];
+            }
+        );
     }
 
 } 
