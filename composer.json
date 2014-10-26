@@ -1,7 +1,7 @@
 {
     "name": "gzero/admin",
     "description": "Gzero Admin Panel",
-    "keywords": ["laravel", "admin panel"],
+    "keywords": ["laravel", "admin panel", "gzero cms"],
     "license": "MIT",
     "authors": [
         {
@@ -23,5 +23,5 @@
             "Gzero\\": "src/Gzero"
         }
     },
-    "minimum-stability": "dev"
+    "minimum-stability": "stable"
 }
