@@ -9,6 +9,8 @@ before_script:
   - composer self-update
   - composer install --prefer-source --no-interaction --dev
   - npm install
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
 
 script:
   - php vendor/phpunit/phpunit/phpunit --exclude-group ignore
