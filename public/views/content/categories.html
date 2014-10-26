@@ -7,11 +7,17 @@
             </div>
             <div class="aside-body" ng-show="content">
                 <p class="menu-title">
-                    <strong><small class="text-muted text-uppercase" translate="{{ content }}"></small></strong>
+                    <strong>
+                        <small class="text-muted text-uppercase" translate="{{ content }}"></small>
+                    </strong>
+                    <a ng-click="$hide()">
+                        <small class="glyphicon glyphicon-refresh pull-right" bs-tooltip data-placement="bottom-right"
+                               data-title="{{'REFRESH_LIST' | translate}}"></small>
+                    </a>
                 </p>
                 <ul class="nav">
                     <li ng-repeat="content in contents">
-                        <a ng-click="$hide()">{{ content.translations[0].title }}</a>
+                        <a>{{ content.translations[0].title }}</a>
                     </li>
                 </ul>
             </div>

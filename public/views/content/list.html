@@ -1,7 +1,12 @@
-<div class="page-header">
-    <h1>{{ 'CONTENT_LIST' | translate }}</h1>
-</div>
 <div ng-controller="ContentCtrl">
+    <div class="page-header">
+        <h1>
+            {{ 'CONTENT_LIST' | translate }}
+            <button type="button" class="btn btn-primary pull-right" ng-click="showCategories()">
+                <i class="glyphicon glyphicon-th-list"></i> {{ 'SELECT_CATEGORY' | translate }}
+            </button>
+        </h1>
+    </div>
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>

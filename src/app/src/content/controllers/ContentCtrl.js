@@ -10,17 +10,22 @@ function ContentCtrl($scope, $rootScope, Restangular, $aside) {
         //$scope.gridOptions.data = contents;
     });
     //// Pre-fetch an external template populated with a custom scope
-    var myOtherAside = $aside({
+    $scope.aside = $aside({
         title: 'CATEGORIES',
         content: 'SELECT_CATEGORY',
         container: '.main',
+        template: viewPath + 'categories.html',
         scope: $scope,
-        template: viewPath + 'categories.html'
+        show: false
     });
     // Show when some event occurs (use $promise property to ensure the template has been loaded)
-    myOtherAside.$promise.then(function () {
-        myOtherAside.show();
+    $scope.aside.$promise.then(function () {
+        $scope.aside.show();
     });
+    // Aside manual trigger
+    $scope.showCategories = function showCategories(){
+        $scope.aside.show();
+    };
 
     // ui-grid
     //$scope.gridOptions = {
