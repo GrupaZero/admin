@@ -37,7 +37,7 @@ class ModuleRegistry {
      */
     public function register($name, $path)
     {
-        if (!Str::contains('*.js', $path)) {
+        if (!Str::contains($path, '.js')) {
             throw new \Exception('Path should lead to javascript file');
         }
         $this->modules->push(compact('name', 'path'));

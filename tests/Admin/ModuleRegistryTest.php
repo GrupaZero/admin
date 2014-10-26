@@ -27,4 +27,14 @@ class Test extends \PHPUnit_Framework_TestCase {
         $registry = new ModuleRegistry();
         $registry->register('module.name', 'wrong/path');
     }
+
+    /**
+     * @test
+     */
+    function it_can_register()
+    {
+        $registry = new ModuleRegistry();
+        $registry->register('module.name', 'good/path.js');
+        $this->assertEquals($registry->getModules()->toArray(), [['name' => 'module.name', 'path' => 'good/path.js']]);
+    }
 }
