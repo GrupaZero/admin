@@ -44,8 +44,8 @@ angular.module('admin', dependencies).config([
         });
         $translatePartialLoaderProvider.addPart('admin');
 
-        $translateProvider.preferredLanguage('pl_PL');
-        //$translateProvider.preferredLanguage('en_US');
+        //$translateProvider.preferredLanguage('pl_PL');
+        $translateProvider.preferredLanguage('en_US');
 
         RestangularProvider.setBaseUrl('/api/v1');
         RestangularProvider.setResponseExtractor(function (response, operation) {
