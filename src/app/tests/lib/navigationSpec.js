@@ -7,6 +7,6 @@ describe('this is navigation test', function () {
 
     it("can add menu link", function() {
         navigation.add({test: 'test'});
-        expect(navigation.getItems()).toEqual([{test: 'testx'}]);
+        expect(navigation.getItems()).toEqual([{test: 'test'}]);
     });
 });
