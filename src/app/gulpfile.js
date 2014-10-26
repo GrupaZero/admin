@@ -7,7 +7,6 @@ var rename = require("gulp-rename");
 var imagemin = require('gulp-imagemin');
 var browserify = require('gulp-browserify');
 var sourcemaps = require('gulp-sourcemaps');
-var shim = require('browserify-shim');
 var autoprefixer = require('gulp-autoprefixer');
 
 var AUTOPREFIXER_BROWSERS = [
