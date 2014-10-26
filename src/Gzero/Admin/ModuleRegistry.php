@@ -1,6 +1,7 @@
 <?php namespace Gzero\Admin;
 
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 
 /**
  * This file is part of the GZERO CMS package.
@@ -31,9 +32,14 @@ class ModuleRegistry {
      *
      * @param string $name AngularJS module name
      * @param string $path Path to AngularJS module file
+     *
+     * @throws \Exception
      */
     public function register($name, $path)
     {
+        if (!Str::contains('*.js', $path)) {
+            throw new \Exception('Path should lead to javascript file');
+        }
         $this->modules->push(compact('name', 'path'));
     }
 
