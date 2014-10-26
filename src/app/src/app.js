@@ -8,6 +8,7 @@ var dependencies = [
     'restangular',
     'ui.router',
     'ngAnimate',
+    'mgcrea.ngStrap',
     'ui.grid',
     'pascalprecht.translate',
     'admin.core',

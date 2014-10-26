@@ -61,6 +61,9 @@ gulp.task('compress-vendor', function () {
         'vendor/angular/angular-translate-loader-partial.js',
         'vendor/angular/restangular.js',
         'vendor/angular/angular-animate.js',
+        'vendor/angular/angular-strap.js',
+        'vendor/angular/angular-strap.js',
+        'vendor/angular/angular-strap.tpl.js',
         'vendor/angular/ui-grid.js',
         'vendor/ie10-viewport-bug-workaround.js'
     ])
@@ -77,6 +80,8 @@ gulp.task('compress-vendor', function () {
         'vendor/angular/angular-translate-loader-partial.min.js',
         'vendor/angular/restangular.min.js',
         'vendor/angular/angular-animate.min.js',
+        'vendor/angular/angular-strap.min.js',
+        'vendor/angular/angular-strap.tpl.min.js',
         'vendor/angular/ui-grid.min.js',
         'vendor/ie10-viewport-bug-workaround.min.js'
     ])
