@@ -9,12 +9,11 @@ function ContentCtrl($scope, $rootScope, Restangular, $aside) {
         $scope.contents = contents;
         //$scope.gridOptions.data = contents;
     });
-
-
     //// Pre-fetch an external template populated with a custom scope
     var myOtherAside = $aside({
-        title: 'My Title',
-        content: 'My Content',
+        title: 'CATEGORIES',
+        content: 'SELECT_CATEGORY',
+        container: '.main',
         scope: $scope,
         template: viewPath + 'categories.html'
     });

@@ -1,4 +1,6 @@
 {
+    "CATEGORIES": "Categories",
+    "SELECT_CATEGORY": "Select category",
     "CONTENT": "Content",
     "CONTENT_LIST": "Contents List",
     "CONTENT_DETAILS": "Content details",

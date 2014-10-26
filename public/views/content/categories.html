@@ -3,19 +3,15 @@
         <div class="aside-content">
             <div class="aside-header" ng-show="title">
                 <button type="button" class="close" ng-click="$hide()">&times;</button>
-                <h4 class="aside-title" ng-bind-html="title"></h4>
+                <h4 class="aside-title" translate="{{ title }}"></h4>
             </div>
             <div class="aside-body" ng-show="content">
-
-                <p ng-bind-html="content"></p>
+                <p class="menu-title">
+                    <strong><small class="text-muted text-uppercase" translate="{{ content }}"></small></strong>
+                </p>
                 <ul class="nav">
-                    <li>
-                        <a ng-click="$hide()">Link</a>
-                    </li><li>
-                        <a ng-click="$hide()">Link</a>
-                    </li>
-                    <li>
-                        <a ng-click="$hide()">Link</a>
+                    <li ng-repeat="content in contents">
+                        <a ng-click="$hide()">{{ content.translations[0].title }}</a>
                     </li>
                 </ul>
             </div>
