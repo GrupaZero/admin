@@ -1,11 +1,13 @@
 {
     "CONTENT": "Content",
     "CONTENT_LIST": "Contents List",
+    "CONTENT_DETAILS": "Content details",
     "DASHBOARD": "Dashboard",
     "USER": "User",
     "USER_LIST": "Users List",
     "USER_DETAILS": "User details",
     "WELCOME": "Welcome",
+    "WELCOME_MESSAGE": "You have arrived",
     "POLISH": "Polish",
     "ENGLISH": "English"
 }
