@@ -13,7 +13,7 @@ before_script:
 script:
   - php vendor/phpunit/phpunit/phpunit --exclude-group ignore
   - cd src/app
-  - ./node_modules/karma/bin/karma start --single-run
+  - ../../node_modules/karma/bin/karma start --single-run
 
 matrix:
   allow_failures:
