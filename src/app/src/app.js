@@ -27,15 +27,15 @@ angular.module('admin', dependencies).config([
         var viewPath = 'packages/gzero/admin/views/';
 
         // For any unmatched url, redirect to /state1
-        $urlRouterProvider.otherwise("/");
+        $urlRouterProvider.otherwise('/');
 
         // Now set up the states
         $stateProvider
             .state('home', {
-                url: "/",
+                url: '/',
                 views: {
-                    "index@": {
-                        templateUrl: viewPath + "home.html"
+                    'index@': {
+                        templateUrl: viewPath + 'home.html'
                     }
                 }
             });

@@ -10,7 +10,6 @@ function Navigation() {
         getItems: function () {
             return items;
         }
-    }
+    };
 }
-
 module.exports = Navigation;

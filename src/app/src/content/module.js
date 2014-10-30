@@ -12,26 +12,26 @@ angular.module('admin.content', [])
             // Now set up the states
             $stateProvider
                 .state('content', {
-                    url: "/content",
+                    url: '/content',
                     views: {
-                        "index": {
-                            templateUrl: viewPath + "index.html"
+                        'index': {
+                            templateUrl: viewPath + 'index.html'
                         }
                     }
                 })
                 .state('content.list', {
-                    url: "/list",
+                    url: '/list',
                     views: {
-                        "index@": {
-                            templateUrl: viewPath + "list.html"
+                        'index@': {
+                            templateUrl: viewPath + 'list.html'
                         }
                     }
                 })
                 .state('content.show', {
-                    url: "/{contentId}/show",
+                    url: '/{contentId}/show',
                     views: {
-                        "index@": {
-                            templateUrl: viewPath + "show.html",
+                        'index@': {
+                            templateUrl: viewPath + 'show.html',
                             controller: [
                                 '$scope', '$stateParams', function ($scope, $stateParams) {
                                     // get the ids

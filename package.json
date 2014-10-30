@@ -19,5 +19,33 @@
         "karma-phantomjs-launcher": "~0.1.4",
         "karma-browserify": "~0.2.1"
     },
-    "dependencies": {}
+    "dependencies": {},
+    "jshintConfig": {
+        "maxerr": 50,
+        "bitwise": true,
+        "camelcase": true,
+        "curly": true,
+        "eqeqeq": true,
+        "forin": true,
+        "freeze": true,
+        "latedef": true,
+        "newcap": true,
+        "immed": true,
+        "noarg": true,
+        "noempty": true,
+        "nonbsp": true,
+        "nonew": true,
+        "unused": "vars",
+        "strict": true,
+        "quotmark": "single",
+        "indent": 4,
+        "maxparam": 4,
+        "maxdepth": 3,
+        "maxcomplexity": 6,
+        "predef": ["angular", "module", "modules", "require"],
+        "jquery": true,
+        "node": true,
+        "browser": true,
+        "devel": true
+    }
 }
