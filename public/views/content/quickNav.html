@@ -1,10 +1,4 @@
 <div class="row">
-    <div class="col-lg-8">
-        <button type="button" class="btn btn-primary btn-sm" ng-click="showCategories()">
-            <i class="glyphicon glyphicon-th-list"></i> {{ 'SELECT_CATEGORY' | translate }}
-        </button>
-    </div>
-    <!-- /.col-lg-6 -->
     <div class="col-lg-4">
         <div class="input-group">
             <input type="text" class="form-control" placeholder="Content title">
@@ -14,6 +8,12 @@
         </div>
         <!-- /input-group -->
     </div>
-    <!-- /.col-lg-6 -->
+    <!-- /.col-lg-4 -->
+    <div class="col-lg-8">
+        <button type="button" class="btn btn-primary btn-sm pull-right" ng-click="showCategories()">
+            <i class="glyphicon glyphicon-th-list"></i> {{ 'SELECT_CATEGORY' | translate }}
+        </button>
+    </div>
+    <!-- /.col-lg-8 -->
 </div>
 <!-- /.row -->
