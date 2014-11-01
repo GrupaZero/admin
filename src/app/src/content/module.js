@@ -24,6 +24,13 @@ angular.module('admin.content', [])
                     views: {
                         'index@': {
                             templateUrl: viewPath + 'list.html'
+                        },
+                        'quickNav@': {
+                            templateUrl: 'packages/gzero/admin/views/partials/quickNav.html'
+                        },
+                        'quickLinks@content.list': {
+                            templateUrl: viewPath + 'quickNav.html',
+                            controller: 'ContentCtrl'
                         }
                     }
                 })

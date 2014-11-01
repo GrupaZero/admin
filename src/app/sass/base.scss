@@ -103,6 +103,10 @@ body {
   @include fadeIn();
 }
 
+[ui-view='quickNav'].ng-enter {
+  @include fadeInDown();
+}
+
 /*
  * Main content
  */
