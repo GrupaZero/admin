@@ -9,7 +9,6 @@ var dependencies = [
     'ui.router',
     'ngAnimate',
     'mgcrea.ngStrap',
-    'ui.grid',
     'pascalprecht.translate',
     'admin.core',
     'admin.content',
