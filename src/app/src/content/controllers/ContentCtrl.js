@@ -19,24 +19,10 @@ function ContentCtrl($scope, $rootScope, Restangular, $aside) {
         scope: $scope,
         show: false
     });
-    // Show when some event occurs (use $promise property to ensure the template has been loaded)
-    $scope.aside.$promise.then(function () {
-        $scope.aside.show();
-    });
     // Aside manual trigger
     $scope.showCategories = function showCategories(){
         $scope.aside.show();
     };
-
-    // ui-grid
-    //$scope.gridOptions = {
-    //    enableSorting: true,
-    //    columnDefs: [
-    //        { field: 'id' },
-    //        { field: 'typeName' },
-    //        { field: 'isActive', enableSorting: false }
-    //    ]
-    //};
 }
 
 ContentCtrl.$inject = ['$scope', '$rootScope', 'Restangular', '$aside'];

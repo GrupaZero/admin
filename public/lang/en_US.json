@@ -4,6 +4,7 @@
     "CONTENT": "Content",
     "CONTENT_LIST": "Contents List",
     "CONTENT_DETAILS": "Content details",
+    "CONTENT_EDIT": "Edit content",
     "DASHBOARD": "Dashboard",
     "USER": "User",
     "USER_LIST": "Users List",
@@ -12,5 +13,7 @@
     "WELCOME_MESSAGE": "You have arrived",
     "POLISH": "Polish",
     "ENGLISH": "English",
-    "REFRESH_LIST": "Refresh list"
+    "REFRESH_LIST": "Refresh list",
+    "SAVE": "Save",
+    "CANCEL": "Cancel"
 }

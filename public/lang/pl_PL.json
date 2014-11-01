@@ -4,6 +4,7 @@
     "CONTENT": "Zawartość",
     "CONTENT_LIST": "Lista zawartości",
     "CONTENT_DETAILS": "Szczegóły zawartości",
+    "CONTENT_EDIT": "Edycja zawartości",
     "DASHBOARD": "Panel",
     "USER": "Użytkownicy",
     "USER_LIST": "Lista użytkowników",
@@ -12,5 +13,7 @@
     "WELCOME_MESSAGE": "Jesteś na miejscu",
     "POLISH": "Polski",
     "ENGLISH": "Angielski",
-    "REFRESH_LIST": "Odśwież listę"
+    "REFRESH_LIST": "Odśwież listę",
+    "SAVE": "Zapisz",
+    "CANCEL": "Anuluj"
 }

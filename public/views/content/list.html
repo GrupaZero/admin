@@ -15,7 +15,7 @@
                 <th>Translations</th>
                 <th>Type</th>
                 <th>isActive</th>
-                <th>Action</th>
+                <th class="col-xs-2">Action</th>
             </tr>
             </thead>
             <tbody>
@@ -43,6 +43,7 @@
                 </td>
                 <td>
                     <a ui-sref="content.show({ contentId: content.id })" class="btn btn-success btn-sm">Details</a>
+                    <a ui-sref="content.edit({ contentId: content.id })" class="btn btn-primary btn-sm">Edit</a>
                 </td>
             </tr>
             </tbody>

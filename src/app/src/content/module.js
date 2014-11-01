@@ -41,6 +41,29 @@ angular.module('admin.content', [])
                         }
                     }
 
+                }).state('content.edit', {
+                    url: '/{contentId}/edit',
+                    views: {
+                        'index@': {
+                            templateUrl: viewPath + 'edit.html',
+                            controller: [
+                                '$scope', '$stateParams', function ($scope, $stateParams) {
+                                    $scope.sharedDate = "2014-11-01T09:00:44.180Z"; // (formatted: 11/1/14 10:00 AM)
+                                    $scope.content = {
+                                        'translations': [
+                                            {
+                                                'url': 'dummy-content2',
+                                                'langCode': 'pl',
+                                                'title': 'Dummy content2 title',
+                                                'body': 'Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. ',
+                                            }
+                                        ]
+                                    };
+                                }
+                            ]
+                        }
+                    }
+
                 });
         }
     ])
