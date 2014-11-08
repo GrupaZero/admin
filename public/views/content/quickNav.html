@@ -2,7 +2,8 @@
     <div class="row">
         <div class="col-xs-10 col-sm-8 col-lg-6">
             <div class="input-group">
-                <input type="text" class="form-control" placeholder="Enter new content title here">
+                <input type="text" class="form-control" bs-tooltip data-placement="bottom-right"
+                       data-title="{{ 'ADD_CONTENT_HINT' | translate }}">
               <span class="input-group-btn">
                 <button ui-sref="content.show({ contentId: 2 })" class="btn btn-success" type="button"
                         title="{{ 'ADD_NEW' | translate }}">

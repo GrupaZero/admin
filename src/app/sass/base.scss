@@ -174,6 +174,17 @@ body {
  * --------------------------------------------------
  */
 @media screen and (max-width : 767px) {
+  .navbar-fixed-top {
+    .navbar-header {
+      .navbar-nav {
+        margin : 4px -15px;
+        float  : left;
+        li {
+          float : left;
+        }
+      }
+    }
+  }
   .row-offcanvas {
     position   : relative;
     transition : all .25s ease-out;

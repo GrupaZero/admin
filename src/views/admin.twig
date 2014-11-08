@@ -42,18 +42,18 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" ui-sref="home">G-ZERO ADMIN</a>
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li ui-sref-active="active"><a ui-sref="home">Dashboard</a></li>
-            </ul>
-            <form class="navbar-form navbar-right">
-                <input type="text" class="form-control" placeholder="Search..." ng-model="yourName">
-            </form>
             <ul class="nav navbar-nav" ng-controller="CoreCtrl">
                 <li><a ng-click="changeLanguage('en_US')" translate="ENGLISH" class="btn"></a></li>
                 <li><a ng-click="changeLanguage('pl_PL')" translate="POLISH" class="btn"></a></li>
             </ul>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li ui-sref-active="active"><a ui-sref="home" translate="DASHBOARD"></a></li>
+            </ul>
+            <form class="navbar-form navbar-right">
+                <input type="text" class="form-control" placeholder="Search..." ng-model="yourName">
+            </form>
         </div>
     </div>
 </div>
