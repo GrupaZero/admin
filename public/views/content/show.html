@@ -3,33 +3,22 @@
 </div>
 <div ui-view>
     <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-4">
             <div class="panel panel-default">
-                <div class="panel-body">
-                    <div class="media">
-                        <a class="media-left" ui-sref="content.show">
-                            <img src="http://placehold.it/64x64" style="width: 64px; height: 64px;">
-                        </a>
-                        <div class="media-body">
-                            <h4 class="media-heading">
-                                {{ content.translations[0].title }}
-                                <a ui-sref=".edit({ translationId: content.translations[0].id })">Edit</a>
-                            </h4>
-                            {{ content.translations[0].body }}
-                        </div>
-                    </div>
-                </div>
+                <img src="https://placeimg.com/420/200/any" style="width: 420px; height: 200px;" class="img-responsive">
             </div>
         </div>
         <div class="col-lg-6">
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="media">
-
                         <div class="media-body">
-                            <h4 class="media-heading">
+                            <h2 class="media-heading">
                                 {{ content.translations[0].title }}
-                            </h4>
+                                <small>
+                                    <a ui-sref=".edit({ translationId: content.translations[0].id })">Edit</a>
+                                </small>
+                            </h2>
                             {{ content.translations[0].body }}
                         </div>
                     </div>
