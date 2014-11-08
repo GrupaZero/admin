@@ -8,6 +8,21 @@ angular.module('admin.content', [])
         function ($stateProvider, $urlRouterProvider, RestangularProvider) {
 
             var viewPath = 'packages/gzero/admin/views/content/';
+            var dummyController = [
+                '$scope', '$stateParams', function ($scope, $stateParams) {
+                    $scope.content = {
+                        'translations': [
+                            {
+                                'id': '1',
+                                'url': 'dummy-content2',
+                                'langCode': 'pl',
+                                'title': 'Dummy content2 title',
+                                'body': 'Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. ',
+                            }
+                        ]
+                    };
+                }
+            ];
 
             // Now set up the states
             $stateProvider
@@ -36,38 +51,15 @@ angular.module('admin.content', [])
                     views: {
                         'index@': {
                             templateUrl: viewPath + 'show.html',
-                            controller: [
-                                '$scope', '$stateParams', function ($scope, $stateParams) {
-                                    // get the ids
-                                    $scope.id = $stateParams.contentId;
-                                }
-                            ]
+                            controller: dummyController
                         }
                     }
 
-                }).state('content.edit', {
-                    url: '/{contentId}/edit',
-                    views: {
-                        'index@': {
-                            templateUrl: viewPath + 'edit.html',
-                            controller: [
-                                '$scope', '$stateParams', function ($scope, $stateParams) {
-                                    $scope.sharedDate = "2014-11-01T09:00:44.180Z"; // (formatted: 11/1/14 10:00 AM)
-                                    $scope.content = {
-                                        'translations': [
-                                            {
-                                                'url': 'dummy-content2',
-                                                'langCode': 'pl',
-                                                'title': 'Dummy content2 title',
-                                                'body': 'Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. ',
-                                            }
-                                        ]
-                                    };
-                                }
-                            ]
-                        }
-                    }
-
+                })
+                .state('content.show.edit', {
+                    url: '/{translationId}/edit',
+                    templateUrl: viewPath + 'edit.html',
+                    controller: dummyController
                 });
         }
     ])

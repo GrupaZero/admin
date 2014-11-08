@@ -35,8 +35,8 @@
                     <p>{{ content.translations[0].body }}</p>
 
                     <a ui-sref="content.show({ contentId: content.id })">Details</a>
-                    <a ui-sref="content.edit({ contentId: content.id })">Edit</a>
-                    <a ui-sref="content.edit({ contentId: content.id })" class="text-danger">Trash</a>
+                    <a ui-sref="content.show.edit({  contentId: content.id, translationId: content.translations[0].id })">Edit</a>
+                    <a ui-sref="content.show({ contentId: content.id })" class="text-danger">Trash</a>
                 </td>
                 <td>
                     {{ content.typeName }}

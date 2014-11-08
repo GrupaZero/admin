@@ -108,6 +108,10 @@ body {
 
 }
 
+[ui-view].ng-enter {
+  @include fadeInRight();
+}
+
 [ui-view='index'].ng-enter {
   @include fadeIn();
 }
@@ -177,10 +181,13 @@ body {
   .navbar-fixed-top {
     .navbar-header {
       .navbar-nav {
-        margin : 4px -15px;
+        margin : 4px 0;
         float  : left;
         li {
           float : left;
+          a {
+            padding : 10px;
+          }
         }
       }
     }

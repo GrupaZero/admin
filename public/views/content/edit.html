@@ -1,6 +1,3 @@
-<div class="page-header">
-    <h1>{{ 'CONTENT_EDIT' | translate }}</h1>
-</div>
 <form>
     <!-- Url Form input -->
     <div class="form-group">
@@ -18,7 +15,7 @@
         <textarea name="for" class="form-control" rows="3" id="body">{{ content.translations[0].body }}</textarea>
     </div>
     <div class="text-right">
-        <button type="button" class="btn btn-default" ui-sref="content.list">{{ 'CANCEL' | translate }}</button>
+        <button type="button" class="btn btn-default" ui-sref="content.show">{{ 'CANCEL' | translate }}</button>
         <button type="submit" class="btn btn-primary">{{ 'SAVE' | translate }}</button>
     </div>
 </form>
