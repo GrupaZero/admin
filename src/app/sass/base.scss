@@ -6,8 +6,18 @@
 */
 
 /* Move down content because we have a fixed navbar that is 50px tall */
+html,
+body {
+  overflow-x : hidden; /* Prevent scroll on narrow devices */
+}
+
+html {
+  height : 100%;
+}
+
 body {
   padding-top : 50px;
+  min-height  : 100%;
 }
 
 /*
@@ -33,22 +43,21 @@ body {
 
 /* Hide for mobile, show later */
 .sidebar {
-  display : none;
+  top              : 51px;
+  bottom           : 0;
+  left             : 0;
+  z-index          : 1000;
+  display          : block;
+  padding          : 20px;
+  overflow-x       : hidden;
+  overflow-y       : auto; /* Scrollable contents if viewport is shorter than content. */
+  background-color : $gray-ultra-lighter;
+  border-right     : 1px solid $gray-lighter;
 }
 
-@media (min-width : 768px) {
+@media screen and (min-width : 768px) {
   .sidebar {
-    position         : fixed;
-    top              : 51px;
-    bottom           : 0;
-    left             : 0;
-    z-index          : 1000;
-    display          : block;
-    padding          : 20px;
-    overflow-x       : hidden;
-    overflow-y       : auto; /* Scrollable contents if viewport is shorter than content. */
-    background-color : $gray-ultra-lighter;
-    border-right     : 1px solid $gray-lighter;
+    position : fixed;
   }
 }
 
@@ -115,7 +124,7 @@ body {
   padding : 20px;
 }
 
-@media (min-width : 768px) {
+@media screen and (min-width : 768px) {
   .main {
     padding-right : 40px;
     padding-left  : 40px;
@@ -130,5 +139,50 @@ body {
   margin : 0 -20px;
   li > a {
     padding : 10px 20px;
+  }
+}
+
+/*
+ * Off Canvas
+ * --------------------------------------------------
+ */
+@media screen and (max-width : 767px) {
+  .row-offcanvas {
+    position   : relative;
+    transition : all .25s ease-out;
+
+    &.right {
+      right : 0;
+      .sidebar-offcanvas {
+        right : -48%; /* 6 columns */
+      }
+      &.active {
+        right : 50%; /* 6 columns */
+
+        .sidebar-offcanvas {
+          right : 0;
+        }
+      }
+    }
+
+    &.left {
+      left : 0;
+      .sidebar-offcanvas {
+        left : -48%; /* 6 columns */
+      }
+      &.active {
+        left : 50%; /* 6 columns */
+
+        .sidebar-offcanvas {
+          left : 0;
+        }
+      }
+    }
+  }
+
+  .sidebar-offcanvas {
+    transition : all .25s ease-out;
+    position   : fixed;
+    width      : 48%; /* 6 columns */
   }
 }
