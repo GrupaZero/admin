@@ -124,13 +124,6 @@ body {
   padding : 20px;
 }
 
-@media screen and (min-width : 768px) {
-  .main {
-    padding-right : 40px;
-    padding-left  : 40px;
-  }
-}
-
 .main .page-header {
   margin-top : 0;
 }
@@ -139,6 +132,40 @@ body {
   margin : 0 -20px;
   li > a {
     padding : 10px 20px;
+  }
+}
+
+.quick-nav {
+  .quick-nav-inner {
+    background    : $navbar-default-bg;
+    padding       : 10px $line-height-computed $line-height-computed;
+    margin        : -10px -20px 0;
+    border-bottom : 1px solid $navbar-default-border;
+  }
+}
+
+.list-filters {
+  margin-bottom : $line-height-computed;
+  li {
+    a {
+      padding : 4px 10px;
+      .badge {
+        vertical-align : top;
+      }
+    }
+  }
+}
+
+@media screen and (min-width : 768px) {
+  .main,
+  .quick-nav .quick-nav-inner {
+    padding-right : 40px;
+    padding-left  : 40px;
+  }
+
+  .quick-nav .quick-nav-inner {
+    margin-left  : -40px;
+    margin-right : -40px;
   }
 }
 
@@ -184,5 +211,6 @@ body {
     transition : all .25s ease-out;
     position   : fixed;
     width      : 48%; /* 6 columns */
+    z-index    : $zindex-navbar-fixed;
   }
 }

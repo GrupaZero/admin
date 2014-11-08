@@ -1,19 +1,26 @@
-<div class="row">
-    <div class="col-lg-4">
-        <div class="input-group">
-            <input type="text" class="form-control" placeholder="Content title">
+<div class="quick-nav-inner">
+    <div class="row">
+        <div class="col-xs-10 col-sm-8 col-lg-6">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Enter new content title here">
               <span class="input-group-btn">
-                <button ui-sref="content.show({ contentId: 2 })" class="btn btn-primary" type="button">Add New</button>
+                <button ui-sref="content.show({ contentId: 2 })" class="btn btn-success" type="button"
+                        title="{{ 'ADD_NEW' | translate }}">
+                    <i class="glyphicon glyphicon-plus hidden-sm"></i> <span class="hidden-xs">{{ 'ADD_NEW' | translate }}</span>
+                </button>
               </span>
+            </div>
+            <!-- /input-group -->
         </div>
-        <!-- /input-group -->
+        <!-- /.col-lg-4 -->
+        <div class="col-xs-2 col-sm-4 col-lg-6">
+            <button type="button" class="btn btn-default pull-right" ng-click="showCategories()"
+                    title="{{ 'SELECT_CATEGORY' | translate }}">
+                <i class="glyphicon glyphicon-th-list"></i> <span class="hidden-xs">{{ 'SELECT_CATEGORY' | translate }}</span>
+            </button>
+        </div>
+        <!-- /.col-lg-8 -->
     </div>
-    <!-- /.col-lg-4 -->
-    <div class="col-lg-8">
-        <button type="button" class="btn btn-primary btn-sm pull-right" ng-click="showCategories()">
-            <i class="glyphicon glyphicon-th-list"></i> {{ 'SELECT_CATEGORY' | translate }}
-        </button>
-    </div>
-    <!-- /.col-lg-8 -->
+    <!-- /.row -->
 </div>
-<!-- /.row -->
+<!-- /.quick-nav -->

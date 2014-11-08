@@ -4,9 +4,10 @@
             {{ 'CONTENT_LIST' | translate }}
         </h1>
     </div>
-    <ul class="nav nav-pills" role="tablist">
+    <ul class="list-filters nav nav-pills" role="tablist">
         <li role="presentation" class="active"><a>All <span class="badge">42</span></a></li>
-        <li role="presentation"><a>Published <span class="badge">3</span></a></li>
+        <li role="presentation"><a>Published <span class="badge">33</span></a></li>
+        <li role="presentation"><a>Trash <span class="badge">1</span></a></li>
     </ul>
     <div class="table-responsive">
         <table class="table table-striped">
@@ -16,7 +17,6 @@
                 <th>Translations</th>
                 <th>Type</th>
                 <th>isActive</th>
-                <th class="col-xs-2">Action</th>
             </tr>
             </thead>
             <tbody>
@@ -25,26 +25,24 @@
                     {{ content.id }}
                 </td>
                 <td>
-                    <h4>{{ content.translations[0].title }}
+                    <h4>
+                        <a ui-sref="content.show({ contentId: content.id })">
+                            {{ content.translations[0].title }}
+                        </a>
                         <small>(<i>{{content.translations[0].url}}</i>)</small>
                     </h4>
 
                     <p>{{ content.translations[0].body }}</p>
 
-                    <div ng-repeat="translation in content.translations">
-                        <span class="label label-success">{{ translation.langCode }}</span>
-                        <span class="label label-danger">de</span>
-                    </div>
+                    <a ui-sref="content.show({ contentId: content.id })">Details</a>
+                    <a ui-sref="content.edit({ contentId: content.id })">Edit</a>
+                    <a ui-sref="content.edit({ contentId: content.id })" class="text-danger">Trash</a>
                 </td>
                 <td>
                     {{ content.typeName }}
                 </td>
                 <td class="text-center">
                     <i ng-class="{ 'glyphicon glyphicon-ok-circle': content.isActive,'glyphicon glyphicon-ban-circle': !content.isActive }"></i>
-                </td>
-                <td>
-                    <a ui-sref="content.show({ contentId: content.id })" class="btn btn-success btn-sm">Details</a>
-                    <a ui-sref="content.edit({ contentId: content.id })" class="btn btn-primary btn-sm">Edit</a>
                 </td>
             </tr>
             </tbody>
