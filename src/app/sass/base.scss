@@ -34,7 +34,8 @@ body {
  * Hide default border to remove 1px line.
  */
 .navbar-fixed-top {
-  border : 0;
+  border     : 0;
+  box-shadow : 0 2px 5px rgba(0, 0, 0, 0.26);
 }
 
 /*
@@ -43,16 +44,17 @@ body {
 
 /* Hide for mobile, show later */
 .sidebar {
-  top              : 51px;
+  background-color : $gray-ultra-lighter;
+  border-right     : 1px solid $legend-border-color;
+  box-shadow       : 0 2px 2px rgba(0, 0, 0, 0.1);
   bottom           : 0;
+  top              : 51px;
   left             : 0;
   z-index          : 1000;
   display          : block;
   padding          : 20px;
   overflow-x       : hidden;
   overflow-y       : auto; /* Scrollable contents if viewport is shorter than content. */
-  background-color : $gray-ultra-lighter;
-  border-right     : 1px solid $gray-lighter;
 }
 
 @media screen and (min-width : 768px) {
@@ -141,10 +143,11 @@ body {
 
 .quick-nav {
   .quick-nav-inner {
-    background    : $navbar-default-bg;
-    padding       : 10px $line-height-computed $line-height-computed;
-    margin        : -10px -20px 0;
+    background    : $white;
     border-bottom : 1px solid $navbar-default-border;
+    box-shadow    : 0 1px 1px rgba(0, 0, 0, 0.05);
+    padding       : $line-height-computed;
+    margin        : -20px -20px 0;
   }
 }
 
@@ -229,6 +232,6 @@ body {
     transition : all .25s ease-out;
     position   : fixed;
     width      : 48%; /* 6 columns */
-    z-index    : $zindex-navbar-fixed;
+    z-index    : $zindex-navbar-fixed - 1;
   }
 }

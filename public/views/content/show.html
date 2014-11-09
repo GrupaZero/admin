@@ -8,20 +8,59 @@
                 <img src="https://placeimg.com/420/200/any" style="width: 420px; height: 200px;" class="img-responsive">
             </div>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-8">
             <div class="panel panel-default">
-                <div class="panel-body">
-                    <div class="media">
-                        <div class="media-body">
-                            <h2 class="media-heading">
-                                {{ content.translations[0].title }}
-                                <small>
-                                    <a ui-sref=".edit({ translationId: content.translations[0].id })">Edit</a>
-                                </small>
-                            </h2>
+                <div class="panel-heading">
+                    <strong class="text-uppercase">
+                        Translations
+                    </strong>
+                    <a>
+                        <span class="glyphicon glyphicon-search pull-right ng-scope"></span>
+                    </a>
+                </div>
+                <div class="list-group" style="height: 300px;overflow-y: scroll;">
+                    <a ui-sref=".edit({ translationId: content.translations[0].id })" class="list-group-item">
+                        <span class="label label-success pull-right">{{ 'ENGLISH' | translate }}</span>
+
+                        <h4 class="list-group-item-heading">
+                            {{ content.translations[0].title }}
+                        </h4>
+
+                        <p class="list-group-item-text">
                             {{ content.translations[0].body }}
-                        </div>
-                    </div>
+                        </p>
+                    </a>
+                    <a ui-sref=".edit({ translationId: content.translations[0].id })" class="list-group-item">
+                        <span class="label label-success pull-right">{{ 'POLISH' | translate }}</span>
+
+                        <h4 class="list-group-item-heading">
+                            {{ content.translations[0].title }}
+                        </h4>
+
+                        <p class="list-group-item-text">
+                            {{ content.translations[0].body }}
+                        </p>
+                    </a>
+                    <a ui-sref=".edit({ translationId: content.translations[0].id })" class="list-group-item">
+                        <span class="label label-success pull-right">Spanish</span>
+
+                        <h4 class="list-group-item-heading">
+                            {{ content.translations[0].title }}
+                        </h4>
+
+                        <p class="list-group-item-text">
+                            {{ content.translations[0].body }}
+                        </p>
+                    </a>
+                    <a ui-sref=".edit({ translationId: content.translations[0].id })" class="list-group-item active">
+                        <span class="label label-primary pull-right">German</span>
+
+                        <h4 class="list-group-item-heading">No translation</h4>
+
+                        <p class="list-group-item-text">
+                            It seems that this content does not have a translation in this language
+                        </p>
+                    </a>
                 </div>
             </div>
         </div>
