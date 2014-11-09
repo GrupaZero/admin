@@ -163,6 +163,59 @@ body {
   }
 }
 
+.action-group {
+  .list-group-item {
+    position : relative;
+    .list-group-item-heading {
+      margin-bottom : $line-height-computed / 2;
+    }
+    .box-inner {
+      background-color : rgba(33, 150, 243, 0.8);
+      color            : $white;
+      display          : block;
+      opacity          : 0;
+      transition       : all .25s ease-in-out;
+      bottom           : 0;
+      overflow         : hidden;
+
+      &, .icon {
+        position : absolute;
+        width    : 100%;
+        height   : 100%;
+        right    : 0;
+        left     : 0;
+      }
+      .icon {
+        font-size  : $font-size-h1;
+        top        : -100%;
+        transition : all .33s ease-in-out;
+        &:before {
+          margin-top   : 2px;
+          margin-right : 10px;
+        }
+      }
+    }
+    &:hover {
+      cursor : pointer;
+      .box-inner {
+        opacity : 100;
+        .icon {
+          top         : 0;
+          padding-top : 22px;
+        }
+      }
+    }
+    &.active {
+      padding : 15px;
+      &:hover {
+        .box-inner {
+          background-color : rgba(0, 0, 0, 0.6);
+        }
+      }
+    }
+  }
+}
+
 @media screen and (min-width : 768px) {
   .main,
   .quick-nav .quick-nav-inner {
