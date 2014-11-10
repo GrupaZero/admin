@@ -165,51 +165,40 @@ body {
 
 .action-group {
   .list-group-item {
-    position : relative;
+    position   : relative;
+    transition : all .25s ease-in-out;
     .list-group-item-heading {
       margin-bottom : $line-height-computed / 2;
     }
     .box-inner {
       background-color : rgba(33, 150, 243, 0.8);
       color            : $white;
-      display          : block;
-      opacity          : 0;
       transition       : all .25s ease-in-out;
-      bottom           : 0;
-      overflow         : hidden;
+      padding          : 10px 15px;
+      margin           : 10px -15px -15px;
 
-      &, .icon {
-        position : absolute;
-        width    : 100%;
-        height   : 100%;
-        right    : 0;
-        left     : 0;
-      }
-      .icon {
-        font-size  : $font-size-h1;
-        top        : -100%;
-        transition : all .33s ease-in-out;
-        &:before {
-          margin-top   : 2px;
-          margin-right : 10px;
-        }
+      a {
+        background-color : transparent;
+        color            : $white;
+        margin-right     : 10px;
       }
     }
     &:hover {
-      cursor : pointer;
+      box-shadow : 0 2px 5px rgba(0, 0, 0, 0.5);
+      z-index    : 1050;
       .box-inner {
-        opacity : 100;
-        .icon {
-          top         : 0;
-          padding-top : 22px;
-        }
+        background-color : $brand-primary;
       }
     }
-    &.active {
-      padding : 15px;
-      &:hover {
-        .box-inner {
-          background-color : rgba(0, 0, 0, 0.6);
+    &.empty {
+      background-color : $gray-lighter;
+      color            : $gray;
+      padding          : 15px;
+      .box-inner {
+        background-color : $gray;
+        &:hover {
+          cursor           : pointer;
+          background-color : $brand-primary;
         }
       }
     }

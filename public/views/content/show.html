@@ -8,7 +8,7 @@
                 <div class="panel-heading">
                     <strong>{{ 'TRANSLATIONS' | translate | uppercase }}</strong>
                 </div>
-                <div class="list-group action-group" style="height: 300px; overflow-y: scroll;">
+                <div class="list-group action-group">
                     <div ng-repeat="translation in content.translations" class="list-group-item">
                         <span class="label label-success pull-right" translate="{{ translation.langCode | langName }}"></span>
 
@@ -19,21 +19,32 @@
                         <p class="list-group-item-text">
                             {{ translation.body }}
                         </p>
-                        <span class="box-inner text-center" ui-sref=".edit({ translationId: translation.id })">
-                            <i class="icon glyphicon glyphicon-edit">{{ 'EDIT' | translate }}</i>
-                        </span>
+
+                        <div class="box-inner clearfix">
+                            <a ui-sref=".edit({ translationId: translation.id })">
+                                <i class="icon glyphicon glyphicon-edit"></i> {{ 'EDIT' | translate }}
+                            </a>
+                            <a ui-sref=".edit({ translationId: translation.id })">
+                                <i class="icon glyphicon glyphicon-remove-circle"></i> {{ 'DELETE' | translate }}
+                            </a>
+                            <small class="pull-right">
+                                <strong>Permalink:</strong>
+                                <a>http://domain.com/{{ translation.langCode }}/{{ translation.url }}</a>
+                            </small>
+                        </div>
                     </div>
 
-                    <div ng-repeat="lang in langs" class="list-group-item active">
-                        <span class="label label-primary pull-right" translate="{{ lang.code | langName }}"></span>
+                    <div ng-repeat="lang in langs" class="list-group-item empty">
+                        <span class="label label-default pull-right" translate="{{ lang.code | langName }}"></span>
                         <h4 class="list-group-item-heading">{{ 'NO_TRANSLATION' | translate }}</h4>
 
                         <p class="list-group-item-text">
                             {{ 'NO_TRANSLATION_INFO' | translate }}
                         </p>
-                          <span class="box-inner text-center">
-                            <i class="icon glyphicon glyphicon-plus-sign">{{ 'ADD' | translate }}</i>
-                        </span>
+
+                        <div class="box-inner text-center" ui-sref=".edit({ translationId: translation.id })">
+                            <i class="icon glyphicon glyphicon-plus-sign"></i> {{ 'ADD' | translate }}
+                        </div>
                     </div>
 
                 </div>
@@ -56,8 +67,7 @@
                                    bs-datepicker>
                         </div>
                         <div class="form-group">
-                            <input type="text" size="6" class="form-control" ng-model="content.createdAt.date"
-                                   data-autoclose="1"
+                            <input type="text" size="6" class="form-control" ng-model="content.createdAt.date" data-autoclose="1"
                                    bs-timepicker>
                         </div>
                     </div>
@@ -66,8 +76,23 @@
                     <a class="pull-left text-danger" ui-sref="content.show" style="margin-top: 7px;">
                         <small class="hidden-xs">{{ 'MOVE_TO_TRASH' | translate }}</small>
                     </a>
-                    <button type="button" ng-click="content.isActive = !content.isActive" class="btn btn-primary">
+                    <button type="button" ng-click="content.isActive = !content.isActive" class="btn btn-success">
                         {{ content.isActive | isActive : true | translate }}
+                    </button>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <strong>{{ 'CATEGORY' | translate | uppercase }}</strong>
+                </div>
+                <div class="panel-body">
+                    <select class="form-control">
+                        <option>{{ 'UNCATEGORIZED' | translate }}</option>
+                    </select>
+                </div>
+                <div class="panel-footer text-right">
+                    <button type="button" class="btn btn-primary">
+                        {{ 'ADD_NEW' | translate }}
                     </button>
                 </div>
             </div>
