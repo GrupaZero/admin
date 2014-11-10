@@ -23,7 +23,7 @@ var AUTOPREFIXER_BROWSERS = [
 
 var publicPath = '../../public/';
 // Task sass
-gulp.task('styles', function () {
+gulp.task('styles', function() {
     return gulp.src('sass/base.scss')
         .pipe(sass({outputStyle: 'compressed'}))
         .pipe(autoprefixer(AUTOPREFIXER_BROWSERS))
@@ -31,7 +31,7 @@ gulp.task('styles', function () {
 });
 
 // Task scripts
-gulp.task('scripts', function () {
+gulp.task('scripts', function() {
     return gulp.src('src/app.js')
         .pipe(browserify({
             insertGlobals: true,
@@ -42,7 +42,7 @@ gulp.task('scripts', function () {
 });
 
 // Task compress
-gulp.task('compress', ['scripts'], function () {
+gulp.task('compress', ['scripts'], function() {
     return gulp.src(publicPath + 'js/admin.js')
         .pipe(sourcemaps.init({loadMaps: true}))
         .pipe(uglify())
@@ -52,7 +52,7 @@ gulp.task('compress', ['scripts'], function () {
 });
 
 // Task compress-vendor
-gulp.task('compress-vendor', function () {
+gulp.task('compress-vendor', function() {
     gulp.src([
         'vendor/lodash.js',
         'vendor/angular/angular.js',
@@ -90,14 +90,14 @@ gulp.task('compress-vendor', function () {
 });
 
 // Task images
-gulp.task('images', function () {
+gulp.task('images', function() {
     return gulp.src('img/**/*.{png,gif,jpg,gif}')
         .pipe(imagemin())
         .pipe(gulp.dest(publicPath + 'img/'));
 });
 
 // Task watch
-gulp.task('watch', function () {
+gulp.task('watch', function() {
     gulp.watch('sass/**/*.scss', ['styles']);
     gulp.watch('src/**/*.js', ['compress']);
     //gulp.watch('src/app.js', ['compress']);

@@ -24,7 +24,7 @@ angular.module('admin', dependencies).config([
     'RestangularProvider',
     '$translateProvider',
     '$translatePartialLoaderProvider',
-    function ($stateProvider, $urlRouterProvider, RestangularProvider, $translateProvider, $translatePartialLoaderProvider) {
+    function($stateProvider, $urlRouterProvider, RestangularProvider, $translateProvider, $translatePartialLoaderProvider) {
         var viewPath = 'packages/gzero/admin/views/';
 
         // For any unmatched url, redirect to /state1
@@ -49,14 +49,14 @@ angular.module('admin', dependencies).config([
         //$translateProvider.preferredLanguage('pl_PL');
         $translateProvider.preferredLanguage('en_US');
 
-        RestangularProvider.setBaseUrl('/api/v1');
-        RestangularProvider.setResponseExtractor(function (response, operation) {
+        RestangularProvider.setBaseUrl(Config.apiUrl + '/v1');
+        RestangularProvider.setResponseExtractor(function(response, operation) {
             return response.data;
         });
     }
 ]).run([
     '$rootScope',
-    function ($rootScope) {
+    function($rootScope) {
         $rootScope.navBar.addFirst({title: 'DASHBOARD', action: 'home'});
     }
 ]);

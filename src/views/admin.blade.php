@@ -19,14 +19,15 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <script type="application/javascript">
-        {# Passing module registry to javascript #}
-        {% autoescape false %}
+        var Config = {
+            url : '{{ Request::root() }}',
+            apiUrl: 'http://api.{{ Request::getHTTPHost()}}'
+        };
         var modules = [
-            {% for moduleName in modules.getModulesNames() %}
-            "{{ moduleName }}",
-            {% endfor %}
+        @foreach ($modules->getModulesNames() as $moduleName)
+             "{{ $moduleName }}",
+        @endforeach
         ];
-        {% endautoescape %}
     </script>
 </head>
 
@@ -57,16 +58,15 @@
         </div>
     </div>
 </div>
-{% verbatim %}
 <div class="container-fluid">
     <div class="row row-offcanvas left" ng-class="{ 'active': showSidebar, '' : !showSidebar }">
         <div class="col-sm-3 col-md-2 sidebar sidebar-offcanvas">
             <ul class="nav nav-sidebar">
                 <li ui-sref-active="active" ng-repeat="link in navBar.getItems()">
-                    <a ui-sref="{{ link.action }}">{{ link.title | translate }}</a>
+                    <a ui-sref="@{{ link.action }}">@{{ link.title | translate }}</a>
                     <ul class="nav">
                         <li ui-sref-active="active" ng-repeat="subLink in link.children">
-                            <a ui-sref="{{ subLink.action }}">{{ subLink.title | translate }}</a>
+                            <a ui-sref="@{{ subLink.action }}">@{{ subLink.title | translate }}</a>
                         </li>
                     </ul>
                 </li>
@@ -78,15 +78,14 @@
         </div>
     </div>
 </div>
-{% endverbatim %}
 <div class="loading-mask"><!-- Loading Mask --></div>
 <!-- core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="/packages/gzero/admin/js/vendor.min.js"></script>
 <script src="/packages/gzero/admin/js/admin.min.js"></script>
-{% for modulePath in modules.getModulesPaths() %}
-    <script src="{{ modulePath }}"></script>
-{% endfor %}
+@foreach ($modules->getModulesPaths() as $modulePath)
+     <script src="{{ $modulePath }}"></script>
+@endforeach
 </body>
 </html>
