@@ -3,20 +3,10 @@
 </div>
 <div ui-view>
     <div class="row">
-        <div class="col-lg-4">
-            <div class="panel panel-default">
-                <img src="https://placeimg.com/420/200/any" style="width: 420px; height: 200px;" class="img-responsive">
-            </div>
-        </div>
-        <div class="col-lg-6">
+        <div class="col-lg-9">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <strong class="text-uppercase">
-                        {{ 'TRANSLATIONS' | translate }}
-                    </strong>
-                    <a>
-                        <span class="glyphicon glyphicon-search pull-right ng-scope"></span>
-                    </a>
+                    <strong>{{ 'TRANSLATIONS' | translate | uppercase }}</strong>
                 </div>
                 <div class="list-group action-group" style="height: 300px; overflow-y: scroll;">
                     <div ng-repeat="translation in content.translations" class="list-group-item">
@@ -46,6 +36,36 @@
                         </span>
                     </div>
 
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <strong>{{ 'PUBLISH' | translate | uppercase }}</strong>
+                </div>
+                <div class="panel-body">
+                    <p><strong>{{ 'STATUS' | translate }}:</strong> {{ 'PUBLISHED' | translate }}</p>
+
+                    <label for="createdAt">{{ 'PUBLISHED_ON' | translate }}:</label>
+
+                    <div class="form-inline">
+                        <div class="form-group">
+                            <input id="createdAt" type="text" size="6" class="form-control" ng-model="content.createdAt.date"
+                                   value="{{ content.createdAt.date }}"
+                                   bs-datepicker>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" size="6" class="form-control" ng-model="content.createdAt.date" data-autoclose="1"
+                                   bs-timepicker>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer text-right">
+                    <a class="pull-left text-danger" ui-sref="content.show" style="margin-top: 7px;">
+                        <small class="hidden-xs">{{ 'MOVE_TO_TRASH' | translate }}</small>
+                    </a>
+                    <button type="submit" class="btn btn-primary">{{ 'HOLD_PUBLICATION' | translate }}</button>
                 </div>
             </div>
         </div>

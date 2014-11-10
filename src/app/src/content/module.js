@@ -11,6 +11,17 @@ angular.module('admin.content', [])
             var dummyController = [
                 '$scope', '$stateParams', function($scope, $stateParams) {
                     $scope.content = {
+                        'id': 2,
+                        'typeName': 'category',
+                        'isActive': true,
+                        'weight': 0,
+                        'path': '/',
+                        'level': 0,
+                        'createdAt': {
+                            'date': '2014-10-12 17:35:59',
+                            'timezone_type': 3,
+                            'timezone': 'UTC'
+                        },
                         'translations': [
                             {
                                 'id': '1',
