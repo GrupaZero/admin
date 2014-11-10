@@ -5,22 +5,37 @@ angular.module('admin.content', [])
         '$stateProvider',
         '$urlRouterProvider',
         'RestangularProvider',
-        function ($stateProvider, $urlRouterProvider, RestangularProvider) {
+        function($stateProvider, $urlRouterProvider, RestangularProvider) {
 
             var viewPath = 'packages/gzero/admin/views/content/';
             var dummyController = [
-                '$scope', '$stateParams', function ($scope, $stateParams) {
+                '$scope', '$stateParams', function($scope, $stateParams) {
                     $scope.content = {
                         'translations': [
                             {
                                 'id': '1',
-                                'url': 'dummy-content2',
+                                'url': 'szybki-brazowy-lis-przeskoczyl-nad-leniwym-psem',
                                 'langCode': 'pl',
-                                'title': 'Dummy content2 title',
-                                'body': 'Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. ',
+                                'title': 'Szybki brązowy lis przeskoczył nad leniwym psem',
+                                'body': 'Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. '
+                            }, {
+                                'id': '2',
+                                'url': 'the-quick-brown-fox-jumps-over-the-lazy-dog',
+                                'langCode': 'en',
+                                'title': 'The quick brown fox jumps over the lazy dog',
+                                'body': 'Vivamus id urna et ipsum porta tempor. Sed laoreet ipsum quis nisi consectetur, vel commodo nisl hendrerit. Ut posuere eros quis nisi euismod maximus. Cras id hendrerit velit. Donec id vulputate libero.'
                             }
                         ]
                     };
+                    $scope.langs = [
+                        {
+                            'code': 'de'
+                        },
+                        {
+                            'code': 'fr'
+                        }
+
+                    ];
                 }
             ];
 
@@ -66,7 +81,7 @@ angular.module('admin.content', [])
     .controller('ContentCtrl', require('./controllers/ContentCtrl'))
     .run([
         '$rootScope',
-        function ($rootScope) {
+        function($rootScope) {
             $rootScope.navBar.add({
                 title: 'CONTENT', action: 'content', children: [
                     {title: 'CONTENT_LIST', action: 'content.list'}

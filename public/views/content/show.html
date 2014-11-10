@@ -8,7 +8,7 @@
                 <img src="https://placeimg.com/420/200/any" style="width: 420px; height: 200px;" class="img-responsive">
             </div>
         </div>
-        <div class="col-lg-8">
+        <div class="col-lg-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <strong class="text-uppercase">
@@ -18,38 +18,24 @@
                         <span class="glyphicon glyphicon-search pull-right ng-scope"></span>
                     </a>
                 </div>
-                <div class="list-group action-group" style="height: 300px;overflow-y: scroll;">
-                    <div ui-sref=".edit({ translationId: content.translations[0].id })" class="list-group-item">
-                        <span class="label label-success pull-right">{{ 'ENGLISH' | translate }}</span>
+                <div class="list-group action-group" style="height: 300px; overflow-y: scroll;">
+                    <div ng-repeat="translation in content.translations" class="list-group-item">
+                        <span class="label label-success pull-right" translate="{{ translation.langCode | langName }}"></span>
 
                         <h4 class="list-group-item-heading">
-                            {{ content.translations[0].title }}
+                            {{ translation.title }}
                         </h4>
 
                         <p class="list-group-item-text">
-                            {{ content.translations[0].body }}
+                            {{ translation.body }}
                         </p>
-                        <span class="box-inner text-center">
+                        <span class="box-inner text-center" ui-sref=".edit({ translationId: translation.id })">
                             <i class="icon glyphicon glyphicon-edit">{{ 'EDIT' | translate }}</i>
                         </span>
                     </div>
-                    <div ui-sref=".edit({ translationId: content.translations[0].id })" class="list-group-item">
-                        <span class="label label-success pull-right">{{ 'POLISH' | translate }}</span>
 
-                        <h4 class="list-group-item-heading">
-                            {{ content.translations[0].title }}
-                        </h4>
-
-                        <p class="list-group-item-text">
-                            {{ content.translations[0].body }}
-                        </p>
-                         <span class="box-inner text-center">
-                            <i class="icon glyphicon glyphicon-edit">{{ 'EDIT' | translate }}</i>
-                        </span>
-                    </div>
-                    <div ui-sref=".edit({ translationId: content.translations[0].id })" class="list-group-item active">
-                        <span class="label label-primary pull-right">{{ 'GERMAN' | translate }}</span>
-
+                    <div ng-repeat="lang in langs" class="list-group-item active">
+                        <span class="label label-primary pull-right" translate="{{ lang.code | langName }}"></span>
                         <h4 class="list-group-item-heading">{{ 'NO_TRANSLATION' | translate }}</h4>
 
                         <p class="list-group-item-text">
@@ -59,18 +45,7 @@
                             <i class="icon glyphicon glyphicon-plus-sign">{{ 'ADD' | translate }}</i>
                         </span>
                     </div>
-                    <div ui-sref=".edit({ translationId: content.translations[0].id })" class="list-group-item active">
-                        <span class="label label-primary pull-right">{{ 'FRENCH' | translate }}</span>
 
-                        <h4 class="list-group-item-heading">{{ 'NO_TRANSLATION' | translate }}</h4>
-
-                        <p class="list-group-item-text">
-                            {{ 'NO_TRANSLATION_INFO' | translate }}
-                        </p>
-                          <span class="box-inner text-center">
-                            <i class="icon glyphicon glyphicon-plus-sign">{{ 'ADD' | translate }}</i>
-                        </span>
-                    </div>
                 </div>
             </div>
         </div>

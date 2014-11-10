@@ -1,5 +1,6 @@
 'use strict';
 
+require('./filters/filters.js');
 require('./core/module.js');
 require('./content/module.js');
 require('./user/module.js');
@@ -10,6 +11,7 @@ var dependencies = [
     'ngAnimate',
     'mgcrea.ngStrap',
     'pascalprecht.translate',
+    'filters',
     'admin.core',
     'admin.content',
     'admin.user'
