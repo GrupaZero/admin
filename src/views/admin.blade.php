@@ -35,12 +35,12 @@
 
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container-fluid">
-        <div class="navbar-header">
+        <div class="navbar-header" ng-controller="CoreCtrl">
             <a class="navbar-brand" ui-sref="home">G-ZERO ADMIN</a>
-            <ul class="nav navbar-nav" ng-controller="CoreCtrl">
-                <li><a ng-click="changeLanguage('en_US')" translate="LANG_NAME_EN" class="btn"></a></li>
-                <li><a ng-click="changeLanguage('pl_PL')" translate="LANG_NAME_PL" class="btn"></a></li>
-            </ul>
+            <div class="navbar-form navbar-left">
+                <select ng-model="currentLang" ng-change="changeLanguage()" class="form-control"
+                    ng-options="lang.code | langName | translate for lang in langs"></select>
+            </div>
             <button type="button" class="navbar-toggle collapsed" ng-click="showSidebar = !showSidebar">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>

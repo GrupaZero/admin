@@ -1,11 +1,15 @@
 'use strict';
 
-function CoreCtrl($scope, $translate) {
-    $scope.changeLanguage = function (langKey) {
+function CoreCtrl($scope, $translate, LangRepository) {
+    $scope.changeLanguage = function() {
         $translate.fallbackLanguage(['en_US']);
-        $translate.use(langKey);
+        $translate.use($scope.currentLang.i18n);
     };
+    LangRepository.all().then(function(data) {
+        $scope.langs = data;
+        $scope.currentLang = data[0];
+    });
 }
 
-CoreCtrl.$inject = ['$scope','$translate'];
+CoreCtrl.$inject = ['$scope', '$translate', 'LangRepository'];
 module.exports = CoreCtrl;
