@@ -2,13 +2,9 @@
 
 function LangRepository(Restangular) {
     var api = Restangular.all('langs');
-    var langs = [];
-    api.getList().then(function(contents) {
-        langs = contents;
-    });
     return {
-        test: function() {
-            return langs;
+        all: function() {
+            return api.getList();
         }
     };
 }

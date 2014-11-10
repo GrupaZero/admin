@@ -38,7 +38,9 @@ angular.module('admin.content', [])
                             }
                         ]
                     };
-                    $scope.langs = LangRepository.test();
+                    LangRepository.all().then(function(data) {
+                        $scope.langs = data;
+                    });
                 }
             ];
 
