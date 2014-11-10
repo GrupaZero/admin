@@ -20,17 +20,13 @@
                             {{ translation.body }}
                         </p>
 
-                        <div class="box-inner clearfix">
-                            <a ui-sref=".edit({ translationId: translation.id })">
-                                <i class="icon glyphicon glyphicon-edit"></i> {{ 'EDIT' | translate }}
-                            </a>
-                            <a ui-sref=".edit({ translationId: translation.id })">
+                        <div class="box-inner">
+                            <button ui-sref=".edit({ translationId: translation.id })" class="btn btn-danger">
                                 <i class="icon glyphicon glyphicon-remove-circle"></i> {{ 'DELETE' | translate }}
-                            </a>
-                            <small class="pull-right">
-                                <strong>Permalink:</strong>
-                                <a>http://domain.com/{{ translation.langCode }}/{{ translation.url }}</a>
-                            </small>
+                            </button>
+                            <button ui-sref=".edit({ translationId: translation.id })" class="btn btn-primary">
+                                <i class="icon glyphicon glyphicon-edit"></i> {{ 'EDIT' | translate }}
+                            </button>
                         </div>
                     </div>
 
@@ -42,8 +38,10 @@
                             {{ 'NO_TRANSLATION_INFO' | translate }}
                         </p>
 
-                        <div class="box-inner text-center" ui-sref=".edit({ translationId: translation.id })">
-                            <i class="icon glyphicon glyphicon-plus-sign"></i> {{ 'ADD' | translate }}
+                        <div class="box-inner">
+                            <button ui-sref=".edit({ translationId: translation.id })" class="btn btn-default btn-block">
+                                <i class="icon glyphicon glyphicon-plus-sign"></i> {{ 'ADD' | translate }}
+                            </button>
                         </div>
                     </div>
 
