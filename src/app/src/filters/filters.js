@@ -6,7 +6,7 @@ angular.module('filters', []).filter('langName', function() {
     };
 }).filter('isActive', function() {
     'use strict';
-    // Returns translatable string based on provided language code
+    // Returns translatable string
     return function(isActive, button) {
         if (button) {
             return isActive ? 'HOLD_PUBLICATION' : 'PUBLISH';

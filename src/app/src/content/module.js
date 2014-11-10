@@ -9,7 +9,7 @@ angular.module('admin.content', [])
 
             var viewPath = 'packages/gzero/admin/views/content/';
             var dummyController = [
-                '$scope', '$stateParams', function($scope, $stateParams) {
+                '$scope', '$stateParams', 'LangRepository', function($scope, $stateParams, LangRepository) {
                     $scope.content = {
                         'id': 2,
                         'typeName': 'category',
@@ -38,15 +38,7 @@ angular.module('admin.content', [])
                             }
                         ]
                     };
-                    $scope.langs = [
-                        {
-                            'code': 'de'
-                        },
-                        {
-                            'code': 'fr'
-                        }
-
-                    ];
+                    $scope.langs = LangRepository.test();
                 }
             ];
 
