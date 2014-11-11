@@ -1,13 +1,15 @@
 function Navigation() {
+    'use strict';
+
     var items = [];
     return {
-        add: function (item) {
+        add: function(item) {
             items.push(item);
         },
-        addFirst: function (item) {
+        addFirst: function(item) {
             items.unshift(item);
         },
-        getItems: function () {
+        getItems: function() {
             return items;
         }
     };
