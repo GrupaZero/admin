@@ -78,8 +78,8 @@
 // -------------------------------------
 //   Components
 
-// ----- sidebar-offcanvas-component ---- //
-%sidebar-offcanvas-l-component {
+// ----- sidebar-offcanvas ---- //
+%sidebar-l-offcanvas {
   bottom     : 0;
   display    : block;
   left       : 0;
@@ -92,30 +92,30 @@
 }
 
 @media screen and (max-width : 767px) {
-  %sidebar-offcanvas-l-component {
+  %sidebar-l-offcanvas {
     width : 48%;
   }
 }
 
-%sidebar-offcanvas-s-component {
+%sidebar-s-offcanvas {
   background-color : $gray-ultra-lighter;
   border-right     : 1px solid $legend-border-color;
   box-shadow       : 0 2px 2px rgba(0, 0, 0, 0.1);
   transition       : all .25s ease-out;
 }
 
-%sidebar-offcanvas-t-component {
+%sidebar-t-offcanvas {
 
 }
 
-.sidebar-offcanvas-c-component {
-  @extend %sidebar-offcanvas-l-component;
-  @extend %sidebar-offcanvas-s-component;
-  @extend %sidebar-offcanvas-t-component;
+.sidebar-c-offcanvas {
+  @extend %sidebar-l-offcanvas;
+  @extend %sidebar-s-offcanvas;
+  @extend %sidebar-t-offcanvas;
 }
 
-// ----- nav-sidebar-component ---- //
-%nav-sidebar-l-component {
+// ----- nav-sidebar-offcanvas ---- //
+%nav-l-sidebar {
   margin-right  : -21px; /* 20px padding + 1px border */
   margin-bottom : 20px;
   margin-left   : -20px;
@@ -144,7 +144,7 @@
   }
 }
 
-%nav-sidebar-s-component {
+%nav-s-sidebar {
   .nav {
     transition : all .33s ease-in-out;
     & > li {
@@ -166,7 +166,7 @@
   }
 }
 
-%nav-sidebar-t-component {
+%nav-t-sidebar {
   .nav {
     li.active {
       & > a {
@@ -177,10 +177,10 @@
   }
 }
 
-.nav-sidebar-c-component {
-  @extend %nav-sidebar-l-component;
-  @extend %nav-sidebar-s-component;
-  @extend %nav-sidebar-t-component;
+.nav-c-sidebar {
+  @extend %nav-l-sidebar;
+  @extend %nav-s-sidebar;
+  @extend %nav-t-sidebar;
 }
 
 // -------------------------------------
@@ -194,7 +194,7 @@
     &.right {
       &.is-active {
         right : 50%; /* 6 columns */
-        .sidebar-offcanvas-c-component {
+        .sidebar-c-offcanvas {
           right : 0;
         }
       }
@@ -204,7 +204,7 @@
     &.left {
       &.is-active {
         left : 50%; /* 6 columns */
-        .sidebar-offcanvas-c-component {
+        .sidebar-c-offcanvas {
           left : 0;
         }
       }

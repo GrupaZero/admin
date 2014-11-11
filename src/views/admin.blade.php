@@ -60,8 +60,8 @@
 </div>
 <div class="container-fluid">
     <div class="row row-offcanvas left" ng-class="{ 'is-active': showSidebar, '' : !showSidebar }">
-        <div class="col-sm-3 col-md-2 sidebar-offcanvas-c-component">
-            <ul class="nav nav-sidebar-c-component">
+        <div class="col-sm-3 col-md-2 sidebar-c-offcanvas">
+            <ul class="nav nav-c-sidebar">
                 <li ui-sref-active="active" ng-repeat="link in navBar.getItems()">
                     <a ui-sref="@{{ link.action }}">@{{ link.title | translate }}</a>
                     <ul class="nav">
@@ -73,7 +73,7 @@
             </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main"  ng-click="showSidebar = false">
-            <div class="quick-nav" ui-view="quickNav"></div>
+            <div ui-view="quickNav"></div>
             <div ui-view="index"></div>
         </div>
     </div>

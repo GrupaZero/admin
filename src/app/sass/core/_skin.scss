@@ -3,3 +3,29 @@
 // -------------------------------------
 // ----- Global skin classes (gradients, colors, box-shadows, etc).
 // -------------------------------------
+
+/*
+ * Top navigation
+ * Hide default border to remove 1px line.
+ */
+.navbar-fixed-top {
+  border     : 0;
+  box-shadow : 0 2px 5px rgba(0, 0, 0, 0.26);
+}
+
+
+// -------------------------------------
+//   Animations
+// -------------------------------------
+
+[ui-view].ng-enter {
+  @include fadeInRight();
+}
+
+[ui-view='index'].ng-enter {
+  @include fadeIn();
+}
+
+[ui-view='quickNav'].ng-enter {
+  @include fadeInDown();
+}
