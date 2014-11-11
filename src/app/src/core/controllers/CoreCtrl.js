@@ -9,6 +9,8 @@ function CoreCtrl($scope, $translate, LangRepository) {
         $scope.langs = data;
         $scope.currentLang = data[0];
     });
+    //Off canvas sidebar
+    $scope.showSidebar = false;
 }
 
 CoreCtrl.$inject = ['$scope', '$translate', 'LangRepository'];

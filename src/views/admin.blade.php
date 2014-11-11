@@ -31,13 +31,13 @@
     </script>
 </head>
 
-<body>
+<body ng-controller="CoreCtrl">
 
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container-fluid">
-        <div class="navbar-header" ng-controller="CoreCtrl">
+        <div class="navbar-header">
             <a class="navbar-brand" ui-sref="home">G-ZERO ADMIN</a>
-            <div class="navbar-form navbar-left">
+            <div class="navbar-form navbar-left col-xs-4">
                 <select ng-model="currentLang" ng-change="changeLanguage()" class="form-control"
                     ng-options="lang.code | langName | translate for lang in langs"></select>
             </div>
