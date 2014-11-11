@@ -11,7 +11,7 @@
     <title>G-ZERO Admin</title>
 
     <!-- core CSS -->
-    <link rel="stylesheet" href="/packages/gzero/admin/css/base.css">
+    <link rel="stylesheet" href="/packages/gzero/admin/css/application.css">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>

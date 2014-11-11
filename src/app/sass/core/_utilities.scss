@@ -1,0 +1,60 @@
+// -------------------------------------
+//   Utilities
+// -------------------------------------
+// ----- Placeholders Extends, Mixins, Functions, and Utility Classes
+// -------------------------------------
+
+// -------------------------------------
+//   Placeholder Extends
+// -------------------------------------
+
+// ----- Clearfix ----- //
+// %clearfix:before,
+// %clearfix:after {
+//   content: " ";
+//   display: table;
+// }
+
+// %clearfix:after {
+//   clear: both;
+// }
+
+// %clearfix {
+//   *zoom: 1;
+// }
+
+
+// -------------------------------------
+//   Mixins
+// -------------------------------------
+
+// ----- Adds responsive breakpoints. ----- //
+@mixin breakpoint($width) {
+   @media (min-width: $width) {
+     @content;
+   }
+}
+
+// ----- Adds accessibility pseudo selectors to hover states. ----- //
+@mixin attention() {
+   &:hover,
+   &:active,
+   &:focus {
+     @content;
+   }
+}
+
+// Rem sizing mixin with px fallback.
+// @mixin rem-sizing($property, $size) {
+//   #{$property}: $size * 10px;
+//   #{$property}: $size * 1rem;
+// }
+
+// -------------------------------------
+//   Functions
+// -------------------------------------
+
+
+// -------------------------------------
+//   Utilities
+// -------------------------------------

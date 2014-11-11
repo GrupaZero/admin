@@ -1,0 +1,119 @@
+// -------------------------------------
+// - loading-mask Module
+// -------------------------------------
+// ----- Styles for the loading-mask Module
+// -------------------------------------
+
+// -------------------------------------
+//   Layout
+
+.loading-mask {
+  background : rgba(0, 0, 0, 0.6) url(#{$img-path}loading.gif) no-repeat center;
+  display    : none;
+  position   : absolute;
+  width      : 100%;
+  height     : 100%;
+  left       : 0;
+  right      : 0;
+  top        : 0;
+  bottom     : 0;
+  z-index    : $zindex-navbar-fixed * 2;
+}
+
+
+
+// -------------------------------------
+//   Skin
+
+//
+//      SSSSSSSSSSSSSSS
+//    SS:::::::::::::::S
+//   S:::::SSSSSS::::::S
+//   S:::::S     SSSSSSS
+//   S:::::S
+//   S:::::S
+//    S::::SSSS
+//     SS::::::SSSSS
+//       SSS::::::::SS
+//          SSSSSS::::S
+//               S:::::S
+//               S:::::S
+//   SSSSSSS     S:::::S
+//   S::::::SSSSSS:::::S
+//   S:::::::::::::::SS
+//    SSSSSSSSSSSSSSS
+//
+// -------------------------------------
+
+
+// -------------------------------------
+//   Typography
+
+//   TTTTTTTTTTTTTTTTTTTTTTT
+//   T:::::::::::::::::::::T
+//   T:::::::::::::::::::::T
+//   T:::::TT:::::::TT:::::T
+//   TTTTTT  T:::::T  TTTTTT
+//           T:::::T
+//           T:::::T
+//           T:::::T
+//           T:::::T
+//           T:::::T
+//           T:::::T
+//           T:::::T
+//         TT:::::::TT
+//         T:::::::::T
+//         T:::::::::T
+//         TTTTTTTTTTT
+//
+// -------------------------------------
+
+
+// -------------------------------------
+//   Components
+
+//
+//
+//           CCCCCCCCCCCCC
+//        CCC::::::::::::C
+//      CC:::::::::::::::C
+//     C:::::CCCCCCCC::::C
+//    C:::::C       CCCCCC
+//   C:::::C
+//   C:::::C
+//   C:::::C
+//   C:::::C
+//   C:::::C
+//   C:::::C
+//    C:::::C       CCCCCC
+//     C:::::CCCCCCCC::::C
+//      CC:::::::::::::::C
+//        CCC::::::::::::C
+//           CCCCCCCCCCCCC
+//
+// -------------------------------------
+
+
+// -------------------------------------
+//   States
+
+//
+//      SSSSSSSSSSSSSSS
+//    SS:::::::::::::::S
+//   S:::::SSSSSS::::::S
+//   S:::::S     SSSSSSS
+//   S:::::S
+//   S:::::S
+//    S::::SSSS
+//     SS::::::SSSSS
+//       SSS::::::::SS
+//          SSSSSS::::S
+//               S:::::S
+//               S:::::S
+//   SSSSSSS     S:::::S
+//   S::::::SSSSSS:::::S
+//   S:::::::::::::::SS
+//    SSSSSSSSSSSSSSS
+//
+// -------------------------------------
+

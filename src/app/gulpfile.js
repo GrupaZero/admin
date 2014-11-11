@@ -24,9 +24,10 @@ var AUTOPREFIXER_BROWSERS = [
 var publicPath = '../../public/';
 // Task sass
 gulp.task('styles', function() {
-    return gulp.src('sass/base.scss')
+    return gulp.src('sass/application.css.scss')
         .pipe(sass({outputStyle: 'compressed'}))
         .pipe(autoprefixer(AUTOPREFIXER_BROWSERS))
+        .pipe(rename('application.css'))
         .pipe(gulp.dest(publicPath + 'css'));
 });
 

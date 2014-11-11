@@ -1,24 +1,71 @@
-//Main Stylesheet For Visual Style Guide
-@import "components/components";
+// css-burrito v1.2 | MIT License | github.com/jasonreece/css-burrito
 
-/*
-* Base structure
-*/
+// -------------------------------------
+//   Application.css.scss
+// -------------------------------------
+// ----- Contains an import section for libs, core, and modules, the inbox,
+// ----- and a shame section for quick fixes and hacks ----- //
 
-/* Move down content because we have a fixed navbar that is 50px tall */
-html,
-body {
-  overflow-x : hidden; /* Prevent scroll on narrow devices */
-}
+// -------------------------------------
+//   Libs
+// -------------------------------------
 
-html {
-  height : 100%;
-}
+// ----- Twitter Bootstrap ----- //
+@import "libs/bootstrap/bootstrap";
 
-body {
-  padding-top : 50px;
-  min-height  : 100%;
-}
+// ----- BootstrapAdditions ----- //
+@import "libs/bootstrap-additions/bootstrap-additions";
+
+// ----- Animate.scss ----- //
+@import "libs/animate/animate";
+
+// ----- AngularMotion ----- //
+@import "libs/angular/angular-motion";
+
+// ----- Variable overrides for Bootstrap and other libraries ----- //
+@import "libs/library-variable-overrides";
+
+// ----- Reset - Normalize.css ----- //
+// @import "libs/normalize";
+
+// ----- Compass - Setup: http://compass-style.org/help/ ----- //
+// ----- Run compass create on project root ----- //
+// ----- Delete generated ie, print, and screen files ----- //
+// ----- Update paths on config.rb ----- //
+// @import "compass";
+
+
+// -------------------------------------
+//   Core
+// -------------------------------------
+
+// ----- Settings - @Font-Face Declarations, Variables ----- //
+@import "core/settings";
+
+// ----- Utilities - Extends, Functions, and Mixins ----- //
+@import "core/utilities";
+
+// ----- Base - Base-level tags (body, p, etc.) ----- //
+@import "core/base";
+
+// ----- Layout - Margin, Padding, Sizing ----- //
+@import "core/layout";
+
+// ----- Skin - Backgrounds, Borders, Box-shadow, etc ----- //
+@import "core/skin";
+
+// ----- Typography - Fonts and Colors ----- //
+@import "core/typography";
+
+// ----- Modules - Imports all module files. ----- //
+@import "modules/modules";
+
+
+// -------------------------------------
+//   Inbox
+// -------------------------------------
+// ----- The inbox allows developers, and those not actively working on the CSS,
+// to quickly add styles that are easily seen by the maintainer of the file.
 
 /*
  * Global add-ons
@@ -68,7 +115,6 @@ body {
   margin-right  : -21px; /* 20px padding + 1px border */
   margin-bottom : 20px;
   margin-left   : -20px;
-
   & > li {
     & > a {
       padding-right : 20px;
@@ -260,3 +306,8 @@ body {
     z-index    : $zindex-navbar-fixed - 1;
   }
 }
+
+// -------------------------------------
+//   Shame
+// -------------------------------------
+// ----- Need to add a quick fix, hack, or questionable technique?  Add it here, fix it later.
