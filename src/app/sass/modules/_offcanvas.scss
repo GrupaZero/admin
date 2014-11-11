@@ -1,0 +1,213 @@
+// -------------------------------------
+// - Offcanvas Module
+// -------------------------------------
+// ----- Styles for the Offcanvas Module
+// -------------------------------------
+
+// -------------------------------------
+//   Layout
+
+@media screen and (max-width : 767px) {
+  .row-offcanvas {
+    position   : relative;
+    transition : all .25s ease-out;
+
+    /* On the right side */
+    &.right {
+      right : 0;
+      .sidebar-offcanvas-c-component {
+        right : -48%; /* 6 columns */
+      }
+    }
+
+    /* On the left side */
+    &.left {
+      left : 0;
+      .sidebar-offcanvas-c-component {
+        left : -48%; /* 6 columns */
+      }
+    }
+  }
+}
+
+// -------------------------------------
+//   Skin
+
+//
+//      SSSSSSSSSSSSSSS
+//    SS:::::::::::::::S
+//   S:::::SSSSSS::::::S
+//   S:::::S     SSSSSSS
+//   S:::::S
+//   S:::::S
+//    S::::SSSS
+//     SS::::::SSSSS
+//       SSS::::::::SS
+//          SSSSSS::::S
+//               S:::::S
+//               S:::::S
+//   SSSSSSS     S:::::S
+//   S::::::SSSSSS:::::S
+//   S:::::::::::::::SS
+//    SSSSSSSSSSSSSSS
+//
+// -------------------------------------
+
+// -------------------------------------
+//   Typography
+
+//   TTTTTTTTTTTTTTTTTTTTTTT
+//   T:::::::::::::::::::::T
+//   T:::::::::::::::::::::T
+//   T:::::TT:::::::TT:::::T
+//   TTTTTT  T:::::T  TTTTTT
+//           T:::::T
+//           T:::::T
+//           T:::::T
+//           T:::::T
+//           T:::::T
+//           T:::::T
+//           T:::::T
+//         TT:::::::TT
+//         T:::::::::T
+//         T:::::::::T
+//         TTTTTTTTTTT
+//
+// -------------------------------------
+
+// -------------------------------------
+//   Components
+
+// ----- sidebar-offcanvas-component ---- //
+%sidebar-offcanvas-l-component {
+  bottom     : 0;
+  display    : block;
+  left       : 0;
+  overflow-x : hidden;
+  overflow-y : auto; /* Scrollable contents if viewport is shorter than content. */
+  padding    : 20px;
+  position   : fixed;
+  top        : 51px;
+  z-index    : $zindex-navbar-fixed - 1;
+}
+
+@media screen and (max-width : 767px) {
+  %sidebar-offcanvas-l-component {
+    width : 48%;
+  }
+}
+
+%sidebar-offcanvas-s-component {
+  background-color : $gray-ultra-lighter;
+  border-right     : 1px solid $legend-border-color;
+  box-shadow       : 0 2px 2px rgba(0, 0, 0, 0.1);
+  transition       : all .25s ease-out;
+}
+
+%sidebar-offcanvas-t-component {
+
+}
+
+.sidebar-offcanvas-c-component {
+  @extend %sidebar-offcanvas-l-component;
+  @extend %sidebar-offcanvas-s-component;
+  @extend %sidebar-offcanvas-t-component;
+}
+
+// ----- nav-sidebar-component ---- //
+%nav-sidebar-l-component {
+  margin-right  : -21px; /* 20px padding + 1px border */
+  margin-bottom : 20px;
+  margin-left   : -20px;
+
+  & > li {
+    & > a {
+      padding-right : 20px;
+      padding-left  : 20px;
+    }
+
+    .nav {
+      height   : 0;
+      overflow : hidden;
+      & > li {
+        & > a {
+          padding : 10px 30px;
+        }
+      }
+    }
+
+    &.active {
+      .nav {
+        height : auto;
+      }
+    }
+  }
+}
+
+%nav-sidebar-s-component {
+  .nav {
+    transition : all .33s ease-in-out;
+    & > li {
+      & > a {
+        background-color : $gray-lighter;
+      }
+    }
+  }
+
+  & > li.active {
+    & > a {
+      &,
+      &:hover,
+      &:focus {
+        color            : $white;
+        background-color : $brand-primary;
+      }
+    }
+  }
+}
+
+%nav-sidebar-t-component {
+  .nav {
+    li.active {
+      & > a {
+        font-weight : bold;
+      }
+    }
+
+  }
+}
+
+.nav-sidebar-c-component {
+  @extend %nav-sidebar-l-component;
+  @extend %nav-sidebar-s-component;
+  @extend %nav-sidebar-t-component;
+}
+
+// -------------------------------------
+//   States
+
+/* Active state */
+@media screen and (max-width : 767px) {
+  .row-offcanvas {
+
+    /* On the right side */
+    &.right {
+      &.is-active {
+        right : 50%; /* 6 columns */
+        .sidebar-offcanvas-c-component {
+          right : 0;
+        }
+      }
+    }
+
+    /* On the left side */
+    &.left {
+      &.is-active {
+        left : 50%; /* 6 columns */
+        .sidebar-offcanvas-c-component {
+          left : 0;
+        }
+      }
+    }
+  }
+}

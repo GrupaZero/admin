@@ -59,9 +59,9 @@
     </div>
 </div>
 <div class="container-fluid">
-    <div class="row row-offcanvas left" ng-class="{ 'active': showSidebar, '' : !showSidebar }">
-        <div class="col-sm-3 col-md-2 sidebar sidebar-offcanvas">
-            <ul class="nav nav-sidebar">
+    <div class="row row-offcanvas left" ng-class="{ 'is-active': showSidebar, '' : !showSidebar }">
+        <div class="col-sm-3 col-md-2 sidebar-offcanvas-c-component">
+            <ul class="nav nav-sidebar-c-component">
                 <li ui-sref-active="active" ng-repeat="link in navBar.getItems()">
                     <a ui-sref="@{{ link.action }}">@{{ link.title | translate }}</a>
                     <ul class="nav">
