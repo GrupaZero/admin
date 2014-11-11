@@ -10,6 +10,9 @@
 //   Libs
 // -------------------------------------
 
+// ----- Variable overrides for Bootstrap and other libraries ----- //
+@import "libs/library-variable-overrides";
+
 // ----- Twitter Bootstrap ----- //
 @import "libs/bootstrap/bootstrap";
 
@@ -21,9 +24,6 @@
 
 // ----- AngularMotion ----- //
 @import "libs/angular/angular-motion";
-
-// ----- Variable overrides for Bootstrap and other libraries ----- //
-@import "libs/library-variable-overrides";
 
 // ----- Reset - Normalize.css ----- //
 // @import "libs/normalize";

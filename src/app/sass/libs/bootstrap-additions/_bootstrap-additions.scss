@@ -202,7 +202,7 @@
   bottom: 0;
   left: 0;
   z-index: 1040;
-  background-color: $black;
+  background-color: #000;
 }
 .aside-backdrop.fade {
   opacity: 0;
@@ -305,7 +305,7 @@
   bottom: 1px;
   margin-left: -10px;
   border-bottom-width: 0;
-  border-top-color: $white;
+  border-top-color: #fff;
 }
 .popover.top-right {
   margin-top: -10px;
@@ -324,7 +324,7 @@
   bottom: 1px;
   margin-left: -10px;
   border-bottom-width: 0;
-  border-top-color: $white;
+  border-top-color: #fff;
 }
 .popover.bottom-left {
   margin-top: 10px;
@@ -343,7 +343,7 @@
   top: 1px;
   margin-left: -10px;
   border-top-width: 0;
-  border-bottom-color: $white;
+  border-bottom-color: #fff;
 }
 .popover.bottom-right {
   margin-top: 10px;
@@ -362,7 +362,7 @@
   top: 1px;
   margin-left: -10px;
   border-top-width: 0;
-  border-bottom-color: $white;
+  border-bottom-color: #fff;
 }
 /*
  * Timepicker element
@@ -476,7 +476,7 @@
   left: 50%;
   margin-left: -5px;
   border-width: 5px 5px 0;
-  border-top-color: $black;
+  border-top-color: #000;
   left: 10%;
 }
 .tooltip.top-right {
@@ -488,7 +488,7 @@
   left: 50%;
   margin-left: -5px;
   border-width: 5px 5px 0;
-  border-top-color: $black;
+  border-top-color: #000;
   left: 90%;
 }
 .tooltip.bottom-left {
@@ -500,7 +500,7 @@
   left: 50%;
   margin-left: -5px;
   border-width: 0 5px 5px;
-  border-bottom-color: $black;
+  border-bottom-color: #000;
   left: 10%;
 }
 .tooltip.bottom-right {
@@ -512,6 +512,6 @@
   left: 50%;
   margin-left: -5px;
   border-width: 0 5px 5px;
-  border-bottom-color: $black;
+  border-bottom-color: #000;
   left: 90%;
 }

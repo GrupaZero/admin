@@ -17,8 +17,6 @@
   background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
   border: 1px solid transparent;
   white-space: nowrap;
-  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
-  transition : all .25s ease-in-out;
   @include button-size($padding-base-vertical, $padding-base-horizontal, $font-size-base, $line-height-base, $border-radius-base);
   @include user-select(none);
 
@@ -36,14 +34,13 @@
   &.focus {
     color: $btn-default-color;
     text-decoration: none;
-    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
   }
 
   &:active,
   &.active {
     outline: 0;
     background-image: none;
-    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+    @include box-shadow(inset 0 3px 5px rgba(0,0,0,.125));
   }
 
   &.disabled,
