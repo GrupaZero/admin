@@ -1,7 +1,7 @@
 'use strict';
 
 function ContentCtrl($scope, $rootScope, Restangular, $aside, $state) {
-    var contents = Restangular.all('contents');
+    var contents = Restangular.all('admin/contents');
     var viewPath = 'packages/gzero/admin/views/content/';
     $scope.newContent = {};
 

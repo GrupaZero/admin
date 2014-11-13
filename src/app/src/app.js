@@ -53,6 +53,10 @@ angular.module('admin', dependencies).config([
         RestangularProvider.setResponseExtractor(function(response, operation) {
             return response.data;
         });
+
+        RestangularProvider.setDefaultHttpFields({
+            withCredentials: true
+        });
     }
 ]).run([
     '$rootScope',
