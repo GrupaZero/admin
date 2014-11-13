@@ -10,7 +10,6 @@
             <th>Id</th>
             <th>Translations</th>
             <th>Type</th>
-            <th>isActive</th>
         </tr>
         </thead>
         <tbody>
@@ -26,16 +25,13 @@
                     <small>(<i>{{content.translations[0].url}}</i>)</small>
                 </h4>
 
-                <p>{{ content.translations[0].body }}</p>
+                <p class="text-muted">{{ 'PUBLISHED_ON' | translate }} {{ content.createdAt | date }}</p>
 
                 <a ui-sref="content.show({ contentId: content.id })">Details</a>
                 <a ui-sref="content.show({ contentId: content.id })" class="text-danger">Trash</a>
             </td>
             <td>
                 {{ content.typeName }}
-            </td>
-            <td class="text-center">
-                <i ng-class="{ 'glyphicon glyphicon-ok-circle': content.isActive,'glyphicon glyphicon-ban-circle': !content.isActive }"></i>
             </td>
         </tr>
         </tbody>
