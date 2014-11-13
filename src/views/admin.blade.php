@@ -21,7 +21,7 @@
     <script type="application/javascript">
         var Config = {
             url : '{{ Request::root() }}',
-            apiUrl: 'http://api.{{ Config::get('gzero.domain') }}'
+            apiUrl: 'http://api.{{ Request::getHTTPHost()}}'
         };
         var modules = [
         @foreach ($modules->getModulesNames() as $moduleName)
