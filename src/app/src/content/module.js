@@ -62,7 +62,8 @@ angular.module('admin.content', [])
                             controller: 'ContentCtrl'
                         },
                         'quickNav@': {
-                            templateUrl: viewPath + 'quickNav.html'
+                            templateUrl: viewPath + 'quickNav.html',
+                            controller: 'ContentCtrl'
                         }
                     }
                 })

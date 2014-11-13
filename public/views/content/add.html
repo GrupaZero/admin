@@ -2,19 +2,18 @@
 <form novalidate>
     <!-- Title Form input -->
     <div class="form-group">
-        <label for="title">Title</label>
-        <input id="title" name="title" type="text" class="form-control" ng-model="newContent.title">
+        <label for="title">{{ 'ADD_CONTENT_HINT' | translate }}</label>
+        <input id="title" name="title" type="text" class="form-control input-lg" ng-model="newContent.title">
     </div>
     <!--  Body Form textarea -->
     <div class="form-group">
         <label for="body">Body</label>
-        <textarea id="body" name="body" class="form-control" rows="3"></textarea>
+        <textarea id="body" name="body" class="form-control" rows="20"></textarea>
     </div>
     <div class="text-right">
         <button type="button" class="btn btn-default" ui-sref="content.list">{{ 'CANCEL' | translate }}</button>
-        <button ng-click="addNewContent(newContent)" class="btn btn-success" type="button"
-                title="{{ 'ADD_NEW' | translate }}">
-            {{ 'PUBLISH' | translate }}
+        <button ng-click="addNewContent(newContent)" class="btn btn-success" type="button" title="{{ 'SAVE' | translate }}">
+            {{ 'SAVE' | translate }}
         </button>
     </div>
 </form>

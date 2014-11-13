@@ -189,9 +189,11 @@
 /* Active state */
 @media screen and (max-width : 767px) {
   .row-offcanvas {
-
     /* On the right side */
     &.right {
+      .sidebar-c-offcanvas {
+        right : -48%;
+      }
       &.is-active {
         right : 50%; /* 6 columns */
         .sidebar-c-offcanvas {
@@ -202,6 +204,9 @@
 
     /* On the left side */
     &.left {
+      .sidebar-c-offcanvas {
+        left : -48%;
+      }
       &.is-active {
         left : 50%; /* 6 columns */
         .sidebar-c-offcanvas {

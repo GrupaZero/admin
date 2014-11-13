@@ -17,7 +17,7 @@
                 </p>
                 <ul class="nav">
                     <li ng-repeat="content in contents">
-                        <a>{{ content.translations[0].title }}</a>
+                        <a ui-sref="content.show({ contentId: content.id })">{{ content.translations[0].title }}</a>
                     </li>
                 </ul>
             </div>
