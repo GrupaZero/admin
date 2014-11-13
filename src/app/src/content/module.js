@@ -58,11 +58,11 @@ angular.module('admin.content', [])
                     url: '/list',
                     views: {
                         'index@': {
-                            templateUrl: viewPath + 'list.html'
+                            templateUrl: viewPath + 'list.html',
+                            controller: 'ContentCtrl'
                         },
                         'quickNav@': {
-                            templateUrl: viewPath + 'quickNav.html',
-                            controller: 'ContentCtrl'
+                            templateUrl: viewPath + 'quickNav.html'
                         }
                     }
                 })
@@ -76,10 +76,14 @@ angular.module('admin.content', [])
                     }
 
                 })
-                .state('content.show.edit', {
-                    url: '/{translationId}/edit',
-                    templateUrl: viewPath + 'edit.html',
-                    controller: dummyController
+                .state('content.add', {
+                    url: '/add',
+                    views: {
+                        'index@': {
+                            templateUrl: viewPath + 'add.html',
+                            controller: 'ContentCtrl'
+                        }
+                    }
                 });
         }
     ])

@@ -1,6 +1,6 @@
 'use strict';
 
-function ContentCtrl($scope, $rootScope, Restangular, $aside) {
+function ContentCtrl($scope, $rootScope, Restangular, $aside, $state) {
     var contents = Restangular.all('contents');
     var viewPath = 'packages/gzero/admin/views/content/';
     $scope.newContent = {};
@@ -31,12 +31,8 @@ function ContentCtrl($scope, $rootScope, Restangular, $aside) {
             i18n: $scope.currentLang.i18n
 
         };
-        console.log(newContent);
         contents.post(newContent).then(function() {
-            $scope.message = {
-                code: 'success',
-                text: 'Object saved OK'
-            };
+            $state.go('content.list');
         }, function() {
             $scope.message = {
                 code: 'danger',
@@ -47,5 +43,5 @@ function ContentCtrl($scope, $rootScope, Restangular, $aside) {
 
 }
 
-ContentCtrl.$inject = ['$scope', '$rootScope', 'Restangular', '$aside'];
+ContentCtrl.$inject = ['$scope', '$rootScope', 'Restangular', '$aside', '$state'];
 module.exports = ContentCtrl;
