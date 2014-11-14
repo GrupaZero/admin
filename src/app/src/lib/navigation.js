@@ -9,6 +9,22 @@ function Navigation() {
         addFirst: function(item) {
             items.unshift(item);
         },
+        addBefore: function(title, newitem) {
+            _.forEach(items, function(value, index){
+                if(value.title === title){
+                    items.splice(index, 0, newitem);
+                    return false;
+                }
+            });
+        },
+        addAfter: function(title, newitem) {
+            _.forEach(items, function(value, index){
+                if(value.title === title){
+                    items.splice(index + 1, 0, newitem);
+                    return false;
+                }
+            });
+        },
         getItems: function() {
             return items;
         }
