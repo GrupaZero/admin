@@ -41,7 +41,7 @@
                 <select ng-model="currentLang" ng-change="changeLanguage()" class="form-control"
                     ng-options="lang.code | langName | translate for lang in langs"></select>
             </div>
-            <button type="button" class="navbar-toggle collapsed" ng-click="showSidebar = !showSidebar">
+            <button type="button" class="navbar-toggle" ng-click="showSidebar = !showSidebar">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>

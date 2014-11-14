@@ -15,7 +15,7 @@
     /* On the right side */
     &.right {
       right : 0;
-      .sidebar-offcanvas-c-component {
+      .sidebar-c-offcanvas {
         right : -48%; /* 6 columns */
       }
     }
@@ -23,7 +23,7 @@
     /* On the left side */
     &.left {
       left : 0;
-      .sidebar-offcanvas-c-component {
+      .sidebar-c-offcanvas {
         left : -48%; /* 6 columns */
       }
     }
@@ -82,7 +82,6 @@
 %sidebar-l-offcanvas {
   bottom     : 0;
   display    : block;
-  left       : 0;
   overflow-x : hidden;
   overflow-y : auto; /* Scrollable contents if viewport is shorter than content. */
   padding    : 20px;
@@ -191,12 +190,12 @@
   .row-offcanvas {
     /* On the right side */
     &.right {
-      .sidebar-c-offcanvas {
+      & > .sidebar-c-offcanvas {
         right : -48%;
       }
       &.is-active {
         right : 50%; /* 6 columns */
-        .sidebar-c-offcanvas {
+        & > .sidebar-c-offcanvas {
           right : 0;
         }
       }
@@ -204,12 +203,12 @@
 
     /* On the left side */
     &.left {
-      .sidebar-c-offcanvas {
+      & > .sidebar-c-offcanvas {
         left : -48%;
       }
       &.is-active {
         left : 50%; /* 6 columns */
-        .sidebar-c-offcanvas {
+      & > .sidebar-c-offcanvas {
           left : 0;
         }
       }

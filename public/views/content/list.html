@@ -1,15 +1,14 @@
 <ul class="list-filters nav nav-pills" role="tablist">
-    <li role="presentation" class="active"><a>All <span class="badge">42</span></a></li>
-    <li role="presentation"><a>Published <span class="badge">33</span></a></li>
-    <li role="presentation"><a>Trash <span class="badge">1</span></a></li>
+    <li role="presentation" class="active"><a>{{ 'ALL' | translate }} <span class="badge">42</span></a></li>
+    <li role="presentation"><a>{{ 'PUBLISHED' | translate }} <span class="badge">33</span></a></li>
+    <li role="presentation"><a>{{ 'DRAFT' | translate }} <span class="badge">1</span></a></li>
 </ul>
 <div class="table-responsive">
     <table class="table table-striped">
         <thead>
         <tr>
             <th>Id</th>
-            <th>Translations</th>
-            <th>Type</th>
+            <th>{{ 'TITLE' | translate }}</th>
         </tr>
         </thead>
         <tbody>
@@ -25,13 +24,10 @@
                     <small>(<i>{{content.translations[0].url}}</i>)</small>
                 </h4>
 
-                <p class="text-muted">{{ 'PUBLISHED_ON' | translate }} {{ content.createdAt | date }}</p>
+                <p class="text-muted">{{ 'CREATED_AT' | translate }} {{ content.createdAt | date }}</p>
 
                 <a ui-sref="content.show({ contentId: content.id })">Details</a>
-                <a ui-sref="content.show({ contentId: content.id })" class="text-danger">Trash</a>
-            </td>
-            <td>
-                {{ content.typeName }}
+                <a ui-sref="content.show({ contentId: content.id })" class="text-danger">{{ 'DELETE' | translate }}</a>
             </td>
         </tr>
         </tbody>

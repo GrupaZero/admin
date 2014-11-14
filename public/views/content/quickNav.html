@@ -1,7 +1,9 @@
 <div class="quick-nav">
     <div class="row">
         <div class="col-xs-8 col-sm-6 col-lg-8 form-inline">
-            <select ng-model="currentLang" class="form-control" ng-options="lang.code | langName | translate for lang in langs">
+            <label for="langCode" class="hidden-xs">{{ 'TRANSLATION_LANGUAGE' | translate }}</label>
+            <select id="langCode" ng-model="currentLang" class="form-control"
+                    ng-options="lang.code | langName | translate for lang in langs">
             </select>
         </div>
         <!-- /.col-lg-4 -->
