@@ -1,26 +1,10 @@
-<div class="aside" tabindex="-1" role="dialog">
-    <div class="aside-dialog">
-        <div class="aside-content">
-            <div class="aside-header" ng-show="title">
-                <button type="button" class="close" ng-click="$hide()">&times;</button>
-                <h4 class="aside-title" translate="{{ title }}"></h4>
-            </div>
-            <div class="aside-body" ng-show="content">
-                <p class="menu-title">
-                    <strong>
-                        <small class="text-muted text-uppercase" translate="{{ content }}"></small>
-                    </strong>
-                    <a ng-click="$hide()">
-                        <small class="glyphicon glyphicon-refresh pull-right" bs-tooltip data-placement="bottom-right"
-                               data-title="{{'REFRESH_LIST' | translate}}"></small>
-                    </a>
-                </p>
-                <ul class="nav">
-                    <li ng-repeat="content in contents">
-                        <a ui-sref="content.show({ contentId: content.id })">{{ content.translations[0].title }}</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
+<div class="col-sm-3 col-md-2">
+    <h4>
+        <strong>{{ 'CATEGORIES' | translate | uppercase }}</strong>
+    </h4>
+    <ul class="nav">
+        <li ng-repeat="content in contents">
+            <a ui-sref="content.show({ contentId: content.id })">{{ content.translations[0].title }}</a>
+        </li>
+    </ul>
 </div>

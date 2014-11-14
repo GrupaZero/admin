@@ -29,3 +29,7 @@
 [ui-view='quickNav'].ng-enter {
   @include fadeInDown();
 }
+
+[ui-view='quickSidebarLeft'].ng-enter {
+  @include fadeInLeftBig();
+}

@@ -1,28 +1,12 @@
 'use strict';
 
-function ContentCtrl($scope, $rootScope, Restangular, $aside, $state) {
+function ContentCtrl($scope, $rootScope, Restangular, $state) {
     var contents = Restangular.all('admin/contents');
-    var viewPath = 'packages/gzero/admin/views/content/';
     $scope.newContent = {};
 
     contents.getList().then(function(contents) {
         $scope.contents = contents;
     });
-
-    //// Pre-fetch an external template populated with a custom scope
-    $scope.aside = $aside({
-        title: 'CATEGORIES',
-        content: 'SELECT_CATEGORY',
-        container: '.main',
-        template: viewPath + 'categories.html',
-        scope: $scope,
-        show: false
-    });
-
-    // Aside manual trigger
-    $scope.showCategories = function showCategories() {
-        $scope.aside.show();
-    };
 
     // Temporary contents POST action
     $scope.addNewContent = function addNewContent(newContent) {
@@ -43,5 +27,5 @@ function ContentCtrl($scope, $rootScope, Restangular, $aside, $state) {
 
 }
 
-ContentCtrl.$inject = ['$scope', '$rootScope', 'Restangular', '$aside', '$state'];
+ContentCtrl.$inject = ['$scope', '$rootScope', 'Restangular', '$state'];
 module.exports = ContentCtrl;

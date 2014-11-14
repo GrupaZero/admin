@@ -64,6 +64,10 @@ angular.module('admin.content', [])
                         'quickNav@': {
                             templateUrl: viewPath + 'quickNav.html',
                             controller: 'ContentCtrl'
+                        },
+                        'quickSidebarLeft@': {
+                            templateUrl: viewPath + 'categories.html',
+                            controller: 'ContentCtrl'
                         }
                     }
                 })
