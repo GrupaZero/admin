@@ -49,6 +49,9 @@
             </button>
         </div>
         <div class="navbar-collapse collapse">
+            <button type="button" class="btn btn-lg btn-primary" bs-dropdown="topNav.exportToTargetMenu()">
+                Menu
+            </button>
             <ul class="nav navbar-nav navbar-right">
                 <li ui-sref-active="active"><a ui-sref="home" translate="DASHBOARD"></a></li>
             </ul>
