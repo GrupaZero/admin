@@ -1,13 +1,21 @@
 'use strict';
 
 function ContentCtrl($scope, Restangular, $state, ContentRepository) {
-    var contents = Restangular.all('admin/contents');
+    $scope.contents = {};
     $scope.newContent = {};
+    var contents = Restangular.all('admin/contents');
+    var promise = ContentRepository.list({lang: $scope.currentLang.code});
 
-    ContentRepository.list({lang: 'en'}).then(function(contents) {
-        $scope.contents = contents;
+    promise.then(function(response) {
+        $scope.contents = response;
     });
 
+    $scope.refresh = function() {
+        ContentRepository.list({lang: $scope.currentLang.code}).then(function(response) {
+            $scope.contents = response;
+        });
+    };
+    
     // Temporary contents POST action
     $scope.addNewContent = function addNewContent(newContent) {
         newContent.lang = {

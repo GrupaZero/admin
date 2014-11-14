@@ -1,14 +1,18 @@
 'use strict';
 
 function CoreCtrl($scope, $translate, LangRepository) {
+    var promise = LangRepository.list();
+
+    promise.then(function(response) {
+        $scope.langs = response;
+        $scope.currentLang = response[0];
+    });
+
     $scope.changeLanguage = function() {
         $translate.fallbackLanguage(['en_US']);
         $translate.use($scope.currentLang.i18n);
     };
-    LangRepository.list().then(function(data) {
-        $scope.langs = data;
-        $scope.currentLang = data[0];
-    });
+
     //Off canvas sidebar
     $scope.showSidebar = false;
 }
