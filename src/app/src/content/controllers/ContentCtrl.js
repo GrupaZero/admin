@@ -1,10 +1,10 @@
 'use strict';
 
-function ContentCtrl($scope, $rootScope, Restangular, $state) {
+function ContentCtrl($scope, Restangular, $state, ContentRepository) {
     var contents = Restangular.all('admin/contents');
     $scope.newContent = {};
 
-    contents.getList().then(function(contents) {
+    ContentRepository.list({lang: 'en'}).then(function(contents) {
         $scope.contents = contents;
     });
 
@@ -27,5 +27,5 @@ function ContentCtrl($scope, $rootScope, Restangular, $state) {
 
 }
 
-ContentCtrl.$inject = ['$scope', '$rootScope', 'Restangular', '$state'];
+ContentCtrl.$inject = ['$scope', 'Restangular', '$state', 'ContentRepository'];
 module.exports = ContentCtrl;

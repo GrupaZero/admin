@@ -93,6 +93,7 @@ angular.module('admin.content', [])
         }
     ])
     .controller('ContentCtrl', require('./controllers/ContentCtrl'))
+    .factory('ContentRepository', require('./services/ContentRepository.js'))
     .run([
         '$rootScope',
         function($rootScope) {

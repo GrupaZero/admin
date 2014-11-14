@@ -5,7 +5,7 @@ function CoreCtrl($scope, $translate, LangRepository) {
         $translate.fallbackLanguage(['en_US']);
         $translate.use($scope.currentLang.i18n);
     };
-    LangRepository.all().then(function(data) {
+    LangRepository.list().then(function(data) {
         $scope.langs = data;
         $scope.currentLang = data[0];
     });

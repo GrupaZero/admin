@@ -38,7 +38,7 @@
     "nonew": true,
     "unused": "vars",
     "strict": true,
-    "quotmark": "sin./gle",
+    "quotmark": "single",
     "indent": 4,
     "maxparams": 5,
     "maxdepth": 3,

@@ -16,7 +16,7 @@ function LangRepository(Restangular) {
         one: function(code) {
             return api.get(code);
         },
-        all: function() {
+        list: function() {
             return api.getList();
         }
     };
