@@ -7,27 +7,34 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>Id</th>
             <th>{{ 'TITLE' | translate }}</th>
+            <th>Id</th>
         </tr>
         </thead>
         <tbody>
         <tr ng-repeat="content in contents">
             <td>
-                {{ content.id }}
-            </td>
-            <td>
-                <h4>
-                    <a ui-sref="content.show({ contentId: content.id })">
-                        {{ content.translations[0].title }}
-                    </a>
-                    <small>(<i>{{content.translations[0].url}}</i>)</small>
-                </h4>
+                <div ng-show="content.translations[0]">
+                    <h4>
+                        <a ui-sref="content.show({ contentId: content.id })">
+                            {{ content.translations[0].title }}
+                        </a>
+                        <small ng-show="content.translations[0]">(<i>{{content.translations[0].url}}</i>)</small>
+                    </h4>
+                    <p class="text-muted">{{ 'CREATED_AT' | translate }} {{ content.translations[0].createdAt | date }}</p>
+                </div>
+                <div ng-show="!content.translations[0]">
+                    <h4><strong>{{ 'NO_TRANSLATION' | translate }}</strong></h4>
 
-                <p class="text-muted">{{ 'CREATED_AT' | translate }} {{ content.createdAt | date }}</p>
-
+                    <p>
+                        {{ 'NO_TRANSLATION_INFO' | translate }}
+                    </p>
+                </div>
                 <a ui-sref="content.show({ contentId: content.id })">Details</a>
                 <a ui-sref="content.show({ contentId: content.id })" class="text-danger">{{ 'DELETE' | translate }}</a>
+            </td>
+            <td>
+                {{ content.id }}
             </td>
         </tr>
         </tbody>
