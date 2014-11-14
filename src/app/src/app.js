@@ -55,6 +55,7 @@ angular.module('admin', dependencies).config([
         });
 
         RestangularProvider.setDefaultHttpFields({
+            cache: true,
             withCredentials: true
         });
     }
