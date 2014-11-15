@@ -61,7 +61,9 @@ angular.module('admin', dependencies).config([
     }
 ]).run([
     '$rootScope',
-    function($rootScope) {
+    function($rootScope, $state, $stateParams) {
         $rootScope.navBar.addFirst({title: 'DASHBOARD', action: 'home'});
+        $rootScope.$state = $state;
+        $rootScope.$stateParams = $stateParams;
     }
 ]);

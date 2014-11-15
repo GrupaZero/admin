@@ -1,6 +1,14 @@
-<div class="container-fluid">
-    <div class="page-header">
-        <h1>{{ 'CONTENT' | translate }}</h1>
+<div class="row">
+    <div class="container-fluid">
+        <div ui-view="quickNav"></div>
     </div>
-    <h2>{{ 'WELCOME_MESSAGE' | translate }}</h2>
+    <div ui-view="quickSidebarLeft"></div>
+    <div ui-view>
+        <div class="container-fluid">
+            <div class="page-header">
+                <h1>{{ 'CONTENT' | translate }}</h1>
+            </div>
+            <h2>{{ 'WELCOME_MESSAGE' | translate }}</h2>
+        </div>
+    </div>
 </div>

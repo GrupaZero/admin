@@ -76,13 +76,7 @@
             </ul>
         </div>
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main"  ng-click="showSidebar = false">
-        <div class="row">
-            <div class="container-fluid">
-                <div ui-view="quickNav"></div>
-            </div>
-            <div ui-view="quickSidebarLeft"></div>
-            <div ui-view="index"></div>
-        </div>
+        <div ui-view></div>
     </div>
 </div>
 <div class="loading-mask"><!-- Loading Mask --></div>

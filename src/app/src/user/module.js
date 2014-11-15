@@ -13,19 +13,11 @@ angular.module('admin.user', [])
             $stateProvider
                 .state('user', {
                     url: '/user',
-                    views: {
-                        'index': {
-                            templateUrl: viewPath + 'index.html'
-                        }
-                    }
+                    templateUrl: viewPath + 'index.html'
                 })
                 .state('user.list', {
                     url: '/list',
-                    views: {
-                        'index@': {
-                            templateUrl: viewPath + 'list.html'
-                        }
-                    }
+                    templateUrl: viewPath + 'list.html'
                 });
         }
     ])

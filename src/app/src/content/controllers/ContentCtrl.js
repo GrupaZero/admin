@@ -10,19 +10,19 @@ function ContentCtrl($scope, Restangular, $state, ContentRepository) {
         $scope.contents = response;
     });
 
-    $scope.refresh = function() {
-        ContentRepository.list({lang: $scope.currentLang.code}).then(function(response) {
+    $scope.refreshContentList = function(langCode) {
+        ContentRepository.list({lang: langCode}).then(function(response) {
             $scope.contents = response;
         });
     };
-    
+
     // Temporary contents POST action
     $scope.addNewContent = function addNewContent(newContent) {
         newContent.lang = {
             code: $scope.currentLang.code,
             i18n: $scope.currentLang.i18n
-
         };
+
         contents.post(newContent).then(function() {
             $state.go('content.list');
         }, function() {
