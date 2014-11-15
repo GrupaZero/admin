@@ -1,10 +1,16 @@
-<div class="col-sm-3 col-md-2">
-    <h4>
-        <strong>{{ 'CATEGORIES' | translate | uppercase }}</strong>
-    </h4>
+<div class="col-sm-3 col-md-2 quick-c-sidebar">
+    <div class="aside-header">
+        <h4>
+           <strong>{{ 'CATEGORIES' | translate | uppercase }}</strong>
+        </h4>
+    </div>
     <ul class="nav">
         <li ng-repeat="content in contents">
-            <a ui-sref="content.show({ contentId: content.id })">{{ content.translations[0].title }}</a>
+            <a ui-sref="content.show({ contentId: content.id })" ng-show="content.translations[0]">
+                {{ content.translations[0].title }}
+            </a>
+
+            <a ng-show="!content.translations[0]" class="text-muted">{{ 'NO_TRANSLATION' | translate }}</a>
         </li>
     </ul>
 </div>

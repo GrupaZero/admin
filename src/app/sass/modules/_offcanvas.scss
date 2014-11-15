@@ -149,6 +149,7 @@
     & > li {
       & > a {
         background-color : $gray-lighter;
+        border-bottom: 1px solid $table-border-color;
       }
     }
   }

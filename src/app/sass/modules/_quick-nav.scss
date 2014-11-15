@@ -7,19 +7,22 @@
 // -------------------------------------
 //   Layout
 
-.quick-nav {
-  padding       : $line-height-computed;
-  margin        : -20px -20px 0;
+.quick-l-nav,
+%quick-l-nav {
+  padding : $line-height-computed;
+  margin  : -20px -16px 0;
 }
-
 
 // -------------------------------------
 //   Skin
 
-.quick-nav {
+.quick-s-nav,
+%quick-s-nav {
   background    : $white;
   border-bottom : 1px solid $navbar-default-border;
-  box-shadow    : 0 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow    : 0 2px 2px rgba(0, 0, 0, 0.05);
+  position      : relative;
+  z-index       : $zindex-navbar-fixed - 2;
 }
 
 // -------------------------------------
@@ -44,31 +47,13 @@
 //
 // -------------------------------------
 
-
 // -------------------------------------
 //   Components
 
-//
-//
-//           CCCCCCCCCCCCC
-//        CCC::::::::::::C
-//      CC:::::::::::::::C
-//     C:::::CCCCCCCC::::C
-//    C:::::C       CCCCCC
-//   C:::::C
-//   C:::::C
-//   C:::::C
-//   C:::::C
-//   C:::::C
-//   C:::::C
-//    C:::::C       CCCCCC
-//     C:::::CCCCCCCC::::C
-//      CC:::::::::::::::C
-//        CCC::::::::::::C
-//           CCCCCCCCCCCCC
-//
-// -------------------------------------
-
+.quick-c-nav {
+  @extend %quick-l-nav;
+  @extend %quick-s-nav;
+}
 
 // -------------------------------------
 //   States

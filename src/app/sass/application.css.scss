@@ -48,6 +48,26 @@
 // ----- The inbox allows developers, and those not actively working on the CSS,
 // to quickly add styles that are easily seen by the maintainer of the file.
 
+.quick-c-sidebar {
+  @extend %quick-l-sidebar;
+  @extend %quick-s-sidebar;
+  @extend %quick-t-sidebar;
+  min-height       : 100vh;
+  background-color : #FCFCFC;
+
+  .aside-header {
+    border-bottom : 1px solid #e5e5e5;
+    padding       : 6px 15px;
+    margin        : 0 -15px 10px;
+    background    : $white;
+  }
+
+  .nav > li > a {
+    padding: 10px 30px;
+    margin: 0 -15px;
+  }
+}
+
 .list-filters {
   padding-top   : $line-height-computed;
   margin-bottom : $line-height-computed;

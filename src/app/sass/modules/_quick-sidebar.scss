@@ -1,0 +1,61 @@
+// -------------------------------------
+// - Quick-sidebar Module
+// -------------------------------------
+// ----- Styles for the Quick-sidebar Module
+// -------------------------------------
+
+// -------------------------------------
+//   Layout
+
+%quick-l-sidebar {
+}
+
+// -------------------------------------
+//   Skin
+
+%quick-s-sidebar {
+  @extend %sidebar-s-offcanvas;
+}
+
+// -------------------------------------
+//   Typography
+
+%quick-t-sidebar {
+
+}
+
+// -------------------------------------
+//   Components
+
+// ----- quick-sidebar ---- //
+.quick-c-sidebar {
+  @extend %quick-l-sidebar;
+  @extend %quick-s-sidebar;
+  @extend %quick-t-sidebar;
+  min-height       : 100vh;
+  background-color : #FCFCFC;
+}
+
+// -------------------------------------
+//   States
+
+//
+//      SSSSSSSSSSSSSSS
+//    SS:::::::::::::::S
+//   S:::::SSSSSS::::::S
+//   S:::::S     SSSSSSS
+//   S:::::S
+//   S:::::S
+//    S::::SSSS
+//     SS::::::SSSSS
+//       SSS::::::::SS
+//          SSSSSS::::S
+//               S:::::S
+//               S:::::S
+//   SSSSSSS     S:::::S
+//   S::::::SSSSSS:::::S
+//   S:::::::::::::::SS
+//    SSSSSSSSSSSSSSS
+//
+// -------------------------------------
+

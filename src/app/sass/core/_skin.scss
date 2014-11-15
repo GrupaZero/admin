@@ -19,10 +19,6 @@
 // -------------------------------------
 
 [ui-view].ng-enter {
-  @include fadeInRight();
-}
-
-[ui-view='index'].ng-enter {
   @include fadeIn();
 }
 

@@ -34,11 +34,7 @@ angular.module('admin', dependencies).config([
         $stateProvider
             .state('home', {
                 url: '/',
-                views: {
-                    'index@': {
-                        templateUrl: viewPath + 'home.html'
-                    }
-                }
+                templateUrl: viewPath + 'home.html'
             });
 
         $translateProvider.useLoader('$translatePartialLoader', {

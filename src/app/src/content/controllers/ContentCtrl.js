@@ -10,6 +10,7 @@ function ContentCtrl($scope, Restangular, $state, ContentRepository) {
         $scope.contents = response;
     });
 
+    // Temporary contents translation language switch action
     $scope.refreshContentList = function(langCode) {
         ContentRepository.list({lang: langCode}).then(function(response) {
             $scope.contents = response;
