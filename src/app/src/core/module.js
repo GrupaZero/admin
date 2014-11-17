@@ -11,32 +11,24 @@ angular.module('admin.core', [])
             $rootScope.topNav = require('./../lib/navigation.js')();
             $rootScope.topNav.add(
                 {
-                    title: 'Dashboard',
+                    title: 'DASHBOARD',
                     action: 'home'
                 }
             );
             $rootScope.topNav.add(
                 {
-                    title: 'Content list',
-                    action: 'content.list'
-                }
-            );
-            $rootScope.topNav.add(
-                {
-                    title: 'External link',
-                    href: '/auth/facebook',
-                    target: '_self'
-                }
-            );
-            $rootScope.topNav.add(
-                {
-                    divider: true
-                }
-            );
-            $rootScope.topNav.add(
-                {
-                    title: 'Logout',
-                    href: '/admin/logout'
+                    title: 'SETTINGS',
+                    action: 'content.list',
+                    children: [
+                        {
+                            title: 'ALL_CONTENTS',
+                            action: 'content.list'
+                        },
+                        {
+                            title: 'ADD_NEW',
+                            action: 'content.add'
+                        }
+                    ]
                 }
             );
         }

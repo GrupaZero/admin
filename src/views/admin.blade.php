@@ -69,11 +69,16 @@
             </button>
         </div>
         <div class="navbar-collapse collapse">
-            <button type="button" class="btn btn-lg btn-primary" bs-dropdown="topNav.exportToDropdownMenu()" data-template="dropdown-template">
-                Menu
-            </button>
             <ul class="nav navbar-nav navbar-right">
-                <li ui-sref-active="active"><a ui-sref="home" translate="DASHBOARD"></a></li>
+                <li ng-repeat="link in topNav.getItems()">
+                    <a ng-if="!link.children" ui-sref="@{{ link.action }}">@{{ link.title | translate }}</a>
+                    <a ng-if="link.children">@{{ link.title | translate }} <span class="caret"></span></a>
+                    <ul ng-if="link.children" class="dropdown-menu" role="menu">
+                        <li ui-sref-active="active" ng-repeat="subLink in link.children">
+                            <a ui-sref="@{{ subLink.action }}">@{{ subLink.title | translate }}</a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
             <form class="navbar-form navbar-right">
                 <input type="text" class="form-control" placeholder="Search..." ng-model="yourName">

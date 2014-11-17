@@ -46,12 +46,16 @@ angular.module('admin.content', [])
         '$rootScope',
         function($rootScope) {
             $rootScope.navBar.add({
-                title: 'CONTENT', action: 'content', children: [
+                title: 'CONTENT',
+                action: 'content',
+                children: [
                     {
-                        title: 'ALL_CONTENTS', action: 'content.list'
+                        title: 'ALL_CONTENTS',
+                        action: 'content.list'
                     },
                     {
-                        title: 'ADD_NEW', action: 'content.add'
+                        title: 'ADD_NEW',
+                        action: 'content.add'
                     }
                 ]
             });

@@ -130,3 +130,14 @@
 //   Shame
 // -------------------------------------
 // ----- Need to add a quick fix, hack, or questionable technique?  Add it here, fix it later.
+li:hover {
+  // Show the menu
+  > .dropdown-menu {
+    display: block;
+  }
+
+  // Remove the outline when :focus is triggered
+  > a {
+    outline: 0;
+  }
+}
