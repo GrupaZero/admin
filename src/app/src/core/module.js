@@ -11,8 +11,14 @@ angular.module('admin.core', [])
             $rootScope.topNav = require('./../lib/navigation.js')();
             $rootScope.topNav.add(
                 {
-                    title: 'Another action',
-                    href: '#anotherAction'
+                    title: 'Dashboard',
+                    action: 'home'
+                }
+            );
+            $rootScope.topNav.add(
+                {
+                    title: 'Content list',
+                    action: 'content.list'
                 }
             );
             $rootScope.topNav.add(
@@ -24,8 +30,6 @@ angular.module('admin.core', [])
             );
             $rootScope.topNav.add(
                 {
-                    title: 'divider',
-                    href: '',
                     divider: true
                 }
             );

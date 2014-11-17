@@ -10,7 +10,11 @@ function Navigation() {
      * @returns {boolean}
      */
     var checkStructure = function(item) {
-        if (!_.has(item, 'title')) {
+        if (_.has(item, 'divider')) {
+            if (item.divider !== true) {
+                throw new Error('Property: ' + '\'divider\'' + ' must be set to \'true\'');
+            }
+        } else if (!_.has(item, 'title')) {
             throw new Error('Property: ' + 'title' + ' is missing');
         } else if (!_.has(item, 'action') && !_.has(item, 'href')) {
             throw new Error('Property: ' + '\'action\' or \'href\'' + ' are required');
@@ -66,40 +70,17 @@ function Navigation() {
             return items;
         },
         /**
-         * Function exports links to 'target' menu
+         * Function exports links to 'dropdown' menu
          *
          * @returns {Array}
          */
-        exportToTargetMenu: function() {
+        exportToDropdownMenu: function() {
             var results = [];
             var newItem = {};
             _.forEach(items, function(value) {
                 _.forIn(value, function(value, key) {
                     if (key === 'title') {
                         newItem.text = value;
-                    } else if (key === 'action') {
-                        newItem.href = value;
-                    } else {
-                        newItem[key] = value;
-                    }
-                });
-                results.push(newItem);
-                newItem = {};
-            });
-            return results;
-        },
-        /**
-         * Function exports links to 'action' menu
-         *
-         * @returns {Array}
-         */
-        exportToActionMenu: function() {
-            var results = [];
-            var newItem = {};
-            _.forEach(items, function(value) {
-                _.forIn(value, function(value, key) {
-                    if (key === 'href') {
-                        newItem.action = value;
                     } else {
                         newItem[key] = value;
                     }
@@ -109,6 +90,45 @@ function Navigation() {
             });
             return results;
         }
+        //exportToTargetMenu: function() {
+        //    var results = [];
+        //    var newItem = {};
+        //    _.forEach(items, function(value) {
+        //        _.forIn(value, function(value, key) {
+        //            if (key === 'title') {
+        //                newItem.text = value;
+        //                //} else if (key === 'action') {
+        //                //    newItem.href = value;
+        //            } else {
+        //                newItem[key] = value;
+        //            }
+        //        });
+        //        results.push(newItem);
+        //        newItem = {};
+        //    });
+        //    return results;
+        //},
+        ///**
+        // * Function exports links to 'action' menu
+        // *
+        // * @returns {Array}
+        // */
+        //exportToActionMenu: function() {
+        //    var results = [];
+        //    var newItem = {};
+        //    _.forEach(items, function(value) {
+        //        _.forIn(value, function(value, key) {
+        //            if (key === 'href') {
+        //                newItem.action = value;
+        //            } else {
+        //                newItem[key] = value;
+        //            }
+        //        });
+        //        results.push(newItem);
+        //        newItem = {};
+        //    });
+        //    return results;
+        //}
     };
 }
 module.exports = Navigation;

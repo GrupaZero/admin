@@ -33,6 +33,26 @@
 
 <body ng-controller="CoreCtrl">
 
+<script type="text/ng-template" id="dropdown-template">
+    <ul tabindex="-1" class="dropdown-menu" role="menu">
+        <li role="presentation" ng-class="{divider: item.divider}" ng-repeat="item in content">
+            <a role="menuitem" tabindex="-1"
+               ng-href="@{{ item.href }}"
+               ng-if="!item.divider && item.href"
+               target="@{{ item.target || '' }}"
+               ng-bind="item.text"></a>
+
+            <a role="menuitem" tabindex="-1"
+               ui-sref="@{{ item.action }}"
+               ng-if="!item.divider && item.action"
+               ng-bind="item.text">@{{ item.action }}</a>
+
+            <a role="menuitem" tabindex="-1" href="javascript:void(0)" ng-if="!item.divider && item.click"
+               ng-click="$eval(item.click);$hide()" ng-bind="item.text"></a>
+        </li>
+    </ul>
+</script>
+
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -49,7 +69,7 @@
             </button>
         </div>
         <div class="navbar-collapse collapse">
-            <button type="button" class="btn btn-lg btn-primary" bs-dropdown="topNav.exportToTargetMenu()">
+            <button type="button" class="btn btn-lg btn-primary" bs-dropdown="topNav.exportToDropdownMenu()" data-template="dropdown-template">
                 Menu
             </button>
             <ul class="nav navbar-nav navbar-right">

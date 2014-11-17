@@ -30,21 +30,30 @@ describe('this is navigation test', function() {
         expect(navigation.getItems()[1]).toEqual({title: 'after', action: 'after.action'});
     });
 
-    it('can export to target menu', function() {
+    it('can export to \'dropdown\' menu', function() {
         navigation.add({title: 'test', action: 'test.action'});
         navigation.add({title: 'test2', action: 'test2.action'});
         var out = [];
-        out.push({text: 'test', href: 'test.action'});
-        out.push({text: 'test2', href: 'test2.action'});
-        expect(navigation.exportToTargetMenu()).toEqual(out);
+        out.push({text: 'test', action: 'test.action'});
+        out.push({text: 'test2', action: 'test2.action'});
+        expect(navigation.exportToDropdownMenu()).toEqual(out);
     });
 
-    it('can export to action menu', function() {
-        navigation.add({title: 'test', href: 'test.action'});
-        navigation.add({title: 'test2', href: 'test2.action'});
-        var out = [];
-        out.push({title: 'test', action: 'test.action'});
-        out.push({title: 'test2', action: 'test2.action'});
-        expect(navigation.exportToActionMenu()).toEqual(out);
-    });
+    //it('can export to target menu', function() {
+    //    navigation.add({title: 'test', action: 'test.action'});
+    //    navigation.add({title: 'test2', action: 'test2.action'});
+    //    var out = [];
+    //    out.push({text: 'test', href: 'test.action'});
+    //    out.push({text: 'test2', href: 'test2.action'});
+    //    expect(navigation.exportToTargetMenu()).toEqual(out);
+    //});
+    //
+    //it('can export to action menu', function() {
+    //    navigation.add({title: 'test', href: 'test.action'});
+    //    navigation.add({title: 'test2', href: 'test2.action'});
+    //    var out = [];
+    //    out.push({title: 'test', action: 'test.action'});
+    //    out.push({title: 'test2', action: 'test2.action'});
+    //    expect(navigation.exportToActionMenu()).toEqual(out);
+    //});
 });
