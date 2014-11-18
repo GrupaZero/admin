@@ -1,6 +1,8 @@
 'use strict';
 
-angular.module('admin.core', [])
+require('./filters/CoreFilters.js');
+
+angular.module('admin.core', ['CoreFilters'])
     .controller('CoreCtrl', require('./controllers/CoreCtrl.js'))
     .factory('LangRepository', require('./services/LangRepository.js'))
     .run([
