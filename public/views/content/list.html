@@ -16,18 +16,18 @@
                 <tbody>
                 <tr ng-repeat="row in rows">
                     <td>
-                        <div ng-show="row.translations.data[0]">
+                        <div ng-show="row.translations[0]">
                             <h4>
                                 <a ui-sref="content.show({ contentId: row.id })">
-                                    {{ row.translations.data[0].title }}
+                                    {{ row.translations[0].title }}
                                 </a>
                             </h4>
 
                             <p class="text-muted">
-                                {{ 'CREATED_AT' | translate }} {{ row.translations.data[0].createdAt | date }}
+                                {{ 'CREATED_AT' | translate }} {{ row.translations[0].createdAt | date }}
                             </p>
                         </div>
-                        <div ng-show="!row.translations.data[0]">
+                        <div ng-show="!row.translations[0]">
                             <h4><strong>{{ 'NO_TRANSLATION' | translate }}</strong></h4>
 
                             <p>
