@@ -39,21 +39,58 @@ describe('this is navigation test', function() {
         expect(navigation.exportToDropdownMenu()).toEqual(out);
     });
 
-    //it('can export to target menu', function() {
-    //    navigation.add({title: 'test', action: 'test.action'});
-    //    navigation.add({title: 'test2', action: 'test2.action'});
-    //    var out = [];
-    //    out.push({text: 'test', href: 'test.action'});
-    //    out.push({text: 'test2', href: 'test2.action'});
-    //    expect(navigation.exportToTargetMenu()).toEqual(out);
-    //});
-    //
-    //it('can export to action menu', function() {
-    //    navigation.add({title: 'test', href: 'test.action'});
-    //    navigation.add({title: 'test2', href: 'test2.action'});
-    //    var out = [];
-    //    out.push({title: 'test', action: 'test.action'});
-    //    out.push({title: 'test2', action: 'test2.action'});
-    //    expect(navigation.exportToActionMenu()).toEqual(out);
-    //});
+    it('can add first child link', function() {
+        navigation.add({title: 'test', action: 'test.action'});
+        var out, child, first;
+        out = [];
+        child = {title: 'child', action: 'child.action'};
+        first = {title: 'first.child', action: 'first.child.action'};
+        out.push(first);
+        out.push(child);
+        navigation.addFirstChild('test', child);
+        navigation.addFirstChild('test', first);
+        expect(navigation.getItems()[0].children).toEqual(out);
+    });
+
+    it('can add last child link', function() {
+        navigation.add({title: 'test', action: 'test.action'});
+        var out = [],
+            child = {title: 'child', action: 'child.action'},
+            last = {title: 'last.child', action: 'last.child.action'};
+        out.push(child);
+        out.push(last);
+        navigation.addLastChild('test', child);
+        navigation.addLastChild('test', last);
+        expect(navigation.getItems()[0].children).toEqual(out);
+    });
+
+    it('can add before child link', function() {
+        navigation.add({title: 'test', action: 'test.action'});
+        var out = [],
+            child = {title: 'child', action: 'child.action'},
+            child2 = {title: 'child2', action: 'child2.action'},
+            before = {title: 'before', action: 'before.action'};
+        out.push(child);
+        out.push(before);
+        out.push(child2);
+        navigation.addLastChild('test', child);
+        navigation.addLastChild('test', child2);
+        navigation.addBeforeChild('test', 'child2', before);
+        expect(navigation.getItems()[0].children).toEqual(out);
+    });
+
+    it('can add after child link', function() {
+        navigation.add({title: 'test', action: 'test.action'});
+        var out = [],
+            child = {title: 'child', action: 'child.action'},
+            child2 = {title: 'child2', action: 'child2.action'},
+            after = {title: 'after', action: 'after.action'};
+        out.push(child);
+        out.push(after);
+        out.push(child2);
+        navigation.addLastChild('test', child);
+        navigation.addLastChild('test', child2);
+        navigation.addAfterChild('test', 'child', after);
+        expect(navigation.getItems()[0].children).toEqual(out);
+    });
 });

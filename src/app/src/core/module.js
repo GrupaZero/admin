@@ -18,17 +18,21 @@ angular.module('admin.core', [])
             $rootScope.topNav.add(
                 {
                     title: 'SETTINGS',
-                    action: 'content.list',
-                    children: [
-                        {
-                            title: 'ALL_CONTENTS',
-                            action: 'content.list'
-                        },
-                        {
-                            title: 'ADD_NEW',
-                            action: 'content.add'
-                        }
-                    ]
+                    action: 'content.list'
+                }
+            );
+            $rootScope.topNav.addLastChild(
+                'SETTINGS',
+                {
+                    title: 'ALL_CONTENTS',
+                    action: 'content.list'
+                }
+            );
+            $rootScope.topNav.addLastChild(
+                'SETTINGS',
+                {
+                    title: 'ADD_NEW',
+                    action: 'content.add'
                 }
             );
         }

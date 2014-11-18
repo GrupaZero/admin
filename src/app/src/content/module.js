@@ -45,19 +45,25 @@ angular.module('admin.content', [])
     .run([
         '$rootScope',
         function($rootScope) {
-            $rootScope.navBar.add({
-                title: 'CONTENT',
-                action: 'content',
-                children: [
-                    {
-                        title: 'ALL_CONTENTS',
-                        action: 'content.list'
-                    },
-                    {
-                        title: 'ADD_NEW',
-                        action: 'content.add'
-                    }
-                ]
-            });
+            $rootScope.navBar.add(
+                {
+                    title: 'CONTENT',
+                    action: 'content'
+                }
+            );
+            $rootScope.navBar.addLastChild(
+                'CONTENT',
+                {
+                    title: 'ALL_CONTENTS',
+                    action: 'content.list'
+                }
+            );
+            $rootScope.navBar.addLastChild(
+                'CONTENT',
+                {
+                    title: 'ADD_NEW',
+                    action: 'content.add'
+                }
+            );
         }
     ]);
