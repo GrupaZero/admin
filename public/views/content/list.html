@@ -4,43 +4,45 @@
         <li role="presentation"><a>{{ 'PUBLISHED' | translate }} <span class="badge">33</span></a></li>
         <li role="presentation"><a>{{ 'DRAFT' | translate }} <span class="badge">1</span></a></li>
     </ul>
-    <div class="table-responsive">
-        <table class="table table-striped table-bordered">
-            <thead>
-            <tr>
-                <th>{{ 'TITLE' | translate }}</th>
-                <th>Id</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr ng-repeat="content in contents">
-                <td>
-                    <div ng-show="content.translations[0]">
-                        <h4>
-                            <a ui-sref="content.show({ contentId: content.id })">
-                                {{ content.translations[0].title }}
-                            </a>
-                            <small ng-show="content.translations[0]">(<i>{{content.translations[0].url}}</i>)</small>
-                        </h4>
-                        <p class="text-muted">
-                            {{ 'CREATED_AT' | translate }} {{ content.translations[0].createdAt | date }}
-                        </p>
-                    </div>
-                    <div ng-show="!content.translations[0]">
-                        <h4><strong>{{ 'NO_TRANSLATION' | translate }}</strong></h4>
+    <div tasty-table resource-callback="getResource">
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered">
+                <thead>
+                <tr>
+                    <th>{{ 'TITLE' | translate }}</th>
+                    <th class="text-center">Id</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="row in rows">
+                    <td>
+                        <div ng-show="row.translations.data[0]">
+                            <h4>
+                                <a ui-sref="content.show({ contentId: row.id })">
+                                    {{ row.translations.data[0].title }}
+                                </a>
+                            </h4>
 
-                        <p>
-                            {{ 'NO_TRANSLATION_INFO' | translate }}
-                        </p>
-                    </div>
-                    <a ui-sref="content.show({ contentId: content.id })">Details</a>
-                    <a ui-sref="content.show({ contentId: content.id })" class="text-danger">{{ 'DELETE' | translate }}</a>
-                </td>
-                <td>
-                    {{ content.id }}
-                </td>
-            </tr>
-            </tbody>
-        </table>
+                            <p class="text-muted">
+                                {{ 'CREATED_AT' | translate }} {{ row.translations.data[0].createdAt | date }}
+                            </p>
+                        </div>
+                        <div ng-show="!row.translations.data[0]">
+                            <h4><strong>{{ 'NO_TRANSLATION' | translate }}</strong></h4>
+
+                            <p>
+                                {{ 'NO_TRANSLATION_INFO' | translate }}
+                            </p>
+                        </div>
+                        <a ui-sref="content.show({ contentId: row.id })">Details</a>
+                        <a ui-sref="content.show({ contentId: row.id })" class="text-danger">{{ 'DELETE' | translate }}</a>
+                    </td>
+                    <td class="text-center">
+                        {{ row.id }}
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>

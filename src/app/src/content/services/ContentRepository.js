@@ -8,6 +8,9 @@ function ContentRepository(Restangular) {
         },
         list: function(params) {
             return api.getList(params);
+        },
+        clean: function(elem){
+            return Restangular.stripRestangular(elem);
         }
     };
 }

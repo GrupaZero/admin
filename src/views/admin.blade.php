@@ -109,7 +109,7 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="/packages/gzero/admin/js/vendor.min.js"></script>
-<script src="/packages/gzero/admin/js/admin.min.js"></script>
+<script src="/packages/gzero/admin/js/admin.js"></script>
 @foreach ($modules->getModulesPaths() as $modulePath)
      <script src="{{ $modulePath }}"></script>
 @endforeach

@@ -17,6 +17,25 @@ function ContentCtrl($scope, Restangular, $state, ContentRepository) {
         });
     };
 
+    // Temporary ngTasty table data action
+    $scope.getResource = function(params) {
+        return promise.then(function(response) {
+            return {
+                'rows': ContentRepository.clean(response),
+                'header': [
+                    {
+                        'key': 'title',
+                        'name': 'Title'
+                    },
+                    {
+                        'key': 'id',
+                        'name': 'id'
+                    }
+                ]
+            };
+        });
+    };
+
     // Temporary contents POST action
     $scope.addNewContent = function addNewContent(newContent) {
         newContent.lang = {
