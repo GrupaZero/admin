@@ -19,7 +19,8 @@ function ContentCtrl($scope, Restangular, $state, ContentRepository) {
 
     // Temporary ngTasty table data action
     $scope.getResource = function(params) {
-        return promise.then(function(response) {
+        return ContentRepository.list({lang: $scope.currentLang.code}).then(function(response) {
+            console.log(params);
             return {
                 'rows': ContentRepository.clean(response),
                 'header': [
@@ -31,7 +32,13 @@ function ContentCtrl($scope, Restangular, $state, ContentRepository) {
                         'key': 'id',
                         'name': 'id'
                     }
-                ]
+                ],
+                'pagination': {
+                    'count': 100,
+                    'page': 1,
+                    'pages': 2,
+                    'size': 20
+                }
             };
         });
     };
