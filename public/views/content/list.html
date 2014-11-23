@@ -8,7 +8,7 @@
            on-data-required="refreshContentList(currentLang.code, currentPage, perPage, filterBy, filterByFields, orderBy, orderByReverse)">
         <thead>
         <tr>
-            <th field-name="translations[0].title " display-name="Title"></th>
+            <th field-name="translations" display-name="Title" display-format="activeTranslation:currentLang.code:'title'"></th>
             <th field-name="id" cell-width="4em" display-align="right"></th>
         </tr>
         </thead>
