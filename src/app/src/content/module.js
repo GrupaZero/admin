@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('admin.content', ['ngTasty'])
+angular.module('admin.content', ['trNgGrid'])
     .config([
         '$stateProvider',
         '$urlRouterProvider',

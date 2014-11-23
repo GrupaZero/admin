@@ -44,13 +44,28 @@ angular.module('admin', dependencies).config([
         $translateProvider.preferredLanguage('en_US');
 
         RestangularProvider.setBaseUrl(Config.apiUrl + '/v1');
-        RestangularProvider.setResponseExtractor(function(response, operation) {
-            return response.data;
-        });
+
 
         RestangularProvider.setDefaultHttpFields({
             cache: true,
             withCredentials: true
+        });
+
+        // add a response intereceptor
+        RestangularProvider.addResponseInterceptor(function(data, operation, what, url, response, deferred) {
+            var extractedData;
+            // .. to look for getList operations
+
+            if (operation === "getList") {
+                // .. and handle the data and meta data
+                extractedData = data.data;
+                extractedData.meta = data.meta;
+
+            } else {
+                extractedData = data.data;
+            }
+
+            return extractedData;
         });
     }
 ]).run([

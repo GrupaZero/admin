@@ -4,42 +4,13 @@ function ContentCtrl($scope, Restangular, $state, ContentRepository) {
     $scope.contents = {};
     $scope.newContent = {};
     var contents = Restangular.all('admin/contents');
-    var promise = ContentRepository.list({lang: $scope.currentLang.code});
 
-    promise.then(function(response) {
-        $scope.contents = response;
-    });
-
-    // Temporary contents translation language switch action
-    $scope.refreshContentList = function(langCode) {
-        ContentRepository.list({lang: langCode}).then(function(response) {
+    // Temporary contents list action
+    $scope.refreshContentList = function(langCode, currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse) {
+        ContentRepository.list({lang: langCode, page: currentPage + 1}).then(function(response) {
+            console.log(response.meta);
             $scope.contents = response;
-        });
-    };
-
-    // Temporary ngTasty table data action
-    $scope.getResource = function(params) {
-        return ContentRepository.list({lang: $scope.currentLang.code}).then(function(response) {
-            console.log(params);
-            return {
-                'rows': ContentRepository.clean(response),
-                'header': [
-                    {
-                        'key': 'title',
-                        'name': 'Title'
-                    },
-                    {
-                        'key': 'id',
-                        'name': 'id'
-                    }
-                ],
-                'pagination': {
-                    'count': 100,
-                    'page': 1,
-                    'pages': 2,
-                    'size': 20
-                }
-            };
+            $scope.meta = response.meta;
         });
     };
 

@@ -4,46 +4,13 @@
         <li role="presentation"><a>{{ 'PUBLISHED' | translate }} <span class="badge">33</span></a></li>
         <li role="presentation"><a>{{ 'DRAFT' | translate }} <span class="badge">1</span></a></li>
     </ul>
-    <div tasty-table resource-callback="getResource">
-        <div class="table-responsive">
-            <table class="table table-striped table-bordered">
-                <thead tasty-thead>
-                <tr>
-                    <th>{{ 'TITLE' | translate }}</th>
-                    <th class="text-center">Id</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr ng-repeat="row in rows">
-                    <td>
-                        <div ng-show="row.translations[0]">
-                            <h4>
-                                <a ui-sref="content.show({ contentId: row.id })">
-                                    {{ row.translations[0].title }}
-                                </a>
-                            </h4>
-
-                            <p class="text-muted">
-                                {{ 'CREATED_AT' | translate }} {{ row.translations[0].createdAt | date }}
-                            </p>
-                        </div>
-                        <div ng-show="!row.translations[0]">
-                            <h4><strong>{{ 'NO_TRANSLATION' | translate }}</strong></h4>
-
-                            <p>
-                                {{ 'NO_TRANSLATION_INFO' | translate }}
-                            </p>
-                        </div>
-                        <a ui-sref="content.show({ contentId: row.id })">Details</a>
-                        <a ui-sref="content.show({ contentId: row.id })" class="text-danger">{{ 'DELETE' | translate }}</a>
-                    </td>
-                    <td class="text-center">
-                        {{ row.id }}
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-        <!--<div tasty-pagination></div>-->
-    </div>
+    <table tr-ng-grid="" items="contents" page-items="meta.perPage" total-items="meta.total"
+           on-data-required="refreshContentList(currentLang.code, currentPage, perPage, filterBy, filterByFields, orderBy, orderByReverse)">
+        <thead>
+        <tr>
+            <th field-name="translations[0].title " display-name="Title"></th>
+            <th field-name="id" cell-width="4em" display-align="right"></th>
+        </tr>
+        </thead>
+    </table>
 </div>
