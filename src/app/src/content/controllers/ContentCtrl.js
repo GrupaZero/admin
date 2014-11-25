@@ -25,6 +25,7 @@ function ContentCtrl($scope, Restangular, $state, ContentRepository, NgTablePara
             id: 'asc'     // initial sorting
         }
     }, {
+        total: 0, // length of data
         getData: function($defer, params) {
 
             // prepare options to be sent to api
@@ -41,7 +42,11 @@ function ContentCtrl($scope, Restangular, $state, ContentRepository, NgTablePara
             }
 
             // params.filter() - array of key-value filters declared in view
-            //queryOptions.filter = params.filter();
+            if (params.filter()) {
+                var filter = params.filter();
+                queryOptions = angular.extend(queryOptions, filter);
+                $scope.activeFilter = Object.getOwnPropertyNames(filter);
+            }
 
             console.log(queryOptions); //TODO remove console.log
             // Contents is a REST AngularJS service that talks to api and return promise
@@ -50,6 +55,7 @@ function ContentCtrl($scope, Restangular, $state, ContentRepository, NgTablePara
                 $defer.resolve(ContentRepository.clean(response));
                 $scope.meta = response.meta;
                 console.log(response.meta); //TODO remove console.log
+                console.log(response.params); //TODO remove console.log
             });
         }
     });

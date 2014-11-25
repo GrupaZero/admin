@@ -52,14 +52,15 @@ angular.module('admin', dependencies).config([
         });
 
         // add a response intereceptor
-        RestangularProvider.addResponseInterceptor(function(data, operation, what, url, response, deferred) {
+        RestangularProvider.addResponseInterceptor(function(data, operation) {
             var extractedData;
             // .. to look for getList operations
 
-            if (operation === "getList") {
+            if (operation === 'getList') {
                 // .. and handle the data and meta data
                 extractedData = data.data;
                 extractedData.meta = data.meta;
+                extractedData.params = data.params;
 
             } else {
                 extractedData = data.data;
