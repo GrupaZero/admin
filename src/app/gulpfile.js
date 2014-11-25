@@ -82,7 +82,7 @@ gulp.task('compress-vendor', function() {
         'vendor/angular/angular-animate.min.js',
         'vendor/angular/angular-strap.min.js',
         'vendor/angular/angular-strap.tpl.min.js',
-        'vendor/angular/trNgGrid.min.js',
+        'vendor/angular/ng-table.min.js',
         'vendor/ie10-viewport-bug-workaround.min.js'
     ])
         .pipe(sourcemaps.init({loadMaps: true}))

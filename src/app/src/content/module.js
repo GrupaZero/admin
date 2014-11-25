@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('admin.content', ['trNgGrid'])
+angular.module('admin.content', ['ngTable'])
     .config([
         '$stateProvider',
         '$urlRouterProvider',
