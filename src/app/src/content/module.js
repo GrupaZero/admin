@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('admin.content', [])
+angular.module('admin.content', ['ngTable'])
     .config([
         '$stateProvider',
         '$urlRouterProvider',

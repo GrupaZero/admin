@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-xs-8 col-sm-6 col-lg-8 form-inline">
             <label for="langCode" class="hidden-xs">{{ 'TRANSLATION_LANGUAGE' | translate }}</label>
-            <select id="langCode" ng-model="currentLang" class="form-control" ng-change="refreshContentList(currentLang.code)"
+            <select id="langCode" ng-model="currentLang" class="form-control" ng-change="selectLanguage(currentLang)"
                     ng-options="lang.code | langName | translate for lang in langs">
             </select>
         </div>

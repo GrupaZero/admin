@@ -100,8 +100,9 @@
                 </li>
             </ul>
         </div>
-    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main"  ng-click="showSidebar = false">
-        <div ui-view></div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main"  ng-click="showSidebar = false">
+            <div ui-view></div>
+        </div>
     </div>
 </div>
 <div class="loading-mask"><!-- Loading Mask --></div>
@@ -109,7 +110,7 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="/packages/gzero/admin/js/vendor.min.js"></script>
-<script src="/packages/gzero/admin/js/admin.min.js"></script>
+<script src="/packages/gzero/admin/js/admin.js"></script>
 @foreach ($modules->getModulesPaths() as $modulePath)
      <script src="{{ $modulePath }}"></script>
 @endforeach

@@ -44,13 +44,32 @@ angular.module('admin', dependencies).config([
         $translateProvider.preferredLanguage('en_US');
 
         RestangularProvider.setBaseUrl(Config.apiUrl + '/v1');
-        RestangularProvider.setResponseExtractor(function(response, operation) {
-            return response.data;
-        });
+
 
         RestangularProvider.setDefaultHttpFields({
             cache: true,
             withCredentials: true
+        });
+
+        // Rename Restangular route field to use a $ prefix for easy distinction between data and metadata
+        RestangularProvider.setRestangularFields({ route: '$route'});
+
+        // add a response intereceptor
+        RestangularProvider.addResponseInterceptor(function(data, operation) {
+            var extractedData;
+            // .. to look for getList operations
+
+            if (operation === 'getList') {
+                // .. and handle the data and meta data
+                extractedData = data.data;
+                extractedData.meta = data.meta;
+                extractedData.params = data.params;
+
+            } else {
+                extractedData = data.data;
+            }
+
+            return extractedData;
         });
     }
 ]).run([
@@ -59,5 +78,6 @@ angular.module('admin', dependencies).config([
         $rootScope.navBar.addFirst({title: 'DASHBOARD', action: 'home'});
         $rootScope.$state = $state;
         $rootScope.$stateParams = $stateParams;
+        $rootScope.baseUrl = Config.url;
     }
 ]);

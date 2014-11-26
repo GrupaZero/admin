@@ -12,9 +12,11 @@
     "CREATED_AT": "Created at",
     "DASHBOARD": "Dashboard",
     "DELETE": "Delete",
+    "DETAILS": "Details",
     "DRAFT": "Draft",
     "EDIT": "Edit",
     "HOLD_PUBLICATION": "Hold publication",
+    "ID": "id",
     "LANG_NAME_DE": "German",
     "LANG_NAME_EN": "English",
     "LANG_NAME_FR": "French",
@@ -37,6 +39,7 @@
     "USER": "User",
     "USER_DETAILS": "User details",
     "USER_LIST": "Users list",
+    "WEIGHT": "Weight",
     "WELCOME": "Welcome",
     "WELCOME_MESSAGE": "You have arrived"
 }
