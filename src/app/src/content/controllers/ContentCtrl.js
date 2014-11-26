@@ -3,12 +3,12 @@
 function ContentCtrl($scope, Restangular, $state, ContentRepository, NgTableParams) {
     $scope.contents = {};
     $scope.newContent = {};
-    $scope.selectedLang = $scope.currentLang;
+    $scope.listLang = $scope.currentLang;
     var contents = Restangular.all('admin/contents');
 
     // Temporary categories list action
     var getCategories = function() {
-        ContentRepository.list({lang:  $scope.selectedLang.code, page: 1}).then(function(response) {
+        ContentRepository.list({lang: $scope.listLang.code, page: 1}).then(function(response) {
             $scope.contents = ContentRepository.clean(response);
         });
     };
@@ -16,11 +16,12 @@ function ContentCtrl($scope, Restangular, $state, ContentRepository, NgTablePara
 
     // Temporary contents list language action
     $scope.selectLanguage = function(lang) {
-        $scope.selectedLang = lang;
+        $scope.listLang = lang;
     };
 
+    //  ngTable configuration
     $scope.tableParams = new NgTableParams({
-        count: 20,         // count per page
+        count: 25,         // count per page
         sorting: {
             id: 'asc'     // initial sorting
         }
@@ -30,7 +31,7 @@ function ContentCtrl($scope, Restangular, $state, ContentRepository, NgTablePara
 
             // prepare options to be sent to api
             var queryOptions = {
-                lang: $scope.selectedLang.code,
+                lang: $scope.listLang.code,
                 page: params.page()
             };
 
@@ -48,14 +49,16 @@ function ContentCtrl($scope, Restangular, $state, ContentRepository, NgTablePara
                 $scope.activeFilter = Object.getOwnPropertyNames(filter);
             }
 
-            console.log(queryOptions); //TODO remove console.log
+            // params.count() - number of items per page declared in view
+            if (params.count()) {
+                queryOptions.perPage = params.count();
+            }
+
             // Contents is a REST AngularJS service that talks to api and return promise
             ContentRepository.list(queryOptions).then(function(response) {
                 params.total(response.meta.total);
                 $defer.resolve(ContentRepository.clean(response));
                 $scope.meta = response.meta;
-                console.log(response.meta); //TODO remove console.log
-                console.log(response.params); //TODO remove console.log
             });
         }
     });

@@ -6,7 +6,7 @@ angular.module('CoreFilters', [])
             return 'LANG_NAME_' + angular.uppercase(langCode);
         };
     })
-    .filter('activeTranslation', function() {
+    .filter('getTranslation', function() {
         'use strict';
         return function(translations, langCode, field) {
             var currentTranslation = _.filter(translations, function(translation) {

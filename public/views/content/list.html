@@ -13,13 +13,32 @@
     <table ng-table="tableParams" class="table table-striped table-bordered">
         <tbody>
         <tr ng-repeat="content in $data">
-            <td data-title="'Title'">
-                {{ content.translations | activeTranslation:selectedLang.code:'title' }}
+            <td data-title="'TITLE' | translate">
+                <h4 ng-if="(content.translations | getTranslation:listLang.code:'title')">
+                    <a ui-sref="content.show({ contentId: content.id })">
+                        {{ content.translations | getTranslation:listLang.code:'title' }}
+                    </a>
+                </h4>
+
+                <div ng-hide="(content.translations | getTranslation:listLang.code:'title')">
+                    <h4><strong>{{ 'NO_TRANSLATION' | translate }}</strong></h4>
+
+                    <p>{{ 'NO_TRANSLATION_INFO' | translate }}</p>
+                </div>
+
+                <p ng-show="(content.route.translations | getTranslation:listLang.code:'url')">
+                    <small>
+                        <strong>URL:</strong> {{ baseUrl }}/{{ content.route.translations | getTranslation:listLang.code:'url' }}
+                    </small>
+                </p>
+
+                <a ui-sref="content.show({ contentId: content.id })">{{ 'DETAILS' | translate }}</a>
+                <a ui-sref="content.show({ contentId: content.id })" class="text-danger">{{ 'DELETE' | translate }}</a>
             </td>
-            <td data-title="'Weight'" sortable="'weight'">
+            <td data-title="'WEIGHT' | translate" sortable="'weight'" class="text-center">
                 {{ content.weight }}
             </td>
-            <td data-title="'Id'" sortable="'id'">
+            <td data-title="'ID' | translate" sortable="'id'" class="text-center">
                 {{ content.id }}
             </td>
         </tr>

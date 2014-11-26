@@ -51,6 +51,9 @@ angular.module('admin', dependencies).config([
             withCredentials: true
         });
 
+        // Rename Restangular route field to use a $ prefix for easy distinction between data and metadata
+        RestangularProvider.setRestangularFields({ route: '$route'});
+
         // add a response intereceptor
         RestangularProvider.addResponseInterceptor(function(data, operation) {
             var extractedData;
@@ -75,5 +78,6 @@ angular.module('admin', dependencies).config([
         $rootScope.navBar.addFirst({title: 'DASHBOARD', action: 'home'});
         $rootScope.$state = $state;
         $rootScope.$stateParams = $stateParams;
+        $rootScope.baseUrl = Config.url;
     }
 ]);

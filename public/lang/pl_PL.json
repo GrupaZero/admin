@@ -12,9 +12,11 @@
     "CREATED_AT": "Utworzono",
     "DASHBOARD": "Panel",
     "DELETE": "Usuń",
+    "DETAILS": "Szczegóły",
     "DRAFT": "Szkic",
     "EDIT": "Edytuj",
     "HOLD_PUBLICATION": "Wstrzymaj publikację",
+    "ID": "id",
     "LANG_NAME_DE": "Niemiecki",
     "LANG_NAME_EN": "Angielski",
     "LANG_NAME_FR": "Francuski",
@@ -37,6 +39,7 @@
     "USER": "Użytkownicy",
     "USER_DETAILS": "Szczegóły użytkownika",
     "USER_LIST": "Lista użytkowników",
+    "WEIGHT": "Kolejność",
     "WELCOME": "Witaj",
     "WELCOME_MESSAGE": "Jesteś na miejscu"
 }
