@@ -1,17 +1,35 @@
 <div class="col-sm-3 col-md-2 quick-c-sidebar">
     <div class="aside-header">
         <h4>
-           <strong>{{ 'CATEGORIES' | translate | uppercase }}</strong>
+            <strong>{{ 'CATEGORIES' | translate | uppercase }}</strong>
         </h4>
     </div>
-    <ul class="nav">
-        <li ng-repeat="category in contents">
-            <a ui-sref="content.show({ contentId: content.id })">
+    <script type="text/ng-template" id="tree_children_renderer.html">
+        <div ui-tree-handle>
+            <a class="tree-icon" data-nodrag ng-click="toggleChildren(this)">
+                <i class="glyphicon" ng-class="{'glyphicon-folder-close': collapsed, 'glyphicon-folder-open': !collapsed}"></i>
+            </a>
+            <a ui-sref="content.show({ contentId: category.id })">
                 {{ category.translations | getTranslation:listLang.code:'title' }}
                 <span ng-hide="(category.translations | getTranslation:listLang.code:'title')">
                     {{ 'NO_TRANSLATION' | translate }}
                 </span>
             </a>
-        </li>
-    </ul>
+        </div>
+        <ul ui-tree-nodes="treeOptions" ng-model="category.children" ng-class="{ hidden: collapsed }">
+            <li ng-repeat="category in category.children" ui-tree-node ng-include="'tree_children_renderer.html'"
+                data-collapsed="!item.expanded">
+            </li>
+            <li ng-if="!category.children"> {{ 'NO_CHILDREN' | translate }}
+                <a href="">{{ 'ADD' | translate }}</a>
+            </li>
+        </ul>
+    </script>
+    <div ui-tree="treeOptions" id="admin-tree-root" data-drag-enabled="false">
+        <ul ui-tree-nodes ng-model="contents" class="nav">
+            <li ng-repeat="category in contents" ui-tree-node ng-include="'tree_children_renderer.html'"
+                data-collapsed="!item.expanded">
+            </li>
+        </ul>
+    </div>
 </div>

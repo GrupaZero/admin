@@ -6,14 +6,6 @@ function ContentCtrl($scope, Restangular, $state, ContentRepository, NgTablePara
     $scope.listLang = $scope.currentLang;
     var contents = Restangular.all('admin/contents');
 
-    // Temporary categories list action
-    var getCategories = function() {
-        ContentRepository.list({lang: $scope.listLang.code, page: 1}).then(function(response) {
-            $scope.contents = ContentRepository.clean(response);
-        });
-    };
-    getCategories();
-
     // Temporary contents list language action
     $scope.selectLanguage = function(lang) {
         $scope.listLang = lang;
@@ -62,6 +54,34 @@ function ContentCtrl($scope, Restangular, $state, ContentRepository, NgTablePara
             });
         }
     });
+
+    // Categories tree
+
+    // Temporary categories list action
+    var getCategories = function() {
+        ContentRepository.list({lang: $scope.listLang.code}).then(function(response) {
+            $scope.contents = ContentRepository.clean(response);
+        });
+    };
+
+    $scope.toggleChildren = function(scope) {
+        if (!scope.$nodeScope.$modelValue.children) {
+            var category = Restangular.one('admin/contents', scope.$nodeScope.$modelValue.id);
+            category.getList('children', {lang: $scope.listLang.code}).then(function(response) {
+                if (ContentRepository.clean(response).length > 0) {
+                    scope.$nodeScope.$modelValue.children = ContentRepository.clean(response);
+                }
+                scope.toggle();
+            });
+        } else {
+            console.log('xxx');
+            if (scope.$nodeScope.$modelValue.children.length > 0) {
+                scope.toggle();
+            }
+        }
+    };
+
+    getCategories();
 
     // Temporary contents POST action
     $scope.addNewContent = function addNewContent(newContent) {
