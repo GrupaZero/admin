@@ -17,6 +17,8 @@
 @import "libs/animate/animate";
 // ----- AngularMotion ----- //
 @import "libs/angular/angular-motion";
+// ----- Angular UI Tree ----- //
+@import "libs/angular/angular-ui-tree";
 // ----- Reset - Normalize.css ----- //
 // @import "libs/normalize";
 // ----- Compass - Setup: http://compass-style.org/help/ ----- //
@@ -63,8 +65,8 @@
   }
 
   .nav > li > a {
-    padding: 10px 30px;
-    margin: 0 -15px;
+    padding : 10px 30px;
+    margin  : 0 -15px;
   }
 }
 
@@ -106,6 +108,48 @@
   }
 }
 
+#categories-tree {
+  .angular-ui-tree-handle {
+    font-weight : normal;
+    cursor      : pointer;
+    padding     : 10px 0;
+  }
+
+  ul ul {
+    .angular-ui-tree-handle {
+      &:first-child {
+        padding-top : 0;
+      }
+
+      &:last-child {
+        padding-bottom : 0;
+      }
+    }
+  }
+
+  .angular-ui-tree-nodes {
+    padding-bottom : 10px;
+  }
+
+  & > ul > li {
+    padding       : 0 15px;
+    margin        : 0 -15px;
+    border-bottom : 1px solid $table-border-color;
+
+    &:first-child {
+      margin-top : -10px;
+    }
+
+    &:last-child {
+      border-bottom : none;
+    }
+
+    &:hover {
+      background : $table-bg-hover;
+    }
+  }
+}
+
 @media screen and (max-width : 767px) {
   .navbar-fixed-top {
     .navbar-header {
@@ -133,166 +177,166 @@
 li:hover {
   // Show the menu
   > .dropdown-menu {
-    display: block;
+    display : block;
   }
 
   // Remove the outline when :focus is triggered
   > a {
-    outline: 0;
+    outline : 0;
   }
 }
 
-$table-border-color: #999;
-$cell-border-color: #eee;
+$table-border-color : #999;
+$cell-border-color : #eee;
 
 .ng-table {
   th {
-    text-align: center;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+    text-align            : center;
+    -webkit-touch-callout : none;
+    -webkit-user-select   : none;
+    -khtml-user-select    : none;
+    -moz-user-select      : none;
+    -ms-user-select       : none;
+    user-select           : none;
 
     &.sortable {
-      cursor: pointer;
+      cursor : pointer;
 
       div {
-        padding-right: 18px;
-        position: relative;
+        padding-right : 18px;
+        position      : relative;
 
         &:after, &:before {
-          content: "";
-          border-width: 0 4px 4px;
-          border-style: solid;
-          border-color: #000 transparent;
-          visibility: visible;
-          right: 8px;
-          top: 50%;
-          position: absolute;
-          opacity: .3;
-          margin-top: -4px;
+          content      : "";
+          border-width : 0 4px 4px;
+          border-style : solid;
+          border-color : #000 transparent;
+          visibility   : visible;
+          right        : 8px;
+          top          : 50%;
+          position     : absolute;
+          opacity      : .3;
+          margin-top   : -4px;
         }
         &:before {
-          margin-top: 2px;
-          border-bottom: none;
-          border-left: 4px solid transparent;
-          border-right: 4px solid transparent;
-          border-top: 4px solid #000;
+          margin-top    : 2px;
+          border-bottom : none;
+          border-left   : 4px solid transparent;
+          border-right  : 4px solid transparent;
+          border-top    : 4px solid #000;
         }
       }
 
       div:hover:after, div:hover:before {
-        opacity: 1;
-        visibility: visible;
+        opacity    : 1;
+        visibility : visible;
       }
       &.sort-desc, &.sort-asc {
-        background-color: rgba(141, 192, 219, 0.25);
-        text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+        background-color : rgba(141, 192, 219, 0.25);
+        text-shadow      : 0 1px 1px rgba(255, 255, 255, 0.75);
 
         div:after {
-          margin-top: -2px;
+          margin-top : -2px;
         }
         div:before {
-          visibility: hidden;
+          visibility : hidden;
         }
       }
       &.sort-asc div:after, &.sort-asc div:hover:after {
-        visibility: visible;
-        filter: alpha(opacity=60);
-        -khtml-opacity: 0.6;
-        -moz-opacity: 0.6;
-        opacity: 0.6;
+        visibility     : visible;
+        filter         : alpha(opacity=60);
+        -khtml-opacity : 0.6;
+        -moz-opacity   : 0.6;
+        opacity        : 0.6;
       }
       &.sort-desc div:after {
-        border-bottom: none;
-        border-left: 4px solid transparent;
-        border-right: 4px solid transparent;
-        border-top: 4px solid #000;
-        visibility: visible;
-        -webkit-box-shadow: none;
-        -moz-box-shadow: none;
-        box-shadow: none;
-        filter: alpha(opacity=60);
-        -khtml-opacity: 0.6;
-        -moz-opacity: 0.6;
-        opacity: 0.6;
+        border-bottom      : none;
+        border-left        : 4px solid transparent;
+        border-right       : 4px solid transparent;
+        border-top         : 4px solid #000;
+        visibility         : visible;
+        -webkit-box-shadow : none;
+        -moz-box-shadow    : none;
+        box-shadow         : none;
+        filter             : alpha(opacity=60);
+        -khtml-opacity     : 0.6;
+        -moz-opacity       : 0.6;
+        opacity            : 0.6;
       }
     }
     &.filter {
       .input-filter {
-        margin: 0;
-        display: block;
-        width: 100%;
-        min-height: 30px;
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
+        margin             : 0;
+        display            : block;
+        width              : 100%;
+        min-height         : 30px;
+        -webkit-box-sizing : border-box;
+        -moz-box-sizing    : border-box;
+        box-sizing         : border-box;
       }
     }
   }
 
   & + .pagination {
-    margin-top: 0;
+    margin-top : 0;
   }
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width : 800px) {
   .ng-table-responsive {
-    border-bottom: 1px solid $table-border-color;
+    border-bottom : 1px solid $table-border-color;
     tr {
-      border-top: 1px solid $table-border-color;
-      border-left: 1px solid $table-border-color;
-      border-right: 1px solid $table-border-color;
+      border-top   : 1px solid $table-border-color;
+      border-left  : 1px solid $table-border-color;
+      border-right : 1px solid $table-border-color;
     }
     td:before {
-      position: absolute;
-      padding: 8px;
-      left: 0;
-      top: 0;
-      width: 50%;
-      white-space: nowrap;
-      text-align: left;
-      font-weight: bold;
+      position    : absolute;
+      padding     : 8px;
+      left        : 0;
+      top         : 0;
+      width       : 50%;
+      white-space : nowrap;
+      text-align  : left;
+      font-weight : bold;
     }
     thead {
       tr {
         th {
-          text-align: left;
+          text-align : left;
         }
         &.ng-table-filters {
           th {
-            padding: 0;
+            padding : 0;
 
             form > div {
-              padding: 8px;
+              padding : 8px;
             }
           }
         }
       }
     }
     td {
-      border: none;
-      border-bottom: 1px solid $cell-border-color;
-      position: relative;
-      padding-left: 50%;
-      white-space: normal;
-      text-align: left;
+      border        : none;
+      border-bottom : 1px solid $cell-border-color;
+      position      : relative;
+      padding-left  : 50%;
+      white-space   : normal;
+      text-align    : left;
 
       &:before {
-        content: attr(data-title-text);
+        content : attr(data-title-text);
       }
     }
     &, thead, tbody, th, td, tr {
-      display: block;
+      display : block;
     }
   }
 
-  .ng-table-pager {}
-  .ng-table-pagination {}
-  .ng-table-counts {}
+  .ng-table-pager {
+  }
+  .ng-table-pagination {
+  }
+  .ng-table-counts {
+  }
 }
-
-/* angular-ui-tree css file */
-.angular-ui-tree-empty{border:1px dashed #bbb;min-height:100px;background-color:#e5e5e5;background-image:-webkit-linear-gradient(45deg,#fff 25%,transparent 25%,transparent 75%,#fff 75%,#fff),-webkit-linear-gradient(45deg,#fff 25%,transparent 25%,transparent 75%,#fff 75%,#fff);background-image:-moz-linear-gradient(45deg,#fff 25%,transparent 25%,transparent 75%,#fff 75%,#fff),-moz-linear-gradient(45deg,#fff 25%,transparent 25%,transparent 75%,#fff 75%,#fff);background-image:linear-gradient(45deg,#fff 25%,transparent 25%,transparent 75%,#fff 75%,#fff),linear-gradient(45deg,#fff 25%,transparent 25%,transparent 75%,#fff 75%,#fff);background-size:60px 60px;background-position:0 0,30px 30px}.angular-ui-tree-nodes{display:block;position:relative;margin:0;padding:0;list-style:none}.angular-ui-tree-nodes .angular-ui-tree-nodes{padding-left:20px}.angular-ui-tree-node .angular-ui-tree-nodes{margin-top:5px}.angular-ui-tree-node,.angular-ui-tree-placeholder{display:block;position:relative;margin:0;margin-bottom:5px;padding:0;min-height:20px;min-width:200px;line-height:20px}.angular-ui-tree-node.selected .angular-ui-tree-node>.angular-ui-tree-handle,.angular-ui-tree-node.selected>.angular-ui-tree-handle{background:#DDE7FF;border:1px solid #000}.angular-ui-tree-node.original>.angular-ui-tree-handle{background:#E2E2E2;border:1px solid lightgrey}.angular-ui-tree-hidden{display:none}.angular-ui-tree-placeholder{margin:5px 0;padding:0;min-height:30px}.angular-ui-tree-placeholders-wrapper{margin-bottom:5px}.angular-ui-tree-handle{cursor:move;text-decoration:none;font-weight:700;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;min-height:20px;line-height:20px}.angular-ui-tree-handle.select{cursor:cell}.angular-ui-tree-handle.copy{cursor:copy}.angular-ui-tree-drag{position:absolute;pointer-events:none;z-index:999;opacity:.8}

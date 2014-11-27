@@ -25,7 +25,7 @@
             </li>
         </ul>
     </script>
-    <div ui-tree="treeOptions" id="admin-tree-root" data-drag-enabled="false">
+    <div ui-tree="treeOptions" id="categories-tree" data-drag-enabled="false">
         <ul ui-tree-nodes ng-model="contents" class="nav">
             <li ng-repeat="category in contents" ui-tree-node ng-include="'tree_children_renderer.html'"
                 data-collapsed="!item.expanded">

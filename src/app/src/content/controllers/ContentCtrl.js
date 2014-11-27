@@ -74,7 +74,6 @@ function ContentCtrl($scope, Restangular, $state, ContentRepository, NgTablePara
                 scope.toggle();
             });
         } else {
-            console.log('xxx');
             if (scope.$nodeScope.$modelValue.children.length > 0) {
                 scope.toggle();
             }
