@@ -11,7 +11,7 @@ function LangRepository(Restangular) {
         return model;
     });
 
-    var api = Restangular.all('langs');
+    var api = Restangular.all('admin/langs');
     return {
         one: function(code) {
             return api.get(code);
