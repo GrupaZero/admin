@@ -46,8 +46,8 @@ $ ln -s ../../../../admin/public/ admin
 From now on all changes in Admin package will be available in Platform.
 
 ## Installing Node.js
-* [Download Node.js](http://nodejs.org/download/)
-* [Installing from package managers](https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager)
+* <a href="http://nodejs.org/download" target="_blank" title="Download Node.js">Download Node.js</a>
+* <a href="https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager" target="_blank" title="Installing from package managers">Installing from package managers</a>
 
 ## Installing Node packages
 To install all required Node packages just type into Admin package root directory:
