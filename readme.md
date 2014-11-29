@@ -1,7 +1,7 @@
 GZERO ADMIN [![Build Status](https://travis-ci.org/GrupaZero/admin.svg?branch=master)](https://travis-ci.org/GrupaZero/admin)
 ===
 
-**The project is still in the phase of intensive development**
+**The project is still in the phase of intensive development.**
 
 This documentation assumed that you have already installed and fully configured [Platform](https://github.com/GrupaZero/platform).
 
@@ -27,7 +27,7 @@ Remove admin package installed from composer:
 ```
 $ rm -r admin
 ```
-Create symbolic link to fresh version of admin package
+Create symbolic link to fresh version of admin package:
 ```
 $ ln -s ../../../admin
 ```
@@ -39,7 +39,7 @@ Remove admin package assets published after installation from composer:
 ```
 $ rm -r admin
 ```
-Create symbolic link to fresh public assets of admin package
+Create symbolic link to fresh public assets of admin package:
 ```
 $ ln -s ../../../../admin/public/ admin
 ```
@@ -88,4 +88,4 @@ In `admin/src/app` directory run karma server:
 ```
 $ ../../node_modules/karma/bin/karma start
 ```
-From now on you can write tests in `admin/src/app/tests`
+From now on you can write tests in `admin/src/app/tests`.
