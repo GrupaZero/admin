@@ -1,6 +1,6 @@
 'use strict';
 
-function Notifications() {
+function Notifications($alert) {
     var messages = {
         error: [],
         warning: [],
@@ -8,15 +8,23 @@ function Notifications() {
     };
     return {
         addErrors: function(errors) {
+            var self = this;
             messages.error = errors;
+            _.forEach(errors, function(error) {
+                self.addError(error[0]);
+            });
         },
         addError: function(error) {
-            messages.error.push(error);
-        },
-        getErrors: function() {
-            return messages.error;
+            $alert({
+                title: 'Error',
+                content: error,
+                placement: 'top',
+                type: 'danger',
+                show: true
+            });
         }
     };
 }
 
+module.$inject = ['$alert'];
 module.exports = Notifications;

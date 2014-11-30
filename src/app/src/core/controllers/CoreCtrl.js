@@ -1,6 +1,6 @@
 'use strict';
 
-function CoreCtrl($scope, $translate, LangRepository, Notifications) {
+function CoreCtrl($scope, $translate, LangRepository) {
     var promise = LangRepository.list();
 
     promise.then(function(response) {
@@ -15,9 +15,7 @@ function CoreCtrl($scope, $translate, LangRepository, Notifications) {
 
     //Off canvas sidebar
     $scope.showSidebar = false;
-    $scope.errors = Notifications.getErrors();
-    console.log($scope.errors);
 }
 
-CoreCtrl.$inject = ['$scope', '$translate', 'LangRepository', 'Notifications'];
+CoreCtrl.$inject = ['$scope', '$translate', 'LangRepository'];
 module.exports = CoreCtrl;
