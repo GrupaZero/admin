@@ -45,7 +45,6 @@ angular.module('admin', dependencies).config([
 
         RestangularProvider.setBaseUrl(Config.apiUrl + '/v1');
 
-
         RestangularProvider.setDefaultHttpFields({
             cache: true,
             withCredentials: true
@@ -70,6 +69,10 @@ angular.module('admin', dependencies).config([
             }
 
             return extractedData;
+        });
+
+        RestangularProvider.setErrorInterceptor(function(response, deferred, responseHandler) {
+            return alert(response); // error not handled
         });
     }
 ]).run([

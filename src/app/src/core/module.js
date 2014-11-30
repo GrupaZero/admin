@@ -5,6 +5,7 @@ require('./filters/CoreFilters.js');
 angular.module('admin.core', ['CoreFilters'])
     .controller('CoreCtrl', require('./controllers/CoreCtrl.js'))
     .factory('LangRepository', require('./services/LangRepository.js'))
+    .service('Notifications', require('./services/Notifications.js'))
     .run([
         '$rootScope',
         function($rootScope) {
