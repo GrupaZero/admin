@@ -27,15 +27,23 @@ function ContentCtrl($scope, Restangular, $state, ContentRepository, NgTablePara
     }, {
         total: 0, // length of data
         getData: function($defer, params) {
-            // Get the category
-            var category = Restangular.one('admin/contents', $scope.categoryId);
-
             // prepare options to be sent to api
             var queryOptions = {
                 lang: $scope.listLang.code,
                 type: 'content',
+                level: 0,
                 page: params.page()
             };
+
+            // get uncategorized
+            var promise = ContentRepository.list(queryOptions);
+
+            // if parent category is selected
+            if ($scope.categoryId) {
+                // get children's
+                delete queryOptions.level; // remove level param
+                promise = Restangular.one('admin/contents', $scope.categoryId).getList('children', queryOptions);
+            }
 
             // tableParams.orderBy() - an array of string indicating both the sorting column and direction (e.g. ["+name", "-email"])
             if (params.sorting()) {
@@ -57,7 +65,7 @@ function ContentCtrl($scope, Restangular, $state, ContentRepository, NgTablePara
             }
 
             // Contents is a REST AngularJS service that talks to api and return promise
-            category.getList('children', queryOptions).then(function(response) {
+            promise.then(function(response) {
                 params.total(response.meta.total);
                 $defer.resolve(ContentRepository.clean(response));
                 $scope.meta = response.meta;
