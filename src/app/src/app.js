@@ -51,7 +51,7 @@ angular.module('admin', dependencies).config([
         });
 
         // Rename Restangular route field to use a $ prefix for easy distinction between data and metadata
-        RestangularProvider.setRestangularFields({ route: '$route'});
+        RestangularProvider.setRestangularFields({route: '$route'});
 
         // add a response intereceptor
         RestangularProvider.addResponseInterceptor(function(data, operation) {
@@ -70,17 +70,22 @@ angular.module('admin', dependencies).config([
 
             return extractedData;
         });
-
-        RestangularProvider.setErrorInterceptor(function(response, deferred, responseHandler) {
-            return alert(response); // error not handled
-        });
     }
 ]).run([
     '$rootScope',
-    function($rootScope, $state, $stateParams) {
+    '$state',
+    '$stateParams',
+    'Restangular',
+    'Notifications',
+    function($rootScope, $state, $stateParams, Restangular, Notifications) {
         $rootScope.navBar.addFirst({title: 'DASHBOARD', action: 'home'});
         $rootScope.$state = $state;
         $rootScope.$stateParams = $stateParams;
         $rootScope.baseUrl = Config.url;
+
+        Restangular.setErrorInterceptor(function(response, deferred, responseHandler) {
+            Notifications.addErrors(response.data.messages);
+            return false; // error not handled
+        });
     }
 ]);
