@@ -4,7 +4,7 @@
             <strong>{{ 'CATEGORIES' | translate | uppercase }}</strong>
         </h4>
     </div>
-    <script type="text/ng-template" id="tree_children_renderer.html">
+    <script type="text/ng-template" id="treeChildrenRenderer.html">
         <div ui-tree-handle>
             <a href="" ng-click="toggleChildren(this)">
                 <i class="fa fa-fw pull-right" ng-class="{'fa-angle-right': collapsed, 'fa-angle-down': !collapsed}"></i>
@@ -16,7 +16,7 @@
         </div>
         <ul ui-tree-nodes="treeOptions" ng-model="category.children" ng-class="{ hidden: collapsed }">
             <li ng-repeat="category in category.children" ng-class="{ 'active': categoryId == category.id, 'open': !collapsed}"
-                ui-tree-node ng-include="'tree_children_renderer.html'" data-collapsed="!item.expanded">
+                ui-tree-node ng-include="'treeChildrenRenderer.html'" data-collapsed="!item.expanded">
             </li>
             <li ng-if="!category.children">
                 <a href="" class="btn-add">
@@ -31,7 +31,7 @@
                 <a href="">{{ 'ALL_CATEGORIES' | translate }}</a>
             </li>
             <li ng-repeat="category in categories" ng-class="{ 'active': categoryId == category.id, 'open': !collapsed}"
-                ui-tree-node ng-include="'tree_children_renderer.html'" data-collapsed="!item.expanded">
+                ui-tree-node ng-include="'treeChildrenRenderer.html'" data-collapsed="!item.expanded">
             </li>
         </ul>
     </div>
