@@ -42,6 +42,9 @@
                 {{ content.id }}
             </td>
         </tr>
+        <tr ng-hide="$data[0]">
+            <td colspan="3" class="text-center"><strong>{{ 'NO_ENTRIES' | translate }}</strong></td>
+        </tr>
         </tbody>
     </table>
 </div>

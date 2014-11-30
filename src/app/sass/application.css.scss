@@ -17,6 +17,8 @@
 @import "libs/animate/animate";
 // ----- AngularMotion ----- //
 @import "libs/angular/angular-motion";
+// ----- Angular UI Tree ----- //
+@import "libs/angular/angular-ui-tree";
 // ----- Reset - Normalize.css ----- //
 // @import "libs/normalize";
 // ----- Compass - Setup: http://compass-style.org/help/ ----- //
@@ -63,8 +65,8 @@
   }
 
   .nav > li > a {
-    padding: 10px 30px;
-    margin: 0 -15px;
+    padding : 10px 30px;
+    margin  : 0 -15px;
   }
 }
 
@@ -106,6 +108,107 @@
   }
 }
 
+#categories-tree {
+  .angular-ui-tree-handle {
+    font-weight : normal;
+    cursor      : auto;
+  }
+
+  & > ul {
+    & > li > a {
+      margin  : 0;
+      padding : 10px 15px;
+    }
+
+  }
+
+  a {
+    display : block;
+    padding : 10px 15px;
+    &.btn-add {
+      background  : $white;
+      border-left : 2px solid $brand-success;
+      color       : $brand-success;
+      &:hover {
+        background      : $brand-success;
+        color           : $white;
+        text-decoration : none;
+      }
+    }
+  }
+
+  ul {
+    ul {
+      background-color : $table-bg-hover;
+      opacity          : 0;
+      transition       : all .25s ease-in-out;
+      transition-delay : .15s;
+      .angular-ui-tree-handle {
+        & > a {
+          padding : 10px 15px;
+          &:hover {
+            color           : $black;
+            text-decoration : none;
+          }
+        }
+        &:first-child {
+          padding-top : 0;
+        }
+
+        &:last-child {
+          padding-bottom : 0;
+        }
+      }
+    }
+  }
+
+  & > ul > li {
+    margin        : 0 -15px;
+    border-bottom : 1px solid $table-border-color;
+
+    &:first-child {
+      margin-top : -10px;
+    }
+
+    &:last-child {
+      border-bottom : none;
+    }
+
+    &:hover,
+    &.open {
+      & > a,
+      & > div > a {
+        background-color : $white;
+        box-shadow       : 0 1px 2px 1px rgba(0, 0, 0, .10), 0 2px 5px rgba(0, 0, 0, .10);
+        color            : $black;
+        position         : relative;
+        text-decoration  : none;
+        z-index          : 1;
+      }
+    }
+
+    &.active {
+      & > a,
+      & > div > a {
+        background : $brand-primary;
+        color      : $white;
+      }
+    }
+
+    li.active > div > a {
+      background-color : $brand-primary;
+      color            : $white;
+      text-decoration  : none;
+    }
+  }
+
+  li.open {
+    & > ul {
+      opacity : 100;
+    }
+  }
+}
+
 @media screen and (max-width : 767px) {
   .navbar-fixed-top {
     .navbar-header {
@@ -133,163 +236,166 @@
 li:hover {
   // Show the menu
   > .dropdown-menu {
-    display: block;
+    display : block;
   }
 
   // Remove the outline when :focus is triggered
   > a {
-    outline: 0;
+    outline : 0;
   }
 }
 
-$table-border-color: #999;
-$cell-border-color: #eee;
+$table-border-color : #999;
+$cell-border-color : #eee;
 
 .ng-table {
   th {
-    text-align: center;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+    text-align            : center;
+    -webkit-touch-callout : none;
+    -webkit-user-select   : none;
+    -khtml-user-select    : none;
+    -moz-user-select      : none;
+    -ms-user-select       : none;
+    user-select           : none;
 
     &.sortable {
-      cursor: pointer;
+      cursor : pointer;
 
       div {
-        padding-right: 18px;
-        position: relative;
+        padding-right : 18px;
+        position      : relative;
 
         &:after, &:before {
-          content: "";
-          border-width: 0 4px 4px;
-          border-style: solid;
-          border-color: #000 transparent;
-          visibility: visible;
-          right: 8px;
-          top: 50%;
-          position: absolute;
-          opacity: .3;
-          margin-top: -4px;
+          content      : "";
+          border-width : 0 4px 4px;
+          border-style : solid;
+          border-color : #000 transparent;
+          visibility   : visible;
+          right        : 8px;
+          top          : 50%;
+          position     : absolute;
+          opacity      : .3;
+          margin-top   : -4px;
         }
         &:before {
-          margin-top: 2px;
-          border-bottom: none;
-          border-left: 4px solid transparent;
-          border-right: 4px solid transparent;
-          border-top: 4px solid #000;
+          margin-top    : 2px;
+          border-bottom : none;
+          border-left   : 4px solid transparent;
+          border-right  : 4px solid transparent;
+          border-top    : 4px solid #000;
         }
       }
 
       div:hover:after, div:hover:before {
-        opacity: 1;
-        visibility: visible;
+        opacity    : 1;
+        visibility : visible;
       }
       &.sort-desc, &.sort-asc {
-        background-color: rgba(141, 192, 219, 0.25);
-        text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+        background-color : rgba(141, 192, 219, 0.25);
+        text-shadow      : 0 1px 1px rgba(255, 255, 255, 0.75);
 
         div:after {
-          margin-top: -2px;
+          margin-top : -2px;
         }
         div:before {
-          visibility: hidden;
+          visibility : hidden;
         }
       }
       &.sort-asc div:after, &.sort-asc div:hover:after {
-        visibility: visible;
-        filter: alpha(opacity=60);
-        -khtml-opacity: 0.6;
-        -moz-opacity: 0.6;
-        opacity: 0.6;
+        visibility     : visible;
+        filter         : alpha(opacity=60);
+        -khtml-opacity : 0.6;
+        -moz-opacity   : 0.6;
+        opacity        : 0.6;
       }
       &.sort-desc div:after {
-        border-bottom: none;
-        border-left: 4px solid transparent;
-        border-right: 4px solid transparent;
-        border-top: 4px solid #000;
-        visibility: visible;
-        -webkit-box-shadow: none;
-        -moz-box-shadow: none;
-        box-shadow: none;
-        filter: alpha(opacity=60);
-        -khtml-opacity: 0.6;
-        -moz-opacity: 0.6;
-        opacity: 0.6;
+        border-bottom      : none;
+        border-left        : 4px solid transparent;
+        border-right       : 4px solid transparent;
+        border-top         : 4px solid #000;
+        visibility         : visible;
+        -webkit-box-shadow : none;
+        -moz-box-shadow    : none;
+        box-shadow         : none;
+        filter             : alpha(opacity=60);
+        -khtml-opacity     : 0.6;
+        -moz-opacity       : 0.6;
+        opacity            : 0.6;
       }
     }
     &.filter {
       .input-filter {
-        margin: 0;
-        display: block;
-        width: 100%;
-        min-height: 30px;
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
+        margin             : 0;
+        display            : block;
+        width              : 100%;
+        min-height         : 30px;
+        -webkit-box-sizing : border-box;
+        -moz-box-sizing    : border-box;
+        box-sizing         : border-box;
       }
     }
   }
 
   & + .pagination {
-    margin-top: 0;
+    margin-top : 0;
   }
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width : 800px) {
   .ng-table-responsive {
-    border-bottom: 1px solid $table-border-color;
+    border-bottom : 1px solid $table-border-color;
     tr {
-      border-top: 1px solid $table-border-color;
-      border-left: 1px solid $table-border-color;
-      border-right: 1px solid $table-border-color;
+      border-top   : 1px solid $table-border-color;
+      border-left  : 1px solid $table-border-color;
+      border-right : 1px solid $table-border-color;
     }
     td:before {
-      position: absolute;
-      padding: 8px;
-      left: 0;
-      top: 0;
-      width: 50%;
-      white-space: nowrap;
-      text-align: left;
-      font-weight: bold;
+      position    : absolute;
+      padding     : 8px;
+      left        : 0;
+      top         : 0;
+      width       : 50%;
+      white-space : nowrap;
+      text-align  : left;
+      font-weight : bold;
     }
     thead {
       tr {
         th {
-          text-align: left;
+          text-align : left;
         }
         &.ng-table-filters {
           th {
-            padding: 0;
+            padding : 0;
 
             form > div {
-              padding: 8px;
+              padding : 8px;
             }
           }
         }
       }
     }
     td {
-      border: none;
-      border-bottom: 1px solid $cell-border-color;
-      position: relative;
-      padding-left: 50%;
-      white-space: normal;
-      text-align: left;
+      border        : none;
+      border-bottom : 1px solid $cell-border-color;
+      position      : relative;
+      padding-left  : 50%;
+      white-space   : normal;
+      text-align    : left;
 
       &:before {
-        content: attr(data-title-text);
+        content : attr(data-title-text);
       }
     }
     &, thead, tbody, th, td, tr {
-      display: block;
+      display : block;
     }
   }
 
-  .ng-table-pager {}
-  .ng-table-pagination {}
-  .ng-table-counts {}
+  .ng-table-pager {
+  }
+  .ng-table-pagination {
+  }
+  .ng-table-counts {
+  }
 }

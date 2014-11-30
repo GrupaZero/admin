@@ -4,19 +4,18 @@ function ContentCtrl($scope, Restangular, $state, ContentRepository, NgTablePara
     $scope.contents = {};
     $scope.newContent = {};
     $scope.listLang = $scope.currentLang;
-    var contents = Restangular.all('admin/contents');
-
-    // Temporary categories list action
-    var getCategories = function() {
-        ContentRepository.list({lang: $scope.listLang.code, page: 1}).then(function(response) {
-            $scope.contents = ContentRepository.clean(response);
-        });
-    };
-    getCategories();
+    $scope.categoryId = 0;
 
     // Temporary contents list language action
     $scope.selectLanguage = function(lang) {
         $scope.listLang = lang;
+        $scope.tableParams.reload();
+    };
+
+    // Temporary contents list language action
+    $scope.selectCategory = function(id) {
+        $scope.categoryId = id;
+        $scope.tableParams.reload();
     };
 
     //  ngTable configuration
@@ -28,10 +27,13 @@ function ContentCtrl($scope, Restangular, $state, ContentRepository, NgTablePara
     }, {
         total: 0, // length of data
         getData: function($defer, params) {
+            // Get the category
+            var category = Restangular.one('admin/contents', $scope.categoryId);
 
             // prepare options to be sent to api
             var queryOptions = {
                 lang: $scope.listLang.code,
+                type: 'content',
                 page: params.page()
             };
 
@@ -55,13 +57,38 @@ function ContentCtrl($scope, Restangular, $state, ContentRepository, NgTablePara
             }
 
             // Contents is a REST AngularJS service that talks to api and return promise
-            ContentRepository.list(queryOptions).then(function(response) {
+            category.getList('children', queryOptions).then(function(response) {
                 params.total(response.meta.total);
                 $defer.resolve(ContentRepository.clean(response));
                 $scope.meta = response.meta;
             });
         }
     });
+
+    // Categories tree
+
+    // Temporary categories list action
+    var getCategories = function() {
+        ContentRepository.list({lang: $scope.listLang.code, type: 'category', level: 0}).then(function(response) {
+            $scope.categories = ContentRepository.clean(response);
+        });
+    };
+
+    // Temporary categories list tree toggle children action
+    $scope.toggleChildren = function(scope) {
+        if (!scope.$nodeScope.$modelValue.children) {
+            var category = Restangular.one('admin/contents', scope.$nodeScope.$modelValue.id);
+            category.getList('children', {lang: $scope.listLang.code, type: 'category'}).then(function(response) {
+                if (ContentRepository.clean(response).length > 0) {
+                    scope.$nodeScope.$modelValue.children = ContentRepository.clean(response);
+                }
+            });
+        }
+        $scope.selectCategory(scope.$nodeScope.$modelValue.id);
+        scope.toggle();
+    };
+
+    getCategories();
 
     // Temporary contents POST action
     $scope.addNewContent = function addNewContent(newContent) {
@@ -70,7 +97,7 @@ function ContentCtrl($scope, Restangular, $state, ContentRepository, NgTablePara
             i18n: $scope.currentLang.i18n
         };
 
-        contents.post(newContent).then(function() {
+        Restangular.all('admin/contents').post(newContent).then(function() {
             $state.go('content.list');
         }, function() {
             $scope.message = {

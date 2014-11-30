@@ -64,7 +64,8 @@ gulp.task('compress-vendor', function() {
         'vendor/angular/angular-animate.js',
         'vendor/angular/angular-strap.js',
         'vendor/angular/angular-strap.tpl.js',
-        'vendor/angular/trNgGrid.js',
+        'vendor/angular/ng-table.js',
+        'vendor/angular/angular-ui-tree.js',
         'vendor/ie10-viewport-bug-workaround.js'
     ])
         .pipe(sourcemaps.init({loadMaps: true}))
@@ -83,6 +84,7 @@ gulp.task('compress-vendor', function() {
         'vendor/angular/angular-strap.min.js',
         'vendor/angular/angular-strap.tpl.min.js',
         'vendor/angular/ng-table.min.js',
+        'vendor/angular/angular-ui-tree.min.js',
         'vendor/ie10-viewport-bug-workaround.min.js'
     ])
         .pipe(sourcemaps.init({loadMaps: true}))
