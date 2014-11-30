@@ -74,6 +74,7 @@ function ContentCtrl($scope, Restangular, $state, ContentRepository, NgTablePara
         });
     };
 
+    // Temporary categories list tree toggle children action
     $scope.toggleChildren = function(scope) {
         if (!scope.$nodeScope.$modelValue.children) {
             var category = Restangular.one('admin/contents', scope.$nodeScope.$modelValue.id);
