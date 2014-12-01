@@ -71,7 +71,7 @@
 }
 
 .list-filters {
-  padding-top   : $line-height-computed;
+  margin-top    : $line-height-computed;
   margin-bottom : $line-height-computed;
   li {
     a {
@@ -233,6 +233,15 @@
 //   Shame
 // -------------------------------------
 // ----- Need to add a quick fix, hack, or questionable technique?  Add it here, fix it later.
+
+.subtitle {
+  font-weight   : bold;
+  font-size     : small;
+  border-right  : 1px solid $gray-lighter;
+  margin-right  : 5px;
+  padding-right : 5px;
+}
+
 li:hover {
   // Show the menu
   > .dropdown-menu {

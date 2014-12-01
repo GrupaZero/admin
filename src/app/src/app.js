@@ -85,7 +85,7 @@ angular.module('admin', dependencies).config([
 
         Restangular.setErrorInterceptor(function(response, deferred, responseHandler) {
             if(response.status === 404) {
-                Notifications.addError('NOT_FOUND');
+                Notifications.addError('COMMON_ERROR');
                 return false; // error handled
             }
             Notifications.addErrors(response.data.messages);
