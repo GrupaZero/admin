@@ -27,7 +27,7 @@ function Notifications($alert, $translate) {
         addInfo: function(message) {
             $alert({
                 title: $translate.instant('INFORMATION') + ':',
-                content: message,
+                content: $translate.instant(message),
                 container: container,
                 type: 'info'
             });
@@ -35,7 +35,7 @@ function Notifications($alert, $translate) {
         addError: function(message) {
             $alert({
                 title: $translate.instant('ERROR') + ':',
-                content: message,
+                content: $translate.instant(message),
                 container: container,
                 type: 'danger'
             });
@@ -43,7 +43,7 @@ function Notifications($alert, $translate) {
         addWarning: function(message) {
             $alert({
                 title: $translate.instant('WARNING') + ':',
-                content: message,
+                content: $translate.instant(message),
                 container: container,
                 type: 'warning'
             });
@@ -51,7 +51,7 @@ function Notifications($alert, $translate) {
         addSuccess: function(message) {
             $alert({
                 title: $translate.instant('SUCCESS') + ':',
-                content: message,
+                content: $translate.instant(message),
                 container: container,
                 type: 'success'
             });

@@ -84,6 +84,10 @@ angular.module('admin', dependencies).config([
         $rootScope.baseUrl = Config.url;
 
         Restangular.setErrorInterceptor(function(response, deferred, responseHandler) {
+            if(response.status === 404) {
+                Notifications.addError('NOT_FOUND');
+                return false; // error handled
+            }
             Notifications.addErrors(response.data.messages);
             return false; // error not handled
         });
