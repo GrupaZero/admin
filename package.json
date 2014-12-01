@@ -48,7 +48,8 @@
       "module",
       "modules",
       "require",
-      "Config"
+      "Config",
+      "_"
     ],
     "jquery": true,
     "node": true,
