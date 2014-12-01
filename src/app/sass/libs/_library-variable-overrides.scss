@@ -14,8 +14,25 @@ $brand-info : #03A9F4 !default;
 $brand-warning : #FF9800 !default;
 $brand-danger : #F44336 !default;
 
-//== Form states and alerts
+//== Alerts
 //
-//## Define colors for form feedback states and, by default, alerts.
+//## Define alert colors, border radius, and padding.
 
-$state-danger-text : $brand-danger !default;
+$alert-padding : 10px 20px 10px 15px !default;
+$alert-border-radius : 0 !default;
+
+$state-success-text : #438a85 !default;
+$state-success-bg : #f3faf8 !default;
+$state-success-border : #bfd1cf !default;
+
+$state-info-text : #246a8e !default;
+$state-info-bg : #ebf6fb !default;
+$state-info-border : #bfd4de !default;
+
+$state-warning-text : #ce8f22 !default;
+$state-warning-bg : #fffcee !default;
+$state-warning-border : #F0DBB4 !default;
+
+$state-danger-text : #e76e70 !default;
+$state-danger-bg : #fff6f4 !default;
+$state-danger-border : #f8cdcd !default;

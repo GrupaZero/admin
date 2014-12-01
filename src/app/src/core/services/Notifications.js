@@ -1,30 +1,63 @@
 'use strict';
 
-function Notifications($alert) {
-    var messages = {
-        error: [],
-        warning: [],
-        success: []
-    };
+function Notifications($alert, $translate) {
+    var container = '.main';
     return {
-        addErrors: function(errors) {
+        addInfos: function(messages) {
             var self = this;
-            messages.error = errors;
-            _.forEach(errors, function(error) {
-                self.addError(error[0]);
+            self.addMessages(self.addInfo, messages);
+        },
+        addErrors: function(messages) {
+            var self = this;
+            self.addMessages(self.addError, messages);
+        },
+        addWarnings: function(messages) {
+            var self = this;
+            self.addMessages(self.addWarning, messages);
+        },
+        addSuccesses: function(messages) {
+            var self = this;
+            self.addMessages(self.addSuccess, messages);
+        },
+        addMessages: function(callback, messages) {
+            _.forEach(messages, function(messages) {
+                callback(messages[0]);
             });
         },
-        addError: function(error) {
+        addInfo: function(message) {
             $alert({
-                title: 'Error',
-                content: error,
-                placement: 'top',
-                type: 'danger',
-                show: true
+                title: $translate.instant('INFORMATION') + ':',
+                content: message,
+                container: container,
+                type: 'info'
+            });
+        },
+        addError: function(message) {
+            $alert({
+                title: $translate.instant('ERROR') + ':',
+                content: message,
+                container: container,
+                type: 'danger'
+            });
+        },
+        addWarning: function(message) {
+            $alert({
+                title: $translate.instant('WARNING') + ':',
+                content: message,
+                container: container,
+                type: 'warning'
+            });
+        },
+        addSuccess: function(message) {
+            $alert({
+                title: $translate.instant('SUCCESS') + ':',
+                content: message,
+                container: container,
+                type: 'success'
             });
         }
     };
 }
 
-module.$inject = ['$alert'];
+module.$inject = ['$alert', '$translate'];
 module.exports = Notifications;
