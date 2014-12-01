@@ -4,7 +4,6 @@ function ContentCtrl($scope, Restangular, $state, ContentRepository, NgTablePara
     $scope.contents = {};
     $scope.newContent = {};
     $scope.listLang = $scope.currentLang;
-    $scope.categoryId = 0;
 
     // Temporary contents list language action
     $scope.selectLanguage = function(lang) {
@@ -12,17 +11,24 @@ function ContentCtrl($scope, Restangular, $state, ContentRepository, NgTablePara
         $scope.tableParams.reload();
     };
 
-    // Temporary contents list language action
+    // Temporary contents list select category action
     $scope.selectCategory = function(id) {
-        $scope.categoryId = id;
+        if (id) {
+            ContentRepository.one(id).then(function(response) {
+                $scope.listParent = ContentRepository.clean(response); // select category
+            });
+        } else {
+            $scope.listParent = null; // uncategorized
+        }
+        // reload contents list
         $scope.tableParams.reload();
     };
 
     //  ngTable configuration
     $scope.tableParams = new NgTableParams({
-        count: 25,         // count per page
+        count: 25, // count per page
         sorting: {
-            id: 'asc'     // initial sorting
+            id: 'asc' // initial sorting
         }
     }, {
         total: 0, // length of data
@@ -54,14 +60,14 @@ function ContentCtrl($scope, Restangular, $state, ContentRepository, NgTablePara
                 queryOptions.perPage = params.count();
             }
 
-            // get uncategorized
+            // get uncategorized by default
             var promise = ContentRepository.list(queryOptions);
 
             // if parent category is selected
-            if ($scope.categoryId) {
+            if ($scope.listParent) {
                 // get children's
                 delete queryOptions.level; // remove level param
-                promise = Restangular.one('admin/contents', $scope.categoryId).getList('children', queryOptions);
+                promise = ContentRepository.children($scope.listParent.id, queryOptions);
             }
 
             // Contents is a REST AngularJS service that talks to api and return promise
@@ -85,8 +91,10 @@ function ContentCtrl($scope, Restangular, $state, ContentRepository, NgTablePara
     // Temporary categories list tree toggle children action
     $scope.toggleChildren = function(scope) {
         if (!scope.$nodeScope.$modelValue.children) {
-            var category = Restangular.one('admin/contents', scope.$nodeScope.$modelValue.id);
-            category.getList('children', {lang: $scope.listLang.code, type: 'category'}).then(function(response) {
+            ContentRepository.children(scope.$nodeScope.$modelValue.id, {
+                lang: $scope.listLang.code,
+                type: 'category'
+            }).then(function(response) {
                 if (ContentRepository.clean(response).length > 0) {
                     scope.$nodeScope.$modelValue.children = ContentRepository.clean(response);
                 }

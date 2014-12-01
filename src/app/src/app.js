@@ -65,7 +65,7 @@ angular.module('admin', dependencies).config([
                 extractedData.params = data.params;
 
             } else {
-                extractedData = data.data;
+                extractedData = data;
             }
 
             return extractedData;

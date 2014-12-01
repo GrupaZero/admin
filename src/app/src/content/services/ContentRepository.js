@@ -1,15 +1,18 @@
 'use strict';
 
 function ContentRepository(Restangular) {
-    var api = Restangular.all('admin/contents');
+    var api = 'admin/contents';
     return {
-        one: function(code) {
-            return api.get(code);
+        one: function(id) {
+            return Restangular.one(api, id).get();
         },
         list: function(params) {
-            return api.getList(params);
+            return Restangular.all(api).getList(params);
         },
-        clean: function(elem){
+        children: function(id, params) {
+            return Restangular.one(api, id).getList('children', params);
+        },
+        clean: function(elem) {
             return Restangular.stripRestangular(elem);
         }
     };

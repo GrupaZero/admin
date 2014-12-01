@@ -15,7 +15,7 @@
             </a>
         </div>
         <ul ui-tree-nodes="treeOptions" ng-model="category.children" ng-class="{ hidden: collapsed }">
-            <li ng-repeat="category in category.children" ng-class="{ 'active': categoryId == category.id, 'open': !collapsed}"
+            <li ng-repeat="category in category.children" ng-class="{ 'active': listParent == category.id, 'open': !collapsed}"
                 ui-tree-node ng-include="'treeChildrenRenderer.html'" data-collapsed="!item.expanded">
             </li>
             <li ng-if="!category.children">
@@ -27,10 +27,10 @@
     </script>
     <div ui-tree="treeOptions" id="categories-tree" data-drag-enabled="false">
         <ul ui-tree-nodes ng-model="categories" class="nav">
-            <li ng-class="{ 'active': categoryId == 0}" ng-click="selectCategory(0)">
+            <li ng-class="{ 'active': !listParent}" ng-click="selectCategory()">
                 <a href="">{{ 'UNCATEGORIZED' | translate }}</a>
             </li>
-            <li ng-repeat="category in categories" ng-class="{ 'active': categoryId == category.id, 'open': !collapsed}"
+            <li ng-repeat="category in categories" ng-class="{ 'active': listParent == category.id, 'open': !collapsed}"
                 ui-tree-node ng-include="'treeChildrenRenderer.html'" data-collapsed="!item.expanded">
             </li>
         </ul>
