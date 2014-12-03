@@ -1,6 +1,6 @@
 'use strict';
 
-function ContentCtrl($scope, Restangular, $state, ContentRepository, NgTableParams) {
+function ContentCtrl($scope, Restangular, $state, $stateParams, ContentRepository, NgTableParams, Notifications) {
     $scope.contents = {};
     $scope.newContent = {};
     $scope.listLang = $scope.currentLang;
@@ -16,12 +16,14 @@ function ContentCtrl($scope, Restangular, $state, ContentRepository, NgTablePara
         if (id) {
             ContentRepository.one(id).then(function(response) {
                 $scope.listParent = ContentRepository.clean(response); // select category
+                // reload contents list
+                $scope.tableParams.reload();
             });
         } else {
             $scope.listParent = null; // uncategorized
+            // reload contents list
+            $scope.tableParams.reload();
         }
-        // reload contents list
-        $scope.tableParams.reload();
     };
 
     //  ngTable configuration
@@ -82,11 +84,11 @@ function ContentCtrl($scope, Restangular, $state, ContentRepository, NgTablePara
     // Categories tree
 
     // Temporary categories list action
-    var getCategories = function() {
-        ContentRepository.list({lang: $scope.listLang.code, type: 'category', level: 0}).then(function(response) {
-            $scope.categories = ContentRepository.clean(response);
-        });
-    };
+    var categories = $scope.categories = Restangular.all('admin/contents').getList({
+        lang: $scope.listLang.code,
+        type: 'category',
+        level: 0
+    }).$object;
 
     // Temporary categories list tree toggle children action
     $scope.toggleChildren = function(scope) {
@@ -104,26 +106,24 @@ function ContentCtrl($scope, Restangular, $state, ContentRepository, NgTablePara
         scope.toggle();
     };
 
-    getCategories();
-
     // Temporary contents POST action
     $scope.addNewContent = function addNewContent(newContent) {
         newContent.lang = {
             code: $scope.currentLang.code,
             i18n: $scope.currentLang.i18n
         };
+        newContent.type = $stateParams.type;
+        newContent.isActive = 1;
 
-        Restangular.all('admin/contents').post(newContent).then(function() {
-            $state.go('content.list');
-        }, function() {
-            $scope.message = {
-                code: 'danger',
-                text: 'There was an error saving!'
-            };
+        categories.post(newContent).then(function onSuccess(response) {
+            categories.push(response);
+            setTimeout(function() {
+                console.log($scope.categories);
+                $state.go('content.list');
+            }, 500);
         });
     };
 
 }
-
-ContentCtrl.$inject = ['$scope', 'Restangular', '$state', 'ContentRepository', 'ngTableParams'];
+ContentCtrl.$inject = ['$scope', 'Restangular', '$state', '$stateParams', 'ContentRepository', 'ngTableParams', 'Notifications'];
 module.exports = ContentCtrl;

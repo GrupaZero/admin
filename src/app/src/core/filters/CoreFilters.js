@@ -12,7 +12,7 @@ angular.module('CoreFilters', [])
             var currentTranslation = _.filter(translations, function(translation) {
                 return translation.lang === langCode;
             }).shift();
-            if (currentTranslation.hasOwnProperty(field)) {
+            if (_.has(currentTranslation, field)) {
                 return currentTranslation[field];
             } else {
                 return null;

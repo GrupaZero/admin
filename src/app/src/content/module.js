@@ -34,7 +34,7 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
                     templateUrl: viewPath + 'show.html'
                 })
                 .state('content.add', {
-                    url: '/add',
+                    url: '/add/{type}',
                     templateUrl: viewPath + 'add.html',
                     controller: 'ContentCtrl'
                 });

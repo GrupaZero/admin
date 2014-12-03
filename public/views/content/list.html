@@ -37,7 +37,7 @@
         <tr ng-repeat="content in $data">
             <td data-title="'TITLE' | translate">
                 <h4 ng-if="(content.translations | getTranslation:listLang.code:'title')">
-                    <a ui-sref="content.show({ contentId: content.id })">
+                    <a href="" ui-sref="content.show({ contentId: content.id })">
                         {{ content.translations | getTranslation:listLang.code:'title' }}
                     </a>
                     <small ng-show="(content.route.translations | getTranslation:listLang.code:'url')">
@@ -51,8 +51,8 @@
                     <p>{{ 'NO_TRANSLATION_INFO' | translate }}</p>
                 </div>
 
-                <a ui-sref="content.show({ contentId: content.id })">{{ 'DETAILS' | translate }}</a>
-                <a ui-sref="content.show({ contentId: content.id })" class="text-danger">{{ 'DELETE' | translate }}</a>
+                <a href="" ui-sref="content.show({ contentId: content.id })">{{ 'DETAILS' | translate }}</a>
+                <a href="" ui-sref="content.show({ contentId: content.id })" class="text-danger">{{ 'DELETE' | translate }}</a>
             </td>
             <td data-title="'WEIGHT' | translate" sortable="'weight'" class="text-center">
                 {{ content.weight }}
