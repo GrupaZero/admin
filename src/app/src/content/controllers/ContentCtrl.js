@@ -8,7 +8,6 @@ function ContentCtrl($scope, $state, ContentRepository, NgTableParams) {
     // Temporary contents list language action
     $scope.selectLanguage = function(lang) {
         $scope.listLang = lang;
-        $scope.tableParams.reload();
     };
 
     // Temporary contents list select category action
@@ -110,7 +109,7 @@ function ContentCtrl($scope, $state, ContentRepository, NgTableParams) {
     // Temporary contents POST action
     $scope.addNewContent = function addNewContent(newContent) {
         _.merge(newContent.translations, {
-            langCode: $scope.currentLang.code,
+            langCode: $scope.listLang.code,
             isActive: 1
         });
         newContent.type = $state.params.type;

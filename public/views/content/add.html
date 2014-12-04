@@ -1,16 +1,32 @@
 <div class="container-fluid">
     <form novalidate>
+        <div class="row form-inline">
+            <div class="col-xs-8 col-sm-6 col-lg-3">
+                <!-- Language Form input -->
+                <div class="form-group">
+                    <label for="langCode" class="hidden-xs">{{ 'TRANSLATION_LANGUAGE' | translate }}</label>
+                    <select id="langCode" ng-model="listLang" class="form-control" ng-change="selectLanguage(listLang)"
+                            ng-options="lang.code | langName | translate for lang in langs">
+                    </select>
+                </div>
+            </div>
+            <!-- /.col-lg-4 -->
+            <div class="col-xs-4 col-sm-6 col-lg-9">
+                <!-- Category Form input -->
+                <div class="form-group">
+                    <label for="parentId " class="hidden-xs">{{ 'CATEGORY' | translate }}</label>
+                    <select id="parentId " ng-model="newContent.parentId" class="form-control"
+                            ng-options="category.id as category.translations | getTranslation:listLang.code:'title' for category in categories">
+                    </select>
+                </div>
+            </div>
+            <!-- /.col-lg-8 -->
+        </div>
+        <hr/>
         <!-- Title Form input -->
         <div class="form-group">
             <label for="title">{{ 'TITLE' | translate }}</label>
             <input id="title" name="title" type="text" class="form-control input-lg" ng-model="newContent.translations.title">
-        </div>
-        <!-- Title Form input -->
-        <div class="form-group">
-            <label for="parentId " class="hidden-xs">{{ 'CATEGORY' | translate }}</label>
-            <select id="parentId " ng-model="newContent.parentId" class="form-control"
-                    ng-options="category.id as category.translations | getTranslation:listLang.code:'title' for category in categories">
-            </select>
         </div>
         <!--  Body Form textarea -->
         <div class="form-group">
