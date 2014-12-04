@@ -19,7 +19,7 @@
                 ui-tree-node ng-include="'treeChildrenRenderer.html'" data-collapsed="!item.expanded">
             </li>
             <li ng-if="!category.children">
-                <a href="" ui-sref="content.add({ type: 'content' })" class="btn-add">
+                <a href="" ui-sref="content.add({ type: 'category' })" class="btn-add">
                     {{ 'ADD_CATEGORY' | translate }} <i class="fa fa-fw fa-plus-circle"></i>
                 </a>
             </li>
@@ -27,6 +27,11 @@
     </script>
     <div ui-tree="treeOptions" id="categories-tree" data-drag-enabled="false">
         <ul ui-tree-nodes ng-model="categories" class="nav">
+            <li>
+                <a href="" ui-sref="content.add({ type: 'category' })" class="btn-add">
+                    {{ 'ADD_CATEGORY' | translate }} <i class="fa fa-fw fa-plus-circle"></i>
+                </a>
+            </li>
             <li ng-class="{ 'active': !listParent}" ng-click="selectCategory()">
                 <a href="">{{ 'UNCATEGORIZED' | translate }}</a>
             </li>

@@ -1,6 +1,6 @@
 'use strict';
 
-function ContentCtrl($scope, Restangular, $state, $stateParams, ContentRepository, NgTableParams, Notifications) {
+function ContentCtrl($scope, $state, $stateParams, ContentRepository, NgTableParams) {
     $scope.contents = {};
     $scope.newContent = {};
     $scope.listLang = $scope.currentLang;
@@ -84,9 +84,10 @@ function ContentCtrl($scope, Restangular, $state, $stateParams, ContentRepositor
     // Categories tree
 
     // Temporary categories list action
-    var categories = $scope.categories = Restangular.all('admin/contents').getList({
+    var categories = $scope.categories = ContentRepository.list({
         lang: $scope.listLang.code,
         type: 'category',
+        perPAge: 25,
         level: 0
     }).$object;
 
@@ -116,14 +117,16 @@ function ContentCtrl($scope, Restangular, $state, $stateParams, ContentRepositor
         newContent.isActive = 1;
 
         categories.post(newContent).then(function onSuccess(response) {
-            categories.push(response);
             setTimeout(function() {
-                console.log($scope.categories);
-                $state.go('content.list');
-            }, 500);
+                $scope.$apply(function() {
+                    categories.push(response);
+                    $state.go('content.list');
+                    console.log($scope.categories);
+                });
+            }, 1000);
         });
     };
 
 }
-ContentCtrl.$inject = ['$scope', 'Restangular', '$state', '$stateParams', 'ContentRepository', 'ngTableParams', 'Notifications'];
+ContentCtrl.$inject = ['$scope', '$state', '$stateParams', 'ContentRepository', 'ngTableParams'];
 module.exports = ContentCtrl;
