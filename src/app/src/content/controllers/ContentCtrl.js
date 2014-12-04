@@ -89,7 +89,6 @@ function ContentCtrl($scope, $state, ContentRepository, NgTableParams) {
         level: 0
     }).then(function(response) {
         $scope.categories = response;
-        console.log(response);
     });
 
     // Temporary categories list tree toggle children action
@@ -110,10 +109,10 @@ function ContentCtrl($scope, $state, ContentRepository, NgTableParams) {
 
     // Temporary contents POST action
     $scope.addNewContent = function addNewContent(newContent) {
-        newContent.lang = {
-            code: $scope.currentLang.code,
-            i18n: $scope.currentLang.i18n
-        };
+        _.merge(newContent.translations, {
+            langCode: $scope.currentLang.code,
+            isActive: 1
+        });
         newContent.type = $state.params.type;
         newContent.isActive = 1;
         $scope.categories.post(newContent).then(function onSuccess(response) {
