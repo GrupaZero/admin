@@ -5,6 +5,13 @@
             <label for="title">{{ 'TITLE' | translate }}</label>
             <input id="title" name="title" type="text" class="form-control input-lg" ng-model="newContent.translations.title">
         </div>
+        <!-- Title Form input -->
+        <div class="form-group">
+            <label for="parentId " class="hidden-xs">{{ 'CATEGORY' | translate }}</label>
+            <select id="parentId " ng-model="newContent.parentId" class="form-control"
+                    ng-options="category.id as category.translations | getTranslation:listLang.code:'title' for category in categories">
+            </select>
+        </div>
         <!--  Body Form textarea -->
         <div class="form-group">
             <label for="body">Body</label>
