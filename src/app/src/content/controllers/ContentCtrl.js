@@ -1,6 +1,6 @@
 'use strict';
 
-function ContentCtrl($scope, $state, $stateParams, ContentRepository, NgTableParams) {
+function ContentCtrl($scope, $state, ContentRepository, NgTableParams) {
     $scope.contents = {};
     $scope.newContent = {};
     $scope.listLang = $scope.currentLang;
@@ -82,14 +82,15 @@ function ContentCtrl($scope, $state, $stateParams, ContentRepository, NgTablePar
     });
 
     // Categories tree
-
-    // Temporary categories list action
-    var categories = $scope.categories = ContentRepository.list({
+    ContentRepository.list({
         lang: $scope.listLang.code,
         type: 'category',
-        perPAge: 25,
+        perPage: 125,
         level: 0
-    }).$object;
+    }).then(function(response) {
+        $scope.categories = response;
+        console.log(response);
+    });
 
     // Temporary categories list tree toggle children action
     $scope.toggleChildren = function(scope) {
@@ -113,20 +114,18 @@ function ContentCtrl($scope, $state, $stateParams, ContentRepository, NgTablePar
             code: $scope.currentLang.code,
             i18n: $scope.currentLang.i18n
         };
-        newContent.type = $stateParams.type;
+        newContent.type = $state.params.type;
         newContent.isActive = 1;
-
-        categories.post(newContent).then(function onSuccess(response) {
+        $scope.categories.post(newContent).then(function onSuccess(response) {
             setTimeout(function() {
                 $scope.$apply(function() {
-                    categories.push(response);
+                    $scope.categories.push(response);
                     $state.go('content.list');
-                    console.log($scope.categories);
                 });
             }, 1000);
         });
     };
 
 }
-ContentCtrl.$inject = ['$scope', '$state', '$stateParams', 'ContentRepository', 'ngTableParams'];
+ContentCtrl.$inject = ['$scope', '$state', 'ContentRepository', 'ngTableParams'];
 module.exports = ContentCtrl;
