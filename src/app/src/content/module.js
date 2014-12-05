@@ -25,9 +25,6 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
                         'quickSidebarLeft': {
                             templateUrl: viewPath + 'categories.html',
                             controller: 'ContentCategoryTreeCtrl'
-                        },
-                        'quickNav': {
-                            templateUrl: viewPath + 'quickNav.html'
                         }
                     }
                 })

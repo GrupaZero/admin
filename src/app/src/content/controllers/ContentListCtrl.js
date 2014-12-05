@@ -6,10 +6,9 @@ function ContentListCtrl($scope, $state, $stateParams, ContentRepository, NgTabl
     $scope.listLang = $scope.currentLang;
     $scope.listParent = null; // uncategorized
 
-    console.log($stateParams);
     // if state param has category id
-    if ($stateParams.categoryId) {
-        ContentRepository.one($stateParams.categoryId).then(function(response) {
+    if ($stateParams.contentId) {
+        ContentRepository.one($stateParams.contentId).then(function(response) {
             $scope.listParent = ContentRepository.clean(response); // select category
         });
     }
@@ -73,31 +72,6 @@ function ContentListCtrl($scope, $state, $stateParams, ContentRepository, NgTabl
             });
         }
     });
-
-    // get categories tree root level
-    ContentRepository.list({
-        lang: $scope.listLang.code,
-        type: 'category',
-        perPage: 125,
-        level: 0
-    }).then(function(response) {
-        $scope.categories = response;
-    });
-
-    // Categories list tree toggle children action
-    $scope.toggleChildren = function(scope) {
-        if (!scope.$nodeScope.$modelValue.children) { // only if there is no children's
-            ContentRepository.children(scope.$nodeScope.$modelValue.id, {
-                lang: $scope.listLang.code,
-                type: 'category'
-            }).then(function(response) {
-                if (ContentRepository.clean(response).length > 0) {
-                    scope.$nodeScope.$modelValue.children = ContentRepository.clean(response);
-                }
-            });
-        }
-        scope.toggle();
-    };
 
     // contents POST action
     $scope.addNewContent = function addNewContent(newContent) {

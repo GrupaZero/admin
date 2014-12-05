@@ -1,4 +1,25 @@
 <div class="col-sm-9 col-md-10">
+    <div class="quick-c-nav">
+        <div class="row">
+            <div class="col-xs-8 col-sm-6 col-lg-8 form-inline">
+                <label for="langCode" class="hidden-xs">{{ 'TRANSLATION_LANGUAGE' | translate }}</label>
+                <select id="langCode" ng-model="listLang" class="form-control" ng-change="selectLanguage(listLang)"
+                        ng-options="lang.code | langName | translate for lang in langs">
+                </select>
+            </div>
+            <!-- /.col-lg-4 -->
+            <div class="col-xs-4 col-sm-6 col-lg-4 text-right">
+                <button ui-sref="content.add({ type: 'content' })" class="btn btn-success" type="button"
+                        title="{{ 'ADD_NEW' | translate }}">
+                    <i class="glyphicon glyphicon-plus hidden-sm"></i> <span
+                        class="hidden-xs">{{ 'ADD_NEW' | translate }}</span>
+                </button>
+            </div>
+            <!-- /.col-lg-8 -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.quick-nav -->
     <div ng-if="listParent" class="page-header">
         <h3 class="clearfix">
             <span class="subtitle">
