@@ -13,9 +13,8 @@ function ContentCtrl($scope, $state, ContentRepository, NgTableParams) {
                 $scope.listParent = ContentRepository.clean(response); // select category
                 // reload contents list
                 $scope.tableParams.reload();
-                //console.log($scope.listParent);
             });
-        }, 500);
+        }, 300);
     };
 
     // if state param has category id

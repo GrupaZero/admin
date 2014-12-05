@@ -15,8 +15,8 @@
             </a>
         </div>
         <ul ui-tree-nodes="treeOptions" ng-model="category.children" ng-class="{ hidden: collapsed }">
-            <li ng-repeat="category in category.children" ng-class="{ 'active': listParent == category.id, 'open': !collapsed}"
-                ui-tree-node ng-include="'treeChildrenRenderer.html'" data-collapsed="!item.expanded">
+            <li ng-repeat="category in category.children" ng-class="{ 'active': listParent.id == category.id, 'open': !collapsed}"
+                ui-tree-node ng-include="'treeChildrenRenderer.html'" data-collapsed="!(listParent.id == category.id)">
             </li>
             <li ng-if="!category.children">
                 <a href="" ui-sref="content.add({ type: 'category' })" class="btn-add">
@@ -35,8 +35,8 @@
             <li ng-class="{ 'active': !listParent}" ng-click="toggleChildren(this)">
                 <a href="" ui-sref="content.list">{{ 'UNCATEGORIZED' | translate }}</a>
             </li>
-            <li ng-repeat="category in categories" ng-class="{ 'active': listParent == category.id, 'open': !collapsed}"
-                ui-tree-node ng-include="'treeChildrenRenderer.html'" data-collapsed="!item.expanded">
+            <li ng-repeat="category in categories" ng-class="{ 'active': listParent.id == category.id, 'open': !collapsed}"
+                ui-tree-node ng-include="'treeChildrenRenderer.html'" data-collapsed="!(listParent.id == category.id)">
             </li>
         </ul>
     </div>
