@@ -73,7 +73,7 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li ng-repeat="link in topNav.getItems()">
+                <li ng-repeat="link in topNavBar">
                     <a ng-if="!link.children" ui-sref="@{{ link.action }}">@{{ link.title | translate }}</a>
                     <a ng-if="link.children">@{{ link.title | translate }} <span class="caret"></span></a>
                     <ul ng-if="link.children" class="dropdown-menu" role="menu">
@@ -93,7 +93,7 @@
     <div class="row row-offcanvas left" ng-class="{ 'is-active': showSidebar, '' : !showSidebar }">
         <div class="col-sm-3 col-md-2 sidebar-c-offcanvas">
             <ul class="nav nav-c-sidebar">
-                <li ui-sref-active="active" ng-repeat="link in navBar.getItems()">
+                <li ui-sref-active="active" ng-repeat="link in navBar">
                     <a ui-sref="@{{ link.action }}">@{{ link.title | translate }}</a>
                     <ul class="nav">
                         <li ui-sref-active="active" ng-repeat="subLink in link.children">

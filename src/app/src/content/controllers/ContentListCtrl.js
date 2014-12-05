@@ -1,6 +1,6 @@
 'use strict';
 
-function ContentCtrl($scope, $state, $stateParams, ContentRepository, NgTableParams) {
+function ContentListCtrl($scope, $state, $stateParams, ContentRepository, NgTableParams) {
     $scope.contents = {};
     $scope.newContent = {};
     $scope.listLang = $scope.currentLang;
@@ -118,5 +118,5 @@ function ContentCtrl($scope, $state, $stateParams, ContentRepository, NgTablePar
     };
 
 }
-ContentCtrl.$inject = ['$scope', '$state', '$stateParams', 'ContentRepository', 'ngTableParams'];
-module.exports = ContentCtrl;
+ContentListCtrl.$inject = ['$scope', '$state', '$stateParams', 'ContentRepository', 'ngTableParams'];
+module.exports = ContentListCtrl;

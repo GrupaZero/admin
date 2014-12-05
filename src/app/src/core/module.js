@@ -5,33 +5,32 @@ require('./filters/CoreFilters.js');
 angular.module('admin.core', ['CoreFilters'])
     .controller('CoreCtrl', require('./controllers/CoreCtrl.js'))
     .factory('LangRepository', require('./services/LangRepository.js'))
+    .factory('NavBar', require('./services/NavBar.js'))
+    .factory('TopNavBar', require('./services/TopNavBar.js'))
     .service('Notifications', require('./services/Notifications.js'))
     .run([
-        '$rootScope',
-        function($rootScope) {
-            /** @type Navigation */
-            $rootScope.navBar = require('./../lib/navigation.js')();
-            $rootScope.topNav = require('./../lib/navigation.js')();
-            $rootScope.topNav.add(
+        'TopNavBar',
+        function(TopNavBar) {
+            TopNavBar.add(
                 {
                     title: 'DASHBOARD',
                     action: 'home'
                 }
             );
-            $rootScope.topNav.add(
+            TopNavBar.add(
                 {
                     title: 'SETTINGS',
                     action: 'content.list'
                 }
             );
-            $rootScope.topNav.addLastChild(
+            TopNavBar.addLastChild(
                 'SETTINGS',
                 {
                     title: 'ALL_CONTENTS',
                     action: 'content.list'
                 }
             );
-            $rootScope.topNav.addLastChild(
+            TopNavBar.addLastChild(
                 'SETTINGS',
                 {
                     title: 'ADD_NEW',

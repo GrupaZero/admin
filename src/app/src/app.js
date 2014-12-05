@@ -72,19 +72,16 @@ angular.module('admin', dependencies).config([
         });
     }
 ]).run([
+    'NavBar',
     '$rootScope',
-    '$state',
-    '$stateParams',
     'Restangular',
     'Notifications',
-    function($rootScope, $state, $stateParams, Restangular, Notifications) {
-        $rootScope.navBar.addFirst({title: 'DASHBOARD', action: 'home'});
-        $rootScope.$state = $state;
-        $rootScope.$stateParams = $stateParams;
+    function(NavBar, $rootScope, Restangular, Notifications) {
+        NavBar.addFirst({title: 'DASHBOARD', action: 'home'});
         $rootScope.baseUrl = Config.url;
 
         Restangular.setErrorInterceptor(function(response, deferred, responseHandler) {
-            if(response.status === 404) {
+            if (response.status === 404) {
                 Notifications.addError('COMMON_ERROR');
                 return false; // error handled
             }

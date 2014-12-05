@@ -23,9 +23,9 @@ angular.module('admin.user', [])
     ])
     .controller('UserCtrl', require('./controllers/UserCtrl'))
     .run([
-        '$rootScope',
-        function($rootScope) {
-            $rootScope.navBar.add({
+        'NavBar',
+        function(NavBar) {
+            NavBar.add({
                 title: 'USER', action: 'user', children: [
                     {title: 'USER_LIST', action: 'user.list'}
                 ]

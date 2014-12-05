@@ -1,9 +1,8 @@
 'use strict';
 
-function CoreCtrl($scope, $translate, LangRepository) {
-    var promise = LangRepository.list();
+function CoreCtrl($scope, $translate, LangRepository, NavBar, TopNavBar) {
 
-    promise.then(function(response) {
+    LangRepository.list().then(function(response) {
         $scope.langs = response;
         $scope.currentLang = response[0];
     });
@@ -13,9 +12,12 @@ function CoreCtrl($scope, $translate, LangRepository) {
         $translate.use($scope.currentLang.i18n);
     };
 
+    $scope.navBar = NavBar.getItems();
+    $scope.topNavBar = TopNavBar.getItems();
+
     //Off canvas sidebar
     $scope.showSidebar = false;
 }
 
-CoreCtrl.$inject = ['$scope', '$translate', 'LangRepository'];
+CoreCtrl.$inject = ['$scope', '$translate', 'LangRepository', 'NavBar', 'TopNavBar', '$state'];
 module.exports = CoreCtrl;

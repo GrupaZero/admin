@@ -1,7 +1,7 @@
 describe('this is navigation test', function() {
     'use strict';
 
-    /** @type Navigation navigation */
+    /** @type NavBar navigation */
     var navigation = null;
 
     beforeEach(function() {

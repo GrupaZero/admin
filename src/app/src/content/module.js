@@ -12,20 +12,22 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
             $stateProvider
                 .state('content', {
                     url: '/content',
-                    templateUrl: viewPath + 'index.html',
-                    controller: 'ContentCtrl'
+                    controller: 'ContentDashboardCtrl',
+                    templateUrl: viewPath + 'index.html'
                 })
                 .state('content.list', {
-                    url: '/list/{categoryId}',
+                    url: '/list/{contentId}',
                     views: {
-                        '': {
-                            templateUrl: viewPath + 'list.html'
+                        'content': {
+                            templateUrl: viewPath + 'list.html',
+                            controller: 'ContentListCtrl'
+                        },
+                        'quickSidebarLeft': {
+                            templateUrl: viewPath + 'categories.html',
+                            controller: 'ContentCategoryTreeCtrl'
                         },
                         'quickNav': {
                             templateUrl: viewPath + 'quickNav.html'
-                        },
-                        'quickSidebarLeft': {
-                            templateUrl: viewPath + 'categories.html'
                         }
                     }
                 })
@@ -39,25 +41,28 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
                 });
         }
     ])
-    .controller('ContentCtrl', require('./controllers/ContentCtrl'))
+    .controller('ContentDashboardCtrl', require('./controllers/ContentDashboardCtrl'))
+    .controller('ContentListCtrl', require('./controllers/ContentListCtrl'))
+    .controller('ContentCategoryTreeCtrl', require('./controllers/ContentCategoryTreeCtrl'))
+    .controller('ContentListCtrl', require('./controllers/ContentListCtrl'))
     .factory('ContentRepository', require('./services/ContentRepository.js'))
     .run([
-        '$rootScope',
-        function($rootScope) {
-            $rootScope.navBar.add(
+        'NavBar',
+        function(NavBar) {
+            NavBar.add(
                 {
                     title: 'CONTENT',
                     action: 'content'
                 }
             );
-            $rootScope.navBar.addLastChild(
+            NavBar.addLastChild(
                 'CONTENT',
                 {
                     title: 'ALL_CONTENTS',
                     action: 'content.list'
                 }
             );
-            $rootScope.navBar.addLastChild(
+            NavBar.addLastChild(
                 'CONTENT',
                 {
                     title: 'ADD_NEW',
