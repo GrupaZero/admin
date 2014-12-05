@@ -6,7 +6,7 @@
     </div>
     <script type="text/ng-template" id="treeChildrenRenderer.html">
         <div ui-tree-handle>
-            <a href="" ui-sref="content.list.children({ categoryId: category.id })" ng-click="toggleChildren(this)">
+            <a href="" ui-sref="content.list({ categoryId: category.id })" ng-click="toggleChildren(this)">
                 <i class="fa fa-fw pull-right" ng-class="{'fa-angle-right': collapsed, 'fa-angle-down': !collapsed}"></i>
                 {{ category.translations | getTranslation:listLang.code:'title' }}
                 <span ng-hide="(category.translations | getTranslation:listLang.code:'title')">
@@ -32,7 +32,7 @@
                     {{ 'ADD_CATEGORY' | translate }} <i class="fa fa-fw fa-plus-circle"></i>
                 </a>
             </li>
-            <li ng-class="{ 'active': !listParent}" ng-click="toggleChildren(this)">
+            <li ng-class="{ 'active': !listParent}">
                 <a href="" ui-sref="content.list">{{ 'UNCATEGORIZED' | translate }}</a>
             </li>
             <li ng-repeat="category in categories" ng-class="{ 'active': listParent.id == category.id, 'open': !collapsed}"

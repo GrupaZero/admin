@@ -16,7 +16,7 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
                     controller: 'ContentCtrl'
                 })
                 .state('content.list', {
-                    url: '/list',
+                    url: '/list/{categoryId}',
                     views: {
                         '': {
                             templateUrl: viewPath + 'list.html'
@@ -28,9 +28,6 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
                             templateUrl: viewPath + 'categories.html'
                         }
                     }
-                })
-                .state('content.list.children', {
-                    url: '/{categoryId}/children'
                 })
                 .state('content.show', {
                     url: '/{contentId}/show',

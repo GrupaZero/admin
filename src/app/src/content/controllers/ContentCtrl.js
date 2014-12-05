@@ -1,25 +1,17 @@
 'use strict';
 
-function ContentCtrl($scope, $state, ContentRepository, NgTableParams) {
+function ContentCtrl($scope, $state, $stateParams, ContentRepository, NgTableParams) {
     $scope.contents = {};
     $scope.newContent = {};
     $scope.listLang = $scope.currentLang;
     $scope.listParent = null; // uncategorized
 
-    // select category and reload content list
-    $scope.selectCategory = function() {
-        setTimeout(function() {
-            ContentRepository.one($state.params.categoryId).then(function(response) {
-                $scope.listParent = ContentRepository.clean(response); // select category
-                // reload contents list
-                $scope.tableParams.reload();
-            });
-        }, 300);
-    };
-
+    console.log($stateParams);
     // if state param has category id
-    if ($state.params.categoryId) {
-        $scope.selectCategory();
+    if ($stateParams.categoryId) {
+        ContentRepository.one($stateParams.categoryId).then(function(response) {
+            $scope.listParent = ContentRepository.clean(response); // select category
+        });
     }
 
     // contents list language action
@@ -94,27 +86,17 @@ function ContentCtrl($scope, $state, ContentRepository, NgTableParams) {
 
     // Categories list tree toggle children action
     $scope.toggleChildren = function(scope) {
-        if (scope.$nodeScope) { // only ui-tree-nodes
-            if (!scope.$nodeScope.$modelValue.children) { // only if there is no children's
-                ContentRepository.children(scope.$nodeScope.$modelValue.id, {
-                    lang: $scope.listLang.code,
-                    type: 'category'
-                }).then(function(response) {
-                    if (ContentRepository.clean(response).length > 0) {
-                        scope.$nodeScope.$modelValue.children = ContentRepository.clean(response);
-                    }
-                });
-            }
-
-            // Select only new category
-            if (scope.$nodeScope.$modelValue.id !== parseInt($state.params.categoryId)) {
-                $scope.selectCategory();
-            }
-            scope.toggle();
-        } else { // uncategorized
-            $scope.listParent = null;
-            $scope.tableParams.reload();
+        if (!scope.$nodeScope.$modelValue.children) { // only if there is no children's
+            ContentRepository.children(scope.$nodeScope.$modelValue.id, {
+                lang: $scope.listLang.code,
+                type: 'category'
+            }).then(function(response) {
+                if (ContentRepository.clean(response).length > 0) {
+                    scope.$nodeScope.$modelValue.children = ContentRepository.clean(response);
+                }
+            });
         }
+        scope.toggle();
     };
 
     // contents POST action
@@ -136,5 +118,5 @@ function ContentCtrl($scope, $state, ContentRepository, NgTableParams) {
     };
 
 }
-ContentCtrl.$inject = ['$scope', '$state', 'ContentRepository', 'ngTableParams'];
+ContentCtrl.$inject = ['$scope', '$state', '$stateParams', 'ContentRepository', 'ngTableParams'];
 module.exports = ContentCtrl;
