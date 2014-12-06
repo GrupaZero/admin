@@ -1,25 +1,4 @@
 <div class="col-sm-9 col-md-10">
-    <div class="quick-c-nav">
-        <div class="row">
-            <div class="col-xs-8 col-sm-6 col-lg-8 form-inline">
-                <label for="langCode" class="hidden-xs">{{ 'TRANSLATION_LANGUAGE' | translate }}</label>
-                <select id="langCode" ng-model="listLang" class="form-control" ng-change="selectLanguage(listLang)"
-                        ng-options="lang.code | langName | translate for lang in langs">
-                </select>
-            </div>
-            <!-- /.col-lg-4 -->
-            <div class="col-xs-4 col-sm-6 col-lg-4 text-right">
-                <button ui-sref="content.add({ type: 'content' })" class="btn btn-success" type="button"
-                        title="{{ 'ADD_NEW' | translate }}">
-                    <i class="glyphicon glyphicon-plus hidden-sm"></i> <span
-                        class="hidden-xs">{{ 'ADD_NEW' | translate }}</span>
-                </button>
-            </div>
-            <!-- /.col-lg-8 -->
-        </div>
-        <!-- /.row -->
-    </div>
-    <!-- /.quick-nav -->
     <div ng-if="listParent" class="page-header">
         <h3 class="clearfix">
             <span class="subtitle">
@@ -29,30 +8,44 @@
                 {{ listParent.translations | getTranslation:listLang.code:'title' }}
             </a>
             <span class="pull-right">
-            <button ui-sref="content.show({ contentId: listParent.id })" class="btn btn-default" type="button"
-                    title="{{ 'DETAILS' | translate }}">
-                <i class="glyphicon glyphicon-edit hidden-sm"></i> <span
-                    class="hidden-xs">{{ 'DETAILS' | translate }}</span>
-            </button>
-            <button ui-sref="content.show({ contentId: listParent.id })" class="btn btn-danger" type="button"
-                    title="{{ 'DELETE' | translate }}">
-                <i class="glyphicon glyphicon-remove-circle hidden-sm"></i> <span
-                    class="hidden-xs">{{ 'DELETE' | translate }}</span>
-            </button>
-                </span>
+                <button ui-sref="content.show({ contentId: listParent.id })" class="btn btn-default" type="button"
+                        title="{{ 'DETAILS' | translate }}">
+                    <i class="glyphicon glyphicon-edit hidden-sm"></i> <span
+                        class="hidden-xs">{{ 'DETAILS' | translate }}</span>
+                </button>
+                <button ui-sref="content.show({ contentId: listParent.id })" class="btn btn-danger" type="button"
+                        title="{{ 'DELETE' | translate }}">
+                    <i class="glyphicon glyphicon-remove-circle hidden-sm"></i> <span
+                        class="hidden-xs">{{ 'DELETE' | translate }}</span>
+                </button>
+            </span>
         </h3>
     </div>
-    <ul class="list-filters nav nav-pills" role="tablist">
-        <li role="presentation" ng-class="{ active: activeFilter == '' }" ng-click="tableParams.filter({})">
-            <a href="">{{ 'ALL' | translate }}</a>
-        </li>
-        <li role="presentation" ng-class="{ active: activeFilter == 'isActive' }" ng-click="tableParams.filter({ isActive: 1 })">
-            <a href="">{{ 'PUBLISHED' | translate }}</a>
-        </li>
-        <li role="presentation" ng-click="tableParams.filter({ isActive: 0 })">
-            <a href="">{{ 'DRAFT' | translate }}</a>
-        </li>
-    </ul>
+    <div class="row list-actions">
+        <div class="col-xs-8 col-sm-6 col-lg-8 form-inline">
+            <ul class="list-filters nav nav-pills" role="tablist">
+                <li class="subtitle">
+                    {{ 'SHOW' | translate }}
+                </li>
+                <li role="presentation" ng-class="{ active: activeFilter == '' }" ng-click="tableParams.filter({})">
+                    <a href="">{{ 'ALL' | translate }}</a>
+                </li>
+                <li role="presentation" ng-class="{ active: activeFilter == 'isActive' }"
+                    ng-click="tableParams.filter({ isActive: 1 })">
+                    <a href="">{{ 'PUBLISHED' | translate }}</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.col-lg-4 -->
+        <div class="col-xs-4 col-sm-6 col-lg-4 text-right">
+            <button ui-sref="content.add({ type: 'content' })" class="btn btn-success" type="button"
+                    title="{{ 'ADD_NEW' | translate }}">
+                <i class="glyphicon glyphicon-plus hidden-sm"></i> <span
+                    class="hidden-xs">{{ 'ADD_NEW' | translate }}</span>
+            </button>
+        </div>
+        <!-- /.col-lg-8 -->
+    </div>
     <table ng-table="tableParams" class="table table-striped table-bordered">
         <tbody>
         <tr ng-repeat="content in $data">

@@ -1,8 +1,6 @@
 'use strict';
 
 function ContentCategoryTreeCtrl($scope, $stateParams, ContentRepository) {
-    $scope.listLang = $scope.currentLang;
-
     // get categories tree root level
     ContentRepository.list({
         lang: $scope.listLang.code,

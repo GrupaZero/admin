@@ -58,34 +58,40 @@
 
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" ui-sref="home">G-ZERO ADMIN</a>
-            <div class="navbar-form navbar-left col-xs-4">
-                <select ng-model="currentLang" ng-change="changeLanguage()" class="form-control"
-                    ng-options="lang.code | langName | translate for lang in langs"></select>
+        <div class="row">
+            <div class="col-xs-6 col-sm-3 col-md-2 brand-box">
+                <button type="button" class="navbar-toggle pull-left" ng-click="showSidebar = !showSidebar">
+                    <span class="sr-only">@{{ 'TOGGLE_NAVIGATION' | translate }}</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" ui-sref="home">G-ZERO ADMIN</a>
             </div>
-            <button type="button" class="navbar-toggle" ng-click="showSidebar = !showSidebar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li ng-repeat="link in topNavBar">
+            <div class="col-xs-6 col-sm-9 col-md-10">
+                <div class="navbar-form navbar-left">
+                    <label for="langCode" class="hidden-xs">@{{ 'TRANSLATION_LANGUAGE' | translate }}</label>
+                    <select id="langCode" ng-model="listLang" class="form-control"
+                    ng-change="selectLanguage(listLang)"
+                    ng-options="lang.code | langName | translate for lang in langs">
+                    </select>
+                </div>
+                <ul class="nav navbar-nav navbar-right hidden-xs">
+                    <li ng-repeat="link in topNavBar">
                     <a ng-if="!link.children" ui-sref="@{{ link.action }}">@{{ link.title | translate }}</a>
                     <a ng-if="link.children">@{{ link.title | translate }} <span class="caret"></span></a>
-                    <ul ng-if="link.children" class="dropdown-menu" role="menu">
+                        <ul ng-if="link.children" class="dropdown-menu" role="menu">
                         <li ui-sref-active="active" ng-repeat="subLink in link.children">
-                            <a ui-sref="@{{ subLink.action }}">@{{ subLink.title | translate }}</a>
+                        <a ui-sref="@{{ subLink.action }}">@{{ subLink.title | translate }}</a>
                         </li>
-                    </ul>
-                </li>
-            </ul>
-            <form class="navbar-form navbar-right">
-                <input type="text" class="form-control" placeholder="Search..." ng-model="yourName">
-            </form>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="navbar-form navbar-right hidden-xs">
+                    <select ng-model="currentLang" ng-change="changeLanguage()" class="form-control"
+                    ng-options="lang.code | langName | translate for lang in langs"></select>
+                </div>
+            </div>
         </div>
     </div>
 </div>

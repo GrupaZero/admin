@@ -13,19 +13,10 @@
   box-shadow : 0 2px 5px rgba(0, 0, 0, 0.26);
 }
 
-
 // -------------------------------------
 //   Animations
 // -------------------------------------
 
-//[ui-view].ng-enter {
-//  @include fadeIn();
-//}
-
-//[ui-view='quickNav'].ng-enter {
-//  @include fadeInDown();
-//}
-//
-//[ui-view='quickSidebarLeft'].ng-enter {
-//  @include fadeInLeftBig();
-//}
+[ui-view="content"].ng-enter {
+  @include fadeIn(.33s);
+}

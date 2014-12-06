@@ -3,7 +3,6 @@
 function ContentListCtrl($scope, $state, $stateParams, ContentRepository, NgTableParams) {
     $scope.contents = {};
     $scope.newContent = {};
-    $scope.listLang = $scope.currentLang;
     $scope.listParent = null; // uncategorized
 
     // if state param has category id
@@ -12,11 +11,6 @@ function ContentListCtrl($scope, $state, $stateParams, ContentRepository, NgTabl
             $scope.listParent = ContentRepository.clean(response); // select category
         });
     }
-
-    // contents list language action
-    $scope.selectLanguage = function(lang) {
-        $scope.listLang = lang;
-    };
 
     //  ngTable configuration
     $scope.tableParams = new NgTableParams({

@@ -15,13 +15,13 @@
             </a>
         </div>
         <ul ui-tree-nodes="treeOptions" ng-model="category.children" ng-class="{ hidden: collapsed }">
-            <li ng-repeat="category in category.children" ng-class="{ 'active': activeNode == category.id, 'open': !collapsed}"
-                ui-tree-node ng-include="'treeChildrenRenderer.html'" data-collapsed="!(activeNode == category.id)">
-            </li>
-            <li ng-if="!category.children">
+            <li>
                 <a href="" ui-sref="content.add({ type: 'category' })" class="btn-add">
                     {{ 'ADD_CATEGORY' | translate }} <i class="fa fa-fw fa-plus-circle"></i>
                 </a>
+            </li>
+            <li ng-repeat="category in category.children" ng-class="{ 'active': activeNode == category.id, 'open': !collapsed}"
+                ui-tree-node ng-include="'treeChildrenRenderer.html'" data-collapsed="!(activeNode == category.id)">
             </li>
         </ul>
     </script>

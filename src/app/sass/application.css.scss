@@ -59,7 +59,7 @@
 
   .aside-header {
     border-bottom : 1px solid #e5e5e5;
-    padding       : 6px 15px;
+    padding       : 10px 15px;
     margin        : 0 -15px 10px;
     background    : $white;
   }
@@ -70,9 +70,15 @@
   }
 }
 
+.list-actions {
+  margin-top : $line-height-computed;
+}
+
 .list-filters {
-  margin-top    : $line-height-computed;
   margin-bottom : $line-height-computed;
+  .subtitle {
+    padding : 4px 10px 4px 0;
+  }
   li {
     a {
       padding : 4px 10px;
@@ -233,6 +239,21 @@
 //   Shame
 // -------------------------------------
 // ----- Need to add a quick fix, hack, or questionable technique?  Add it here, fix it later.
+.navbar-inverse {
+  label {
+    color : $white;
+  }
+  .brand-box {
+    background : $black;
+  }
+}
+
+@media only screen and (max-width : 520px) {
+  .navbar-brand {
+    padding   : 18px 0px;
+    font-size : 13px;
+  }
+}
 
 .subtitle {
   font-weight   : bold;
