@@ -10,7 +10,7 @@
                 </div>
                 <div class="list-group action-group">
                     <div ng-repeat="translation in content.translations" class="list-group-item">
-                        <span class="label label-success pull-right" translate="{{ translation.langCode | langName }}"></span>
+                        <span class="label label-success pull-right" translate="{{ translation.lang | langName }}"></span>
 
                         <h4 class="list-group-item-heading">
                             {{ translation.title }}
@@ -56,7 +56,7 @@
                 <div class="panel-body">
                     <p><strong>{{ 'STATUS' | translate }}:</strong> {{ 'PUBLISHED' | translate }}</p>
 
-                    <p><strong>{{ 'CREATED_AT' | translate }}:</strong> {{ contents[0].createdAt | date }}</p>
+                    <p><strong>{{ 'CREATED_AT' | translate }}:</strong> {{ content.createdAt | date }}</p>
                 </div>
                 <div class="panel-footer text-right">
                     <a class="pull-left text-danger" ui-sref="content.show" style="margin-top: 7px;">

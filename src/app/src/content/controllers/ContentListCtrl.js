@@ -12,7 +12,7 @@ function ContentListCtrl($scope, $stateParams, ContentRepository, NgTableParams)
     $scope.tableParams = new NgTableParams({
         count: 25, // count per page
         sorting: {
-            id: 'asc' // initial sorting
+            'translations.title': 'asc' // initial sorting
         }
     }, {
         total: 0, // length of data

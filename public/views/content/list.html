@@ -41,16 +41,16 @@
         <!-- /.col-lg-4 -->
         <div class="col-xs-4 col-sm-6 col-lg-4 text-right">
             <button ui-sref="content.add({ type: 'content' })" class="btn btn-success" type="button"
-                    title="{{ 'ADD_NEW' | translate }}">
+                    title="{{ 'ADD_CONTENT' | translate }}">
                 <i class="glyphicon glyphicon-plus hidden-sm"></i> <span
-                    class="hidden-xs">{{ 'ADD_NEW' | translate }}</span>
+                    class="hidden-xs">{{ 'ADD_CONTENT' | translate }}</span>
             </button>
         </div>
         <!-- /.col-lg-8 -->
     </div>
     <table ng-table="tableParams" class="table table-striped table-bordered">
         <tbody>
-        <tr ng-repeat="content in $data">
+        <tr ng-repeat="content in $data" ng-class="{ inactive: !content.isActive }">
             <td data-title="'TITLE' | translate" sortable="'translations.title'">
                 <h4 ng-if="(content.translations | getTranslation:listLang.code:'title')">
                     <a href="" ui-sref="content.show({ contentId: content.id })">
@@ -71,6 +71,10 @@
                 <a href="" ui-sref="content.show({ contentId: content.id })">{{ 'DETAILS' | translate }}</a>
                 <a href="" ui-sref="content.show({ contentId: content.id })" class="text-danger">{{ 'DELETE' | translate }}</a>
             </td>
+            <td data-title="'STATUS' | translate" sortable="'isActive'" class="text-center">
+                <i ng-if="!content.isActive">{{ 'NOT_PUBLISHED' | translate }}</i>
+                <i ng-if="content.isActive">{{ 'PUBLISHED' | translate }}</i>
+            </td>
             <td data-title="'WEIGHT' | translate" sortable="'weight'" class="text-center">
                 {{ content.weight }}
             </td>
@@ -79,7 +83,7 @@
             </td>
         </tr>
         <tr ng-hide="$data[0]">
-            <td colspan="3" class="text-center"><strong>{{ 'NO_ENTRIES' | translate }}</strong></td>
+            <td colspan="4" class="text-center"><strong>{{ 'NO_ENTRIES' | translate }}</strong></td>
         </tr>
         </tbody>
     </table>

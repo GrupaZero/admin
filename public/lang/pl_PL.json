@@ -1,7 +1,7 @@
 {
     "ADD": "Dodaj",
-    "ADD_CATEGORY": "Dodaj kategorię",
-    "ADD_CONTENT": "Dodaj zawartość",
+    "ADD_CATEGORY": "Dodaj nową kategorię",
+    "ADD_CONTENT": "Dodaj nową zawartość",
     "ADD_NEW": "Dodaj Nową",
     "ADD_CONTENT_HINT": "Wpisz tytuł dla nowej zawartości",
     "ALL": "Wszystkie",
@@ -34,7 +34,7 @@
     "NOT_FOUND": "Nie znaleziono",
     "NOT_PUBLISHED": "Niepublikowany",
     "PUBLISH": "Opublikuj",
-    "PUBLISHED": "Opublikowane",
+    "PUBLISHED": "Opublikowany",
     "REFRESH_LIST": "Odśwież listę",
     "SAVE": "Zapisz",
     "SELECT_CATEGORY": "Wybierz kategorię",

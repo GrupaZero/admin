@@ -30,7 +30,12 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
                 })
                 .state('content.show', {
                     url: '/{contentId}/show',
-                    templateUrl: viewPath + 'show.html'
+                    views: {
+                        'content': {
+                            templateUrl: viewPath + 'show.html',
+                            controller: 'ContentDetailsCtrl'
+                        }
+                    }
                 })
                 .state('content.add', {
                     url: '/add/{type}',
@@ -47,6 +52,7 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
     .controller('ContentAddCtrl', require('./controllers/ContentAddCtrl'))
     .controller('ContentCategoryTreeCtrl', require('./controllers/ContentCategoryTreeCtrl'))
     .controller('ContentDashboardCtrl', require('./controllers/ContentDashboardCtrl'))
+    .controller('ContentDetailsCtrl', require('./controllers/ContentDetailsCtrl'))
     .controller('ContentListCtrl', require('./controllers/ContentListCtrl'))
     .factory('ContentRepository', require('./services/ContentRepository.js'))
     .run([

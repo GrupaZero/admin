@@ -91,6 +91,22 @@
   }
 }
 
+.table {
+  tr.inactive {
+    color   : $gray-light;
+    opacity : .8;
+    &:hover {
+      opacity : 1;
+    }
+    h4 a {
+      color : $gray-light;
+    }
+  }
+  td.text-center {
+    vertical-align : middle;
+  }
+}
+
 .action-group {
   .list-group-item {
     position   : relative;
