@@ -1,5 +1,6 @@
 <div class="col-sm-9 col-md-10">
-    <div ng-if="listParent" class="page-header">
+    <!-- LIST PARENT -->
+    <div ng-if="listParent" class="page-header list-parent">
         <h3 class="clearfix">
             <span class="subtitle">
                 {{ 'CATEGORY' | translate | uppercase }}
@@ -23,6 +24,7 @@
     </div>
     <div class="row list-actions">
         <div class="col-xs-8 col-sm-6 col-lg-8 form-inline">
+            <!-- LIST FILTERS -->
             <ul class="list-filters nav nav-pills" role="tablist">
                 <li class="subtitle">
                     {{ 'SHOW' | translate }}
@@ -55,7 +57,8 @@
                         {{ content.translations | getTranslation:listLang.code:'title' }}
                     </a>
                     <small ng-show="(content.route.translations | getTranslation:listLang.code:'url')">
-                        <strong>url:</strong> {{ baseUrl }}/{{ content.route.translations | getTranslation:listLang.code:'url' }}
+                        <strong>url:</strong> {{ baseUrl }}/{{ listLang.code }}/{{ content.route.translations |
+                        getTranslation:listLang.code:'url' }}
                     </small>
                 </h4>
 

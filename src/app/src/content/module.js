@@ -34,13 +34,19 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
                 })
                 .state('content.add', {
                     url: '/add/{type}',
-                    templateUrl: viewPath + 'add.html'
+                    controller: 'ContentAddCtrl',
+                    views: {
+                        'content': {
+                            templateUrl: viewPath + 'add.html',
+                            controller: 'ContentListCtrl'
+                        }
+                    }
                 });
         }
     ])
-    .controller('ContentDashboardCtrl', require('./controllers/ContentDashboardCtrl'))
-    .controller('ContentListCtrl', require('./controllers/ContentListCtrl'))
+    .controller('ContentAddCtrl', require('./controllers/ContentAddCtrl'))
     .controller('ContentCategoryTreeCtrl', require('./controllers/ContentCategoryTreeCtrl'))
+    .controller('ContentDashboardCtrl', require('./controllers/ContentDashboardCtrl'))
     .controller('ContentListCtrl', require('./controllers/ContentListCtrl'))
     .factory('ContentRepository', require('./services/ContentRepository.js'))
     .run([
@@ -62,8 +68,15 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
             NavBar.addLastChild(
                 'CONTENT',
                 {
-                    title: 'ADD_NEW',
-                    action: 'content.add'
+                    title: 'ADD_CONTENT',
+                    action: 'content.add({ type: "content" })'
+                }
+            );
+            NavBar.addLastChild(
+                'CONTENT',
+                {
+                    title: 'ADD_CATEGORY',
+                    action: 'content.add({ type: "category" })'
                 }
             );
         }

@@ -70,8 +70,10 @@
   }
 }
 
-.list-actions {
-  margin-top : $line-height-computed;
+.list-parent {
+  h3 {
+    margin-top : 0;
+  }
 }
 
 .list-filters {
