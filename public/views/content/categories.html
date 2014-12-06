@@ -6,7 +6,7 @@
     </div>
     <script type="text/ng-template" id="treeChildrenRenderer.html">
         <div ui-tree-handle>
-            <a href="" ui-sref="content.list({ contentId: category.id })" ng-click="toggleChildren(this)">
+            <a href="" ui-sref="content.list({ contentId: category.id })" ng-click="this.toggle()">
                 <i class="fa fa-fw pull-right" ng-class="{'fa-angle-right': collapsed, 'fa-angle-down': !collapsed}"></i>
                 {{ category.translations | getTranslation:listLang.code:'title' }}
                 <span ng-hide="(category.translations | getTranslation:listLang.code:'title')">

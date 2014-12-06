@@ -18,14 +18,14 @@
 //   Animations
 // -------------------------------------
 
-[ui-view].ng-enter {
-  @include fadeIn();
-}
+//[ui-view].ng-enter {
+//  @include fadeIn();
+//}
 
-[ui-view='quickNav'].ng-enter {
-  @include fadeInDown();
-}
-
-[ui-view='quickSidebarLeft'].ng-enter {
-  @include fadeInLeftBig();
-}
+//[ui-view='quickNav'].ng-enter {
+//  @include fadeInDown();
+//}
+//
+//[ui-view='quickSidebarLeft'].ng-enter {
+//  @include fadeInLeftBig();
+//}
