@@ -87,7 +87,7 @@
                     </li>
                 </ul>
                 <div class="navbar-form navbar-right hidden-xs">
-                    <select ng-model="currentLang" ng-change="changeLanguage()" class="form-control"
+                    <select ng-model="currentLang" ng-change="selectAdminLang()" class="form-control"
                     ng-options="lang.code | langName | translate for lang in langs"></select>
                 </div>
             </div>

@@ -7,7 +7,8 @@ angular.module('admin.core', ['CoreFilters'])
     .factory('LangRepository', require('./services/LangRepository.js'))
     .factory('NavBar', require('./services/NavBar.js'))
     .factory('TopNavBar', require('./services/TopNavBar.js'))
-    .service('Notifications', require('./services/Notifications.js'))
+    .factory('Notifications', require('./services/Notifications.js'))
+    .factory('Translations', require('./services/Translations.js'))
     .run([
         'TopNavBar',
         function(TopNavBar) {

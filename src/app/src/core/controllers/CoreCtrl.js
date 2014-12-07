@@ -1,6 +1,6 @@
 'use strict';
 
-function CoreCtrl($scope, $translate, LangRepository, NavBar, TopNavBar) {
+function CoreCtrl($scope, Translations, LangRepository, NavBar, TopNavBar) {
 
     LangRepository.list().then(function(response) {
         $scope.langs = response;
@@ -9,9 +9,8 @@ function CoreCtrl($scope, $translate, LangRepository, NavBar, TopNavBar) {
     });
 
     // admin panel language
-    $scope.changeLanguage = function() {
-        $translate.fallbackLanguage(['en_US']);
-        $translate.use($scope.currentLang.i18n);
+    $scope.selectAdminLang = function() {
+        Translations.selectAdminLang($scope.currentLang);
     };
 
     // translations language
@@ -26,5 +25,5 @@ function CoreCtrl($scope, $translate, LangRepository, NavBar, TopNavBar) {
     $scope.showSidebar = false;
 }
 
-CoreCtrl.$inject = ['$scope', '$translate', 'LangRepository', 'NavBar', 'TopNavBar', '$state'];
+CoreCtrl.$inject = ['$scope', 'Translations', 'LangRepository', 'NavBar', 'TopNavBar', '$state'];
 module.exports = CoreCtrl;

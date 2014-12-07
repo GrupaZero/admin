@@ -17,7 +17,11 @@ angular.module('admin.user', [])
                 })
                 .state('user.list', {
                     url: '/list',
-                    templateUrl: viewPath + 'list.html'
+                    views: {
+                        'content': {
+                            templateUrl: viewPath + 'list.html'
+                        }
+                    }
                 });
         }
     ])
