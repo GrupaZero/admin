@@ -1,6 +1,6 @@
 'use strict';
 
-function ContentCategoryTreeCtrl($scope, $stateParams, ContentRepository) {
+function ContentCategoryTreeCtrl($scope, $stateParams, Storage, ContentRepository) {
     // get categories tree root level
     ContentRepository.list({
         lang: $scope.listLang.code,
@@ -27,7 +27,12 @@ function ContentCategoryTreeCtrl($scope, $stateParams, ContentRepository) {
                 });
             });
         }
+
+        // removes parent id from storage
+        $scope.uncategorized = function() {
+            Storage.removeListParam('contentListParent');
+        };
     });
 }
-ContentCategoryTreeCtrl.$inject = ['$scope', '$stateParams', 'ContentRepository'];
+ContentCategoryTreeCtrl.$inject = ['$scope', '$stateParams', 'Storage', 'ContentRepository'];
 module.exports = ContentCategoryTreeCtrl;

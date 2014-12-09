@@ -3,10 +3,7 @@
 angular.module('admin.content', ['ngTable', 'ui.tree'])
     .config([
         '$stateProvider',
-        '$urlRouterProvider',
-        'RestangularProvider',
-        function($stateProvider, $urlRouterProvider, RestangularProvider) {
-
+        function($stateProvider) {
             var viewPath = 'packages/gzero/admin/views/content/';
             // Now set up the states
             $stateProvider
@@ -17,6 +14,15 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
                 })
                 .state('content.list', {
                     url: '/list/{contentId}',
+                    resolve: {
+                        checkParam: [
+                            '$stateParams', 'Storage', function($stateParams, Storage) {
+                                if (_.isEmpty($stateParams.contentId)) {
+                                    $stateParams.contentId = Storage.getListParam('contentListParent');
+                                }
+                            }
+                        ]
+                    },
                     views: {
                         'content': {
                             templateUrl: viewPath + 'list.html',

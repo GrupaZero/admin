@@ -9,6 +9,7 @@ angular.module('admin.core', ['CoreFilters'])
     .factory('TopNavBar', require('./services/TopNavBar.js'))
     .factory('Notifications', require('./services/Notifications.js'))
     .factory('Translations', require('./services/Translations.js'))
+    .factory('Storage', require('./services/Storage.js'))
     .run([
         'TopNavBar',
         function(TopNavBar) {

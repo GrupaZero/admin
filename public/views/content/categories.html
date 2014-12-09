@@ -33,7 +33,9 @@
                 </a>
             </li>
             <li ng-class="{ 'active': !activeNode}">
-                <a href="" ui-sref="content.list({ contentId: uncategorized })">{{ 'UNCATEGORIZED' | translate }}</a>
+                <a href="" ui-sref="content.list({ contentId: null })" ng-click="uncategorized()">
+                    {{ 'UNCATEGORIZED' | translate }}
+                </a>
             </li>
             <li ng-repeat="category in categories" ng-class="{ 'active': activeNode == category.id, 'open': !collapsed}"
                 ui-tree-node ng-include="'treeChildrenRenderer.html'" data-collapsed="!(activeNode == category.id)">

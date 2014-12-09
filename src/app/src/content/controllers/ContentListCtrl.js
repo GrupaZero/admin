@@ -1,10 +1,11 @@
 'use strict';
 
-function ContentListCtrl($scope, $stateParams, ContentRepository, NgTableParams) {
+function ContentListCtrl($scope, $stateParams, Storage, ContentRepository, NgTableParams) {
     // if state param has category id
     if ($stateParams.contentId) {
         ContentRepository.one($stateParams.contentId).then(function(response) {
             $scope.listParent = ContentRepository.clean(response); // selected category
+            Storage.setListParam({contentListParent: $scope.listParent.id});
         });
     }
 
@@ -63,5 +64,5 @@ function ContentListCtrl($scope, $stateParams, ContentRepository, NgTableParams)
         }
     });
 }
-ContentListCtrl.$inject = ['$scope', '$stateParams', 'ContentRepository', 'ngTableParams'];
+ContentListCtrl.$inject = ['$scope', '$stateParams', 'Storage', 'ContentRepository', 'ngTableParams'];
 module.exports = ContentListCtrl;
