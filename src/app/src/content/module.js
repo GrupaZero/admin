@@ -15,10 +15,17 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
                 .state('content.list', {
                     url: '/list/{contentId}',
                     resolve: {
-                        checkParam: [
-                            '$stateParams', 'Storage', function($stateParams, Storage) {
-                                if (_.isEmpty($stateParams.contentId)) {
-                                    $stateParams.contentId = Storage.getListParam('contentListParent');
+                        listParent: [
+                            '$stateParams', 'Storage', 'ContentRepository', function($stateParams, Storage, ContentRepository) {
+                                // if state param has category id
+                                if ($stateParams.contentId) {
+                                    return ContentRepository.one($stateParams.contentId);
+                                } else {
+                                    // if storage has category id
+                                    if (Storage.getListParam('contentListParent')) {
+                                        $stateParams.contentId = Storage.getListParam('contentListParent');
+                                        return ContentRepository.one(Storage.getListParam('contentListParent'));
+                                    }
                                 }
                             }
                         ]

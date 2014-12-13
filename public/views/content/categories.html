@@ -4,27 +4,6 @@
             <strong>{{ 'CATEGORIES' | translate | uppercase }}</strong>
         </h4>
     </div>
-    <script type="text/ng-template" id="treeChildrenRenderer.html">
-        <div ui-tree-handle>
-            <a href="" ui-sref="content.list({ contentId: category.id })" ng-click="this.toggle()">
-                <i class="fa fa-fw pull-right" ng-class="{'fa-angle-right': collapsed, 'fa-angle-down': !collapsed}"></i>
-                {{ category.translations | getTranslation:listLang.code:'title' }}
-                <span ng-hide="(category.translations | getTranslation:listLang.code:'title')">
-                    {{ 'NO_TRANSLATION' | translate }}
-                </span>
-            </a>
-        </div>
-        <ul ui-tree-nodes="treeOptions" ng-model="category.children" ng-class="{ hidden: collapsed }">
-            <li>
-                <a href="" ui-sref="content.add({ type: 'category' })" class="btn-add">
-                    {{ 'ADD_CATEGORY' | translate }} <i class="fa fa-fw fa-plus-circle"></i>
-                </a>
-            </li>
-            <li ng-repeat="category in category.children" ng-class="{ 'active': activeNode == category.id, 'open': !collapsed}"
-                ui-tree-node ng-include="'treeChildrenRenderer.html'" data-collapsed="!(activeNode == category.id)">
-            </li>
-        </ul>
-    </script>
     <div ui-tree="treeOptions" id="categories-tree" data-drag-enabled="false">
         <ul ui-tree-nodes ng-model="categories" class="nav">
             <li>
@@ -37,9 +16,36 @@
                     {{ 'UNCATEGORIZED' | translate }}
                 </a>
             </li>
-            <li ng-repeat="category in categories" ng-class="{ 'active': activeNode == category.id, 'open': !collapsed}"
-                ui-tree-node ng-include="'treeChildrenRenderer.html'" data-collapsed="!(activeNode == category.id)">
+            <li ng-repeat="category in categories"
+                ng-class="{ 'active': (activeNode | nodeInPath:category.id) , 'open': !collapsed }"
+                ui-tree-node ng-include="'treeChildrenRenderer.html'"
+                data-collapsed="!{{ activeNode | nodeInPath:category.id  }}">
             </li>
         </ul>
     </div>
 </div>
+
+<!--TEMPLATE-->
+<script type="text/ng-template" id="treeChildrenRenderer.html">
+    <div ui-tree-handle>
+        <a href="" ui-sref="content.list({ contentId: category.id })" ng-click="this.toggle()">
+            <i class="fa fa-fw pull-right" ng-class="{'fa-angle-right': collapsed, 'fa-angle-down': !collapsed }"></i>
+            {{ category.translations | getTranslation:listLang.code:'title' }}
+                <span ng-hide="(category.translations | getTranslation:listLang.code:'title')">
+                    {{ 'NO_TRANSLATION' | translate }}
+                </span>
+        </a>
+    </div>
+    <ul ui-tree-nodes="treeOptions" ng-model="category.children" ng-class="{ hidden: collapsed }">
+        <li>
+            <a href="" ui-sref="content.add({ type: 'category' })" class="btn-add">
+                {{ 'ADD_CATEGORY' | translate }} <i class="fa fa-fw fa-plus-circle"></i>
+            </a>
+        </li>
+        <li ng-repeat="category in category.children"
+            ng-class="{ 'active': (activeNode | nodeInPath:category.id), 'open': !collapsed }"
+            ui-tree-node ng-include="'treeChildrenRenderer.html'"
+            data-collapsed="!{{ activeNode | nodeInPath:category.id  }}">
+        </li>
+    </ul>
+</script>
