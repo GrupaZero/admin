@@ -23,13 +23,15 @@
     <![endif]-->
     <script type="application/javascript">
         var Config = {
-            url : '{{ Request::root() }}',
+            url: '{{ Request::root() }}',
             apiUrl: 'http://api.{{ Request::getHTTPHost()}}'
         };
         var modules = [
-        @foreach ($modules->getModulesNames() as $moduleName)
-             "{{ $moduleName }}",
-        @endforeach
+            @foreach ($modules->getModulesNames() as $moduleName)
+            "{{ $moduleName }}",
+            @endforeach
+
+
         ];
     </script>
 </head>
@@ -72,23 +74,23 @@
                 <div class="navbar-form navbar-left">
                     <label for="langCode" class="hidden-xs">@{{ 'TRANSLATION_LANGUAGE' | translate }}</label>
                     <select id="langCode" ng-model="listLang" class="form-control" ng-change="selectLanguage(listLang)"
-                    ng-options="lang.code | langName | translate for lang in langs">
+                            ng-options="lang.code | langName | translate for lang in langs">
                     </select>
                 </div>
                 <ul class="nav navbar-nav navbar-right hidden-xs">
                     <li ng-repeat="link in topNavBar">
-                    <a ng-if="!link.children" ui-sref="@{{ link.action }}">@{{ link.title | translate }}</a>
-                    <a ng-if="link.children">@{{ link.title | translate }} <span class="caret"></span></a>
+                        <a ng-if="!link.children" ui-sref="@{{ link.action }}">@{{ link.title | translate }}</a>
+                        <a ng-if="link.children">@{{ link.title | translate }} <span class="caret"></span></a>
                         <ul ng-if="link.children" class="dropdown-menu" role="menu">
-                        <li ui-sref-active="active" ng-repeat="subLink in link.children">
-                        <a ui-sref="@{{ subLink.action }}">@{{ subLink.title | translate }}</a>
-                        </li>
+                            <li ui-sref-active="active" ng-repeat="subLink in link.children">
+                                <a ui-sref="@{{ subLink.action }}">@{{ subLink.title | translate }}</a>
+                            </li>
                         </ul>
                     </li>
                 </ul>
                 <div class="navbar-form navbar-right hidden-xs">
                     <select ng-model="currentLang" ng-change="selectAdminLang()" class="form-control"
-                    ng-options="lang.code | langName | translate for lang in langs"></select>
+                            ng-options="lang.code | langName | translate for lang in langs"></select>
                 </div>
             </div>
         </div>
@@ -108,7 +110,7 @@
                 </li>
             </ul>
         </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main"  ng-click="showSidebar = false">
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-click="showSidebar = false">
             <div ui-view></div>
         </div>
     </div>
@@ -120,7 +122,7 @@
 <script src="/packages/gzero/admin/js/vendor.min.js"></script>
 <script src="/packages/gzero/admin/js/admin.js"></script>
 @foreach ($modules->getModulesPaths() as $modulePath)
-     <script src="{{ $modulePath }}"></script>
+    <script src="{{ $modulePath }}"></script>
 @endforeach
 </body>
 </html>
