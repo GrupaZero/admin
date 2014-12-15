@@ -1,26 +1,21 @@
 'use strict';
 
-function ContentCategoryTreeCtrl($scope, listParent, Storage, ContentRepository) {
-    // get categories tree root level
-    ContentRepository.list({
-        lang: $scope.listLang.code,
-        type: 'category',
-        perPage: 125,
-        level: 0
-    }).then(function(response) {
-        $scope.categories = ContentRepository.clean(response);
-        // if parent category exists
-        if (typeof listParent !== 'undefined') {
-            $scope.activeNode = listParent.path;
-            $scope.root = getNodeById($scope.categories, getRootIdFromPath(listParent.path));
-            getNestedChildren($scope.root, _.clone(listParent.path));
-        }
+function ContentCategoryTreeCtrl($scope, categories, listParent, Storage, ContentRepository) {
+    // if categories tree exists
+    if (typeof categories !== 'undefined') {
+        $scope.categories = categories;
+    }
+    // if parent category exists
+    if (typeof listParent !== 'undefined') {
+        $scope.activeNode = listParent.path;
+        $scope.root = getNodeById($scope.categories, getRootIdFromPath(listParent.path));
+        getNestedChildren($scope.root, _.clone(listParent.path));
+    }
 
-        // removes listParent id from storage
-        $scope.uncategorized = function() {
-            Storage.removeListParam('contentListParent');
-        };
-    });
+    // removes listParent id from storage
+    $scope.uncategorized = function() {
+        Storage.removeListParam('contentListParent');
+    };
 
     /**
      * Function gets nested children of selected category
@@ -73,5 +68,5 @@ function ContentCategoryTreeCtrl($scope, listParent, Storage, ContentRepository)
         });
     }
 }
-ContentCategoryTreeCtrl.$inject = ['$scope', 'listParent', 'Storage', 'ContentRepository'];
+ContentCategoryTreeCtrl.$inject = ['$scope', 'categories', 'listParent', 'Storage', 'ContentRepository'];
 module.exports = ContentCategoryTreeCtrl;

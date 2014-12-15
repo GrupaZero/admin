@@ -3,8 +3,8 @@
 function ContentRepository(Restangular) {
     var api = 'admin/contents';
     return {
-        one: function(id) {
-            return Restangular.one(api, id).get();
+        one: function(id, params) {
+            return Restangular.one(api, id).get(params);
         },
         list: function(params) {
             return Restangular.all(api).getList(params);

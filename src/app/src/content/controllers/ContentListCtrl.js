@@ -1,12 +1,10 @@
 'use strict';
 
-function ContentListCtrl($scope, $stateParams, Storage, ContentRepository, NgTableParams) {
-    // if state param has category id
-    if ($stateParams.contentId) {
-        ContentRepository.one($stateParams.contentId).then(function(response) {
-            $scope.listParent = ContentRepository.clean(response); // selected category
-            Storage.setListParam({contentListParent: $scope.listParent.id});
-        });
+function ContentListCtrl($scope, listParent, Storage, ContentRepository, NgTableParams) {
+    // if parent category exists
+    if (typeof listParent !== 'undefined') {
+        $scope.listParent = listParent; // selected category
+        Storage.setListParam({contentListParent: $scope.listParent.id});
     }
 
     //  ngTable configuration
@@ -45,14 +43,16 @@ function ContentListCtrl($scope, $stateParams, Storage, ContentRepository, NgTab
                 queryOptions.perPage = params.count();
             }
 
-            // get uncategorized by default
+            // get list by default
             var promise = ContentRepository.list(queryOptions);
 
-            // if parent category is selected
-            if ($stateParams.contentId) {
+            // if parent category is not selected
+            if (typeof listParent === 'undefined') {
+                // get uncategorized
+                queryOptions.level = 0;
+            } else {
                 // get children's
-                delete queryOptions.level; // remove level param
-                promise = ContentRepository.children($stateParams.contentId, queryOptions);
+                promise = ContentRepository.children(listParent.id, queryOptions);
             }
 
             // Contents is a REST AngularJS service that talks to api and return promise
@@ -64,5 +64,5 @@ function ContentListCtrl($scope, $stateParams, Storage, ContentRepository, NgTab
         }
     });
 }
-ContentListCtrl.$inject = ['$scope', '$stateParams', 'Storage', 'ContentRepository', 'ngTableParams'];
+ContentListCtrl.$inject = ['$scope', 'listParent', 'Storage', 'ContentRepository', 'ngTableParams'];
 module.exports = ContentListCtrl;

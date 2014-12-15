@@ -10,7 +10,19 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
                 .state('content', {
                     url: '/content',
                     controller: 'ContentDashboardCtrl',
-                    templateUrl: viewPath + 'index.html'
+                    templateUrl: viewPath + 'index.html',
+                    resolve: {
+                        categories: [
+                            'ContentRepository', function(ContentRepository) {
+                                // get root level categories
+                                return ContentRepository.list({
+                                    type: 'category',
+                                    perPage: 125,
+                                    level: 0
+                                });
+                            }
+                        ]
+                    }
                 })
                 .state('content.list', {
                     url: '/list/{contentId}',
@@ -52,11 +64,10 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
                 })
                 .state('content.add', {
                     url: '/add/{type}',
-                    controller: 'ContentAddCtrl',
                     views: {
                         'content': {
                             templateUrl: viewPath + 'add.html',
-                            controller: 'ContentListCtrl'
+                            controller: 'ContentAddCtrl'
                         }
                     }
                 });
