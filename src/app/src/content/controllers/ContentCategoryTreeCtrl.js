@@ -1,22 +1,6 @@
 'use strict';
 
 function ContentCategoryTreeCtrl($scope, categories, listParent, Storage, ContentRepository) {
-    // if categories tree exists
-    if (typeof categories !== 'undefined') {
-        $scope.categories = categories;
-    }
-    // if parent category exists
-    if (typeof listParent !== 'undefined') {
-        $scope.activeNode = listParent.path;
-        $scope.root = getNodeById($scope.categories, getRootIdFromPath(listParent.path));
-        getNestedChildren($scope.root, _.clone(listParent.path));
-    }
-
-    // removes listParent id from storage
-    $scope.uncategorized = function() {
-        Storage.removeListParam('contentListParent');
-    };
-
     /**
      * Function gets nested children of selected category
      *
@@ -67,6 +51,24 @@ function ContentCategoryTreeCtrl($scope, categories, listParent, Storage, Conten
             return category.id === id;
         });
     }
+
+    // if categories tree exists
+    if (typeof categories !== 'undefined') {
+        $scope.categories = categories;
+    }
+
+    // if parent category exists
+    if (typeof listParent !== 'undefined') {
+        $scope.activeNode = listParent.path;
+        $scope.root = getNodeById($scope.categories, getRootIdFromPath(listParent.path));
+        getNestedChildren($scope.root, _.clone(listParent.path));
+    }
+
+    // removes listParent id from storage
+    $scope.uncategorized = function() {
+        Storage.removeListParam('contentListParent');
+    };
+
 }
 ContentCategoryTreeCtrl.$inject = ['$scope', 'categories', 'listParent', 'Storage', 'ContentRepository'];
 module.exports = ContentCategoryTreeCtrl;
