@@ -2,27 +2,6 @@
 
 function ContentCategoryTreeCtrl($scope, categories, listParent, Storage, ContentRepository) {
     /**
-     * Function gets nested children of selected category
-     *
-     * @param root root node to search for children
-     * @param path the path to iterate over
-     */
-    function getNestedChildren(root, path) {
-        if (typeof root !== 'undefined') {
-            ContentRepository.children(path.shift(), {
-                lang: $scope.listLang.code,
-                type: 'category'
-            }).then(function(response) {
-                root.children = ContentRepository.clean(response);
-                if (path.length > 0) {
-                    // We can use it because each iteration removes id from path
-                    getNestedChildren(getNodeById(root.children, getRootIdFromPath(path)), path);
-                }
-            });
-        }
-    }
-
-    /**
      * Function returns root id from provided path
      *
      * @param path to search over
@@ -50,6 +29,27 @@ function ContentCategoryTreeCtrl($scope, categories, listParent, Storage, Conten
         return _.find(collection, function(category) {
             return category.id === id;
         });
+    }
+
+    /**
+     * Function gets nested children of selected category
+     *
+     * @param root root node to search for children
+     * @param path the path to iterate over
+     */
+    function getNestedChildren(root, path) {
+        if (typeof root !== 'undefined') {
+            ContentRepository.children(path.shift(), {
+                lang: $scope.listLang.code,
+                type: 'category'
+            }).then(function(response) {
+                root.children = ContentRepository.clean(response);
+                if (path.length > 0) {
+                    // We can use it because each iteration removes id from path
+                    getNestedChildren(getNodeById(root.children, getRootIdFromPath(path)), path);
+                }
+            });
+        }
     }
 
     // if categories tree exists
