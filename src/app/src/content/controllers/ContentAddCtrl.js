@@ -10,8 +10,8 @@ function ContentAddCtrl($scope, $state, $stateParams, categories) {
         newContent.type = $stateParams.type;
         newContent.isActive = 1;
         categories.post(newContent).then(function onSuccess(response) {
-            categories.push(response);
-            $state.go('content.list', {contentId: response.id});
+            //categories.push(response);
+            $state.go('content.list', {contentId: response.id}, {reload: true});
         });
     };
 }
