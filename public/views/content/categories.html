@@ -16,7 +16,7 @@
                     {{ 'UNCATEGORIZED' | translate }}
                 </a>
             </li>
-            <li ng-repeat="category in categories"
+            <li ng-repeat="category in categories track by category.id"
                 ng-class="{ 'active': (activeNode | nodeInPath:category.id) , 'open': !collapsed }"
                 ui-tree-node ng-include="'treeChildrenRenderer.html'"
                 data-collapsed="!{{ activeNode | nodeInPath:category.id  }}">
@@ -42,7 +42,7 @@
                 {{ 'ADD_CATEGORY' | translate }} <i class="fa fa-fw fa-plus-circle"></i>
             </a>
         </li>
-        <li ng-repeat="category in category.children"
+        <li ng-repeat="category in category.children track by category.id"
             ng-class="{ 'active': (activeNode | nodeInPath:category.id), 'open': !collapsed }"
             ui-tree-node ng-include="'treeChildrenRenderer.html'"
             data-collapsed="!{{ activeNode | nodeInPath:category.id  }}">
