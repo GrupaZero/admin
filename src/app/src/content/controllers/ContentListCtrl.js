@@ -1,10 +1,9 @@
 'use strict';
 
-function ContentListCtrl($scope, listParent, Storage, ContentRepository, NgTableParams) {
+function ContentListCtrl($scope, $stateParams, listParent, ContentRepository, NgTableParams) {
     // if parent category exists
     if (typeof listParent !== 'undefined') {
         $scope.listParent = listParent; // selected category
-        Storage.setListParam({contentListParent: $scope.listParent.id});
     }
 
     //  ngTable configuration
@@ -20,7 +19,6 @@ function ContentListCtrl($scope, listParent, Storage, ContentRepository, NgTable
             var queryOptions = {
                 lang: $scope.listLang.code,
                 type: 'content',
-                level: 0,
                 page: params.page()
             };
 
@@ -31,12 +29,10 @@ function ContentListCtrl($scope, listParent, Storage, ContentRepository, NgTable
                 queryOptions.sort = orderBy[0] === '+' ? orderBy.substring(1) : orderBy;
             }
 
-            // params.filter() - array of key-value filters declared in view
-            if (params.filter()) {
-                var filter = params.filter();
-                queryOptions = _.merge(queryOptions, filter);
-                $scope.activeFilter = Object.getOwnPropertyNames(filter);
-            }
+            // $stateParams - filters without contentId
+            var filters = _.omit($stateParams, 'contentId');
+            queryOptions = _.merge(queryOptions, filters);
+            $scope.activeFilter = filters;
 
             // params.count() - number of items per page declared in view
             if (params.count()) {
@@ -64,5 +60,5 @@ function ContentListCtrl($scope, listParent, Storage, ContentRepository, NgTable
         }
     });
 }
-ContentListCtrl.$inject = ['$scope', 'listParent', 'Storage', 'ContentRepository', 'ngTableParams'];
+ContentListCtrl.$inject = ['$scope', '$stateParams', 'listParent', 'ContentRepository', 'ngTableParams'];
 module.exports = ContentListCtrl;

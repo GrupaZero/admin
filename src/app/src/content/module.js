@@ -25,12 +25,13 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
                     }
                 })
                 .state('content.list', {
-                    url: '/list/{contentId}',
+                    url: '/list/{contentId}?isActive',
                     resolve: {
                         listParent: [
                             '$stateParams', 'Storage', 'ContentRepository', function($stateParams, Storage, ContentRepository) {
                                 // if state param has category id
                                 if ($stateParams.contentId) {
+                                    Storage.setListParam({contentListParent: $stateParams.contentId});
                                     return ContentRepository.one($stateParams.contentId);
                                 } else {
                                     // if storage has category id

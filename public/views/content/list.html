@@ -29,12 +29,11 @@
                 <li class="subtitle">
                     {{ 'SHOW' | translate }}
                 </li>
-                <li role="presentation" ng-class="{ active: activeFilter == '' }" ng-click="tableParams.filter({})">
-                    <a href="">{{ 'ALL' | translate }}</a>
+                <li role="presentation" ng-class="{ active: !activeFilter.isActive }">
+                    <a href="" ui-sref="content.list" ui-sref-opts="{ inherit: false }">{{ 'ALL' | translate }}</a>
                 </li>
-                <li role="presentation" ng-class="{ active: activeFilter == 'isActive' }"
-                    ng-click="tableParams.filter({ isActive: 1 })">
-                    <a href="">{{ 'PUBLISHED' | translate }}</a>
+                <li role="presentation" ng-class="{ active: activeFilter.isActive }">
+                    <a href="" ui-sref="content.list({ isActive: 1 })">{{ 'PUBLISHED' | translate }}</a>
                 </li>
             </ul>
         </div>
