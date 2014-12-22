@@ -46,7 +46,7 @@
         </li>
         <li ng-repeat="category in category.children track by category.id"
             ng-class="{ 'active': (activeNode | nodeInPath:category.id), 'open': !collapsed }"
-            ui-tree-node ng-include="'treeChildrenRenderer.html'"
+            ui-tree-node ng-include="'treeChildrenRenderer'"
             data-collapsed="!{{ activeNode | nodeInPath:category.id  }}">
         </li>
     </ul>

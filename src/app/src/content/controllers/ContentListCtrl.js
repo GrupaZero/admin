@@ -21,9 +21,6 @@ function ContentListCtrl($scope, $stateParams, listParent, ContentRepository, Ng
                 type: 'content'
             };
 
-            console.log($stateParams.page);
-            params.page($stateParams.page);
-
             // params.page() - current page
             if (typeof $stateParams.page !== 'undefined') {
                 params.page($stateParams.page);
