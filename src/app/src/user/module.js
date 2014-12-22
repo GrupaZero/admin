@@ -30,8 +30,13 @@ angular.module('admin.user', [])
         'NavBar',
         function(NavBar) {
             NavBar.add({
-                title: 'USER', action: 'user', children: [
-                    {title: 'USER_LIST', action: 'user.list'}
+                title: 'USER', action: 'user', icon: 'fa fa-user',
+                children: [
+                    {
+                        title: 'USER_LIST',
+                        action: 'user.list',
+                        icon: 'fa fa-th'
+                    }
                 ]
             });
         }

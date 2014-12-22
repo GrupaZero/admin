@@ -30,13 +30,11 @@
             @foreach ($modules->getModulesNames() as $moduleName)
             "{{ $moduleName }}",
             @endforeach
-
-
         ];
     </script>
 </head>
 
-<body ng-controller="CoreCtrl">
+<body ng-controller="CoreCtrl" ng-class="{'hide-sidebar': !$state.includes('home')}">
 
 <script type="text/ng-template" id="dropdown-template">
     <ul tabindex="-1" class="dropdown-menu" role="menu">
@@ -101,10 +99,17 @@
         <div class="col-sm-3 col-md-2 sidebar-c-offcanvas">
             <ul class="nav nav-c-sidebar">
                 <li ui-sref-active="active" ng-repeat="link in navBar">
-                    <a ui-sref="@{{ link.action }}">@{{ link.title | translate }}</a>
+                    <a ui-sref="@{{ link.action }}">
+                        <i ng-if="link.icon" class="icon @{{ link.icon }}" title="@{{ link.title | translate }}"></i>
+                        <span class="title">@{{ link.title | translate }}</span>
+                    </a>
                     <ul class="nav">
                         <li ui-sref-active="active" ng-repeat="subLink in link.children">
-                            <a ui-sref="@{{ subLink.action }}">@{{ subLink.title | translate }}</a>
+                            <a ui-sref="@{{ subLink.action }}">
+                                <i ng-if="subLink.icon" class="icon @{{ subLink.icon }}"
+                                   title="@{{ subLink.title | translate }}"></i>
+                                <span class="title">@{{ subLink.title | translate }}</span>
+                            </a>
                         </li>
                     </ul>
                 </li>

@@ -1,6 +1,6 @@
 'use strict';
 
-function CoreCtrl($scope, Translations, NavBar, TopNavBar) {
+function CoreCtrl($scope, $state, Translations, NavBar, TopNavBar) {
     // get translations languages
     Translations.getTranslations().then(function(response) {
         $scope.langs = response.langs;
@@ -22,7 +22,10 @@ function CoreCtrl($scope, Translations, NavBar, TopNavBar) {
 
     //Off canvas sidebar
     $scope.showSidebar = false;
+
+    // toggle sidebar
+    $scope.$state = $state;
 }
 
-CoreCtrl.$inject = ['$scope', 'Translations', 'NavBar', 'TopNavBar', '$state'];
+CoreCtrl.$inject = ['$scope', '$state', 'Translations', 'NavBar', 'TopNavBar', '$state'];
 module.exports = CoreCtrl;

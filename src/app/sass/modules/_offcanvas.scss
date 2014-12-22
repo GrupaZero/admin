@@ -141,6 +141,9 @@
       }
     }
   }
+  .icon {
+    margin-right : 5px;
+  }
 }
 
 %nav-s-sidebar {
@@ -149,7 +152,7 @@
     & > li {
       & > a {
         background-color : $gray-lighter;
-        border-bottom: 1px solid $table-border-color;
+        border-bottom    : 1px solid $table-border-color;
       }
     }
   }
@@ -170,10 +173,9 @@
   .nav {
     li.active {
       & > a {
-        font-weight : bold;
+        color : $black;
       }
     }
-
   }
 }
 
@@ -209,7 +211,7 @@
       }
       &.is-active {
         left : 50%; /* 6 columns */
-      & > .sidebar-c-offcanvas {
+        & > .sidebar-c-offcanvas {
           left : 0;
         }
       }

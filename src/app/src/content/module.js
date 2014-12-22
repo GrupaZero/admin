@@ -31,13 +31,13 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
                             '$stateParams', 'Storage', 'ContentRepository', function($stateParams, Storage, ContentRepository) {
                                 // if state param has category id
                                 if ($stateParams.contentId) {
-                                    Storage.setListParam({contentListParent: $stateParams.contentId});
+                                    Storage.setStorageItem({contentListParent: $stateParams.contentId});
                                     return ContentRepository.one($stateParams.contentId);
                                 } else {
                                     // if storage has category id
-                                    if (Storage.getListParam('contentListParent')) {
-                                        $stateParams.contentId = Storage.getListParam('contentListParent');
-                                        return ContentRepository.one(Storage.getListParam('contentListParent'));
+                                    if (Storage.getStorageItem('contentListParent')) {
+                                        $stateParams.contentId = Storage.getStorageItem('contentListParent');
+                                        return ContentRepository.one(Storage.getStorageItem('contentListParent'));
                                     }
                                 }
                             }
@@ -86,28 +86,32 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
             NavBar.add(
                 {
                     title: 'CONTENT',
-                    action: 'content'
+                    action: 'content',
+                    icon: 'fa fa-file-text-o'
                 }
             );
             NavBar.addLastChild(
                 'CONTENT',
                 {
                     title: 'ALL_CONTENTS',
-                    action: 'content.list'
+                    action: 'content.list',
+                    icon: 'fa fa-th'
                 }
             );
             NavBar.addLastChild(
                 'CONTENT',
                 {
                     title: 'ADD_CONTENT',
-                    action: 'content.add({ type: "content" })'
+                    action: 'content.add({ type: "content" })',
+                    icon: 'fa fa-file-text-o'
                 }
             );
             NavBar.addLastChild(
                 'CONTENT',
                 {
                     title: 'ADD_CATEGORY',
-                    action: 'content.add({ type: "category" })'
+                    action: 'content.add({ type: "category" })',
+                    icon: 'fa fa-file-text'
                 }
             );
         }

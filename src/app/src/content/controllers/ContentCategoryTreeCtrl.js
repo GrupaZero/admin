@@ -66,7 +66,7 @@ function ContentCategoryTreeCtrl($scope, categories, listParent, Storage, Conten
 
     // removes listParent id from storage
     $scope.uncategorized = function() {
-        Storage.removeListParam('contentListParent');
+        Storage.removeStorageItem('contentListParent');
     };
 
 }

@@ -1,33 +1,33 @@
 'use strict';
 
 function Storage() {
-    var listParams = {};
+    var storageItems = {};
     return {
         /**
-         * Function adds specified object to the listParams
+         * Function adds specified object to the storageItems
          *
          * @param object
          */
-        setListParam: function(object) {
-            _.merge(listParams, object);
+        setStorageItem: function(object) {
+            _.merge(storageItems, object);
         },
         /**
-         * Function returns the specified object from the listParams
+         * Function returns the specified object from the storageItems
          *
          * @param index
          * @returns {object}
          */
-        getListParam: function(index) {
-            return listParams[index];
+        getStorageItem: function(index) {
+            return storageItems[index];
         },
         /**
-         * Function removes specified object from the listParams
+         * Function removes specified object from the storageItems
          *
          * @param index
          * @returns {object}
          */
-        removeListParam: function(index) {
-            delete listParams[index];
+        removeStorageItem: function(index) {
+            storageItems = _.without(storageItems, index);
         }
     };
 }

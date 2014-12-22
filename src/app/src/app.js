@@ -77,7 +77,7 @@ angular.module('admin', dependencies).config([
     'Restangular',
     'Notifications',
     function(NavBar, $rootScope, Restangular, Notifications) {
-        NavBar.addFirst({title: 'DASHBOARD', action: 'home'});
+        NavBar.addFirst({title: 'DASHBOARD', action: 'home', icon: 'fa fa-home'});
         $rootScope.baseUrl = Config.url;
 
         Restangular.setErrorInterceptor(function(response, deferred, responseHandler) {

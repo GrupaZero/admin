@@ -327,3 +327,39 @@ li:hover {
     margin : 0;
   }
 }
+// hidden sidebar
+body.hide-sidebar {
+  .sidebar-c-offcanvas {
+    width : 72px;
+    .nav-c-sidebar {
+      li {
+        a {
+          padding : 10px 0;
+          text-align : center;
+          .icon {
+            font-size    : $font-size-large;
+            margin-right : 0;
+          }
+          .title {
+            font-size: 10px;
+            display: block;
+            margin-top: 5px;
+            white-space: pre-wrap;
+          }
+        }
+        ul li a {
+          .icon {
+            background: $white;
+            font-size : $font-size-base;
+            line-height: 11px;
+          }
+        }
+      }
+    }
+  }
+  .main {
+    width        : 100%;
+    margin-left  : 0;
+    padding-left : 87px;
+  }
+}
