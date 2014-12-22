@@ -18,6 +18,13 @@ body {
   overflow-x : hidden; /* Prevent scroll on narrow devices */
 }
 
+@media only screen and (min-width : 845px) {
+  html,
+  body {
+    overflow : hidden; /* Prevent scroll on narrow devices */
+  }
+}
+
 html {
   height : 100%;
 }

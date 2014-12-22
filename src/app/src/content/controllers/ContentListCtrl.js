@@ -18,9 +18,17 @@ function ContentListCtrl($scope, $stateParams, listParent, ContentRepository, Ng
             // prepare options to be sent to api
             var queryOptions = {
                 lang: $scope.listLang.code,
-                type: 'content',
-                page: params.page()
+                type: 'content'
             };
+
+            console.log($stateParams.page);
+            params.page($stateParams.page);
+
+            // params.page() - current page
+            if (typeof $stateParams.page !== 'undefined') {
+                params.page($stateParams.page);
+                queryOptions.page = params.page();
+            }
 
             // tableParams.orderBy() - an array of string indicating both the sorting column and direction (e.g. ["+name", "-email"])
             if (params.sorting()) {

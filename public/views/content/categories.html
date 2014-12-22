@@ -12,13 +12,15 @@
                 </a>
             </li>
             <li ng-class="{ 'active': !activeNode}">
-                <a href="" ui-sref="content.list({ contentId: null })" ng-click="uncategorized()">
+                <a href="" ui-sref="content.list({ contentId: null })"
+                   ui-sref-opts="{ inherit: false }"
+                   ng-click="uncategorized()">
                     {{ 'UNCATEGORIZED' | translate }}
                 </a>
             </li>
             <li ng-repeat="category in categories track by category.id"
                 ng-class="{ 'active': (activeNode | nodeInPath:category.id) , 'open': !collapsed }"
-                ui-tree-node ng-include="'treeChildrenRenderer.html'"
+                ui-tree-node ng-include="'treeChildrenRenderer'"
                 data-collapsed="!{{ activeNode | nodeInPath:category.id  }}">
             </li>
         </ul>
@@ -26,9 +28,9 @@
 </div>
 
 <!--TEMPLATE-->
-<script type="text/ng-template" id="treeChildrenRenderer.html">
+<script type="text/ng-template" id="treeChildrenRenderer">
     <div ui-tree-handle>
-        <a href="" ui-sref="content.list({ contentId: category.id })" ng-click="this.toggle()">
+        <a href="" ui-sref="content.list({ contentId: category.id })" ui-sref-opts="{ inherit: false }" ng-click="this.toggle()">
             <i class="fa fa-fw pull-right" ng-class="{'fa-angle-right': collapsed, 'fa-angle-down': !collapsed }"></i>
             {{ category.translations | getTranslation:listLang.code:'title' }}
                 <span ng-hide="(category.translations | getTranslation:listLang.code:'title')">
