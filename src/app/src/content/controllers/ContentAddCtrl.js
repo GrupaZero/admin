@@ -1,18 +1,15 @@
 'use strict';
 
-function ContentAddCtrl($scope, $state, $stateParams, categories) {
+function ContentAddCtrl($scope, $state, $stateParams, ContentRepository) {
     // contents POST action
     $scope.addNewContent = function addNewContent(newContent) {
-        _.merge(newContent.translations, {
-            langCode: $scope.listLang.code,
-            isActive: 1
-        });
+        newContent.langCode = $scope.listLang.code;
         newContent.type = $stateParams.type;
         newContent.isActive = 1;
-        categories.post(newContent).then(function(response) {
+        ContentRepository.newContent(newContent).then(function(response) {
             $state.go('content.list', {contentId: response.id}, {reload: true});
         });
     };
 }
-ContentAddCtrl.$inject = ['$scope', '$state', '$stateParams', 'categories'];
+ContentAddCtrl.$inject = ['$scope', '$state', '$stateParams', 'ContentRepository'];
 module.exports = ContentAddCtrl;
