@@ -65,6 +65,16 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
                 })
                 .state('content.add', {
                     url: '/add/{type}',
+                    resolve: {
+                        listParent: [
+                            'Storage', 'ContentRepository', function(Storage, ContentRepository) {
+                                // if storage has category id
+                                if (Storage.getStorageItem('contentListParent')) {
+                                    return ContentRepository.one(Storage.getStorageItem('contentListParent'));
+                                }
+                            }
+                        ]
+                    },
                     views: {
                         'content': {
                             templateUrl: viewPath + 'add.html',

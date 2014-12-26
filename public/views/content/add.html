@@ -1,9 +1,25 @@
 <div class="container-fluid">
-    <form novalidate>
+    <form name="contentForm" novalidate>
+        <!-- Is active Form input -->
+        <div class="form-group">
+            <div class="checkbox">
+                <label>
+                    <input ng-model="newContent.isActive" type="checkbox">{{ 'PUBLISHED' | translate }}
+                </label>
+            </div>
+        </div>
         <!-- Title Form input -->
         <div class="form-group">
-            <label for="title">{{ 'TITLE' | translate }}</label>
-            <input id="title" name="title" type="text" class="form-control input-lg" ng-model="newContent.translations.title">
+            <label for="title">{{ 'TITLE' | translate }} <strong class="text-danger">*</strong></label>
+            <input id="title" name="title" type="text" class="form-control input-lg" required
+                   ng-model="newContent.translations.title">
+        </div>
+        <!-- Parent id Form input -->
+        <div class="form-group">
+            <label for="parentId">{{ 'CATEGORY' | translate }}</label>
+            <input id="parentId" name="parentId" type="text" class="form-control"
+                   ng-model="newContent.parentId" disabled="disabled"
+                   placeholder="{{ listParent ? (listParent.translations | getTranslation:listLang.code:'title') : 'UNCATEGORIZED' | translate }}">
         </div>
         <!--  Body Form textarea -->
         <div class="form-group">
@@ -12,7 +28,8 @@
         </div>
         <div class="text-right">
             <button type="button" class="btn btn-default" ui-sref="content.list">{{ 'CANCEL' | translate }}</button>
-            <button ng-click="addNewContent(newContent)" class="btn btn-success" type="button" title="{{ 'SAVE' | translate }}">
+            <button type="submit" class="btn btn-success" ng-click="addNewContent(newContent)"
+                    ng-disabled="contentForm.$invalid">
                 {{ 'SAVE' | translate }}
             </button>
         </div>
