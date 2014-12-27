@@ -7,10 +7,16 @@ function ContentAddCtrl($scope, $state, $stateParams, listParent, ContentReposit
         $scope.listParent = listParent; // selected category
         parentId = listParent.id;
     }
+    // default translations lang code
+    $scope.newContent = {
+        type: $stateParams.type,
+        isActive: true,
+        translations: {
+            langCode: $scope.listLang.code
+        }
+    };
     // contents POST action
     $scope.addNewContent = function addNewContent(newContent) {
-        newContent.translations.langCode = $scope.listLang.code;
-        newContent.type = $stateParams.type;
         newContent.parentId = parentId;
         ContentRepository.newContent(newContent).then(function(response) {
             $state.go('content.list', {contentId: response.id}, {reload: true});
