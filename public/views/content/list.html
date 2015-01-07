@@ -1,4 +1,4 @@
-<div class="col-sm-9 col-md-10">
+<div class="col-sm-9 col-md-9">
     <!-- LIST PARENT -->
     <div ng-if="listParent" class="page-header list-parent">
         <h3 class="clearfix">
@@ -69,8 +69,8 @@
                     </div>
 
                     <a href="" ui-sref="content.show({ contentId: content.id })">{{ 'DETAILS' | translate }}</a>
-                    <a href="" ui-sref="content.show({ contentId: content.id })" class="text-danger">{{ 'DELETE' | translate
-                        }}</a>
+                    <a href="" ui-sref="content.show({ contentId: content.id })" class="text-danger">
+                        {{ 'DELETE' | translate }}</a>
                 </td>
                 <td data-title="'STATUS' | translate" sortable="'isActive'" class="text-center">
                     <i ng-if="!content.isActive">{{ 'NOT_PUBLISHED' | translate }}</i>
