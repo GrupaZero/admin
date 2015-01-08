@@ -15,18 +15,18 @@
 
 .angular-ui-tree-nodes {
 	position: relative;
-	margin: 0px;
-	padding: 0px;
+	margin: 0;
+	padding: 0;
 	list-style: none;
 }
 
 .angular-ui-tree-nodes .angular-ui-tree-nodes {
-    padding-left: 20px;
+    padding-left: 40px;
 }
 .angular-ui-tree-node, .angular-ui-tree-placeholder {
 	position: relative;
-	margin: 0px;
-	padding: 0px;
+	margin: 0;
+	padding: 0;
 	min-height: 20px;
 	line-height: 20px;
 }
