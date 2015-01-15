@@ -145,10 +145,14 @@
   .angular-ui-tree-handle {
     font-weight : normal;
     cursor      : auto;
-    padding     : 10px 15px;
-
+    padding : 0;
+    .fa.pull-left:hover {
+      cursor : pointer;
+    }
     a {
-      padding : 0;
+      padding     : 10px 15px;
+      white-space : nowrap;
+      text-decoration: none;
     }
   }
 
@@ -172,6 +176,14 @@
         text-decoration : none;
       }
     }
+    &.btn-show {
+      &:hover,
+      &.active {
+        background      : $brand-primary;
+        color           : $white;
+        text-decoration : none;
+      }
+    }
   }
 
   .fa.pull-left {
@@ -181,11 +193,7 @@
   ul {
     ul {
       background-color : $table-bg-hover;
-      opacity          : 0;
-      transition       : all .25s ease-in-out;
-      transition-delay : .15s;
       .angular-ui-tree-handle {
-        padding : 10px 15px;
         & > a {
           &:hover {
             color           : $black;
@@ -217,21 +225,19 @@
     &.open {
       & > a,
       & > div > a {
-        //        background-color : $white;
         color           : $black;
         text-decoration : none;
       }
     }
 
-        &.active {
-          & > a {
-            background : $brand-primary;
-            color      : $white;
-          }
-        }
+    &.active {
+      & > a {
+        background : $brand-primary;
+        color      : $white;
+      }
+    }
 
     li.active > div > a {
-      //      background-color : $brand-primary;
       color           : $black;
       text-decoration : none;
     }
@@ -239,7 +245,6 @@
 
   li.open {
     & > ul {
-      opacity : 100;
     }
   }
 }

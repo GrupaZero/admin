@@ -59,7 +59,7 @@ function ContentCategoryTreeCtrl($scope, categories, listParent, Storage, Conten
 
     // if parent category exists
     if (typeof listParent !== 'undefined') {
-        $scope.activeNode = listParent.path;
+        $scope.activeNode = listParent;
         $scope.root = getNodeById($scope.categories, getRootIdFromPath(listParent.path));
         getNestedChildren($scope.root, _.clone(listParent.path));
     }
