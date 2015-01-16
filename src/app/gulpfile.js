@@ -96,7 +96,7 @@ gulp.task('compress-vendor', function() {
 
 // Task images
 gulp.task('images', function() {
-    return gulp.src('img/**/*.{png,gif,jpg,gif}')
+    return gulp.src('img/**/*.{png,gif,jpg}')
         .pipe(imagemin())
         .pipe(gulp.dest(publicPath + 'img/'));
 });
