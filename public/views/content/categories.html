@@ -8,19 +8,19 @@
         <ul ui-tree-nodes ng-model="categories" class="nav">
             <li>
                 <a href="" ui-sref="content.add({ type: 'category' })" class="btn-add">
-                    <i class="fa fa-fw fa-plus-circle"></i> {{ 'ADD_CATEGORY' | translate }}
+                    <i class="fa fa-fw fa-plus-circle"></i>{{ 'ADD_CATEGORY' | translate }}
                 </a>
             </li>
-            <li ng-class="{ 'active': !activeNode}">
+            <li ng-class="{'active': !activeNode}">
                 <a href="" ui-sref="content.list({ contentId: null })" ui-sref-opts="{ inherit: false }"
                    ng-click="uncategorized()">
                     <i class="fa fa-fw fa-file-text"></i> {{ 'UNCATEGORIZED' | translate }}
                 </a>
             </li>
             <li ng-repeat="category in categories track by category.id"
-                ng-class="{ 'active': (activeNode.path | nodeInPath:category.id) , 'open': !collapsed }"
+                ng-class="{'active': activeNode == category.id , 'open': !collapsed }"
                 ui-tree-node ng-include="'treeChildrenRenderer'"
-                data-collapsed="!{{ activeNode.path | nodeInPath:category.id  }}">
+                data-collapsed="!{{ openCategories | nodeInPath:category.id  }}">
             </li>
         </ul>
     </div>
@@ -28,8 +28,8 @@
 
 <!--TEMPLATE-->
 <script type="text/ng-template" id="treeChildrenRenderer">
-    <div ui-tree-handle>
-        <a href="" ng-click="this.toggle()"
+    <div ui-tree-handle id="{{category.id}}">
+        <a href="" ng-click="toggleNode(this)"
            title="{{category.translations | getTranslation:listLang.code:'title'}}">
             <i class="fa fa-fw" ng-class="{'fa-caret-right': collapsed, 'fa-caret-down': !collapsed }"></i>
             <i class="fa fa-fw" ng-class="collapsed ? 'fa-folder-o' : 'fa-folder-open-o'"></i>
@@ -41,8 +41,8 @@
     </div>
     <ul ui-tree-nodes="treeOptions" ng-model="category.children" ng-class="{ hidden: collapsed }">
         <li>
-            <a href="" ui-sref="content.list({ contentId: category.id })" class="btn-show"
-               ng-class="{ 'active': activeNode.id == category.id}">
+            <a href="" ui-sref="content.list({ contentId: category.id })" class="btn-show" ui-sref-opts="{ reload: false }"
+               ng-class="{'active': activeNode == category.id}">
                 <i class="fa fa-fw fa-file-text"></i> {{ 'SELECT_CATEGORY' | translate }}
             </a>
         </li>
@@ -52,9 +52,9 @@
             </a>
         </li>
         <li ng-repeat="category in category.children track by category.id"
-            ng-class="{ 'active': (activeNode.path | nodeInPath:category.id), 'open': !collapsed }"
+            ng-class="{'active': activeNode == category.id, 'open': !collapsed }"
             ui-tree-node ng-include="'treeChildrenRenderer'"
-            data-collapsed="!{{ activeNode.path | nodeInPath:category.id  }}">
+            data-collapsed="!{{ openCategories | nodeInPath:category.id }}">
         </li>
     </ul>
 </script>

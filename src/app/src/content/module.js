@@ -39,6 +39,12 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
                                     }
                                 }
                             }
+                        ],
+                        openCategories: [
+                            // get open categories from Storage
+                            'Storage', function(Storage) {
+                                return Storage.getStorageItem('openCategories');
+                            }
                         ]
                     },
                     views: {
