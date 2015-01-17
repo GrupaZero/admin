@@ -145,12 +145,22 @@
   .angular-ui-tree-handle {
     font-weight : normal;
     cursor      : auto;
+    padding : 0;
+    .fa.pull-left:hover {
+      cursor : pointer;
+    }
+    a {
+      padding     : 10px 15px;
+      white-space : nowrap;
+      text-decoration: none;
+    }
   }
 
   & > ul {
-    & > li > a {
-      margin  : 0;
-      padding : 10px 15px;
+    & > li {
+      a {
+        margin : 0;
+      }
     }
 
   }
@@ -159,26 +169,32 @@
     display : block;
     padding : 10px 15px;
     &.btn-add {
-      background  : $white;
-      border-left : 2px solid $brand-success;
-      color       : $brand-success;
+      color : $brand-success;
       &:hover {
         background      : $brand-success;
         color           : $white;
         text-decoration : none;
       }
     }
+    &.btn-show {
+      &:hover,
+      &.active {
+        background      : $brand-primary;
+        color           : $white;
+        text-decoration : none;
+      }
+    }
+  }
+
+  .fa.pull-left {
+    margin-top : .2em;
   }
 
   ul {
     ul {
       background-color : $table-bg-hover;
-      opacity          : 0;
-      transition       : all .25s ease-in-out;
-      transition-delay : .15s;
       .angular-ui-tree-handle {
         & > a {
-          padding : 10px 15px;
           &:hover {
             color           : $black;
             text-decoration : none;
@@ -196,9 +212,7 @@
   }
 
   & > ul > li {
-    margin        : 0 -15px;
-    border-bottom : 1px solid $table-border-color;
-
+    margin : 0 -15px;
     &:first-child {
       margin-top : -10px;
     }
@@ -211,33 +225,26 @@
     &.open {
       & > a,
       & > div > a {
-        background-color : $white;
-        box-shadow       : 0 1px 2px 1px rgba(0, 0, 0, .10), 0 2px 5px rgba(0, 0, 0, .10);
-        color            : $black;
-        position         : relative;
-        text-decoration  : none;
-        z-index          : 1;
+        color           : $black;
+        text-decoration : none;
       }
     }
 
     &.active {
-      & > a,
-      & > div > a {
+      & > a {
         background : $brand-primary;
         color      : $white;
       }
     }
 
     li.active > div > a {
-      background-color : $brand-primary;
-      color            : $white;
-      text-decoration  : none;
+      color           : $black;
+      text-decoration : none;
     }
   }
 
   li.open {
     & > ul {
-      opacity : 100;
     }
   }
 }
@@ -327,6 +334,7 @@ li:hover {
     margin : 0;
   }
 }
+
 // hidden sidebar
 body.hide-sidebar {
   .sidebar-c-offcanvas {
@@ -334,24 +342,24 @@ body.hide-sidebar {
     .nav-c-sidebar {
       li {
         a {
-          padding : 10px 0;
+          padding    : 10px 0;
           text-align : center;
           .icon {
             font-size    : $font-size-large;
             margin-right : 0;
           }
           .title {
-            font-size: 10px;
-            display: block;
-            margin-top: 5px;
-            white-space: pre-wrap;
+            font-size   : 10px;
+            display     : block;
+            margin-top  : 5px;
+            white-space : pre-wrap;
           }
         }
         ul li a {
           .icon {
-            background: $white;
-            font-size : $font-size-base;
-            line-height: 11px;
+            background  : $white;
+            font-size   : $font-size-base;
+            line-height : 11px;
           }
         }
       }

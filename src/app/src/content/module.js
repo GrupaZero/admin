@@ -14,11 +14,9 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
                     resolve: {
                         categories: [
                             'ContentRepository', function(ContentRepository) {
-                                // get root level categories
-                                return ContentRepository.list({
-                                    type: 'category',
-                                    perPage: 125,
-                                    level: 0
+                                // get tree of all categories
+                                return ContentRepository.tree({
+                                    type: 'category'
                                 });
                             }
                         ]
@@ -40,6 +38,12 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
                                         return ContentRepository.one(Storage.getStorageItem('contentListParent'));
                                     }
                                 }
+                            }
+                        ],
+                        openCategories: [
+                            // get open categories from Storage
+                            'Storage', function(Storage) {
+                                return Storage.getStorageItem('openCategories');
                             }
                         ]
                     },

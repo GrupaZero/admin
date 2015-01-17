@@ -1,6 +1,6 @@
 'use strict';
 
-function ContentCategoryTreeCtrl($scope, categories, listParent, Storage, ContentRepository) {
+function ContentCategoryTreeCtrl($scope, categories, openCategories, listParent, Storage) {
     /**
      * Function returns root id from provided path
      *
@@ -31,25 +31,11 @@ function ContentCategoryTreeCtrl($scope, categories, listParent, Storage, Conten
         });
     }
 
-    /**
-     * Function gets nested children of selected category
-     *
-     * @param root root node to search for children
-     * @param path the path to iterate over
-     */
-    function getNestedChildren(root, path) {
-        if (typeof root !== 'undefined') {
-            ContentRepository.children(path.shift(), {
-                lang: $scope.listLang.code,
-                type: 'category'
-            }).then(function(response) {
-                root.children = ContentRepository.clean(response);
-                if (path.length > 0) {
-                    // We can use it because each iteration removes id from path
-                    getNestedChildren(getNodeById(root.children, getRootIdFromPath(path)), path);
-                }
-            });
-        }
+    // if there are open categories in the Storage
+    if (typeof openCategories !== 'undefined') {
+        $scope.openCategories = openCategories;
+    } else {
+        $scope.openCategories = [];
     }
 
     // if categories tree exists
@@ -59,9 +45,10 @@ function ContentCategoryTreeCtrl($scope, categories, listParent, Storage, Conten
 
     // if parent category exists
     if (typeof listParent !== 'undefined') {
-        $scope.activeNode = listParent.path;
+        $scope.activeNode = listParent.id;
+        // merge open categories with active category path
+        $scope.openCategories = _.union($scope.openCategories, listParent.path);
         $scope.root = getNodeById($scope.categories, getRootIdFromPath(listParent.path));
-        getNestedChildren($scope.root, _.clone(listParent.path));
     }
 
     // removes listParent id from storage
@@ -69,6 +56,23 @@ function ContentCategoryTreeCtrl($scope, categories, listParent, Storage, Conten
         Storage.removeStorageItem('contentListParent');
     };
 
+    // toggles Node in categories tree and manage Storage open categories object
+    $scope.toggleNode = function(scope) {
+        scope.toggle();
+        var nodeId = _.parseInt(scope.$element[0].id, 10);
+
+        // if node is open
+        if (!scope.collapsed) {
+            // add to scope
+            $scope.openCategories.push(nodeId);
+        } else {
+            // remove from scope
+            $scope.openCategories = _.without($scope.openCategories, nodeId);
+        }
+        // save in the store
+        Storage.setStorageItem({openCategories: $scope.openCategories});
+    };
+
 }
-ContentCategoryTreeCtrl.$inject = ['$scope', 'categories', 'listParent', 'Storage', 'ContentRepository'];
+ContentCategoryTreeCtrl.$inject = ['$scope', 'categories', 'openCategories', 'listParent', 'Storage'];
 module.exports = ContentCategoryTreeCtrl;
