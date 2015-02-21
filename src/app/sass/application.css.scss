@@ -82,6 +82,9 @@
 .list-parent {
   h3 {
     margin-top : 0;
+    a, strong {
+      vertical-align : middle;
+    }
   }
 }
 
@@ -143,7 +146,7 @@
 
 #categories-tree {
   .uncategorized a {
-    padding     : 10px 15px;
+    padding : 10px 15px;
   }
   .angular-ui-tree-handle {
     font-weight : normal;
@@ -202,13 +205,13 @@
             text-decoration : none;
           }
         }
-//        &:first-child {
-//          padding-top : 0;
-//        }
-//
-//        &:last-child {
-//          padding-bottom : 0;
-//        }
+        //        &:first-child {
+        //          padding-top : 0;
+        //        }
+        //
+        //        &:last-child {
+        //          padding-bottom : 0;
+        //        }
       }
     }
   }
