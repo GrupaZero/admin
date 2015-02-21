@@ -236,15 +236,19 @@
     }
 
     &.active {
+      & > div,
       & > a {
         background : $brand-primary;
-        color      : $white;
+        &, a {
+          color      : $white;
+        }
       }
     }
 
     li.active > div > a {
       color           : $black;
       text-decoration : none;
+      font-weight : bold;
     }
   }
 
