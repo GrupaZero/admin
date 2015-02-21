@@ -100,33 +100,33 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
             NavBar.add(
                 {
                     title: 'CONTENT',
-                    action: 'content',
-                    icon: 'fa fa-file-text-o'
-                }
-            );
-            NavBar.addLastChild(
-                'CONTENT',
-                {
-                    title: 'ALL_CONTENTS',
                     action: 'content.list',
-                    icon: 'fa fa-th'
-                }
-            );
-            NavBar.addLastChild(
-                'CONTENT',
-                {
-                    title: 'ADD_CONTENT',
-                    action: 'content.add({ type: "content" })',
                     icon: 'fa fa-file-text-o'
                 }
             );
-            NavBar.addLastChild(
-                'CONTENT',
-                {
-                    title: 'ADD_CATEGORY',
-                    action: 'content.add({ type: "category" })',
-                    icon: 'fa fa-file-text'
-                }
-            );
+            //NavBar.addLastChild(
+            //    'CONTENT',
+            //    {
+            //        title: 'ALL_CONTENTS',
+            //        action: 'content.list',
+            //        icon: 'fa fa-th'
+            //    }
+            //);
+            //NavBar.addLastChild(
+            //    'CONTENT',
+            //    {
+            //        title: 'ADD_CONTENT',
+            //        action: 'content.add({ type: "content" })',
+            //        icon: 'fa fa-file-text-o'
+            //    }
+            //);
+            //NavBar.addLastChild(
+            //    'CONTENT',
+            //    {
+            //        title: 'ADD_CATEGORY',
+            //        action: 'content.add({ type: "category" })',
+            //        icon: 'fa fa-file-text'
+            //    }
+            //);
         }
     ]);

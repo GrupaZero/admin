@@ -34,7 +34,7 @@
     </script>
 </head>
 
-<body ng-controller="CoreCtrl" ng-class="{'hide-sidebar': !$state.includes('home')}">
+<body ng-controller="CoreCtrl" class="hide-sidebar">
 
 <script type="text/ng-template" id="dropdown-template">
     <ul tabindex="-1" class="dropdown-menu" role="menu">
