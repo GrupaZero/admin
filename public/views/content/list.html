@@ -1,4 +1,4 @@
-<div class="col-sm-9 col-md-9">
+<div class="col-sm-10 col-md-10">
     <!-- LIST PARENT -->
     <div ng-if="listParent" class="page-header list-parent">
         <h3 class="clearfix">
@@ -39,6 +39,11 @@
         </div>
         <!-- /.col-lg-4 -->
         <div class="col-xs-4 col-sm-6 col-lg-4 text-right">
+            <button ui-sref="content.add({ type: 'category' })" class="btn btn-primary" type="button"
+                    title="{{ 'ADD_CATEGORY' | translate }}">
+                <i class="glyphicon glyphicon-plus hidden-sm"></i> <span
+                    class="hidden-xs">{{ 'ADD_CATEGORY' | translate }}</span>
+            </button>
             <button ui-sref="content.add({ type: 'content' })" class="btn btn-success" type="button"
                     title="{{ 'ADD_CONTENT' | translate }}">
                 <i class="glyphicon glyphicon-plus hidden-sm"></i> <span
@@ -52,25 +57,17 @@
             <tbody>
             <tr ng-repeat="content in $data" ng-class="{ inactive: !content.isActive }">
                 <td data-title="'TITLE' | translate" sortable="'translations.title'">
-                    <h4 ng-if="(content.translations | getTranslation:listLang.code:'title')">
-                        <a href="" ui-sref="content.show({ contentId: content.id })">
+                    <h5 ng-if="(content.translations | getTranslation:listLang.code:'title')">
+                        <a href="{{ baseUrl }}/{{ listLang.code }}/{{ content.route.translations | getTranslation:listLang.code:'url' }}"
+                           ng-show="(content.route.translations | getTranslation:listLang.code:'url')"
+                           target="_blank">
                             {{ content.translations | getTranslation:listLang.code:'title' }}
                         </a>
-                        <small ng-show="(content.route.translations | getTranslation:listLang.code:'url')">
-                            <strong>url:</strong> {{ baseUrl }}/{{ listLang.code }}/{{ content.route.translations |
-                            getTranslation:listLang.code:'url' }}
-                        </small>
-                    </h4>
+                    </h5>
 
                     <div ng-hide="(content.translations | getTranslation:listLang.code:'title')">
-                        <h4><strong>{{ 'NO_TRANSLATION' | translate }}</strong></h4>
-
-                        <p>{{ 'NO_TRANSLATION_INFO' | translate }}</p>
+                        <h5><strong>{{ 'NO_TRANSLATION' | translate }}</strong></h5>
                     </div>
-
-                    <a href="" ui-sref="content.show({ contentId: content.id })">{{ 'DETAILS' | translate }}</a>
-                    <a href="" ui-sref="content.show({ contentId: content.id })" class="text-danger">
-                        {{ 'DELETE' | translate }}</a>
                 </td>
                 <td data-title="'STATUS' | translate" sortable="'isActive'" class="text-center">
                     <i ng-if="!content.isActive">{{ 'NOT_PUBLISHED' | translate }}</i>
@@ -85,6 +82,14 @@
                 <td data-title="'ID' | translate" sortable="'id'" class="text-center">
                     {{ content.id }}
                 </td>
+                <td data-title="'ACTION' | translate" sortable="'id'" class="text-center">
+                    <a href="" ui-sref="content.show({ contentId: content.id })" class="btn btn-sm btn-primary">
+                        {{ 'DETAILS' | translate }}
+                    </a>
+                    <a href="" ui-sref="content.show({ contentId: content.id })" class="btn btn-sm btn-danger">
+                        {{ 'DELETE' | translate }}
+                    </a>
+                </td>
             </tr>
             <tr ng-hide="$data[0]">
                 <td colspan="5" class="text-center"><strong>{{ 'NO_ENTRIES' | translate }}</strong></td>
@@ -98,9 +103,9 @@
 <script type="text/ng-template" id="tablePager">
     <div class="ng-cloak ng-table-pager">
         <!--<div ng-if="params.settings().counts.length" class="ng-table-counts btn-group pull-right">-->
-            <!--<button ng-repeat="count in params.settings().counts" type="button"-->
-                    <!--ng-class="{'active':params.count()==count}"-->
-                    <!--ng-click="params.count(count)" class="btn btn-default"><span ng-bind="count"></span></button>-->
+        <!--<button ng-repeat="count in params.settings().counts" type="button"-->
+        <!--ng-class="{'active':params.count()==count}"-->
+        <!--ng-click="params.count(count)" class="btn btn-default"><span ng-bind="count"></span></button>-->
         <!--</div>-->
         <ul class="pagination ng-table-pagination">
             <li ng-class="{'disabled': !page.active}" ng-repeat="page in pages" ng-switch="page.type">

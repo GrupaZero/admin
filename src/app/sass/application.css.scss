@@ -142,17 +142,20 @@
 }
 
 #categories-tree {
+  .uncategorized {
+    padding-left : 7px;
+  }
   .angular-ui-tree-handle {
     font-weight : normal;
     cursor      : auto;
-    padding : 0;
+    padding     : 10px 15px;
+
     .fa.pull-left:hover {
       cursor : pointer;
     }
     a {
-      padding     : 10px 15px;
-      white-space : nowrap;
-      text-decoration: none;
+      white-space     : nowrap;
+      text-decoration : none;
     }
   }
 
@@ -167,7 +170,6 @@
 
   a {
     display : block;
-    padding : 10px 15px;
     &.btn-add {
       color : $brand-success;
       &:hover {
@@ -200,13 +202,13 @@
             text-decoration : none;
           }
         }
-        &:first-child {
-          padding-top : 0;
-        }
-
-        &:last-child {
-          padding-bottom : 0;
-        }
+//        &:first-child {
+//          padding-top : 0;
+//        }
+//
+//        &:last-child {
+//          padding-bottom : 0;
+//        }
       }
     }
   }
