@@ -5,9 +5,13 @@
             <span class="subtitle">
                 {{ 'CATEGORY' | translate | uppercase }}
             </span>
-            <a href="" ui-sref="content.show({ contentId: listParent.id })">
+            <a href="{{ baseUrl }}/{{ listLang.code }}/{{ listParent.route.translations | getTranslation:listLang.code:'url' }}"
+               target="_blank">
                 {{ listParent.translations | getTranslation:listLang.code:'title' }}
             </a>
+            <span ng-hide="(listParent.translations | getTranslation:listLang.code:'title')">
+               <strong>{{ 'NO_TRANSLATION' | translate }}</strong>
+            </span>
             <span class="pull-right">
                 <button ui-sref="content.show({ contentId: listParent.id })" class="btn btn-default" type="button"
                         title="{{ 'DETAILS' | translate }}">
