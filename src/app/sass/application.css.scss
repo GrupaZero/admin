@@ -107,7 +107,7 @@
     &:hover {
       opacity : 1;
     }
-    h4 a {
+    h5 a {
       color : $gray-light;
     }
   }
@@ -142,8 +142,8 @@
 }
 
 #categories-tree {
-  .uncategorized {
-    padding-left : 7px;
+  .uncategorized a {
+    padding     : 10px 15px;
   }
   .angular-ui-tree-handle {
     font-weight : normal;

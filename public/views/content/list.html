@@ -73,7 +73,7 @@
                     <i ng-if="!content.isActive">{{ 'NOT_PUBLISHED' | translate }}</i>
                     <i ng-if="content.isActive">{{ 'PUBLISHED' | translate }}</i>
                 </td>
-                <td data-title="'WEIGHT' | translate" sortable="'weight'" class="text-center">
+                <td data-title="'ORDER' | translate" sortable="'weight'" class="text-center">
                     {{ content.weight }}
                 </td>
                 <td data-title="'AUTHOR' | translate" sortable="'author.firstName'" class="text-center">
@@ -92,7 +92,7 @@
                 </td>
             </tr>
             <tr ng-hide="$data[0]">
-                <td colspan="5" class="text-center"><strong>{{ 'NO_ENTRIES' | translate }}</strong></td>
+                <td colspan="6" class="text-center"><strong>{{ 'NO_ENTRIES' | translate }}</strong></td>
             </tr>
             </tbody>
         </table>

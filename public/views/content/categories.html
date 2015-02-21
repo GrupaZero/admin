@@ -1,7 +1,11 @@
 <div class="col-sm-2 col-md-2 quick-c-sidebar">
     <div class="aside-header">
-        <h4>
-            <strong>{{ 'CATEGORIES' | translate | uppercase }}</strong>
+        <h4 class="clearfix">
+            <strong class="pull-left">{{ 'CATEGORIES' | translate | uppercase }}</strong>
+            <button ui-sref="content.add({ type: 'category' })" class="btn btn-xs btn-success pull-right" type="button"
+                    title="{{ 'ADD_CATEGORY' | translate }}">
+                <i class="glyphicon glyphicon-plus hidden-sm"></i>
+            </button>
         </h4>
     </div>
     <div ui-tree="treeOptions" id="categories-tree" data-drag-enabled="false">
@@ -25,7 +29,7 @@
 <!--TEMPLATE-->
 <script type="text/ng-template" id="treeChildrenRenderer">
     <div ui-tree-handle id="{{category.id}}">
-        <i class="fa fa-fw pull-left" ng-click="toggleNode(this)"
+        <i class="fa fa-fw pull-left" ng-click="toggleNode(this)" ng-show="category.children"
            ng-class="{'fa-caret-right': collapsed, 'fa-caret-down': !collapsed }"></i>
         <a href="" ui-sref="content.list({ contentId: category.id })" ui-sref-opts="{ reload: false }"
            title="{{category.translations | getTranslation:listLang.code:'title'}}">
