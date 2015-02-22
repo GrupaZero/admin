@@ -33,7 +33,7 @@
            ng-class="{'fa-caret-right': collapsed, 'fa-caret-down': !collapsed }"></i>
         <a href="" ui-sref="content.list({ contentId: category.id })" ui-sref-opts="{ reload: false }"
            title="{{category.translations | getTranslation:listLang.code:'title'}}">
-            <i class="fa fa-fw" ng-class="collapsed ? 'fa-folder-o' : 'fa-folder-open-o'"></i>
+            <i class="fa fa-fw" ng-class="(collapsed || !category.children) ? 'fa-folder-o' : 'fa-folder-open-o'"></i>
             {{ category.translations | getTranslation:listLang.code:'title' | limitTo: 36}}
                 <span ng-hide="(category.translations | getTranslation:listLang.code:'title')">
                     {{ 'NO_TRANSLATION' | translate }}
