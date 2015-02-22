@@ -205,13 +205,6 @@
             text-decoration : none;
           }
         }
-        //        &:first-child {
-        //          padding-top : 0;
-        //        }
-        //
-        //        &:last-child {
-        //          padding-bottom : 0;
-        //        }
       }
     }
   }
@@ -226,12 +219,9 @@
       border-bottom : none;
     }
 
-    &:hover,
-    &.open {
-      & > a,
-      & > div > a {
-        color           : $black;
-        text-decoration : none;
+    &:hover {
+      & > div  {
+        background-color : $gray-lighter;
       }
     }
 
