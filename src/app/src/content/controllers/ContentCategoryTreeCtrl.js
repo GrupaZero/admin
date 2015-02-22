@@ -46,8 +46,8 @@ function ContentCategoryTreeCtrl($scope, categories, openCategories, listParent,
     // if parent category exists
     if (typeof listParent !== 'undefined') {
         $scope.activeNode = listParent.id;
-        // merge open categories with active category path
-        $scope.openCategories = _.union($scope.openCategories, listParent.path);
+        // merge open categories with active category path, without it self
+        $scope.openCategories = _.union($scope.openCategories, _.without(listParent.path, listParent.id));
         $scope.root = getNodeById($scope.categories, getRootIdFromPath(listParent.path));
     }
 
@@ -60,7 +60,6 @@ function ContentCategoryTreeCtrl($scope, categories, openCategories, listParent,
     $scope.toggleNode = function(scope) {
         scope.toggle();
         var nodeId = _.parseInt(scope.$element[0].id, 10);
-
         // if node is open
         if (!scope.collapsed) {
             // add to scope

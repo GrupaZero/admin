@@ -9,7 +9,11 @@ function Storage() {
          * @param object
          */
         setStorageItem: function(object) {
-            _.merge(storageItems, object);
+            storageItems =   _.merge(storageItems, object, function(objectValue, sourceValue) {
+                if (_.isArray(objectValue)) {
+                    return  sourceValue;
+                }
+            });
         },
         /**
          * Function returns the specified object from the storageItems
@@ -27,7 +31,7 @@ function Storage() {
          * @returns {object}
          */
         removeStorageItem: function(index) {
-            storageItems = _.without(storageItems, index);
+            storageItems = _.omit(storageItems, index);
         }
     };
 }
