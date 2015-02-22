@@ -50,6 +50,8 @@ function ContentCategoryTreeCtrl($scope, categories, openCategories, listParent,
         // merge open categories with active category path
         $scope.openCategories = _.union($scope.openCategories, listParent.path);
         $scope.root = getNodeById($scope.categories, getRootIdFromPath(listParent.path));
+        // save open categories in the store
+        Storage.setStorageItem({openCategories: $scope.openCategories});
     }
 
     // removes listParent id from storage
