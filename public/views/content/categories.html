@@ -2,7 +2,9 @@
     <div class="aside-header">
         <h4 class="clearfix">
             <strong class="pull-left">{{ 'CATEGORIES' | translate | uppercase }}</strong>
-            <button ui-sref="content.add({ type: 'category' })" class="btn btn-xs btn-success pull-right" type="button"
+            <button ui-sref="content.add({ type: 'category' })"
+                    class="btn btn-xs btn-success pull-right"
+                    type="button"
                     title="{{ 'ADD_CATEGORY' | translate }}">
                 <i class="glyphicon glyphicon-plus hidden-sm"></i>
             </button>
@@ -11,7 +13,9 @@
     <div ui-tree="treeOptions" id="categories-tree" data-drag-enabled="false">
         <ul ui-tree-nodes ng-model="categories" class="nav">
             <li class="uncategorized" ng-class="{'active': !activeNode}">
-                <a href="" ui-sref="content.list({ contentId: null })" ui-sref-opts="{ inherit: false }"
+                <a href=""
+                   ui-sref="content.list({ contentId: null })"
+                   ui-sref-opts="{ inherit: false }"
                    ng-click="uncategorized()">
                     <i class="fa fa-fw fa-folder-o"></i>
                     {{ 'UNCATEGORIZED' | translate }}
@@ -28,16 +32,22 @@
 
 <!--TEMPLATE-->
 <script type="text/ng-template" id="treeChildrenRenderer">
-    <div ui-tree-handle id="{{category.id}}">
-        <i class="fa fa-fw pull-left" ng-click="toggleNode(this)" ng-show="!!category.children.length"
-           ng-class="{'fa-caret-right': collapsed, 'fa-caret-down': !collapsed }"></i>
+    <div ui-tree-handle id="{{category.id}}"
+         ng-class="{'no-arrow': !category.children.length}">
+        <i class="fa fa-fw pull-left"
+           ng-click="toggleNode(this)"
+           ng-show="!!category.children.length"
+           ng-class="{'fa-caret-right': collapsed, 'fa-caret-down': !collapsed }">
+        </i>
         <a href="" ui-sref="content.list({ contentId: category.id })" ui-sref-opts="{ reload: false }"
            title="{{category.translations | getTranslation:listLang.code:'title'}}">
-            <i class="fa fa-fw" ng-class="(collapsed || !category.children.length) ? 'fa-folder-o' : 'fa-folder-open-o'"></i>
+            <i class="fa fa-fw"
+               ng-class="(collapsed || !category.children.length) ? 'fa-folder-o' : 'fa-folder-open-o'">
+            </i>
             {{ category.translations | getTranslation:listLang.code:'title' | limitTo: 36}}
-                <span ng-hide="(category.translations | getTranslation:listLang.code:'title')">
+            <span ng-hide="(category.translations | getTranslation:listLang.code:'title')">
                     {{ 'NO_TRANSLATION' | translate }}
-                </span>
+            </span>
         </a>
     </div>
     <ul ui-tree-nodes="treeOptions" ng-model="category.children" ng-class="{ hidden: collapsed }">

@@ -146,7 +146,7 @@
 
 #categories-tree {
   .uncategorized a {
-    padding : 10px 15px;
+    padding : 10px 15px 10px 36px;
   }
   .angular-ui-tree-handle {
     font-weight : normal;
@@ -159,6 +159,9 @@
     a {
       white-space     : nowrap;
       text-decoration : none;
+    }
+    &.no-arrow {
+      padding-left : 36px;
     }
   }
 
@@ -205,6 +208,10 @@
             text-decoration : none;
           }
         }
+
+        &.no-arrow {
+          padding-left : 37px;
+        }
       }
     }
   }
@@ -220,7 +227,7 @@
     }
 
     &:hover {
-      & > div  {
+      & > div {
         background-color : $gray-lighter;
       }
     }
@@ -230,7 +237,7 @@
       & > a {
         background : $brand-primary;
         &, a {
-          color      : $white;
+          color : $white;
         }
       }
     }
@@ -238,7 +245,7 @@
     li.active > div > a {
       color           : $black;
       text-decoration : none;
-      font-weight : bold;
+      font-weight     : bold;
     }
   }
 
