@@ -19,6 +19,9 @@ function ContentRepository(Restangular, noCacheRestService) {
         newContent: function(newContent) {
             return contents.post(newContent);
         },
+        deleteContent: function(id) {
+            return Restangular.one(api, id).remove();
+        },
         clean: function(elem) {
             return Restangular.stripRestangular(elem);
         }
