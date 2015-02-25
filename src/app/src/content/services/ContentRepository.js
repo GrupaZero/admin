@@ -8,7 +8,7 @@ function ContentRepository(Restangular, noCacheRestService) {
             return Restangular.one(api, id).get(params);
         },
         tree: function(params) {
-            return Restangular.one(api).getList('tree', params);
+            return noCacheRestService.one(api).getList('tree', params);
         },
         list: function(params) {
             return contents.getList(params);
