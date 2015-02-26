@@ -17,6 +17,11 @@ function CoreCtrl($scope, $state, Translations, NavBar, TopNavBar) {
         $scope.listLang = lang;
     };
 
+    // refresh current state
+   $scope.refreshCurrentState = function() {
+       $state.go($state.current, {}, {reload: true});
+    };
+
     $scope.navBar = NavBar.getItems();
     $scope.topNavBar = TopNavBar.getItems();
 
