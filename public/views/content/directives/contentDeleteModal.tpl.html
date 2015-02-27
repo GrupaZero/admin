@@ -7,10 +7,15 @@
             </div>
             <div class="modal-body" translate="{{content}}"></div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" ng-click="vm.deleteModal.closeModal()">
-                    {{ 'CANCEL' | translate }}
+                <button type="button"
+                        class="btn btn-success"
+                        ng-click="vm.deleteModal.closeModal()">
+                    {{ (vm.hideSubmitButton) ? 'OK' : 'CANCEL' | translate }}
                 </button>
-                <button type="button" class="btn btn-danger" ng-click="vm.deleteModal.deleteContent()">
+                <button type="button"
+                        class="btn btn-danger"
+                        ng-if="!vm.hideSubmitButton"
+                        ng-click="vm.deleteModal.deleteContent()">
                     <i class="glyphicon glyphicon-remove-circle"></i>
                     {{ 'DELETE' | translate }}
                 </button>

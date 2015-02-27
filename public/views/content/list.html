@@ -20,7 +20,9 @@
                     <i class="glyphicon glyphicon-edit hidden-sm"></i>
                     <span class="hidden-xs">{{ 'DETAILS' | translate }}</span>
                 </button>
-                <button ui-sref="content.show({ contentId: listParent.id })"
+                <button content-delete-button
+                        data-id="{{ listParent.id }}"
+                        data-type="{{ listParent.type }}"
                         class="btn btn-danger"
                         type="button"
                         title="{{ 'DELETE' | translate }}">
@@ -100,7 +102,9 @@
                     <a href="" ui-sref="content.show({ contentId: content.id })" class="btn btn-sm btn-primary">
                         {{ 'DETAILS' | translate }}
                     </a>
-                    <button content-delete-button data-id="{{ content.id }}"
+                    <button content-delete-button
+                            data-id="{{ content.id }}"
+                            data-type="{{ content.type }}"
                             class="btn btn-sm btn-danger"
                             type="button">
                         {{ 'DELETE' | translate }}
