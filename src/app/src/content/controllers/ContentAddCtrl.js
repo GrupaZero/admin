@@ -19,7 +19,13 @@ function ContentAddCtrl($scope, $state, $stateParams, listParent, ContentReposit
     $scope.addNewContent = function addNewContent(newContent) {
         newContent.parentId = parentId;
         ContentRepository.newContent(newContent).then(function(response) {
-            $state.go('content.list', {contentId: response.id}, {reload: true});
+            if ($stateParams.type === 'category') {
+                // when create a category then set it as a new listParent on content list
+                $state.go('content.list', {contentId: response.id}, {reload: true});
+            } else {
+                // otherwise go to list without new listParent
+                $state.go('content.list', {}, {reload: true});
+            }
         });
     };
 }
