@@ -34,6 +34,18 @@
   @extend %quick-t-sidebar;
   min-height       : 100vh;
   background-color : #FCFCFC;
+
+  .aside-header {
+    border-bottom : 1px solid #e5e5e5;
+    padding       : 15px 15px 12px;
+    margin        : 0 -15px;
+    background    : $white;
+  }
+
+  .nav > li > a {
+    padding : 10px 30px;
+    margin  : 0 -15px;
+  }
 }
 
 // -------------------------------------

@@ -56,24 +56,32 @@
 // -------------------------------------
 //   Typography
 
-//   TTTTTTTTTTTTTTTTTTTTTTT
-//   T:::::::::::::::::::::T
-//   T:::::::::::::::::::::T
-//   T:::::TT:::::::TT:::::T
-//   TTTTTT  T:::::T  TTTTTT
-//           T:::::T
-//           T:::::T
-//           T:::::T
-//           T:::::T
-//           T:::::T
-//           T:::::T
-//           T:::::T
-//         TT:::::::TT
-//         T:::::::::T
-//         T:::::::::T
-//         TTTTTTTTTTT
-//
-// -------------------------------------
+/* Mini sidebar */
+body.mini-sidebar {
+    .nav-c-sidebar {
+      li {
+        a {
+          text-align : center;
+          .icon {
+            font-size    : $font-size-large;
+            margin-right : 0;
+          }
+          .title {
+            font-size   : 10px;
+            margin-top  : 5px;
+            white-space : pre-wrap;
+          }
+        }
+        ul li a {
+          .icon {
+            background  : $white;
+            font-size   : $font-size-base;
+            line-height : 11px;
+          }
+        }
+      }
+    }
+}
 
 // -------------------------------------
 //   Components
@@ -188,6 +196,29 @@
 // -------------------------------------
 //   States
 
+/* Mini sidebar state */
+body.mini-sidebar {
+  .sidebar-c-offcanvas {
+    width : 72px;
+    .nav-c-sidebar {
+      li {
+        a {
+          padding    : 10px 0;
+          .title {
+            display     : block;
+          }
+        }
+      }
+    }
+  }
+
+  .main {
+    width        : 100%;
+    margin-left  : 0;
+    padding-left : 87px;
+  }
+}
+
 /* Active state */
 @media screen and (max-width : 767px) {
   .row-offcanvas {
@@ -215,6 +246,39 @@
           left : 0;
         }
       }
+    }
+  }
+
+  body.mini-sidebar {
+    .row-offcanvas {
+      /* On the right side */
+      &.right {
+        & > .sidebar-c-offcanvas {
+          right : -72px;
+        }
+        &.is-active {
+          right : 87px;
+          & > .sidebar-c-offcanvas {
+            right : 0;
+          }
+        }
+      }
+
+      /* On the left side */
+      &.left {
+        & > .sidebar-c-offcanvas {
+          left : -72px;
+        }
+        &.is-active {
+          left : 87px;
+          & > .sidebar-c-offcanvas {
+            left : 0;
+          }
+        }
+      }
+    }
+    .main {
+      padding-left : 0;
     }
   }
 }

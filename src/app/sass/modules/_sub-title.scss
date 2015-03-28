@@ -1,0 +1,42 @@
+// - - - - - - - - - - - - - - - - - - -
+// - - sub-title module
+// styles for the sub-title module
+
+// - - - - - - - - - - - - - - - - - - -
+// - - layout
+
+%sub-l-title {
+  margin-right  : 5px;
+  padding-right : 5px;
+}
+
+// - - - - - - - - - - - - - - - - - - -
+// - - skin
+
+%sub-s-title {
+  border-right  : 1px solid $gray-lighter;
+}
+
+// - - - - - - - - - - - - - - - - - - -
+// - - typography
+
+%sub-t-title  {
+  font-weight   : bold;
+  font-size     : small;
+}
+
+// - - - - - - - - - - - - - - - - - - -
+// - - components
+
+.sub-c-title {
+  @extend %sub-l-title;
+  @extend %sub-s-title;
+  @extend %sub-t-title;
+}
+
+// - - - - - - - - - - - - - - - - - - -
+// - - states
+//   ___ 
+//  / __|
+//  \__ \
+//  |___/

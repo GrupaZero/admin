@@ -3,3 +3,14 @@
 // -------------------------------------
 // ----- Global typography classes
 // -------------------------------------
+.alert {
+  margin : $line-height-computed 0 0;
+}
+
+// brand
+@media only screen and (max-width : 520px) {
+  .navbar-brand {
+    padding   : 18px 0;
+    font-size : 13px;
+  }
+}

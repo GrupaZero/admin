@@ -18,3 +18,26 @@
 [ui-view="content"]{
   padding-top : $line-height-computed;
 }
+
+/*
+ * Top navigation
+ */
+@media screen and (max-width : 767px) {
+  .navbar-fixed-top {
+    .navbar-header {
+      .navbar-nav {
+        margin : 4px 0;
+        float  : left;
+        li {
+          float : left;
+          a {
+            padding : 10px;
+          }
+        }
+      }
+    }
+    .navbar-form {
+      padding : 0 15px
+    }
+  }
+}

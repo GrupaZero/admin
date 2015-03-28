@@ -34,7 +34,7 @@
     </script>
 </head>
 
-<body ng-controller="CoreCtrl" class="hide-sidebar">
+<body ng-controller="CoreCtrl" class="mini-sidebar">
 
 <script type="text/ng-template" id="dropdown-template">
     <ul tabindex="-1" class="dropdown-menu" role="menu">
