@@ -60,10 +60,13 @@ angular.module('admin', dependencies).config([
 
             if (operation === 'getList') {
                 // .. and handle the data and meta data
-                extractedData = data.data;
-                extractedData.meta = data.meta;
-                extractedData.params = data.params;
-
+                if (typeof data.data !== 'undefined') {
+                    extractedData = data.data;
+                    extractedData.meta = data.meta;
+                    extractedData.params = data.params;
+                } else { // only one item in collection
+                    extractedData = [data];
+                }
             } else {
                 extractedData = data;
             }

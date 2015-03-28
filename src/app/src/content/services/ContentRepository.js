@@ -14,10 +14,13 @@ function ContentRepository(Restangular, noCacheRestService) {
             return contents.getList(params);
         },
         children: function(id, params) {
-            return Restangular.one(api, id).getList('children', params);
+            return noCacheRestService.one(api, id).getList('children', params);
         },
         newContent: function(newContent) {
             return contents.post(newContent);
+        },
+        deleteContent: function(id) {
+            return Restangular.one(api, id).remove();
         },
         clean: function(elem) {
             return Restangular.stripRestangular(elem);

@@ -13,15 +13,21 @@
                <strong>{{ 'NO_TRANSLATION' | translate }}</strong>
             </span>
             <span class="pull-right">
-                <button ui-sref="content.show({ contentId: listParent.id })" class="btn btn-default" type="button"
+                <button ui-sref="content.show({ contentId: listParent.id })"
+                        class="btn btn-default"
+                        type="button"
                         title="{{ 'DETAILS' | translate }}">
-                    <i class="glyphicon glyphicon-edit hidden-sm"></i> <span
-                        class="hidden-xs">{{ 'DETAILS' | translate }}</span>
+                    <i class="glyphicon glyphicon-edit hidden-sm"></i>
+                    <span class="hidden-xs">{{ 'DETAILS' | translate }}</span>
                 </button>
-                <button ui-sref="content.show({ contentId: listParent.id })" class="btn btn-danger" type="button"
+                <button content-delete-button
+                        data-id="{{ listParent.id }}"
+                        data-type="{{ listParent.type }}"
+                        class="btn btn-danger"
+                        type="button"
                         title="{{ 'DELETE' | translate }}">
-                    <i class="glyphicon glyphicon-remove-circle hidden-sm"></i> <span
-                        class="hidden-xs">{{ 'DELETE' | translate }}</span>
+                    <i class="glyphicon glyphicon-remove-circle hidden-sm"></i>
+                    <span class="hidden-xs">{{ 'DELETE' | translate }}</span>
                 </button>
             </span>
         </h3>
@@ -52,6 +58,12 @@
                     title="{{ 'ADD_CONTENT' | translate }}">
                 <i class="glyphicon glyphicon-plus hidden-sm"></i> <span
                     class="hidden-xs">{{ 'ADD_CONTENT' | translate }}</span>
+            </button>
+            <button type="button"
+                    ng-click="refreshCurrentState()"
+                    class="btn btn-default"
+                    title="{{ 'REFRESH_LIST' | translate }}">
+                <i class="glyphicon glyphicon-refresh"></i>
             </button>
         </div>
         <!-- /.col-lg-8 -->
@@ -90,9 +102,13 @@
                     <a href="" ui-sref="content.show({ contentId: content.id })" class="btn btn-sm btn-primary">
                         {{ 'DETAILS' | translate }}
                     </a>
-                    <a href="" ui-sref="content.show({ contentId: content.id })" class="btn btn-sm btn-danger">
+                    <button content-delete-button
+                            data-id="{{ content.id }}"
+                            data-type="{{ content.type }}"
+                            class="btn btn-sm btn-danger"
+                            type="button">
                         {{ 'DELETE' | translate }}
-                    </a>
+                    </button>
                 </td>
             </tr>
             <tr ng-hide="$data[0]">

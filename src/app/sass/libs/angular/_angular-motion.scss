@@ -586,6 +586,7 @@
   background: rgba(0, 0, 0, 0.5);
   -webkit-animation-duration: 0.15s;
   animation-duration: 0.15s;
+  z-index: $zindex-navbar-fixed + 2;
 }
 .modal-backdrop.am-fade.ng-leave,
 .aside-backdrop.am-fade.ng-leave {
