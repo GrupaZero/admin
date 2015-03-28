@@ -62,8 +62,8 @@ In Ubuntu hosts file should looks like the following:
 # /etc/hosts
 127.0.0.1	localhost
 ...
-127.0.0.1	gzero.dev
-127.0.0.1	api.gzero.dev
+127.0.0.1	dev.gzero.pl
+127.0.0.1	dev.api.gzero.pl
 ...
 ```
 
@@ -74,7 +74,7 @@ There are 2 required things, that should be done, every time before you start to
 
 After these steps try to log in to the admin panel:
 ```
-URL: http://gzero.dev:8000/en/login
+URL: http://dev.gzero.pl:8000/en/login
 login: a@a.pl
 pass: test
 ```
