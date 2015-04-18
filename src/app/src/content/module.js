@@ -23,7 +23,7 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
                     }
                 })
                 .state('content.list', {
-                    url: '/list/{contentId}?isActive&page',
+                    url: '/list/{contentId}?isActive&page&perPage',
                     resolve: {
                         listParent: [
                             '$stateParams', 'Storage', 'ContentRepository', function($stateParams, Storage, ContentRepository) {

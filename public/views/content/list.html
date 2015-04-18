@@ -122,13 +122,18 @@
 <!--TEMPLATE-->
 <script type="text/ng-template" id="tablePager">
     <div class="ng-cloak ng-table-pager">
-        <!--<div ng-if="params.settings().counts.length" class="ng-table-counts btn-group pull-right">-->
-        <!--<button ng-repeat="count in params.settings().counts" type="button"-->
-        <!--ng-class="{'active':params.count()==count}"-->
-        <!--ng-click="params.count(count)" class="btn btn-default"><span ng-bind="count"></span></button>-->
-        <!--</div>-->
+        <div ng-if="params.settings().counts.length" class="ng-table-counts btn-group pull-right">
+            <button type="button"
+                    ng-repeat="count in params.settings().counts"
+                    ng-class="{'active':params.count()==count}"
+                    ui-sref="content.list({ page: page.number, perPage:count })"
+                    class="btn btn-default">
+                <span ng-bind="count"></span>
+            </button>
+        </div>
         <ul class="pagination ng-table-pagination">
-            <li ng-class="{'disabled': !page.active}" ng-repeat="page in pages" ng-switch="page.type">
+            <li ng-class="{'active': !page.active, 'disabled': !page.active && (page.type == 'prev' || page.type == 'next')}"
+                ng-repeat="page in pages" ng-switch="page.type">
                 <a ng-switch-when="prev" ui-sref="content.list({ page: page.number })" href="">&laquo;</a>
                 <a ng-switch-when="first" ui-sref="content.list({ page: page.number })" href="">
                     <span ng-bind="page.number"></span>

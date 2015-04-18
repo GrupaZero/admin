@@ -21,6 +21,12 @@ function ContentListCtrl($scope, $stateParams, listParent, ContentRepository, Ng
                 type: 'content'
             };
 
+            // params.count() - number of items per page declared in view
+            if (typeof $stateParams.perPage !== 'undefined') {
+                params.count($stateParams.perPage);
+                queryOptions.perPage = params.count();
+            }
+
             // params.page() - current page
             if (typeof $stateParams.page !== 'undefined') {
                 params.page($stateParams.page);
@@ -38,11 +44,6 @@ function ContentListCtrl($scope, $stateParams, listParent, ContentRepository, Ng
             var filters = _.omit($stateParams, 'contentId');
             queryOptions = _.merge(queryOptions, filters);
             $scope.activeFilter = filters;
-
-            // params.count() - number of items per page declared in view
-            if (params.count()) {
-                queryOptions.perPage = params.count();
-            }
 
             // get list by default
             var promise = ContentRepository.list(queryOptions);
