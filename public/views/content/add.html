@@ -51,6 +51,11 @@
                                    (listParent.translations | getTranslation:newContent.translations.langCode:'title') :
                                     'UNCATEGORIZED' | translate }}">
                         </div>
+                        <div ng-if="listParent"
+                             ng-hide="(listParent.translations | getTranslation:newContent.translations.langCode:'title')"
+                             class="text-danger">
+                            <i class="glyphicon glyphicon-exclamation-sign"></i> {{ 'NO_PARENT_TRANSLATION_INFO' | translate }}
+                        </div>
                         <hr/>
                         <!-- Is active Form input -->
                         <div class="form-group">

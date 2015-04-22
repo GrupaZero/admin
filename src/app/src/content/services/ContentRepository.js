@@ -1,23 +1,26 @@
 'use strict';
 
-function ContentRepository(Restangular, noCacheRestService) {
+function ContentRepository(Restangular) {
     var api = 'admin/contents';
-    var contents = noCacheRestService.all(api);
+    var contents = Restangular.all(api);
     return {
         one: function(id, params) {
             return Restangular.one(api, id).get(params);
         },
         tree: function(params) {
-            return noCacheRestService.one(api).getList('tree', params);
+            return Restangular.one(api).getList('tree', params);
         },
         list: function(params) {
             return contents.getList(params);
         },
         children: function(id, params) {
-            return noCacheRestService.one(api, id).getList('children', params);
+            return Restangular.one(api, id).getList('children', params);
         },
         newContent: function(newContent) {
             return contents.post(newContent);
+        },
+        newContentTranslation: function(id, newTranslation) {
+            return Restangular.one(api, id).all('translations').post(newTranslation);
         },
         deleteContent: function(id) {
             return Restangular.one(api, id).remove();
@@ -28,5 +31,5 @@ function ContentRepository(Restangular, noCacheRestService) {
     };
 }
 
-ContentRepository.$inject = ['Restangular', 'noCacheRestService'];
+ContentRepository.$inject = ['Restangular'];
 module.exports = ContentRepository;

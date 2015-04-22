@@ -10,7 +10,9 @@
                 {{ listParent.translations | getTranslation:listLang.code:'title' }}
             </a>
             <span ng-hide="(listParent.translations | getTranslation:listLang.code:'title')">
-               <strong>{{ 'NO_TRANSLATION' | translate }}</strong>
+                <a href="" ui-sref="content.addTranslation({ contentId: listParent.id })" class="btn btn-warning">
+                    <i class="glyphicon glyphicon-exclamation-sign hidden-sm"></i> {{ 'NO_TRANSLATION_BUTTON' | translate }}
+                </a>
             </span>
             <span class="pull-right">
                 <button ui-sref="content.show({ contentId: listParent.id })"

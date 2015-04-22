@@ -4,7 +4,6 @@ require('./filters/CoreFilters.js');
 
 angular.module('admin.core', ['CoreFilters'])
     .controller('CoreCtrl', require('./controllers/CoreCtrl.js'))
-    .factory('noCacheRestService', require('./services/noCacheRestService.js'))
     .factory('LangRepository', require('./services/LangRepository.js'))
     .factory('NavBar', require('./services/NavBar.js'))
     .factory('TopNavBar', require('./services/TopNavBar.js'))

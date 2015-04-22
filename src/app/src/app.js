@@ -46,7 +46,7 @@ angular.module('admin', dependencies).config([
         RestangularProvider.setBaseUrl(Config.apiUrl + '/v1');
 
         RestangularProvider.setDefaultHttpFields({
-            cache: true,
+            cache: false,
             withCredentials: true
         });
 
@@ -87,6 +87,8 @@ angular.module('admin', dependencies).config([
             if (response.status === 404) {
                 Notifications.addError('COMMON_ERROR');
                 return false; // error handled
+            } else if (response.status === 500) {
+                Notifications.addError(response.data.message);
             }
             Notifications.addErrors(response.data.messages);
             return false; // error not handled
