@@ -33,7 +33,9 @@
                             <label for="parentId" class="hidden-xs">{{ 'CATEGORY' | translate }}</label>
                             <input id="parentId" name="parentId" type="text" class="form-control"
                                    ng-model="newContent.parentId" disabled="disabled"
-                                   placeholder="{{ listParent ? (listParent.translations | getTranslation:listLang.code:'title') : 'UNCATEGORIZED' | translate }}">
+                                   placeholder="{{ (listParent.translations | getTranslation:newContent.translations.langCode:'title') ?
+                                   (listParent.translations | getTranslation:newContent.translations.langCode:'title') :
+                                    'UNCATEGORIZED' | translate }}">
                         </div>
                         <hr/>
                         <!-- Is active Form input -->

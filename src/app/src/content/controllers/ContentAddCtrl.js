@@ -17,7 +17,15 @@ function ContentAddCtrl($scope, $state, $stateParams, listParent, ContentReposit
     };
     // contents POST action
     $scope.addNewContent = function addNewContent(newContent) {
-        newContent.parentId = parentId;
+        newContent.parentId = parentId; // set parent category as null
+        // if parent category exists
+        if (typeof $scope.listParent !== 'undefined') {
+            // check for route translation in selected language
+            var route = _.pluck(_.filter($scope.listParent.route.translations, 'lang', newContent.translations.langCode), 'url');
+            if (!route.length) {
+                newContent.parentId = null; // if not found set as uncategorized
+            }
+        }
         ContentRepository.newContent(newContent).then(function(response) {
             if ($stateParams.type === 'category') {
                 // when create a category then set it as a new listParent on content list
