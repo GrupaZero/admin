@@ -85,6 +85,15 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
                             controller: 'ContentAddCtrl'
                         }
                     }
+                })
+                .state('content.addTranslation', {
+                    url: '/{contentId}/add-translation',
+                    views: {
+                        'content': {
+                            templateUrl: viewPath + 'addTranslation.html',
+                            controller: 'ContentAddTranslationCtrl'
+                        }
+                    }
                 });
         }
     ])
@@ -94,6 +103,7 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
     .controller('ContentDashboardCtrl', require('./controllers/ContentDashboardCtrl'))
     .controller('ContentDetailsCtrl', require('./controllers/ContentDetailsCtrl'))
     .controller('ContentListCtrl', require('./controllers/ContentListCtrl'))
+    .controller('ContentAddTranslationCtrl', require('./controllers/ContentAddTranslationCtrl'))
     .factory('ContentRepository', require('./services/ContentRepository.js'))
     .directive('contentDeleteButton', require('./directives/ContentDeleteButton.js'))
     .run([

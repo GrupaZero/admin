@@ -10,13 +10,15 @@
 
 .main {
   padding : 0 16px;
-  .page-header {
-    margin-top : 0;
-  }
 }
 
-[ui-view="content"]{
+.main-view {
   padding-top : $line-height-computed;
+  .page-header {
+    &, h1 {
+      margin-top : 0;
+    }
+  }
 }
 
 /*
