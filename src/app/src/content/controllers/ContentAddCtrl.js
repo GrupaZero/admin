@@ -19,6 +19,7 @@ function ContentAddCtrl($scope, $state, $stateParams, listParent, ContentReposit
     // contents POST action
     $scope.addNewContent = function addNewContent(newContent) {
         newContent.parentId = parentId; // set parent category as null
+        newContent.publishedAt = new Date().toISOString().slice(0, 19).replace('T', ' '); // set publish at date
         // if parent category exists
         if (typeof $scope.listParent !== 'undefined') {
             // check for route translation in selected language
