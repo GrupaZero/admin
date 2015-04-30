@@ -79,12 +79,17 @@
 .table {
   tr.inactive {
     color   : $gray-light;
-    opacity : .8;
+    opacity : .6;
     &:hover {
       opacity : 1;
     }
     h5 a {
       color : $gray-light;
+    }
+    .label {
+      background-color : $gray;
+      border-color     : $gray;
+      opacity          : .6;
     }
   }
   td.text-center {

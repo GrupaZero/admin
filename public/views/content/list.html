@@ -10,7 +10,8 @@
                 {{ listParent.translations | getTranslation:listLang.code:'title' }}
             </a>
             <span ng-hide="(listParent.translations | getTranslation:listLang.code:'title')">
-                <a href="" ui-sref="content.addTranslation({ contentId: listParent.id })" class="btn btn-warning">
+                <a ui-sref="content.addTranslation({ contentId: listParent.id, langCode: listLang.code })"
+                   href="" class="btn btn-warning">
                     <i class="glyphicon glyphicon-exclamation-sign hidden-sm"></i> {{ 'NO_TRANSLATION_BUTTON' | translate }}
                 </a>
             </span>
@@ -44,8 +45,11 @@
                 <li role="presentation" ng-class="{ active: !activeFilter.isActive }">
                     <a href="" ui-sref="content.list" ui-sref-opts="{ inherit: false }">{{ 'ALL' | translate }}</a>
                 </li>
-                <li role="presentation" ng-class="{ active: activeFilter.isActive }">
+                <li role="presentation" ng-class="{ active: activeFilter.isActive == 1 }">
                     <a href="" ui-sref="content.list({ isActive: 1 })">{{ 'PUBLISHED' | translate }}</a>
+                </li>
+                <li role="presentation" ng-class="{ active: activeFilter.isActive == 0 }">
+                    <a href="" ui-sref="content.list({ isActive: 0 })">{{ 'NOT_PUBLISHED' | translate }}</a>
                 </li>
             </ul>
         </div>
@@ -83,21 +87,39 @@
                         </a>
                     </h5>
 
-                    <div ng-hide="(content.translations | getTranslation:listLang.code:'title')">
-                        <a href="" ui-sref="content.addTranslation({ contentId: content.id })" class="btn btn-sm btn-success">
-                            <i class="glyphicon glyphicon-plus hidden-sm"></i> {{ 'NO_TRANSLATION_BUTTON' | translate }}
+                    <h5 ng-hide="(content.translations | getTranslation:listLang.code:'title')">
+                        <a href="" ui-sref="content.addTranslation({ contentId: content.id, langCode: listLang.code })"
+                           class="text-muted">
+                            <i class="glyphicon glyphicon-ban-circle hidden-sm"></i> {{ 'NO_TRANSLATION_BUTTON' | translate }}
                         </a>
+                    </h5>
+
+                    <div class="btn-toolbar" role="toolbar">
+                        <div class="btn-group btn-group-xs" ng-repeat="lang in langs" ng-switch="lang.code"
+                             ng-init="isTranslated = (content.translations | getTranslation:lang.code:'title')">
+                            <a class="label label-default"
+                               title="{{ isTranslated ? isTranslated : 'ADD_TRANSLATION' | translate }}"
+                               ui-sref="content.addTranslation({ contentId: content.id, langCode: lang.code })"
+                               ng-class="{
+                               'label-danger' : !isTranslated && lang.code == listLang.code,
+                               'label-primary' : isTranslated && lang.code == listLang.code
+                               }">
+                                <i class="glyphicon glyphicon-ok-circle" ng-if="isTranslated"></i>
+                                <i class="glyphicon glyphicon-ban-circle" ng-if="!isTranslated"></i>
+                                {{ lang.code }}
+                            </a>
+                        </div>
                     </div>
                 </td>
                 <td data-title="'STATUS' | translate" sortable="'isActive'" class="text-center">
                     <i ng-if="!content.isActive">{{ 'NOT_PUBLISHED' | translate }}</i>
                     <i ng-if="content.isActive">{{ 'PUBLISHED' | translate }}</i>
                 </td>
-                <td data-title="'ORDER' | translate" sortable="'weight'" class="text-center">
-                    {{ content.weight }}
-                </td>
                 <td data-title="'AUTHOR' | translate" sortable="'author.firstName'" class="text-center">
                     {{ content.author.firstName }} {{ content.author.lastName }}
+                </td>
+                <td data-title="'ORDER' | translate" sortable="'weight'" class="text-center">
+                    {{ content.weight }}
                 </td>
                 <td data-title="'ID' | translate" sortable="'id'" class="text-center">
                     {{ content.id }}
@@ -129,7 +151,7 @@
         <div ng-if="params.settings().counts.length" class="ng-table-counts btn-group pull-right">
             <button type="button"
                     ng-repeat="count in params.settings().counts"
-                    ng-class="{'active':params.count()==count}"
+                    ng-class="{'active':params.count() == count}"
                     ui-sref="content.list({ page: page.number, perPage:count })"
                     class="btn btn-default">
                 <span ng-bind="count"></span>

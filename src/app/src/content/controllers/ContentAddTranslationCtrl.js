@@ -5,7 +5,7 @@ function ContentAddTranslationCtrl($scope, $state, $stateParams, ContentReposito
     // default translations lang code
     $scope.newContentTranslation = {
         contentId: $stateParams.contentId,
-        langCode: $scope.listLang.code
+        langCode: $stateParams.langCode
     };
     // contents POST action
     $scope.addnewContentTranslation = function addNewContent(newContentTranslation) {
