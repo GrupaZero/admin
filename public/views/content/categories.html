@@ -1,4 +1,4 @@
-<div class="col-sm-2 col-md-2 quick-c-sidebar">
+<div class="quick-c-sidebar">
     <div class="aside-header">
         <h4 class="clearfix">
             <strong class="pull-left">{{ 'CATEGORIES' | translate | uppercase }}</strong>
@@ -39,7 +39,7 @@
            ng-show="!!category.children.length"
            ng-class="{'fa-caret-right': collapsed, 'fa-caret-down': !collapsed }">
         </i>
-        <a href="" ui-sref="content.list({ contentId: category.id })" ui-sref-opts="{ reload: false }"
+        <a href="" ui-sref="content.list({ contentId: category.id })" ui-sref-opts="{ inherit: false, reload: false }"
            title="{{category.translations | getTranslation:listLang.code:'title'}}">
             <i class="fa fa-fw"
                ng-class="(collapsed || !category.children.length) ? 'fa-folder-o' : 'fa-folder-open-o'">

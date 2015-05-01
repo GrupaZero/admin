@@ -1,7 +1,9 @@
 'use strict';
 
 function Notifications($alert, $translate) {
-    var container = '.main';
+    var container = 'body';
+    var placement = 'top-right';
+    var type = 5;
     /**
      * Function which shows messages of given type
      *
@@ -60,6 +62,8 @@ function Notifications($alert, $translate) {
                 title: $translate.instant('INFORMATION') + ':',
                 content: $translate.instant(message),
                 container: container,
+                placement: placement,
+                duration: type,
                 type: 'info'
             });
         },
@@ -73,6 +77,8 @@ function Notifications($alert, $translate) {
                 title: $translate.instant('ERROR') + ':',
                 content: $translate.instant(message),
                 container: container,
+                placement: placement,
+                duration: type,
                 type: 'danger'
             });
         },
@@ -86,6 +92,8 @@ function Notifications($alert, $translate) {
                 title: $translate.instant('WARNING') + ':',
                 content: $translate.instant(message),
                 container: container,
+                placement: placement,
+                duration: type,
                 type: 'warning'
             });
         },
@@ -99,6 +107,8 @@ function Notifications($alert, $translate) {
                 title: $translate.instant('SUCCESS') + ':',
                 content: $translate.instant(message),
                 container: container,
+                placement: placement,
+                duration: type,
                 type: 'success'
             });
         }

@@ -8,6 +8,12 @@
 //   Layout
 
 %quick-l-sidebar {
+  position : fixed;
+  width    : 265px;
+  height   : 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  z-index       : $zindex-navbar-fixed - 1;
 }
 
 // -------------------------------------
@@ -15,6 +21,8 @@
 
 %quick-s-sidebar {
   @extend %sidebar-s-offcanvas;
+  background-color : $blue-dark;
+  border-right     : 1px solid #CCC;
 }
 
 // -------------------------------------
@@ -32,14 +40,16 @@
   @extend %quick-l-sidebar;
   @extend %quick-s-sidebar;
   @extend %quick-t-sidebar;
-  min-height       : 100vh;
-  background-color : #FCFCFC;
 
   .aside-header {
-    border-bottom : 1px solid #e5e5e5;
-    padding       : 15px 15px 12px;
-    margin        : 0 -15px;
-    background    : $white;
+    background    : $blue-darker;
+    border-bottom : 1px solid $black;
+    color         : $white;
+    padding       : 10px 15px;
+    text-shadow   : 1px 1px 1px $black;
+    h4 strong {
+      margin-top : 2px;
+    }
   }
 
   .nav > li > a {

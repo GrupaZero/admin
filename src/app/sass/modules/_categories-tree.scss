@@ -6,19 +6,14 @@
 // - - layout
 
 %categories-l-tree {
-  height       : 100vh;
   overflow-x   : hidden; /* Prevent scroll on narrow devices */
-  margin-left  : -15px;
-  margin-right : -15px;
   padding      : 10px 15px 60px;
 
   .nav > li.uncategorized > a {
     padding : 10px 15px 10px 36px;
-    margin : 0;
+    margin  : 0;
   }
 }
-
-
 
 // - - - - - - - - - - - - - - - - - - -
 // - - skin
@@ -33,7 +28,6 @@
 %categories-t-tree {
 
 }
-
 
 // - - - - - - - - - - - - - - - - - - -
 // - - components
@@ -91,15 +85,16 @@
 
   .fa.pull-left {
     margin-top : .2em;
+    color: $white;
   }
 
   ul {
     ul {
-      background-color : $table-bg-hover;
+      background-color :  lighten($blue-dark, 10%);
       .angular-ui-tree-handle {
         & > a {
           &:hover {
-            color           : $black;
+            color           : #8b91a0;
             text-decoration : none;
           }
         }
@@ -123,7 +118,10 @@
 
     &:hover {
       & > div {
-        background-color : $gray-lighter;
+        background-color : $white;
+        .fa.pull-left {
+          color: $brand-primary;
+        }
       }
     }
 
@@ -134,11 +132,14 @@
         &, a {
           color : $white;
         }
+        .fa.pull-left {
+          color: $white;
+        }
       }
     }
 
     li.active > div > a {
-      color           : $black;
+      color           : $white;
       text-decoration : none;
       font-weight     : bold;
     }
