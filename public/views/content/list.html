@@ -99,7 +99,7 @@
                     <div class="btn-toolbar" role="toolbar">
                         <div class="btn-group btn-group-xs" ng-repeat="lang in langs" ng-switch="lang.code"
                              ng-init="isTranslated = (content.translations | getTranslation:lang.code:'title')">
-                            <a class="label label-default"
+                            <a href="" class="label label-default"
                                title="{{ isTranslated ? isTranslated : 'ADD_TRANSLATION' | translate }}"
                                ui-sref="content.addTranslation({ contentId: content.id, langCode: lang.code })"
                                ng-class="{

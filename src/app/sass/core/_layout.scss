@@ -24,6 +24,14 @@ body.is-sidebar {
       margin-top : $line-height-computed;
     }
   }
+
+  .panel {
+    .page-header {
+      &, h1 {
+        margin-top : $line-height-computed / 2;
+      }
+    }
+  }
 }
 
 .alert {

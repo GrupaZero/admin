@@ -121,6 +121,10 @@
       background-color : $gray-lighter;
       border-color     : $btn-default-border;
       color            : $gray;
+      &.active {
+        color : $white;
+        background-color : $gray-dark;
+      }
     }
   }
 }

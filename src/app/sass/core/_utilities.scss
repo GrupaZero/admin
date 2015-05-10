@@ -61,3 +61,23 @@
 .no-margin-top {
   margin-top : 0 !important;
 }
+
+.no-margin-bottom {
+  margin-bottom : 0 !important;
+}
+
+.margin-top {
+  margin-top : $line-height-computed;
+}
+
+.margin-bottom {
+  margin-bottom : $line-height-computed;
+}
+
+.margin-top-sm {
+  margin-top : $line-height-computed / 2;
+}
+
+.margin-bottom-sm {
+  margin-bottom : $line-height-computed / 2;
+}

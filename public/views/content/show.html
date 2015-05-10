@@ -1,9 +1,9 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-9">
-            <div class="panel">
+            <div class="panel margin-top">
                 <div class="panel-heading">
-                    <div class="page-header">
+                    <div class="page-header no-margin-bottom no-margin-top">
                         <h1 ng-show="content.translations | getTranslation:listLang.code:'title'">
                             {{ content.translations | getTranslation:listLang.code:'title' }}
                         </h1>
@@ -13,8 +13,8 @@
                         </h1>
 
                         <p class="permalink" ng-show="content.route.translations | getTranslation:listLang.code:'url'">
-                            <strong>{{'PERMALINK' | translate }}:</strong>{{ baseUrl }}/{{ listLang.code }}/
-                            <span class="bg-info">{{ content.route.translations | getTranslation:listLang.code:'url' }}</span>
+                            <strong>{{'PERMALINK' | translate }}:</strong> {{ baseUrl }}/{{ listLang.code }}/<span
+                                class="bg-info">{{ content.route.translations | getTranslation:listLang.code:'url' }}</span>
                             <a class="btn btn-primary btn-xs">
                                 {{ 'EDIT' | translate }}
                             </a>
@@ -32,7 +32,7 @@
             </div>
         </div>
         <div class="col-lg-3">
-            <div class="panel panel-default">
+            <div class="panel panel-default margin-top">
                 <div class="panel-heading">
                     <strong>{{ 'PUBLISH' | translate | uppercase }}</strong>
                 </div>
@@ -54,47 +54,36 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <strong>{{ 'TRANSLATIONS' | translate | uppercase }}</strong>
+                    <span class="label pull-right label-default">{{'CLICK_TO_SELECT' | translate }}</span>
                 </div>
                 <div class="list-group action-group">
-                    <div ng-repeat="translation in content.translations" class="list-group-item">
-                        <span class="label label-success pull-right" translate="{{ translation.lang | langName }}"></span>
 
-                        <h2 class="list-group-item-heading">
-                            {{ translation.title }}
-                        </h2>
+                    <div ng-repeat="lang in langs" ng-switch="lang.code" class="list-group-item"
+                         ng-click="selectLanguage(lang)"
+                         ng-class="{
+                         'empty': !(content.translations | getTranslation:lang.code:'title'),
+                         'active': lang.code == listLang.code
+                         }">
 
-                        <p class="permalink">
-                            <strong>{{'PERMALINK' | translate }}:</strong>
-                            {{ baseUrl }}/{{ translation.lang }}/<span class="bg-info">{{ content.route.translations | getTranslation:translation.lang:'url' }}</span>
-                            <a class="btn btn-primary btn-xs">
-                                {{ 'EDIT' | translate }}
-                            </a>
-                        </p>
-
-
-                        <div class="box-inner text-right">
-                            <button class="btn btn-danger">
-                                <i class="icon glyphicon glyphicon-remove-circle"></i> {{ 'DELETE' | translate }}
-                            </button>
-                            <button class="btn btn-primary">
-                                <i class="icon glyphicon glyphicon-edit"></i> {{ 'EDIT' | translate }}
-                            </button>
+                        <div ng-show="(content.translations | getTranslation:lang.code:'title')">
+                            <h2 class="list-group-item-heading" translate="{{ lang.code | langName }}"></h2>
                         </div>
-                    </div>
+                        <div ng-hide="(content.translations | getTranslation:lang.code:'title')">
 
-                    <div ng-repeat="lang in langs" class="list-group-item empty">
-                        <span class="label label-default pull-right" translate="{{ lang.code | langName }}"></span>
-                        <h4 class="list-group-item-heading">{{ 'NO_TRANSLATION' | translate }}</h4>
+                            <h4 class="list-group-item-heading" translate="{{ lang.code | langName }}"></h4>
 
-                        <p class="list-group-item-text">
-                            {{ 'NO_TRANSLATION_INFO' | translate }}
-                        </p>
+                            <p class="list-group-item-text">
+                                {{ 'NO_TRANSLATION_INFO' | translate }}
+                            </p>
 
-                        <div class="box-inner">
-                            <button class="btn btn-default btn-block">
-                                <i class="icon glyphicon glyphicon-plus-sign"></i> {{ 'ADD' | translate }}
-                            </button>
+                            <div class="box-inner">
+                                <a class="btn btn-default btn-block" href=""
+                                   ui-sref="content.addTranslation({ contentId: content.id, langCode: lang.code })">
+                                    <i class="icon glyphicon glyphicon-plus-sign"></i> {{ 'ADD' | translate }}
+                                </a>
+                            </div>
                         </div>
+
                     </div>
 
                 </div>
