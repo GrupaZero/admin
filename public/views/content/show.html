@@ -12,9 +12,17 @@
                     <div ng-repeat="translation in content.translations" class="list-group-item">
                         <span class="label label-success pull-right" translate="{{ translation.lang | langName }}"></span>
 
-                        <h4 class="list-group-item-heading">
+                        <h2 class="list-group-item-heading">
                             {{ translation.title }}
-                        </h4>
+                        </h2>
+
+                        <p class="permalink">
+                            <strong>{{'PERMALINK' | translate }}:</strong>
+                            {{ baseUrl }}/{{ translation.lang }}/
+                            <span class="bg-info">
+                                {{ content.route.translations | getTranslation:translation.lang:'url' }}
+                            </span>
+                        </p>
 
                         <p class="list-group-item-text">
                             {{ translation.body }}
