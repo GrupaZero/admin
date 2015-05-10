@@ -115,6 +115,7 @@
     }
     &:hover {
       box-shadow : 0 2px 5px rgba(0, 0, 0, 0.5);
+      cursor     : pointer;
       z-index    : $zindex-navbar-fixed - 1;
     }
     &.empty {
@@ -122,7 +123,7 @@
       border-color     : $btn-default-border;
       color            : $gray;
       &.active {
-        color : $white;
+        color            : $white;
         background-color : $gray-dark;
       }
     }
