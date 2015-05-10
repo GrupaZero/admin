@@ -1,9 +1,56 @@
 <div class="container-fluid">
-    <div class="page-header">
-        <h1>{{ 'CONTENT_DETAILS' | translate }}</h1>
-    </div>
     <div class="row">
         <div class="col-lg-9">
+            <div class="panel">
+                <div class="panel-heading">
+                    <div class="page-header">
+                        <h1 ng-show="content.translations | getTranslation:listLang.code:'title'">
+                            {{ content.translations | getTranslation:listLang.code:'title' }}
+                        </h1>
+
+                        <h1 ng-hide="content.translations | getTranslation:listLang.code:'title'">
+                            {{ 'NO_TRANSLATION' | translate }}
+                        </h1>
+
+                        <p class="permalink" ng-show="content.route.translations | getTranslation:listLang.code:'url'">
+                            <strong>{{'PERMALINK' | translate }}:</strong>{{ baseUrl }}/{{ listLang.code }}/
+                            <span class="bg-info">{{ content.route.translations | getTranslation:listLang.code:'url' }}</span>
+                            <a class="btn btn-primary btn-xs">
+                                {{ 'EDIT' | translate }}
+                            </a>
+                        </p>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div ng-show="content.translations | getTranslation:listLang.code:'body'"
+                         ng-bind-html="content.translations | getTranslation:listLang.code:'body' | trustAsHtml">
+                    </div>
+                    <div ng-hide="content.translations | getTranslation:listLang.code:'body'">
+                        {{ 'NO_TRANSLATION_INFO' | translate }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <strong>{{ 'PUBLISH' | translate | uppercase }}</strong>
+                </div>
+                <div class="panel-body">
+                    <p><strong>{{ 'STATUS' | translate }}:</strong> {{ 'PUBLISHED' | translate }}</p>
+
+                    <p><strong>{{ 'CREATED_AT' | translate }}:</strong> {{ content.createdAt | date }}</p>
+                </div>
+                <div class="panel-footer text-right">
+                    <a class="pull-left text-danger" ui-sref="content.show" style="margin-top: 7px;">
+                        <small class="hidden-xs">{{ 'MOVE_TO_TRASH' | translate }}</small>
+                    </a>
+                    <button type="button" class="btn btn-success">
+                        {{ 'PUBLISH' | translate }}
+                    </button>
+                </div>
+            </div>
+
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <strong>{{ 'TRANSLATIONS' | translate | uppercase }}</strong>
@@ -18,15 +65,12 @@
 
                         <p class="permalink">
                             <strong>{{'PERMALINK' | translate }}:</strong>
-                            {{ baseUrl }}/{{ translation.lang }}/
-                            <span class="bg-info">
-                                {{ content.route.translations | getTranslation:translation.lang:'url' }}
-                            </span>
+                            {{ baseUrl }}/{{ translation.lang }}/<span class="bg-info">{{ content.route.translations | getTranslation:translation.lang:'url' }}</span>
+                            <a class="btn btn-primary btn-xs">
+                                {{ 'EDIT' | translate }}
+                            </a>
                         </p>
 
-                        <p class="list-group-item-text">
-                            {{ translation.body }}
-                        </p>
 
                         <div class="box-inner text-right">
                             <button class="btn btn-danger">
@@ -53,26 +97,6 @@
                         </div>
                     </div>
 
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <strong>{{ 'PUBLISH' | translate | uppercase }}</strong>
-                </div>
-                <div class="panel-body">
-                    <p><strong>{{ 'STATUS' | translate }}:</strong> {{ 'PUBLISHED' | translate }}</p>
-
-                    <p><strong>{{ 'CREATED_AT' | translate }}:</strong> {{ content.createdAt | date }}</p>
-                </div>
-                <div class="panel-footer text-right">
-                    <a class="pull-left text-danger" ui-sref="content.show" style="margin-top: 7px;">
-                        <small class="hidden-xs">{{ 'MOVE_TO_TRASH' | translate }}</small>
-                    </a>
-                    <button type="button" class="btn btn-success">
-                        {{ 'PUBLISH' | translate }}
-                    </button>
                 </div>
             </div>
         </div>

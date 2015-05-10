@@ -52,4 +52,9 @@ angular.module('CoreFilters', [])
                 return false;
             }
         };
+    })
+
+    .filter('trustAsHtml', function($sce) {
+        'use strict';
+        return $sce.trustAsHtml;
     });
