@@ -1,11 +1,11 @@
 'use strict';
 
 function UserCtrl($scope, $rootScope, Restangular) {
-    console.log('UserCtrl loaded');
+    console.log('UserListCtrl loaded');
     var users = Restangular.all('users');
 
-    $rootScope.$broadcast('test');
-    users.getList().then(function (contents) {
+    $rootScope.$broadcast('abc');
+    users.getList().then(function(contents) {
         $scope.contents = contents;
     });
 }

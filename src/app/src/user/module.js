@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('admin.user', [])
+angular.module('admin.user', ['ngTable'])
     .config([
         '$stateProvider',
         '$urlRouterProvider',
@@ -16,16 +16,18 @@ angular.module('admin.user', [])
                     templateUrl: viewPath + 'index.html'
                 })
                 .state('user.list', {
-                    url: '/list',
+                    url: '/list/{userId}?page&perPage',
                     views: {
                         'content': {
                             templateUrl: viewPath + 'list.html'
                         }
-                    }
+                    },
+
                 });
         }
     ])
-    .controller('UserCtrl', require('./controllers/UserCtrl'))
+    .controller('UserListCtrl', require('./controllers/UserListCtrl'))
+    .factory('UserRepository', require('./services/UserRepository.js'))
     .run([
         'NavBar',
         function(NavBar) {
