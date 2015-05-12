@@ -15,7 +15,7 @@
 
 function UserRepository(Restangular) {
     var api = 'admin/users';
-    var contents = Restangular.all(api);
+    var users = Restangular.all(api);
     return {
         one: function(id, params) {
             return Restangular.one(api, id).get(params);
@@ -24,7 +24,7 @@ function UserRepository(Restangular) {
             return Restangular.one(api).getList('tree', params);
         },
         list: function(params) {
-            return contents.getList(params);
+            return users.getList(params);
         },
         clean: function(elem) {
             return Restangular.stripRestangular(elem);

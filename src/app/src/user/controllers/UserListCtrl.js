@@ -1,8 +1,6 @@
 'use strict';
 
 function UserListCtrl($scope, $stateParams, $rootScope, UserRepository, NgTableParams) {
-    console.log('UserListCtrl loaded');
-
     $scope.tableParams = new NgTableParams({
         count: 25, // count per page
         sorting: {
