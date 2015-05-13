@@ -1,6 +1,6 @@
 'use strict';
 
-function UserListCtrl($scope, $state, $stateParams, $rootScope, UserRepository, $modal) {
+function UserListCtrl($scope, $state, UserRepository, $modal) {
     var vm = this;
     var viewPath = 'packages/gzero/admin/views/user/directives/';
     // Delete modal
@@ -57,5 +57,5 @@ function UserListCtrl($scope, $state, $stateParams, $rootScope, UserRepository, 
     };
 }
 
-UserListCtrl.$inject = ['$scope', '$state', '$stateParams', '$rootScope', 'UserRepository', '$modal'];
+UserListCtrl.$inject = ['$scope', '$state', 'UserRepository', '$modal'];
 module.exports = UserListCtrl;
