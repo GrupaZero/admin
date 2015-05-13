@@ -26,7 +26,7 @@ function UserListCtrl($scope, $state, $stateParams, $rootScope, UserRepository, 
         /**
          * Function shows the AngularStrap modal
          *
-         * @param contentId content id to be removed, it is saved in the scope
+         * @param userId content id to be removed, it is saved in the scope
          */
         showModal: function(userId) {
             var self = this;
