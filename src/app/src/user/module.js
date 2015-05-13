@@ -27,7 +27,9 @@ angular.module('admin.user', ['ngTable'])
         }
     ])
     .controller('UserListCtrl', require('./controllers/UserListCtrl'))
+    .controller('UserDeleteCtrl', require('./controllers/UserDeleteCtrl'))
     .factory('UserRepository', require('./services/UserRepository.js'))
+    .directive('userDeleteButton', require('./directives/UserDeleteButton.js'))
     .run([
         'NavBar',
         function(NavBar) {
