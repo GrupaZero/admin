@@ -11,11 +11,10 @@
                         <h1 ng-hide="content.translations | getTranslation:listLang.code:'title'">
                             {{ 'NO_TRANSLATION' | translate }}
                         </h1>
-
-                        <p class="permalink" ng-show="content.route.translations | getTranslation:listLang.code:'url'">
+                        <p class="permalink" ng-show="(content.route.translations | getTranslation:listLang.code:'url')">
                             <strong>{{'PERMALINK' | translate }}:</strong> {{ baseUrl }}/{{ listLang.code }}/<span
                                 class="bg-info">{{ content.route.translations | getTranslation:listLang.code:'url' }}</span>
-                            <a class="btn btn-primary btn-xs">
+                            <a class="btn btn-primary btn-xs" ng-if="content.type != 'category'">
                                 {{ 'EDIT' | translate }}
                             </a>
                         </p>
