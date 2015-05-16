@@ -68,5 +68,8 @@
     "WARNING": "Uwaga",
     "ORDER": "Kolejność",
     "WELCOME": "Witaj",
-    "WELCOME_MESSAGE": "Jesteś na miejscu"
+    "WELCOME_MESSAGE": "Jesteś na miejscu",
+    "EMAIL" : "E-mail",
+    "FIRST_NAME": "Imie",
+    "LAST_NAME": "Nazwisko"
 }
