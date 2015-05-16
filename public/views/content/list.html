@@ -104,16 +104,28 @@
                     <div class="btn-toolbar" role="toolbar">
                         <div class="btn-group btn-group-xs" ng-repeat="lang in langs" ng-switch="lang.code"
                              ng-init="isTranslated = (content.translations | getTranslation:lang.code:'title')">
+                            <!-- TRANSLATION IS AVAILABLE -->
                             <a href="" class="label label-default"
-                               title="{{ isTranslated ? isTranslated : 'ADD_TRANSLATION' | translate }}"
+                               ng-if="isTranslated"
+                               title="{{ isTranslated }}"
+                               ng-click="selectLanguage(lang)"
+                               ui-sref="content.show({ contentId: content.id })"
+                               ng-class="{
+                               'label-danger' : !isTranslated && lang.code == listLang.code,
+                               'label-primary' : isTranslated && lang.code == listLang.code
+                               }">
+                                <i class="glyphicon glyphicon-ok-circle"></i> {{ lang.code }}
+                            </a>
+                            <!-- TRANSLATION IS NOT AVAILABLE -->
+                            <a href="" class="label label-default"
+                               ng-if="!isTranslated"
+                               title="{{ 'ADD_TRANSLATION' | translate  }}"
                                ui-sref="content.addTranslation({ contentId: content.id, langCode: lang.code })"
                                ng-class="{
                                'label-danger' : !isTranslated && lang.code == listLang.code,
                                'label-primary' : isTranslated && lang.code == listLang.code
                                }">
-                                <i class="glyphicon glyphicon-ok-circle" ng-if="isTranslated"></i>
-                                <i class="glyphicon glyphicon-ban-circle" ng-if="!isTranslated"></i>
-                                {{ lang.code }}
+                                <i class="glyphicon glyphicon-ban-circle"></i> {{ lang.code }}
                             </a>
                         </div>
                     </div>
