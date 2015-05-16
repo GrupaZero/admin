@@ -65,11 +65,12 @@
     "USER": "User",
     "USER_DETAILS": "User details",
     "USER_LIST": "Users list",
+    "VIEW": "View",
     "WARNING": "Warning",
     "ORDER": "Order",
     "WELCOME": "Welcome",
     "WELCOME_MESSAGE": "You have arrived",
-    "EMAIL" : "E-mail",
+    "EMAIL": "E-mail",
     "FIRST_NAME": "First name",
     "LAST_NAME": "Last name"
 }

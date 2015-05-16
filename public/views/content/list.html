@@ -6,8 +6,7 @@
             <span class="sub-c-title">
                 {{ 'CATEGORY' | translate | uppercase }}
             </span>
-                <a href="{{ baseUrl }}/{{ listLang.code }}/{{ listParent.route.translations | getTranslation:listLang.code:'url' }}"
-                   target="_blank">
+                <a href="" ui-sref="content.show({ contentId: listParent.id })">
                     {{ listParent.translations | getTranslation:listLang.code:'title' }}
                 </a>
             <span ng-hide="(listParent.translations | getTranslation:listLang.code:'title')">
@@ -17,8 +16,15 @@
                 </a>
             </span>
             <span class="pull-right">
+                <a href="{{ baseUrl }}/{{ listLang.code }}/{{ listParent.route.translations | getTranslation:listLang.code:'url' }}"
+                   class="btn btn-default"
+                   target="_blank"
+                   title="{{ 'SHOW' | translate }}">
+                    <i class="glyphicon glyphicon-link hidden-sm"></i>
+                    <span class="hidden-xs">{{ 'VIEW' | translate }}</span>
+                </a>
                 <button ui-sref="content.show({ contentId: listParent.id })"
-                        class="btn btn-default"
+                        class="btn btn-primary"
                         type="button"
                         title="{{ 'DETAILS' | translate }}">
                     <i class="glyphicon glyphicon-edit hidden-sm"></i>
@@ -82,9 +88,8 @@
             <tr ng-repeat="content in $data" ng-class="{ inactive: !content.isActive }">
                 <td data-title="'TITLE' | translate" sortable="'translations.title'">
                     <h5 ng-if="(content.translations | getTranslation:listLang.code:'title')">
-                        <a href="{{ baseUrl }}/{{ listLang.code }}/{{ content.route.translations | getTranslation:listLang.code:'url' }}"
-                           ng-show="(content.route.translations | getTranslation:listLang.code:'url')"
-                           target="_blank">
+                        <a href="" ui-sref="content.show({ contentId: content.id })"
+                           ng-show="(content.route.translations | getTranslation:listLang.code:'url')">
                             {{ content.translations | getTranslation:listLang.code:'title' }}
                         </a>
                     </h5>
@@ -127,6 +132,11 @@
                     {{ content.id }}
                 </td>
                 <td data-title="'ACTION' | translate" class="text-center action-column">
+                    <a href="{{ baseUrl }}/{{ listLang.code }}/{{ content.route.translations | getTranslation:listLang.code:'url' }}"
+                       target="_blank"
+                       class="btn btn-sm btn-default">
+                        {{ 'VIEW' | translate }}
+                    </a>
                     <a href="" ui-sref="content.show({ contentId: content.id })" class="btn btn-sm btn-primary">
                         {{ 'DETAILS' | translate }}
                     </a>
