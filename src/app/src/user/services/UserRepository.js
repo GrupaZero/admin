@@ -31,6 +31,9 @@ function UserRepository(Restangular) {
         },
         delete: function(id) {
             return Restangular.one(api, id).remove();
+        },
+        update: function(id, user) {
+            return Restangular.one(api, id).customPUT(user);
         }
     };
 }

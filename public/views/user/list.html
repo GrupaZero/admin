@@ -23,8 +23,11 @@
                         {{ user.id }}
                     </td>
                     <td data-title="'ACTION' | translate" class="text-center">
-                        <a href="" ui-sref="user.show({ userId: user.id })" class="btn btn-primary btn-xs">
+                        <a href="" ui-sref="user.show({ userId: user.id })" class="btn btn-default btn-xs">
                             <i class="fa fa-search"></i>
+                        </a>
+                        <a href="" ui-sref="user.edit({ userId: user.id })" class="btn btn-primary btn-xs">
+                            <i class="fa fa-pencil"></i>
                         </a>
                         <button user-delete-button class="btn btn-danger btn-xs" user-id="{{ user.id }}">
                             <i class="fa fa-times"></i>

@@ -23,6 +23,14 @@ angular.module('admin.user', ['ngTable'])
                             controller: 'UserDetailsCtrl'
                         }
                     }
+                }).state('user.edit', {
+                    url: '/{userId}/edit',
+                    views: {
+                        'content': {
+                            templateUrl: viewPath + 'edit.html',
+                            controller: 'UserEditCtrl'
+                        }
+                    }
                 })
                 .state('user.list', {
                     url: '/list/{userId}?page&perPage',
@@ -37,6 +45,7 @@ angular.module('admin.user', ['ngTable'])
     ])
     .controller('UserListCtrl', require('./controllers/UserListCtrl'))
     .controller('UserDeleteCtrl', require('./controllers/UserDeleteCtrl'))
+    .controller('UserEditCtrl', require('./controllers/UserEditCtrl'))
     .controller('UserDetailsCtrl', require('./controllers/UserDetailsCtrl'))
     .factory('UserRepository', require('./services/UserRepository.js'))
     .directive('userDeleteButton', require('./directives/UserDeleteButton.js'))
