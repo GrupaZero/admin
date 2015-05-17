@@ -104,8 +104,10 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
     .controller('ContentDetailsCtrl', require('./controllers/ContentDetailsCtrl'))
     .controller('ContentListCtrl', require('./controllers/ContentListCtrl'))
     .controller('ContentAddTranslationCtrl', require('./controllers/ContentAddTranslationCtrl'))
+    .controller('ContentRouteCtrl', require('./controllers/ContentRouteCtrl'))
     .factory('ContentRepository', require('./services/ContentRepository.js'))
     .directive('contentDeleteButton', require('./directives/ContentDeleteButton.js'))
+    .directive('contentEditRouteButton', require('./directives/ContentEditRouteButton.js'))
     .run([
         'NavBar',
         function(NavBar) {

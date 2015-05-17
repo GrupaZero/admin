@@ -115,12 +115,17 @@
     }
     &:hover {
       box-shadow : 0 2px 5px rgba(0, 0, 0, 0.5);
-      z-index    : 1050;
+      cursor     : pointer;
+      z-index    : $zindex-navbar-fixed - 1;
     }
     &.empty {
       background-color : $gray-lighter;
       border-color     : $btn-default-border;
       color            : $gray;
+      &.active {
+        color            : $white;
+        background-color : $gray-dark;
+      }
     }
   }
 }
@@ -155,7 +160,7 @@ li:hover {
   padding : 0 0 80px;
   margin  : 0 -15px;
   .action-column {
-    width : 156px;
+    width : 250px;
   }
   .pagination {
     margin : 0;

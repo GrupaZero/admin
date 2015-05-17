@@ -6,8 +6,7 @@
             <span class="sub-c-title">
                 {{ 'CATEGORY' | translate | uppercase }}
             </span>
-                <a href="{{ baseUrl }}/{{ listLang.code }}/{{ listParent.route.translations | getTranslation:listLang.code:'url' }}"
-                   target="_blank">
+                <a href="" ui-sref="content.show({ contentId: listParent.id })">
                     {{ listParent.translations | getTranslation:listLang.code:'title' }}
                 </a>
             <span ng-hide="(listParent.translations | getTranslation:listLang.code:'title')">
@@ -17,8 +16,15 @@
                 </a>
             </span>
             <span class="pull-right">
+                <a href="{{ baseUrl }}/{{ listLang.code }}/{{ listParent.route.translations | getTranslation:listLang.code:'url' }}"
+                   class="btn btn-default"
+                   target="_blank"
+                   title="{{ 'SHOW' | translate }}">
+                    <i class="glyphicon glyphicon-link hidden-sm"></i>
+                    <span class="hidden-xs">{{ 'VIEW' | translate }}</span>
+                </a>
                 <button ui-sref="content.show({ contentId: listParent.id })"
-                        class="btn btn-default"
+                        class="btn btn-primary"
                         type="button"
                         title="{{ 'DETAILS' | translate }}">
                     <i class="glyphicon glyphicon-edit hidden-sm"></i>
@@ -82,9 +88,8 @@
             <tr ng-repeat="content in $data" ng-class="{ inactive: !content.isActive }">
                 <td data-title="'TITLE' | translate" sortable="'translations.title'">
                     <h5 ng-if="(content.translations | getTranslation:listLang.code:'title')">
-                        <a href="{{ baseUrl }}/{{ listLang.code }}/{{ content.route.translations | getTranslation:listLang.code:'url' }}"
-                           ng-show="(content.route.translations | getTranslation:listLang.code:'url')"
-                           target="_blank">
+                        <a href="" ui-sref="content.show({ contentId: content.id })"
+                           ng-show="(content.route.translations | getTranslation:listLang.code:'url')">
                             {{ content.translations | getTranslation:listLang.code:'title' }}
                         </a>
                     </h5>
@@ -99,16 +104,28 @@
                     <div class="btn-toolbar" role="toolbar">
                         <div class="btn-group btn-group-xs" ng-repeat="lang in langs" ng-switch="lang.code"
                              ng-init="isTranslated = (content.translations | getTranslation:lang.code:'title')">
-                            <a class="label label-default"
-                               title="{{ isTranslated ? isTranslated : 'ADD_TRANSLATION' | translate }}"
+                            <!-- TRANSLATION IS AVAILABLE -->
+                            <a href="" class="label label-default"
+                               ng-if="isTranslated"
+                               title="{{ isTranslated }}"
+                               ng-click="selectLanguage(lang)"
+                               ui-sref="content.show({ contentId: content.id })"
+                               ng-class="{
+                               'label-danger' : !isTranslated && lang.code == listLang.code,
+                               'label-primary' : isTranslated && lang.code == listLang.code
+                               }">
+                                <i class="glyphicon glyphicon-ok-circle"></i> {{ lang.code }}
+                            </a>
+                            <!-- TRANSLATION IS NOT AVAILABLE -->
+                            <a href="" class="label label-default"
+                               ng-if="!isTranslated"
+                               title="{{ 'ADD_TRANSLATION' | translate  }}"
                                ui-sref="content.addTranslation({ contentId: content.id, langCode: lang.code })"
                                ng-class="{
                                'label-danger' : !isTranslated && lang.code == listLang.code,
                                'label-primary' : isTranslated && lang.code == listLang.code
                                }">
-                                <i class="glyphicon glyphicon-ok-circle" ng-if="isTranslated"></i>
-                                <i class="glyphicon glyphicon-ban-circle" ng-if="!isTranslated"></i>
-                                {{ lang.code }}
+                                <i class="glyphicon glyphicon-ban-circle"></i> {{ lang.code }}
                             </a>
                         </div>
                     </div>
@@ -127,6 +144,11 @@
                     {{ content.id }}
                 </td>
                 <td data-title="'ACTION' | translate" class="text-center action-column">
+                    <a href="{{ baseUrl }}/{{ listLang.code }}/{{ content.route.translations | getTranslation:listLang.code:'url' }}"
+                       target="_blank"
+                       class="btn btn-sm btn-default">
+                        {{ 'VIEW' | translate }}
+                    </a>
                     <a href="" ui-sref="content.show({ contentId: content.id })" class="btn btn-sm btn-primary">
                         {{ 'DETAILS' | translate }}
                     </a>
