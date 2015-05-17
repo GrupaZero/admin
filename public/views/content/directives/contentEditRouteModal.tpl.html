@@ -27,6 +27,7 @@
                 </button>
                 <button type="button"
                         class="btn btn-primary"
+                        ng-disabled="contentRouteForm.$invalid"
                         ng-click="vm.editRouteModal.saveContentRoute()">
                     <i class="glyphicon glyphicon-ok-circle"></i>
                     {{ 'SAVE' | translate }}
