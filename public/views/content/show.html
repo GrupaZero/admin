@@ -14,9 +14,15 @@
                         <p class="permalink" ng-show="(content.route.translations | getTranslation:listLang.code:'url')">
                             <strong>{{'PERMALINK' | translate }}:</strong> {{ baseUrl }}/{{ listLang.code }}/<span
                                 class="bg-info">{{ content.route.translations | getTranslation:listLang.code:'url' }}</span>
-                            <a class="btn btn-primary btn-xs" ng-if="content.type != 'category'">
+                            <button content-edit-route-button
+                                    ng-if="content.type != 'category'"
+                                    data-id="{{ content.id }}"
+                                    data-route="{{ content.route.translations | getTranslation:listLang.code:'url' }}"
+                                    data-lang="{{ listLang.code }}"
+                                    class="btn btn-primary btn-xs"
+                                    type="button">
                                 {{ 'EDIT' | translate }}
-                            </a>
+                            </button>
                         </p>
                     </div>
                 </div>

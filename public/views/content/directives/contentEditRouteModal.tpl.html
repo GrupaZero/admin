@@ -1,0 +1,37 @@
+<div class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" ng-show="title">
+                <button type="button" class="close" ng-click="vm.editRouteModal.closeModal()">&times;</button>
+                <h4 class="modal-title" translate="{{title}}"></h4>
+            </div>
+            <div class="modal-body">
+                <form name="contentRouteForm" novalidate>
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <!-- Title Form input -->
+                            <div class="form-group">
+                                <label for="title">{{ 'PERMALINK' | translate }} <strong class="text-danger">*</strong></label>
+                                <input id="title" name="title" type="text" class="form-control" required
+                                       ng-model="vm.contentRoute">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button"
+                        class="btn btn-success"
+                        ng-click="vm.editRouteModal.closeModal()">
+                    {{ (vm.hideSubmitButton) ? 'OK' : 'CANCEL' | translate }}
+                </button>
+                <button type="button"
+                        class="btn btn-primary"
+                        ng-click="vm.editRouteModal.saveContentRoute()">
+                    <i class="glyphicon glyphicon-ok-circle"></i>
+                    {{ 'SAVE' | translate }}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
