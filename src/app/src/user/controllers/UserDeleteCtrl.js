@@ -26,7 +26,7 @@ function UserListCtrl($scope, $state, UserRepository, $modal) {
         /**
          * Function shows the AngularStrap modal
          *
-         * @param userId content id to be removed, it is saved in the scope
+         * @param userId user id to be removed, it is saved in the scope
          */
         showModal: function(userId) {
             var self = this;
@@ -42,11 +42,12 @@ function UserListCtrl($scope, $state, UserRepository, $modal) {
             var self = this;
             self.modal.hide();
         },
+
         /**
          * Function performs the RestAngular DELETE action for user id in scope
          *
          */
-        deleteContent: function() {
+        deleteUser: function() {
             var self = this;
             UserRepository.delete(vm.userId).then(function(response) {
                 self.closeModal();
