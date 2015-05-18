@@ -42,7 +42,7 @@ function UserListCtrl($scope, $state, UserRepository, $modal) {
             var self = this;
             self.modal.hide();
         },
-        
+
         /**
          * Function performs the RestAngular DELETE action for user id in scope
          *

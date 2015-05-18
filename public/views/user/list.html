@@ -22,6 +22,11 @@
                     <td data-title="'ID' | translate" sortable="'id'" class="text-center">
                         {{ user.id }}
                     </td>
+                    <td data-title="'ACTION' | translate" class="text-center">
+                        <button user-delete-button class="btn btn-danger btn-xs" user-id="{{ user.id }}">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </td>
 
                 </tr>
                 <tr ng-hide="$data[0]">
