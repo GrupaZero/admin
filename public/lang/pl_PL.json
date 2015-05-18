@@ -74,6 +74,7 @@
     "FIRST_NAME": "Imie",
     "LAST_NAME": "Nazwisko",
     "DELETE_USER_QUESTION": "Czy napewno chcesz usunąć to konto użytkownika ?",
-    "UPDATED_AT": "Zaktualizowano"
+    "UPDATED_AT": "Zaktualizowano",
+    "TRASHCAN": "Śmietnik"
 
 }

@@ -67,6 +67,15 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
                         }
                     }
                 })
+                .state('content.trashcan', {
+                    url: '/trashcan',
+                    views: {
+                        'content': {
+                            templateUrl: viewPath + 'trashcan.html',
+                            controller: 'ContentTrashcanCtrl'
+                        }
+                    }
+                })
                 .state('content.add', {
                     url: '/add/{type}',
                     resolve: {
@@ -103,6 +112,7 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
     .controller('ContentDashboardCtrl', require('./controllers/ContentDashboardCtrl'))
     .controller('ContentDetailsCtrl', require('./controllers/ContentDetailsCtrl'))
     .controller('ContentListCtrl', require('./controllers/ContentListCtrl'))
+    .controller('ContentTrashcanCtrl', require('./controllers/ContentTrashcanCtrl'))
     .controller('ContentAddTranslationCtrl', require('./controllers/ContentAddTranslationCtrl'))
     .controller('ContentRouteCtrl', require('./controllers/ContentRouteCtrl'))
     .factory('ContentRepository', require('./services/ContentRepository.js'))
