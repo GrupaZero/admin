@@ -1,6 +1,16 @@
 <div class="container-fluid">
-    <div class="page-header">
-        <h1>{{ 'USER_DETAILS' | translate }}</h1>
+    <div class="col-lg-6">
+        <div class="panel margin-top">
+            <div class="panel-heading">
+                <div class="page-header no-margin-bottom no-margin-top">
+                    <h1>{{ user.firstName }} {{ user.lastName }}</h1>
+
+                    <h3>{{ user.email }}</h3>
+                </div>
+            </div>
+            <div class="panel-body">
+                <p>{{ 'ID' | translate }}: {{ user.id }}</p>
+            </div>
+        </div>
     </div>
-    <h2>User id: {{ id }}</h2>
 </div>

@@ -13,7 +13,7 @@
 
 'use strict';
 
-function UserListCtrl($scope, $stateParams, $rootScope, UserRepository, NgTableParams) {
+function ContentTrashcanCtrl($scope, $stateParams, $rootScope, ContentRepository, NgTableParams) {
     $scope.tableParams = new NgTableParams({
         count: 25, // count per page
         sorting: {
@@ -25,7 +25,8 @@ function UserListCtrl($scope, $stateParams, $rootScope, UserRepository, NgTableP
             // prepare options to be sent to api
             var queryOptions = {
                 lang: $scope.listLang.code,
-                type: 'user'
+                type: 'content',
+                trashed: 1
             };
 
             // params.count() - number of items per page declared in view
@@ -48,17 +49,17 @@ function UserListCtrl($scope, $stateParams, $rootScope, UserRepository, NgTableP
             }
 
             // get list by default
-            var promise = UserRepository.list(queryOptions);
+            var promise = ContentRepository.list(queryOptions);
 
             // Contents is a REST AngularJS service that talks to api and return promise
             promise.then(function(response) {
                 params.total(response.meta.total);
-                $defer.resolve(UserRepository.clean(response));
+                $defer.resolve(ContentRepository.clean(response));
                 $scope.meta = response.meta;
             });
         }
     });
 }
 
-UserListCtrl.$inject = ['$scope', '$stateParams', '$rootScope', 'UserRepository', 'ngTableParams'];
-module.exports = UserListCtrl;
+ContentTrashcanCtrl.$inject = ['$scope', '$stateParams', '$rootScope', 'ContentRepository', 'ngTableParams'];
+module.exports = ContentTrashcanCtrl;

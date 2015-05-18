@@ -73,5 +73,7 @@
     "EMAIL": "E-mail",
     "FIRST_NAME": "First name",
     "LAST_NAME": "Last name",
-    "DELETE_USER_QUESTION": "Are you sure you want to delete this user account ?"
+    "DELETE_USER_QUESTION": "Are you sure you want to delete this user account?",
+    "UPDATED_AT": "Updated at",
+    "TRASHCAN": "Trashcan"
 }
