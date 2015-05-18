@@ -14,7 +14,6 @@
 'use strict';
 
 function UserDetailsCtrl($scope, $stateParams, UserRepository, Notifications) {
-    var vm = this;
     // get single user
     UserRepository.one($stateParams.userId).then(function(response) {
         $scope.user = UserRepository.clean(response);
