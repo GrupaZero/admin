@@ -25,8 +25,7 @@ function ContentTrashcanCtrl($scope, $stateParams, $rootScope, ContentRepository
             // prepare options to be sent to api
             var queryOptions = {
                 lang: $scope.listLang.code,
-                type: 'content',
-                trashed: 1
+                type: 'content'
             };
 
             // params.count() - number of items per page declared in view
@@ -49,7 +48,7 @@ function ContentTrashcanCtrl($scope, $stateParams, $rootScope, ContentRepository
             }
 
             // get list by default
-            var promise = ContentRepository.list(queryOptions);
+            var promise = ContentRepository.deleted(queryOptions);
 
             // Contents is a REST AngularJS service that talks to api and return promise
             promise.then(function(response) {
