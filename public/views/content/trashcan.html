@@ -1,0 +1,184 @@
+<div class="col-sm-12 col-md-12">
+    <!-- LIST PARENT -->
+    <div ng-if="listParent" class="row quick-c-nav list-parent">
+        <div class="col-md-12">
+            <h3 class="clearfix">
+            <span class="sub-c-title">
+                {{ 'CATEGORY' | translate | uppercase }}
+            </span>
+                <a href="" ui-sref="content.show({ contentId: listParent.id })">
+                    {{ listParent.translations | getTranslation:listLang.code:'title' }}
+                </a>
+            <span ng-hide="(listParent.translations | getTranslation:listLang.code:'title')">
+                <a ui-sref="content.addTranslation({ contentId: listParent.id, langCode: listLang.code })"
+                   href="" class="btn btn-warning">
+                    <i class="glyphicon glyphicon-exclamation-sign hidden-sm"></i> {{ 'NO_TRANSLATION_BUTTON' | translate }}
+                </a>
+            </span>
+            <span class="pull-right">
+                <a href="{{ baseUrl }}/{{ listLang.code }}/{{ listParent.route.translations | getTranslation:listLang.code:'url' }}"
+                   class="btn btn-default"
+                   target="_blank"
+                   title="{{ 'SHOW' | translate }}">
+                    <i class="glyphicon glyphicon-link hidden-sm"></i>
+                    <span class="hidden-xs">{{ 'VIEW' | translate }}</span>
+                </a>
+                <button ui-sref="content.show({ contentId: listParent.id })"
+                        class="btn btn-primary"
+                        type="button"
+                        title="{{ 'DETAILS' | translate }}">
+                    <i class="glyphicon glyphicon-edit hidden-sm"></i>
+                    <span class="hidden-xs">{{ 'DETAILS' | translate }}</span>
+                </button>
+                <button content-delete-button
+                        data-id="{{ listParent.id }}"
+                        data-type="{{ listParent.type }}"
+                        class="btn btn-danger"
+                        type="button"
+                        title="{{ 'DELETE' | translate }}">
+                    <i class="glyphicon glyphicon-remove-circle hidden-sm"></i>
+                    <span class="hidden-xs">{{ 'DELETE' | translate }}</span>
+                </button>
+            </span>
+            </h3>
+        </div>
+    </div>
+    <div class="row list-actions quick-c-nav">
+        <div class="col-xs-12 col-sm-12 col-lg-6 form-inline">
+            <!-- LIST FILTERS -->
+            <ul class="list-filters nav nav-pills" role="tablist">
+                <li class="subtitle">
+                    {{ 'SHOW' | translate }}
+                </li>
+                <li role="presentation" ng-class="{ active: !activeFilter.isActive }">
+                    <a href="" ui-sref="content.list" ui-sref-opts="{ inherit: false }">{{ 'ALL' | translate }}</a>
+                </li>
+                <li role="presentation" ng-class="{ active: activeFilter.isActive == 1 }">
+                    <a href="" ui-sref="content.list({ isActive: 1 })">{{ 'PUBLISHED' | translate }}</a>
+                </li>
+                <li role="presentation" ng-class="{ active: activeFilter.isActive == 0 }">
+                    <a href="" ui-sref="content.list({ isActive: 0 })">{{ 'NOT_PUBLISHED' | translate }}</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.col-lg-4 -->
+        <div class="col-xs-12 col-sm-12 col-lg-6 text-right">
+            <button ui-sref="content.add({ type: 'category' })" class="btn btn-primary" type="button"
+                    title="{{ 'ADD_CATEGORY' | translate }}">
+                <i class="glyphicon glyphicon-plus hidden-sm"></i>
+                <span class="hidden-xs">{{ 'ADD_CATEGORY' | translate }}</span>
+            </button>
+            <button ui-sref="content.add({ type: 'content' })" class="btn btn-success" type="button"
+                    title="{{ 'ADD_CONTENT' | translate }}">
+                <i class="glyphicon glyphicon-plus hidden-sm"></i>
+                <span class="hidden-xs">{{ 'ADD_CONTENT' | translate }}</span>
+            </button>
+            <button type="button"
+                    ng-click="refreshCurrentState()"
+                    class="btn btn-default"
+                    title="{{ 'REFRESH_LIST' | translate }}">
+                <i class="glyphicon glyphicon-refresh"></i>
+            </button>
+        </div>
+        <!-- /.col-lg-8 -->
+    </div>
+    <div class="table-box">
+        <table ng-table="tableParams" template-pagination="tablePager" class="table table-striped">
+            <tbody>
+            <tr ng-repeat="content in $data" ng-class="{ inactive: !content.isActive }">
+                <td data-title="'TITLE' | translate" sortable="'translations.title'">
+                    <h5 ng-if="(content.translations | getTranslation:listLang.code:'title')">
+                        <a href="" ui-sref="content.show({ contentId: content.id })"
+                           ng-show="(content.route.translations | getTranslation:listLang.code:'url')">
+                            {{ content.translations | getTranslation:listLang.code:'title' }}
+                        </a>
+                    </h5>
+
+                    <h5 ng-hide="(content.translations | getTranslation:listLang.code:'title')">
+                        <a href="" ui-sref="content.addTranslation({ contentId: content.id, langCode: listLang.code })"
+                           class="text-muted">
+                            <i class="glyphicon glyphicon-ban-circle hidden-sm"></i> {{ 'NO_TRANSLATION_BUTTON' | translate }}
+                        </a>
+                    </h5>
+
+                    <div class="btn-toolbar" role="toolbar">
+                        <div class="btn-group btn-group-xs" ng-repeat="lang in langs" ng-switch="lang.code"
+                             ng-init="isTranslated = (content.translations | getTranslation:lang.code:'title')">
+                            <!-- TRANSLATION IS AVAILABLE -->
+                            <a href="" class="label label-default"
+                               ng-if="isTranslated"
+                               title="{{ isTranslated }}"
+                               ng-click="selectLanguage(lang)"
+                               ui-sref="content.show({ contentId: content.id })"
+                               ng-class="{
+                               'label-danger' : !isTranslated && lang.code == listLang.code,
+                               'label-primary' : isTranslated && lang.code == listLang.code
+                               }">
+                                <i class="glyphicon glyphicon-ok-circle"></i> {{ lang.code }}
+                            </a>
+                            <!-- TRANSLATION IS NOT AVAILABLE -->
+                            <a href="" class="label label-default"
+                               ng-if="!isTranslated"
+                               title="{{ 'ADD_TRANSLATION' | translate  }}"
+                               ui-sref="content.addTranslation({ contentId: content.id, langCode: lang.code })"
+                               ng-class="{
+                               'label-danger' : !isTranslated && lang.code == listLang.code,
+                               'label-primary' : isTranslated && lang.code == listLang.code
+                               }">
+                                <i class="glyphicon glyphicon-ban-circle"></i> {{ lang.code }}
+                            </a>
+                        </div>
+                    </div>
+                </td>
+                <td data-title="'STATUS' | translate" sortable="'isActive'" class="text-center">
+                    <i ng-if="!content.isActive">{{ 'NOT_PUBLISHED' | translate }}</i>
+                    <i ng-if="content.isActive">{{ 'PUBLISHED' | translate }}</i>
+                </td>
+                <td data-title="'AUTHOR' | translate" sortable="'author.firstName'" class="text-center">
+                    {{ content.author.firstName }} {{ content.author.lastName }}
+                </td>
+                <td data-title="'ORDER' | translate" sortable="'weight'" class="text-center">
+                    {{ content.weight }}
+                </td>
+                <td data-title="'ID' | translate" sortable="'id'" class="text-center">
+                    {{ content.id }}
+                </td>
+            </tr>
+            <tr ng-hide="$data[0]">
+                <td colspan="6" class="text-center"><strong>{{ 'NO_ENTRIES' | translate }}</strong></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!--TEMPLATE-->
+<script type="text/ng-template" id="tablePager">
+    <div class="ng-cloak ng-table-pager">
+        <ul ng-if="params.settings().counts.length" class="ng-table-counts pagination pull-right">
+            <li ng-repeat="count in params.settings().counts" ng-class="{'active':params.count() == count}">
+                <a href="" ui-sref="content.list({ page: page.number, perPage:count })">
+                    <span ng-bind="count"></span>
+                </a>
+            </li>
+
+        </ul>
+        <ul class="pagination ng-table-pagination">
+            <li ng-class="{'active': !page.active, 'disabled': !page.active && (page.type == 'prev' || page.type == 'next')}"
+                ng-repeat="page in pages" ng-switch="page.type">
+                <a ng-switch-when="prev" ui-sref="content.list({ page: page.number })" href="">&laquo;</a>
+                <a ng-switch-when="first" ui-sref="content.list({ page: page.number })" href="">
+                    <span ng-bind="page.number"></span>
+                </a>
+                <a ng-switch-when="page" ui-sref="content.list({ page: page.number })" href="">
+                    <span ng-bind="page.number"></span>
+                </a>
+                <a ng-switch-when="more" ui-sref="content.list({ page: page.number })" href="">&#8230;</a>
+                <a ng-switch-when="last" ui-sref="content.list({ page: page.number })" href="">
+                    <span ng-bind="page.number"></span>
+                </a>
+                <a ng-switch-when="next" ui-sref="content.list({ page: page.number })" href="">&raquo;</a>
+            </li>
+        </ul>
+    </div>
+</script>

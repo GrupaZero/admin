@@ -28,6 +28,12 @@ function UserRepository(Restangular) {
         },
         clean: function(elem) {
             return Restangular.stripRestangular(elem);
+        },
+        delete: function(id) {
+            return Restangular.one(api, id).remove();
+        },
+        update: function(id, user) {
+            return Restangular.one(api, id).customPUT(user);
         }
     };
 }

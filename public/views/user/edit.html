@@ -1,0 +1,47 @@
+<div class="container-fluid">
+    <div class="col-lg-6">
+        <div class="panel margin-top">
+            <div class="panel-heading">
+                <div class="page-header no-margin-bottom no-margin-top">
+                    <h1>{{'EDIT' | translate}}</h1>
+
+                    <h3>{{ user.email }}</h3>
+                </div>
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal" >
+
+                    <div class="form-group">
+                        <label class="control-label col-lg-4" for="userName">{{ 'FIRST_NAME' | translate }}</label>
+                        <div class="col-lg-8">
+                            <input ng-model="user.firstName" type="text" class="form-control" id="userName" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-lg-4" for="lastName">{{ 'LAST_NAME' | translate }}</label>
+                        <div class="col-lg-8">
+                            <input ng-model="user.lastName" type="text" id="lastName" class="form-control"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-lg-4" for="userEmail">{{ 'EMAIL' | translate }}</label>
+                        <div class="col-lg-8">
+                            <input ng-model="user.email" type="text" class="form-control" id="userEmail" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-lg-8 col-lg-offset-4">
+                            <button ng-click="saveUser()" class="btn btn-primary">
+                                {{ 'SAVE' | translate }}
+                            </button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

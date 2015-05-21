@@ -13,6 +13,9 @@ function ContentRepository(Restangular) {
         list: function(params) {
             return contents.getList(params);
         },
+        deleted: function(params) {
+            return Restangular.one(api).getList('deleted', params);
+        },
         children: function(id, params) {
             return Restangular.one(api, id).getList('children', params);
         },
