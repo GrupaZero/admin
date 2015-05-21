@@ -56,6 +56,55 @@
                 </div>
             </div>
 
+            <div class="panel panel-default margin-top">
+                <div class="panel-heading">
+                    <strong>{{ 'SETTINGS' | translate | uppercase }}</strong>
+                </div>
+                <div class="panel-body">
+
+                    <form class="form-horizontal">
+
+                        <div class="form-group">
+                            <label class="col-sm-8" for="isOnHome">{{ 'IS_ON_HOME' | translate}}</label>
+                            <div class="col-lg-4">
+                                <input ng-model="content.isOnHome" type="checkbox" id="isOnHome" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-8" for="isCommentAllowed">{{ 'IS_COMMENT_ALLOWED' | translate}}</label>
+                            <div class="col-lg-4">
+                                <input ng-model="content.isCommentAllowed" type="checkbox" id="isCommentAllowed" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-8" for="isPromoted">{{ 'IS_PROMOTED' | translate}}</label>
+                            <div class="col-lg-4">
+                                <input ng-model="content.isPromoted" type="checkbox" id="isPromoted" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-8" for="isSticky">{{ 'IS_STICKY' | translate}}</label>
+                            <div class="col-lg-4">
+                                <input ng-model="content.isSticky" type="checkbox" id="isSticky" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                        </div>
+
+                    </form>
+
+                </div>
+                <div class="panel-footer text-right">
+                    <button ng-click="saveContent()" type="button" class="btn btn-success">
+                        {{ 'SAVE' | translate }}
+                    </button>
+                </div>
+            </div>
+
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <strong>{{ 'TRANSLATIONS' | translate | uppercase }}</strong>
