@@ -81,5 +81,6 @@
     "IS_PROMOTED": "Promowanie",
     "IS_STICKY": "Podwieszenie",
     "IS_PUBLISHED": "Opublikowano",
-    "PUBLISHED_AT": "Data publikacji"
+    "PUBLISHED_AT": "Data publikacji",
+    "WEIGHT": "Waga"
 }

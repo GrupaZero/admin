@@ -81,5 +81,6 @@
     "IS_PROMOTED": "Promoted",
     "IS_STICKY": "Sticky",
     "IS_PUBLISHED": "Published",
-    "PUBLISHED_AT": "Published at"
+    "PUBLISHED_AT": "Published at",
+    "WEIGHT": "Weight"
 }
