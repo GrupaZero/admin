@@ -22,6 +22,9 @@ function ContentRepository(Restangular) {
         newContent: function(newContent) {
             return contents.post(newContent);
         },
+        updateContent: function(id, content) {
+            return Restangular.one(api, id).customPUT(content);
+        },
         newContentTranslation: function(id, newTranslation) {
             return Restangular.one(api, id).all('translations').post(newTranslation);
         },
