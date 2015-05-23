@@ -4,7 +4,7 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
     .config([
         '$stateProvider',
         function($stateProvider) {
-            var viewPath = 'packages/gzero/admin/views/content/';
+            var viewPath = 'gzero/admin/views/content/';
             // Now set up the states
             $stateProvider
                 .state('content', {

@@ -23,7 +23,19 @@ class ServiceProvider extends SP {
     public function boot()
     {
         $this->registerRoutes();
-        $this->package('gzero/admin', 'gzero-admin');
+        $this->loadViewsFrom(__DIR__ . '/../../views', 'gzero-admin');
+        $this->publishes(
+            [
+                __DIR__ . '/../../views',
+                'gzero-admin' => base_path('resources/views/gzero/admin'),
+            ]
+        );
+        $this->publishes(
+            [
+                __DIR__ . '/../../../public' => public_path('gzero/admin'),
+            ],
+            'public'
+        );
     }
 
     /**

@@ -23,7 +23,7 @@ angular.module('admin', dependencies).config([
     '$translateProvider',
     '$translatePartialLoaderProvider',
     function($stateProvider, $urlRouterProvider, RestangularProvider, $translateProvider, $translatePartialLoaderProvider) {
-        var viewPath = 'packages/gzero/admin/views/';
+        var viewPath = 'gzero/admin/views/';
 
         // For any unmatched url, redirect to /state1
         $urlRouterProvider.otherwise('/');
@@ -36,7 +36,7 @@ angular.module('admin', dependencies).config([
             });
 
         $translateProvider.useLoader('$translatePartialLoader', {
-            urlTemplate: 'packages/gzero/{part}/lang/{lang}.json'
+            urlTemplate: 'gzero/{part}/lang/{lang}.json'
         });
         $translatePartialLoaderProvider.addPart('admin');
 

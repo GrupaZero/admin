@@ -11,7 +11,7 @@
     <title>G-ZERO Admin</title>
 
     <!-- core CSS -->
-    <link rel="stylesheet" href="/packages/gzero/admin/css/application.css">
+    <link rel="stylesheet" href="/gzero/admin/css/application.css">
 
     <!-- Font Awesome -->
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
@@ -123,8 +123,8 @@
 <!-- core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="/packages/gzero/admin/js/vendor.min.js"></script>
-<script src="/packages/gzero/admin/js/admin.js"></script>
+<script src="/gzero/admin/js/vendor.min.js"></script>
+<script src="/gzero/admin/js/admin.js"></script>
 @foreach ($modules->getModulesPaths() as $modulePath)
     <script src="{{ $modulePath }}"></script>
 @endforeach

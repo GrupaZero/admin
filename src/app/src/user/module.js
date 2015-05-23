@@ -7,7 +7,7 @@ angular.module('admin.user', ['ngTable'])
         'RestangularProvider',
         function($stateProvider, $urlRouterProvider, RestangularProvider) {
 
-            var viewPath = 'packages/gzero/admin/views/user/';
+            var viewPath = 'gzero/admin/views/user/';
 
             // Now set up the states
             $stateProvider
