@@ -75,7 +75,7 @@ There are 2 required things, that should be done, every time before you start to
 After these steps try to log in to the admin panel:
 ```
 URL: http://dev.gzero.pl:8000/en/login
-login: a@a.pl
+login: admin@gzero.pl
 pass: test
 ```
 
