@@ -2,7 +2,7 @@
 
 function ContentDeleteCtrl($scope, $state, $modal, Storage, ContentRepository) {
     var vm = this;
-    var viewPath = 'packages/gzero/admin/views/content/directives/';
+    var viewPath = 'gzero/admin/views/content/directives/';
     // Delete modal
     vm.deleteModal = {
         /**

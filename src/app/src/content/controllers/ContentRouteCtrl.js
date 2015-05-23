@@ -2,7 +2,7 @@
 
 function ContentRouteCtrl($scope, $state, $modal, ContentRepository) {
     var vm = this;
-    var viewPath = 'packages/gzero/admin/views/content/directives/';
+    var viewPath = 'gzero/admin/views/content/directives/';
     // Delete modal
     vm.editRouteModal = {
         /**

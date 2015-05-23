@@ -15,7 +15,7 @@
 
 function UserListCtrl($scope, $state, UserRepository, $modal) {
     var vm = this;
-    var viewPath = 'packages/gzero/admin/views/user/directives/';
+    var viewPath = 'gzero/admin/views/user/directives/';
     // Delete modal
     vm.deleteModal = {
         /**
