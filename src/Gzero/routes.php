@@ -9,7 +9,7 @@ Route::group(
         Route::get(
             '/',
             function () {
-                //\Debugbar::disable();
+                \Debugbar::disable();
                 return View::make('gzero-admin::admin', ['modules' => \App::make('admin.module')]);
             }
         );
