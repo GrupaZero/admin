@@ -1,6 +1,6 @@
 'use strict';
 
-function ContentDeleteCtrl($scope, $state, $modal, Storage, ContentRepository, Notifications) { // jshing ingore:line
+function ContentDeleteCtrl($scope, $state, $modal, Storage, ContentRepository, Notifications) { // jshint ignore:line
     var vm = this;
     var viewPath = 'gzero/admin/views/content/directives/';
     // Delete modal
