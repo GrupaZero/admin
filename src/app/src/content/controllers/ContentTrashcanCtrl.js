@@ -13,7 +13,7 @@
 
 'use strict';
 
-function ContentTrashcanCtrl($scope, $stateParams, $rootScope, ContentRepository, NgTableParams) {
+function ContentTrashcanCtrl($scope, $stateParams, ContentRepository, NgTableParams) {
     $scope.tableParams = new NgTableParams({
         count: 25, // count per page
         sorting: {
@@ -24,8 +24,7 @@ function ContentTrashcanCtrl($scope, $stateParams, $rootScope, ContentRepository
         getData: function($defer, params) {
             // prepare options to be sent to api
             var queryOptions = {
-                lang: $scope.listLang.code,
-                type: 'content'
+                lang: $scope.listLang.code
             };
 
             // params.count() - number of items per page declared in view
@@ -60,5 +59,5 @@ function ContentTrashcanCtrl($scope, $stateParams, $rootScope, ContentRepository
     });
 }
 
-ContentTrashcanCtrl.$inject = ['$scope', '$stateParams', '$rootScope', 'ContentRepository', 'ngTableParams'];
+ContentTrashcanCtrl.$inject = ['$scope', '$stateParams', 'ContentRepository', 'ngTableParams'];
 module.exports = ContentTrashcanCtrl;

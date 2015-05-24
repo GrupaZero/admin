@@ -82,5 +82,8 @@
     "IS_STICKY": "Podwieszenie",
     "IS_PUBLISHED": "Opublikowano",
     "PUBLISHED_AT": "Data publikacji",
-    "WEIGHT": "Waga"
+    "WEIGHT": "Waga",
+    "TYPE": "Rodzaj",
+    "CONTENT_HAS_BEEN_DELETED": "Usunięto treść.",
+    "CATEGORY_HAS_BEEN_DELETED": "Usunięto kategorie."
 }

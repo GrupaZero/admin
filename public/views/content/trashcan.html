@@ -51,28 +51,19 @@
                     {{ 'SHOW' | translate }}
                 </li>
                 <li role="presentation" ng-class="{ active: !activeFilter.isActive }">
-                    <a href="" ui-sref="content.list" ui-sref-opts="{ inherit: false }">{{ 'ALL' | translate }}</a>
+                    <a href="" ui-sref="content.trashcan" ui-sref-opts="{ inherit: false }">{{ 'ALL' | translate }}</a>
                 </li>
                 <li role="presentation" ng-class="{ active: activeFilter.isActive == 1 }">
-                    <a href="" ui-sref="content.list({ isActive: 1 })">{{ 'PUBLISHED' | translate }}</a>
+                    <a href="" ui-sref="content.trashcan({ isActive: 1 })">{{ 'PUBLISHED' | translate }}</a>
                 </li>
                 <li role="presentation" ng-class="{ active: activeFilter.isActive == 0 }">
-                    <a href="" ui-sref="content.list({ isActive: 0 })">{{ 'NOT_PUBLISHED' | translate }}</a>
+                    <a href="" ui-sref="content.trashcan({ isActive: 0 })">{{ 'NOT_PUBLISHED' | translate }}</a>
                 </li>
             </ul>
         </div>
         <!-- /.col-lg-4 -->
         <div class="col-xs-12 col-sm-12 col-lg-6 text-right">
-            <button ui-sref="content.add({ type: 'category' })" class="btn btn-primary" type="button"
-                    title="{{ 'ADD_CATEGORY' | translate }}">
-                <i class="glyphicon glyphicon-plus hidden-sm"></i>
-                <span class="hidden-xs">{{ 'ADD_CATEGORY' | translate }}</span>
-            </button>
-            <button ui-sref="content.add({ type: 'content' })" class="btn btn-success" type="button"
-                    title="{{ 'ADD_CONTENT' | translate }}">
-                <i class="glyphicon glyphicon-plus hidden-sm"></i>
-                <span class="hidden-xs">{{ 'ADD_CONTENT' | translate }}</span>
-            </button>
+
             <button type="button"
                     ng-click="refreshCurrentState()"
                     class="btn btn-default"
@@ -88,10 +79,10 @@
             <tr ng-repeat="content in $data" ng-class="{ inactive: !content.isActive }">
                 <td data-title="'TITLE' | translate" sortable="'translations.title'">
                     <h5 ng-if="(content.translations | getTranslation:listLang.code:'title')">
-                        <a href="" ui-sref="content.show({ contentId: content.id })"
+                        <span
                            ng-show="(content.route.translations | getTranslation:listLang.code:'url')">
-                            {{ content.translations | getTranslation:listLang.code:'title' }}
-                        </a>
+                           {{ content.translations | getTranslation:listLang.code:'title' }}
+                        </span>
                     </h5>
 
                     <h5 ng-hide="(content.translations | getTranslation:listLang.code:'title')">
@@ -133,6 +124,9 @@
                 <td data-title="'STATUS' | translate" sortable="'isActive'" class="text-center">
                     <i ng-if="!content.isActive">{{ 'NOT_PUBLISHED' | translate }}</i>
                     <i ng-if="content.isActive">{{ 'PUBLISHED' | translate }}</i>
+                </td>
+                <td data-title="'TYPE' | translate" sortable="'type'" class="text-center">
+                    {{ content.type | translate }}
                 </td>
                 <td data-title="'AUTHOR' | translate" sortable="'author.firstName'" class="text-center">
                     {{ content.author.firstName }} {{ content.author.lastName }}

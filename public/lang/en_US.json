@@ -82,5 +82,8 @@
     "IS_STICKY": "Sticky",
     "IS_PUBLISHED": "Published",
     "PUBLISHED_AT": "Published at",
-    "WEIGHT": "Weight"
+    "WEIGHT": "Weight",
+    "TYPE": "Type",
+    "CONTENT_HAS_BEEN_DELETED": "Content has been deleted.",
+    "CATEGORY_HAS_BEEN_DELETED": "Category has been deleted."
 }
