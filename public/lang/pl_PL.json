@@ -83,5 +83,8 @@
     "IS_PUBLISHED": "Opublikowano",
     "PUBLISHED_AT": "Data publikacji",
     "WEIGHT": "Waga",
+    "TYPE": "Rodzaj",
+    "CONTENT_HAS_BEEN_DELETED": "Usunięto treść.",
+    "CATEGORY_HAS_BEEN_DELETED": "Usunięto kategorie."
     "THE_CHANGES_HAVE_BEEN_SAVED": "Zmiany zostały zapisane."
 }

@@ -47,7 +47,11 @@
                     <p><strong>{{ 'CREATED_AT' | translate }}:</strong> {{ content.createdAt | date }}</p>
                 </div>
                 <div class="panel-footer text-right">
-                    <a class="pull-left text-danger" ui-sref="content.show" style="margin-top: 7px;">
+                    <a content-delete-button
+                       data-id="{{ content.id }}"
+                       data-type="{{ content.type }}"
+                       class="pull-left text-danger"
+                       style="margin-top: 7px;">
                         <small class="hidden-xs">{{ 'MOVE_TO_TRASH' | translate }}</small>
                     </a>
                     <button ng-click="saveContent()" type="button" class="btn btn-success">
