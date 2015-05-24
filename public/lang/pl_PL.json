@@ -82,5 +82,6 @@
     "IS_STICKY": "Podwieszenie",
     "IS_PUBLISHED": "Opublikowano",
     "PUBLISHED_AT": "Data publikacji",
-    "WEIGHT": "Waga"
+    "WEIGHT": "Waga",
+    "THE_CHANGES_HAVE_BEEN_SAVED": "Zmiany zostały zapisane."
 }
