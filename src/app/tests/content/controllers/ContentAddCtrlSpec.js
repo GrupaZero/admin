@@ -21,5 +21,10 @@ describe('ContentAddCtrl', function() {
 
   it('should set list parent if present', function() {
     expect(scope.newContent).toBeDefined();
+    expect(scope.newContent.type).toBe('dummy');
+  });
+
+  it('could create new content', function() {
+    expect(scope.addNewContent).toBeDefined();
   });
 });
