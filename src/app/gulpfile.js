@@ -47,7 +47,10 @@ gulp.task('scripts', function() {
   });
 
   return b.bundle()
-    .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
+    .on('error', notify.onError({
+      message: "<%= error.message %>",
+      title: "Error running scripts"
+    }))
     .pipe(source('admin.js'))
     .pipe(buffer())
     .pipe(gulp.dest(publicPath + 'js'))
