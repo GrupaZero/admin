@@ -33,7 +33,7 @@ $ ln -s ../../../admin
 ```
 Go to public directory in platform:
 ```
-$ cd ../../public/packages/gzero
+$ cd ../../public/gzero/
 ```
 Remove admin package assets published after installation from composer:
 ```
@@ -41,7 +41,7 @@ $ rm -r admin
 ```
 Create symbolic link to fresh public assets of admin package:
 ```
-$ ln -s ../../../../admin/public/ admin
+$ ln -s ../../../admin/public/ admin
 ```
 From now on all changes in Admin package will be available in Platform.
 
