@@ -4,7 +4,7 @@
  * Return admin view so we can run AngularJS admin panel
  */
 Route::group(
-    ['domain' => Config::get('gzero.domain'), 'prefix' => 'admin', 'middleware' => 'App\Http\Middleware\RestrictAccess'],
+    ['domain' => Config::get('gzero.domain'), 'prefix' => 'admin', 'middleware' => 'access'],
     function () {
         Route::get(
             '/',
