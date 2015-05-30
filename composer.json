@@ -25,12 +25,15 @@
     },
     "scripts": {
         "post-install-cmd": [
+            "cd ../../../",
             "php artisan vendor:publish --tag=public --force"
         ],
         "post-update-cmd": [
+            "cd ../../../",
             "php artisan vendor:publish --tag=public --force"
         ],
         "post-create-project-cmd": [
+            "cd ../../../",
             "php artisan vendor:publish --tag=public --force"
         ]
     },
