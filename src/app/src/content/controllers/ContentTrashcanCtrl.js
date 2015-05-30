@@ -46,6 +46,10 @@ function ContentTrashcanCtrl($scope, $stateParams, ContentRepository, NgTablePar
                 queryOptions.sort = orderBy[0] === '+' ? orderBy.substring(1) : orderBy;
             }
 
+            // $stateParams filters
+            queryOptions = _.merge(queryOptions, $stateParams);
+            $scope.activeFilter = $stateParams;
+
             // get list by default
             var promise = ContentRepository.deleted(queryOptions);
 
