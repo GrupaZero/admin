@@ -29,6 +29,9 @@
         ],
         "post-update-cmd": [
             "php artisan vendor:publish --tag=public --force"
+        ],
+        "post-create-project-cmd": [
+            "php artisan vendor:publish --tag=public --force"
         ]
     },
     "minimum-stability": "stable"
