@@ -126,7 +126,7 @@
                     <i ng-if="content.isActive">{{ 'PUBLISHED' | translate }}</i>
                 </td>
                 <td data-title="'TYPE' | translate" sortable="'type'" class="text-center">
-                    {{ content.type | translate }}
+                    {{ content.type.toUpperCase() | translate }}
                 </td>
                 <td data-title="'AUTHOR' | translate" sortable="'author.firstName'" class="text-center">
                     {{ content.author.firstName }} {{ content.author.lastName }}
