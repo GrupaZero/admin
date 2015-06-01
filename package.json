@@ -55,7 +55,8 @@
       "modules",
       "require",
       "Config",
-      "_"
+      "_",
+      "PNotify"
     ],
     "jquery": true,
     "node": true,
