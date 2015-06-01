@@ -7,7 +7,9 @@
                     {{ 'SHOW' | translate }}
                 </li>
                 <li role="presentation" ng-class="{ active: !activeFilter.isActive }">
-                    <a href="" ui-sref="content.trashcan" ui-sref-opts="{ inherit: false }">{{ 'ALL' | translate }}</a>
+                    <a href=""
+                       ui-sref="content.trashcan({ type: activeFilter.type })"
+                       ui-sref-opts="{ inherit: false }">{{ 'ALL' | translate }}</a>
                 </li>
                 <li role="presentation" ng-class="{ active: activeFilter.isActive == 1 }">
                     <a href="" ui-sref="content.trashcan({ isActive: 1 })">{{ 'PUBLISHED' | translate }}</a>
@@ -19,7 +21,9 @@
                     {{ 'TYPE' | translate }}
                 </li>
                 <li role="presentation" ng-class="{ active: !activeFilter.type }">
-                    <a href="" ui-sref="content.trashcan" ui-sref-opts="{ inherit: false }">{{ 'ALL' | translate }}</a>
+                    <a href=""
+                       ui-sref="content.trashcan({ isActive: activeFilter.isActive })"
+                       ui-sref-opts="{ inherit: false }">{{ 'ALL' | translate }}</a>
                 </li>
                 <li role="presentation" ng-class="{ active: activeFilter.type == 'content' }">
                     <a href="" ui-sref="content.trashcan({ type: 'content' })">{{ 'CONTENT' | translate }}</a>
