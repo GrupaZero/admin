@@ -1,48 +1,4 @@
 <div class="col-sm-12 col-md-12">
-    <!-- LIST PARENT -->
-    <div ng-if="listParent" class="row quick-c-nav list-parent">
-        <div class="col-md-12">
-            <h3 class="clearfix">
-            <span class="sub-c-title">
-                {{ 'CATEGORY' | translate | uppercase }}
-            </span>
-                <a href="" ui-sref="content.show({ contentId: listParent.id })">
-                    {{ listParent.translations | getTranslation:listLang.code:'title' }}
-                </a>
-            <span ng-hide="(listParent.translations | getTranslation:listLang.code:'title')">
-                <a ui-sref="content.addTranslation({ contentId: listParent.id, langCode: listLang.code })"
-                   href="" class="btn btn-warning">
-                    <i class="glyphicon glyphicon-exclamation-sign hidden-sm"></i> {{ 'NO_TRANSLATION_BUTTON' | translate }}
-                </a>
-            </span>
-            <span class="pull-right">
-                <a href="{{ baseUrl }}/{{ listLang.code }}/{{ listParent.route.translations | getTranslation:listLang.code:'url' }}"
-                   class="btn btn-default"
-                   target="_blank"
-                   title="{{ 'SHOW' | translate }}">
-                    <i class="glyphicon glyphicon-link hidden-sm"></i>
-                    <span class="hidden-xs">{{ 'VIEW' | translate }}</span>
-                </a>
-                <button ui-sref="content.show({ contentId: listParent.id })"
-                        class="btn btn-primary"
-                        type="button"
-                        title="{{ 'DETAILS' | translate }}">
-                    <i class="glyphicon glyphicon-edit hidden-sm"></i>
-                    <span class="hidden-xs">{{ 'DETAILS' | translate }}</span>
-                </button>
-                <button content-delete-button
-                        data-id="{{ listParent.id }}"
-                        data-type="{{ listParent.type }}"
-                        class="btn btn-danger"
-                        type="button"
-                        title="{{ 'DELETE' | translate }}">
-                    <i class="glyphicon glyphicon-remove-circle hidden-sm"></i>
-                    <span class="hidden-xs">{{ 'DELETE' | translate }}</span>
-                </button>
-            </span>
-            </h3>
-        </div>
-    </div>
     <div class="row list-actions quick-c-nav">
         <div class="col-xs-12 col-sm-12 col-lg-6 form-inline">
             <!-- LIST FILTERS -->
