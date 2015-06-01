@@ -1,6 +1,6 @@
 'use strict';
 
-function Notifications($alert, $translate) {
+function Notifications($translate) {
     /**
      * Function which shows messages of given type
      *
@@ -101,5 +101,5 @@ function Notifications($alert, $translate) {
     };
 }
 
-module.$inject = ['$alert', '$translate'];
+module.$inject = ['$translate'];
 module.exports = Notifications;
