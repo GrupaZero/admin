@@ -15,6 +15,18 @@
                 <li role="presentation" ng-class="{ active: activeFilter.isActive == 0 }">
                     <a href="" ui-sref="content.trashcan({ isActive: 0 })">{{ 'NOT_PUBLISHED' | translate }}</a>
                 </li>
+                <li class="subtitle">
+                    {{ 'TYPE' | translate }}
+                </li>
+                <li role="presentation" ng-class="{ active: !activeFilter.type }">
+                    <a href="" ui-sref="content.trashcan" ui-sref-opts="{ inherit: false }">{{ 'ALL' | translate }}</a>
+                </li>
+                <li role="presentation" ng-class="{ active: activeFilter.type == 'content' }">
+                    <a href="" ui-sref="content.trashcan({ type: 'content' })">{{ 'CONTENT' | translate }}</a>
+                </li>
+                <li role="presentation" ng-class="{ active: activeFilter.type == 'category' }">
+                    <a href="" ui-sref="content.trashcan({ type: 'category' })">{{ 'CATEGORY' | translate }}</a>
+                </li>
             </ul>
         </div>
         <!-- /.col-lg-4 -->
