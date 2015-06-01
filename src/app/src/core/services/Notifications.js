@@ -56,7 +56,7 @@ function Notifications($translate) {
          */
         addInfo: function(message) {
             return new PNotify({
-                title: $translate.instant('SUCCESS') + ':',
+                title: $translate.instant('INFORMATION') + ':',
                 text: $translate.instant(message),
                 type: 'info'
             });
@@ -68,9 +68,9 @@ function Notifications($translate) {
          */
         addError: function(message) {
             return new PNotify({
-                title: $translate.instant('SUCCESS') + ':',
+                title: $translate.instant('ERROR') + ':',
                 text: $translate.instant(message),
-                type: 'success',
+                type: 'error',
                 icon: 'fa fa-times'
             });
         },
@@ -81,7 +81,7 @@ function Notifications($translate) {
          */
         addWarning: function(message) {
             return new PNotify({
-                title: $translate.instant('SUCCESS') + ':',
+                title: $translate.instant('WARNING') + ':',
                 text: $translate.instant(message),
                 type: 'warning'
             });
