@@ -1,9 +1,6 @@
 'use strict';
 
 function Notifications($alert, $translate) {
-    var container = 'body';
-    var placement = 'top-right';
-    var type = 5;
     /**
      * Function which shows messages of given type
      *
@@ -58,7 +55,7 @@ function Notifications($alert, $translate) {
          * @param message translatable message string eg. 'COMMON_ERROR'
          */
         addInfo: function(message) {
-            new PNotify({
+            return new PNotify({
                 title: $translate.instant('SUCCESS') + ':',
                 text: $translate.instant(message),
                 type: 'info'
@@ -70,7 +67,7 @@ function Notifications($alert, $translate) {
          * @param message translatable message string eg. 'COMMON_ERROR'
          */
         addError: function(message) {
-            new PNotify({
+            return new PNotify({
                 title: $translate.instant('SUCCESS') + ':',
                 text: $translate.instant(message),
                 type: 'success',
@@ -83,7 +80,7 @@ function Notifications($alert, $translate) {
          * @param message translatable message string eg. 'COMMON_ERROR'
          */
         addWarning: function(message) {
-            new PNotify({
+            return new PNotify({
                 title: $translate.instant('SUCCESS') + ':',
                 text: $translate.instant(message),
                 type: 'warning'
@@ -95,7 +92,7 @@ function Notifications($alert, $translate) {
          * @param message translatable message string eg. 'COMMON_ERROR'
          */
         addSuccess: function(message) {
-            new PNotify({
+            return new PNotify({
                 title: $translate.instant('SUCCESS') + ':',
                 text: $translate.instant(message),
                 type: 'success'
