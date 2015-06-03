@@ -86,5 +86,6 @@
     "CONTENT_HAS_BEEN_DELETED": "Content has been deleted.",
     "CATEGORY_HAS_BEEN_DELETED": "Category has been deleted.",
     "WEIGHT": "Weight",
-    "THE_CHANGES_HAVE_BEEN_SAVED": "The changes have been saved."
+    "THE_CHANGES_HAVE_BEEN_SAVED": "The changes have been saved.",
+    "TYPE": "Type"
 }

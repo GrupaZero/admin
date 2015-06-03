@@ -68,7 +68,7 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
                     }
                 })
                 .state('content.trashcan', {
-                    url: '/trashcan',
+                    url: '/trashcan?isActive&type&page&perPage',
                     views: {
                         'content': {
                             templateUrl: viewPath + 'trashcan.html',

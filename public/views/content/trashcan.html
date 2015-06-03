@@ -1,48 +1,4 @@
 <div class="col-sm-12 col-md-12">
-    <!-- LIST PARENT -->
-    <div ng-if="listParent" class="row quick-c-nav list-parent">
-        <div class="col-md-12">
-            <h3 class="clearfix">
-            <span class="sub-c-title">
-                {{ 'CATEGORY' | translate | uppercase }}
-            </span>
-                <a href="" ui-sref="content.show({ contentId: listParent.id })">
-                    {{ listParent.translations | getTranslation:listLang.code:'title' }}
-                </a>
-            <span ng-hide="(listParent.translations | getTranslation:listLang.code:'title')">
-                <a ui-sref="content.addTranslation({ contentId: listParent.id, langCode: listLang.code })"
-                   href="" class="btn btn-warning">
-                    <i class="glyphicon glyphicon-exclamation-sign hidden-sm"></i> {{ 'NO_TRANSLATION_BUTTON' | translate }}
-                </a>
-            </span>
-            <span class="pull-right">
-                <a href="{{ baseUrl }}/{{ listLang.code }}/{{ listParent.route.translations | getTranslation:listLang.code:'url' }}"
-                   class="btn btn-default"
-                   target="_blank"
-                   title="{{ 'SHOW' | translate }}">
-                    <i class="glyphicon glyphicon-link hidden-sm"></i>
-                    <span class="hidden-xs">{{ 'VIEW' | translate }}</span>
-                </a>
-                <button ui-sref="content.show({ contentId: listParent.id })"
-                        class="btn btn-primary"
-                        type="button"
-                        title="{{ 'DETAILS' | translate }}">
-                    <i class="glyphicon glyphicon-edit hidden-sm"></i>
-                    <span class="hidden-xs">{{ 'DETAILS' | translate }}</span>
-                </button>
-                <button content-delete-button
-                        data-id="{{ listParent.id }}"
-                        data-type="{{ listParent.type }}"
-                        class="btn btn-danger"
-                        type="button"
-                        title="{{ 'DELETE' | translate }}">
-                    <i class="glyphicon glyphicon-remove-circle hidden-sm"></i>
-                    <span class="hidden-xs">{{ 'DELETE' | translate }}</span>
-                </button>
-            </span>
-            </h3>
-        </div>
-    </div>
     <div class="row list-actions quick-c-nav">
         <div class="col-xs-12 col-sm-12 col-lg-6 form-inline">
             <!-- LIST FILTERS -->
@@ -51,13 +7,29 @@
                     {{ 'SHOW' | translate }}
                 </li>
                 <li role="presentation" ng-class="{ active: !activeFilter.isActive }">
-                    <a href="" ui-sref="content.trashcan" ui-sref-opts="{ inherit: false }">{{ 'ALL' | translate }}</a>
+                    <a href=""
+                       ui-sref="content.trashcan({ type: activeFilter.type })"
+                       ui-sref-opts="{ inherit: false }">{{ 'ALL' | translate }}</a>
                 </li>
                 <li role="presentation" ng-class="{ active: activeFilter.isActive == 1 }">
                     <a href="" ui-sref="content.trashcan({ isActive: 1 })">{{ 'PUBLISHED' | translate }}</a>
                 </li>
                 <li role="presentation" ng-class="{ active: activeFilter.isActive == 0 }">
                     <a href="" ui-sref="content.trashcan({ isActive: 0 })">{{ 'NOT_PUBLISHED' | translate }}</a>
+                </li>
+                <li class="subtitle">
+                    {{ 'TYPE' | translate }}
+                </li>
+                <li role="presentation" ng-class="{ active: !activeFilter.type }">
+                    <a href=""
+                       ui-sref="content.trashcan({ isActive: activeFilter.isActive })"
+                       ui-sref-opts="{ inherit: false }">{{ 'ALL' | translate }}</a>
+                </li>
+                <li role="presentation" ng-class="{ active: activeFilter.type == 'content' }">
+                    <a href="" ui-sref="content.trashcan({ type: 'content' })">{{ 'CONTENT' | translate }}</a>
+                </li>
+                <li role="presentation" ng-class="{ active: activeFilter.type == 'category' }">
+                    <a href="" ui-sref="content.trashcan({ type: 'category' })">{{ 'CATEGORY' | translate }}</a>
                 </li>
             </ul>
         </div>
@@ -126,7 +98,7 @@
                     <i ng-if="content.isActive">{{ 'PUBLISHED' | translate }}</i>
                 </td>
                 <td data-title="'TYPE' | translate" sortable="'type'" class="text-center">
-                    {{ content.type | translate }}
+                    {{ content.type.toUpperCase() | translate }}
                 </td>
                 <td data-title="'AUTHOR' | translate" sortable="'author.firstName'" class="text-center">
                     {{ content.author.firstName }} {{ content.author.lastName }}
