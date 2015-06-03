@@ -78,7 +78,9 @@ gulp.task('compress-vendor', function() {
     'vendor/angular/angular-strap.tpl.js',
     'vendor/angular/ng-table.js',
     'vendor/angular/angular-ui-tree.js',
-    'vendor/ie10-viewport-bug-workaround.js'
+    'vendor/ie10-viewport-bug-workaround.js',
+    'vendor/jquery.js',
+    'vendor/pnotify.custom.js'
   ])
     .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
     .pipe(sourcemaps.init({loadMaps: true}))
@@ -99,7 +101,9 @@ gulp.task('compress-vendor', function() {
     'vendor/angular/angular-strap.tpl.min.js',
     'vendor/angular/ng-table.min.js',
     'vendor/angular/angular-ui-tree.min.js',
-    'vendor/ie10-viewport-bug-workaround.min.js'
+    'vendor/ie10-viewport-bug-workaround.min.js',
+    'vendor/jquery.min.js',
+    'vendor/pnotify.custom.min.js'
   ])
     .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
     .pipe(sourcemaps.init({loadMaps: true}))

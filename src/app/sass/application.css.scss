@@ -166,3 +166,57 @@ li:hover {
     margin : 0;
   }
 }
+
+// PNotify
+
+.ui-pnotify {
+  top      : 25px;
+  right    : 25px;
+  position : absolute;
+  height   : auto;
+  z-index  : 9999;
+
+  .ui-pnotify-container {
+    opacity : 0.9;
+  }
+
+  .ui-pnotify-closer, .ui-pnotify-sticker {
+    float : right;
+  }
+
+  .ui-pnotify-icon span {
+    font-size     : 50px;
+    padding-right : 20px;
+    float         : left;
+  }
+
+  .ui-pnotify-title {
+    padding-bottom : 0px;
+  }
+
+  .ui-pnotify-text {
+    float : right;
+    width : 192px;
+  }
+
+  .alert-info {
+    background : $brand-info;
+    color      : white;
+  }
+
+  .alert-danger {
+    background : $brand-danger;
+    color      : white;
+  }
+
+  .alert-success {
+    background : $brand-success;
+    color      : white;
+  }
+
+  .alert-warning {
+    background : $brand-warning;
+    color      : white;
+  }
+
+}

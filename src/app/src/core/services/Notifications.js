@@ -1,9 +1,6 @@
 'use strict';
 
-function Notifications($alert, $translate) {
-    var container = 'body';
-    var placement = 'top-right';
-    var type = 5;
+function Notifications($translate) {
     /**
      * Function which shows messages of given type
      *
@@ -58,12 +55,9 @@ function Notifications($alert, $translate) {
          * @param message translatable message string eg. 'COMMON_ERROR'
          */
         addInfo: function(message) {
-            $alert({
+            return new PNotify({
                 title: $translate.instant('INFORMATION') + ':',
-                content: $translate.instant(message),
-                container: container,
-                placement: placement,
-                duration: type,
+                text: $translate.instant(message),
                 type: 'info'
             });
         },
@@ -73,13 +67,11 @@ function Notifications($alert, $translate) {
          * @param message translatable message string eg. 'COMMON_ERROR'
          */
         addError: function(message) {
-            $alert({
+            return new PNotify({
                 title: $translate.instant('ERROR') + ':',
-                content: $translate.instant(message),
-                container: container,
-                placement: placement,
-                duration: type,
-                type: 'danger'
+                text: $translate.instant(message),
+                type: 'error',
+                icon: 'fa fa-times'
             });
         },
         /**
@@ -88,12 +80,9 @@ function Notifications($alert, $translate) {
          * @param message translatable message string eg. 'COMMON_ERROR'
          */
         addWarning: function(message) {
-            $alert({
+            return new PNotify({
                 title: $translate.instant('WARNING') + ':',
-                content: $translate.instant(message),
-                container: container,
-                placement: placement,
-                duration: type,
+                text: $translate.instant(message),
                 type: 'warning'
             });
         },
@@ -103,17 +92,14 @@ function Notifications($alert, $translate) {
          * @param message translatable message string eg. 'COMMON_ERROR'
          */
         addSuccess: function(message) {
-            $alert({
+            return new PNotify({
                 title: $translate.instant('SUCCESS') + ':',
-                content: $translate.instant(message),
-                container: container,
-                placement: placement,
-                duration: type,
+                text: $translate.instant(message),
                 type: 'success'
             });
         }
     };
 }
 
-module.$inject = ['$alert', '$translate'];
+module.$inject = ['$translate'];
 module.exports = Notifications;
