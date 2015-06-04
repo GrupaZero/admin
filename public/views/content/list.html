@@ -6,7 +6,7 @@
             <span class="sub-c-title">
                 {{ 'CATEGORY' | translate | uppercase }}
             </span>
-                <a href="" ui-sref="content.show({ contentId: listParent.id })">
+                <a href="" ui-sref="content.show({ contentId: listParent.id, langCode: listLang.code })">
                     {{ listParent.translations | getTranslation:listLang.code:'title' }}
                 </a>
             <span ng-hide="(listParent.translations | getTranslation:listLang.code:'title')">
@@ -23,7 +23,7 @@
                     <i class="glyphicon glyphicon-link hidden-sm"></i>
                     <span class="hidden-xs">{{ 'VIEW' | translate }}</span>
                 </a>
-                <button ui-sref="content.show({ contentId: listParent.id })"
+                <button ui-sref="content.show({ contentId: listParent.id, langCode: listLang.code })"
                         class="btn btn-primary"
                         type="button"
                         title="{{ 'DETAILS' | translate }}">
@@ -88,7 +88,7 @@
             <tr ng-repeat="content in $data" ng-class="{ inactive: !content.isActive }">
                 <td data-title="'TITLE' | translate" sortable="'translations.title'">
                     <h5 ng-if="(content.translations | getTranslation:listLang.code:'title')">
-                        <a href="" ui-sref="content.show({ contentId: content.id })"
+                        <a href="" ui-sref="content.show({ contentId: content.id, langCode: listLang.code })"
                            ng-show="(content.route.translations | getTranslation:listLang.code:'url')">
                             {{ content.translations | getTranslation:listLang.code:'title' }}
                         </a>
@@ -109,7 +109,7 @@
                                ng-if="isTranslated"
                                title="{{ isTranslated }}"
                                ng-click="selectLanguage(lang)"
-                               ui-sref="content.show({ contentId: content.id })"
+                               ui-sref="content.show({ contentId: content.id, langCode: listLang.code })"
                                ng-class="{
                                'label-danger' : !isTranslated && lang.code == listLang.code,
                                'label-primary' : isTranslated && lang.code == listLang.code
@@ -149,7 +149,8 @@
                        class="btn btn-sm btn-default">
                         {{ 'VIEW' | translate }}
                     </a>
-                    <a href="" ui-sref="content.show({ contentId: content.id })" class="btn btn-sm btn-primary">
+                    <a href="" ui-sref="content.show({ contentId: content.id, langCode: listLang.code })"
+                       class="btn btn-sm btn-primary">
                         {{ 'DETAILS' | translate }}
                     </a>
                     <button content-delete-button

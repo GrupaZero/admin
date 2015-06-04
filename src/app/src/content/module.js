@@ -60,7 +60,7 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
                 })
                 .state('content.show', {
                     url: '/{contentId}/show/{langCode}',
-                    abstract: true,
+                    abstract: '.details',
                     resolve: {
                         langCode: [
                             '$state', '$stateParams', function($state, $stateParams) {
