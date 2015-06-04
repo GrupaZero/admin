@@ -1,13 +1,7 @@
 'use strict';
 
-function ContentDetailsCtrl($scope, $stateParams, langCode, ContentRepository, Notifications) {
-    // get single content
-    ContentRepository.one($stateParams.contentId).then(function(response) {
-        $scope.content = ContentRepository.clean(response);
-    });
-
-    //console.log($stateParams.langCode);
-    //$scope.xxx = 'xxx';
+function ContentDetailsCtrl($scope, content, langCode, ContentRepository, Notifications) {
+    $scope.content = ContentRepository.clean(content);
     $scope.langCode = langCode;
     $scope.saveContent = function() {
         ContentRepository
@@ -18,5 +12,5 @@ function ContentDetailsCtrl($scope, $stateParams, langCode, ContentRepository, N
     };
 
 }
-ContentDetailsCtrl.$inject = ['$scope', '$stateParams', 'langCode', 'ContentRepository', 'Notifications'];
+ContentDetailsCtrl.$inject = ['$scope', 'content', 'langCode', 'ContentRepository', 'Notifications'];
 module.exports = ContentDetailsCtrl;

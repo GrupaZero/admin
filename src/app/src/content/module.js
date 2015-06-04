@@ -22,6 +22,7 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
                         ]
                     }
                 })
+                // CONTENT LIST
                 .state('content.list', {
                     url: '/list/{contentId}?isActive&page&perPage',
                     resolve: {
@@ -58,18 +59,24 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
                         }
                     }
                 })
+                // CONTENT SHOW
                 .state('content.show', {
                     url: '/{contentId}/show/{langCode}',
-                    abstract: '.details',
+                    abstract: [
+                        // redirect to active tab on language change
+                        '$state', function($state) {
+                            return _.startsWith($state.current.name, 'content.show') ? $state.current.name : '.details';
+                        }
+                    ],
                     resolve: {
                         langCode: [
                             '$state', '$stateParams', function($state, $stateParams) {
-                                if ($stateParams.langCode) {
-                                    return $stateParams.langCode;
-                                } else {
-                                    $stateParams.langCode = 'en';
-                                    return $stateParams.langCode;
-                                }
+                                return $stateParams.langCode;
+                            }
+                        ],
+                        content: [
+                            '$stateParams', 'ContentRepository', function($stateParams, ContentRepository) {
+                                return ContentRepository.one($stateParams.contentId);
                             }
                         ]
                     },
@@ -77,6 +84,14 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
                         'content': {
                             templateUrl: viewPath + 'show.html',
                             controller: 'ContentDetailsCtrl'
+                        },
+                        'langSwitcher@content.show': {
+                            templateUrl: viewPath + 'details/langSwitcher.html'
+
+                        },
+                        'contentSettings@content.show': {
+                            templateUrl: viewPath + 'details/settings.html'
+
                         }
                     }
                 })
@@ -86,21 +101,72 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
                     sticky: true,
                     views: {
                         'contentTab': {
-                            templateUrl: viewPath + 'details/tabs/show.html',
-                            controller: 'ContentDetailsCtrl'
+                            templateUrl: viewPath + 'details/tabs/details.html'
                         }
                     }
                 })
-                .state('content.show.menu', {
-                    url: '/menu',
+                .state('content.show.history', {
+                    url: '/history',
                     deepStateRedirect: true,
                     sticky: true,
                     views: {
                         'contentTab': {
-                            template: 'It Works!'
+                            templateUrl: viewPath + 'details/tabs/history.html'
+
                         }
                     }
                 })
+                // CONTENT EDIT
+                .state('content.edit', {
+                    url: '/{contentId}/edit/{langCode}',
+                    abstract: '.index',
+                    resolve: {
+                        langCode: [
+                            '$state', '$stateParams', function($state, $stateParams) {
+                                return $stateParams.langCode;
+                            }
+                        ],
+                        content: [
+                            '$stateParams', 'ContentRepository', function($stateParams, ContentRepository) {
+                                return ContentRepository.one($stateParams.contentId);
+                            }
+                        ]
+                    },
+                    views: {
+                        'content': {
+                            templateUrl: viewPath + 'show.html',
+                            controller: 'ContentDetailsCtrl'
+                        },
+                        'langSwitcher@content.edit': {
+                            templateUrl: viewPath + 'details/langSwitcher.html'
+
+                        },
+                        'contentSettings@content.edit': {
+                            templateUrl: viewPath + 'details/settings.html'
+
+                        }
+                    }
+                })
+                .state('content.edit.index', {
+                    views: {
+                        'contentTab': {
+                            templateUrl: viewPath + 'details/tabs/details.html'
+                        },
+                        'contentSettings': {
+                            templateUrl: viewPath + 'details/settingsEdit.html'
+
+                        }
+                    }
+                })
+                .state('content.edit.details', {
+                    url: '/details',
+                    views: {
+                        'contentTab': {
+                            templateUrl: viewPath + 'details/tabs/detailsEdit.html'
+                        }
+                    }
+                })
+                // CONTENT TRASHCAN
                 .state('content.trashcan', {
                     url: '/trashcan?isActive&type&page&perPage',
                     views: {
@@ -110,6 +176,7 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
                         }
                     }
                 })
+                // CONTENT ADD
                 .state('content.add', {
                     url: '/add/{type}',
                     resolve: {
@@ -129,6 +196,7 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
                         }
                     }
                 })
+                // CONTENT ADD TRANSLATION
                 .state('content.addTranslation', {
                     url: '/{contentId}/add-translation/{langCode}',
                     views: {

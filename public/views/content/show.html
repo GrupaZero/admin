@@ -3,18 +3,23 @@
         <div class="col-lg-9">
             <div class="panel margin-top">
                 <ul class="nav nav-tabs">
-                    <li role="presentation" class="active">
-                        <a ui-sref="content.show({ langCode: langCode })">Content</a>
+                    <li role="presentation" ui-sref-active="active">
+                        <a ui-sref="content.show.details({ langCode: langCode })">
+                            {{ 'CONTENT' | translate }}
+                        </a>
                     </li>
-                    <li role="presentation"><a ui-sref="content.show.menu({ langCode: langCode })">Menu</a></li>
-                    <li role="presentation"><a >Messages</a></li>
+                    <li role="presentation" ui-sref-active="active">
+                        <a ui-sref="content.show.history({ langCode: langCode })">
+                            {{ 'HISTORY_OF_CHANGES' | translate }}
+                        </a>
+                    </li>
                 </ul>
-                <div ui-view="contentTab">
-                </div>
+                <div ui-view="contentTab"></div>
             </div>
         </div>
         <div class="col-lg-3">
-            <div ng-include src="'gzero/admin/views/content/details/settings.html'"></div>
+            <div ui-view="langSwitcher"></div>
+            <div ui-view="contentSettings"></div>
         </div>
     </div>
 </div>

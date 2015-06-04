@@ -22,10 +22,26 @@
   }
 }
 
+// tabs style
+.nav-tabs {
+  padding          : 10px 10px 0;
+  background-color : $table-bg-accent;
+
+  & > li.active > a {
+    &,
+    &:hover,
+    &:focus {
+      background-color : $white;
+    }
+  }
+
+}
+
+
 // -------------------------------------
 //   Animations
 // -------------------------------------
 
-[ui-view="content"].ng-enter {
+body.animate-on [ui-view="content"].ng-enter {
   @include fadeIn(.33s);
 }
