@@ -1,0 +1,126 @@
+<div class="panel panel-default  margin-top">
+    <div class="panel-heading">
+        <strong>{{ 'TRANSLATIONS' | translate | uppercase }}</strong>
+        <span class="label pull-right label-default">{{'CLICK_TO_SELECT' | translate }}</span>
+    </div>
+    <div class="list-group action-group">
+        <div ng-repeat="lang in langs" ng-switch="lang.code" class="list-group-item"
+             ui-sref="content.show.details({langCode: lang.code })"
+             ng-class="{'empty': !(content.translations | getTranslation:lang.code:'title'),
+                         'active': lang.code === langCode}">
+
+            <div ng-show="(content.translations | getTranslation:lang.code:'title')">
+                <h2 class="list-group-item-heading" translate="{{ lang.code | langName }}"></h2>
+            </div>
+
+            <div ng-hide="(content.translations | getTranslation:lang.code:'title')">
+                <h4 class="list-group-item-heading" translate="{{ lang.code | langName }}"></h4>
+
+                <p class="list-group-item-text">
+                    {{ 'NO_TRANSLATION_INFO' | translate }}
+                </p>
+
+                <div class="box-inner">
+                    <a class="btn btn-default btn-block" href=""
+                       ui-sref="content.addTranslation({ contentId: content.id, langCode: lang.code })">
+                        <i class="icon glyphicon glyphicon-plus-sign"></i> {{ 'ADD_TRANSLATION' | translate }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-default margin-top">
+    <div class="panel-heading">
+        <strong>{{ 'SETTINGS' | translate | uppercase }}</strong>
+    </div>
+    <div class="panel-body">
+        <p class="permalink" ng-show="(content.route.translations | getTranslation:langCode:'url')">
+            <strong>{{'PERMALINK' | translate }}:</strong> {{ content.route.translations | getTranslation:langCode:'url' }}
+            <button content-edit-route-button
+                    ng-if="content.type != 'category'"
+                    data-id="{{ content.id }}"
+                    data-route="{{ content.route.translations | getTranslation:langCode:'url' }}"
+                    data-lang="{{ langCode }}"
+                    class="btn btn-primary btn-xs"
+                    type="button">
+                {{ 'EDIT' | translate }}
+            </button>
+        </p>
+        <form class="form-horizontal">
+
+            <div class="form-group">
+                <label class="col-sm-8" for="isOnHome">{{ 'IS_ON_HOME' | translate}}</label>
+
+                <div class="col-lg-4">
+                    <input ng-model="content.isOnHome" type="checkbox" id="isOnHome"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-8" for="isCommentAllowed">{{ 'IS_COMMENT_ALLOWED' | translate}}</label>
+
+                <div class="col-lg-4">
+                    <input ng-model="content.isCommentAllowed" type="checkbox" id="isCommentAllowed"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-8" for="isPromoted">{{ 'IS_PROMOTED' | translate}}</label>
+
+                <div class="col-lg-4">
+                    <input ng-model="content.isPromoted" type="checkbox" id="isPromoted"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-8" for="isSticky">{{ 'IS_STICKY' | translate}}</label>
+
+                <div class="col-lg-4">
+                    <input ng-model="content.isSticky" type="checkbox" id="isSticky"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-8" for="isActive">{{ 'IS_PUBLISHED' | translate}}</label>
+
+                <div class="col-lg-4">
+                    <input ng-model="content.isActive" type="checkbox" id="isActive"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-6" for="publishedAt">{{ 'PUBLISHED_AT' | translate}}</label>
+
+                <div class="col-lg-6">
+                    <input ng-model="content.publishedAt" class='form-control' type="text" id="publishedAt"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-6" for="weight">{{ 'WEIGHT' | translate}}</label>
+
+                <div class="col-lg-6">
+                    <input ng-model="content.weight" class='form-control' type="number" id="weight"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+            </div>
+
+        </form>
+    </div>
+    <div class="panel-footer text-right">
+        <a content-delete-button
+           data-id="{{ content.id }}"
+           data-type="{{ content.type }}"
+           class="pull-left text-danger"
+           style="margin-top: 7px;">
+            <small class="hidden-xs">{{ 'MOVE_TO_TRASH' | translate }}</small>
+        </a>
+        <button ng-click="saveContent()" type="button" class="btn btn-success">
+            {{ 'SAVE' | translate }}
+        </button>
+    </div>
+</div>

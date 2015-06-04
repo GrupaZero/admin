@@ -59,11 +59,45 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
                     }
                 })
                 .state('content.show', {
-                    url: '/{contentId}/show',
+                    url: '/{contentId}/show/{langCode}',
+                    abstract: true,
+                    resolve: {
+                        langCode: [
+                            '$state', '$stateParams', function($state, $stateParams) {
+                                if ($stateParams.langCode) {
+                                    return $stateParams.langCode;
+                                } else {
+                                    $stateParams.langCode = 'en';
+                                    return $stateParams.langCode;
+                                }
+                            }
+                        ]
+                    },
                     views: {
                         'content': {
                             templateUrl: viewPath + 'show.html',
                             controller: 'ContentDetailsCtrl'
+                        }
+                    }
+                })
+                .state('content.show.details', {
+                    url: '/details',
+                    deepStateRedirect: true,
+                    sticky: true,
+                    views: {
+                        'contentTab': {
+                            templateUrl: viewPath + 'details/tabs/show.html',
+                            controller: 'ContentDetailsCtrl'
+                        }
+                    }
+                })
+                .state('content.show.menu', {
+                    url: '/menu',
+                    deepStateRedirect: true,
+                    sticky: true,
+                    views: {
+                        'contentTab': {
+                            template: 'It Works!'
                         }
                     }
                 })

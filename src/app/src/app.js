@@ -7,6 +7,7 @@ require('./user/module.js');
 var dependencies = [
     'restangular',
     'ui.router',
+    'ct.ui.router.extras',
     'ngAnimate',
     'mgcrea.ngStrap',
     'pascalprecht.translate',
