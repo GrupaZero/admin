@@ -33,12 +33,6 @@ function ContentListCtrl($scope, $stateParams, listParent, ContentRepository, Ng
                 queryOptions.page = params.page();
             }
 
-            // if parent category is not selected
-            if (typeof listParent === 'undefined') {
-                // get uncategorized
-                queryOptions.level = 0;
-            }
-
             // tableParams.orderBy() - an array of string indicating both the sorting column and direction (e.g. ["+name", "-email"])
             if (params.sorting()) {
                 // only interested in first sort column for now
@@ -51,11 +45,15 @@ function ContentListCtrl($scope, $stateParams, listParent, ContentRepository, Ng
             queryOptions = _.merge(queryOptions, filters);
             $scope.activeFilter = filters;
 
-            // get list by default
-            var promise = ContentRepository.list(queryOptions);
+            // list promise
+            var promise = {};
 
-            // if parent category is selected
-            if (typeof listParent !== 'undefined') {
+            // if parent category is not selected
+            if (typeof listParent === 'undefined') {
+                // get uncategorized
+                queryOptions.level = 0;
+                promise = ContentRepository.list(queryOptions);
+            } else {
                 // get children's
                 promise = ContentRepository.children(listParent.id, queryOptions);
             }
