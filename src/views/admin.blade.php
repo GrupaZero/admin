@@ -36,7 +36,6 @@
 
 <body ng-controller="CoreCtrl" class="mini-sidebar"
       ng-class="{'is-sidebar': $state.current.views.quickSidebarLeft, 'animate-on': !$state.current.views.contentTab}">
-@{{enableMask}}
 <script type="text/ng-template" id="dropdown-template">
     <ul tabindex="-1" class="dropdown-menu" role="menu">
         <li role="presentation" ng-class="{divider: item.divider}" ng-repeat="item in content">
