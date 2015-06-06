@@ -120,7 +120,7 @@
         </div>
     </div>
 </div>
-<div class="loading-mask"><!-- Loading Mask --></div>
+<div class="loading-mask" ng-show="showMask"><!-- Loading Mask --></div>
 <!-- core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->

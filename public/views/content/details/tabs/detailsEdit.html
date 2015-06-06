@@ -1,13 +1,16 @@
-<div class="panel-heading">
-    <div class="page-header no-margin-bottom no-margin-top">
-        <h1>
-            {{ 'EDIT' | translate }}
-            <button ui-sref="content.show({ contentId: content.id, langCode: langCode })" type="button" class="btn btn-default">
-                {{ 'CANCEL' | translate }}
-            </button>
-        </h1>
+<div class="panel active-panel">
+    <div class="panel-heading">
+        <div class="page-header no-margin-bottom no-margin-top">
+            <h1>
+                {{ 'EDIT' | translate }}
+                <button ui-sref="content.show({ contentId: content.id, langCode: langCode })" type="button"
+                        class="btn btn-default">
+                    {{ 'CANCEL' | translate }}
+                </button>
+            </h1>
+        </div>
     </div>
-</div>
-<div class="panel-body">
-    {{ 'EDIT' | translate }}
+    <div class="panel-body">
+        {{ 'EDIT' | translate }}
+    </div>
 </div>

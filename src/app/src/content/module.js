@@ -132,6 +132,9 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
                             }
                         ]
                     },
+                    data:{
+                        showMask:  true // enter edit mode
+                    },
                     views: {
                         'content': {
                             templateUrl: viewPath + 'show.html',

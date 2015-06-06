@@ -1,21 +1,19 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-9">
-            <div class="panel margin-top">
-                <ul class="nav nav-tabs">
-                    <li role="presentation" ui-sref-active="active">
-                        <a ui-sref="content.show.details({ langCode: langCode })">
-                            {{ 'CONTENT' | translate }}
-                        </a>
-                    </li>
-                    <li role="presentation" ui-sref-active="active">
-                        <a ui-sref="content.show.history({ langCode: langCode })">
-                            {{ 'HISTORY_OF_CHANGES' | translate }}
-                        </a>
-                    </li>
-                </ul>
-                <div ui-view="contentTab"></div>
-            </div>
+            <ul class="nav nav-tabs margin-top">
+                <li role="presentation" ui-sref-active="active">
+                    <a ui-sref="content.show.details({ contentId: content.id, langCode: langCode })">
+                        {{ 'CONTENT' | translate }}
+                    </a>
+                </li>
+                <li role="presentation" ui-sref-active="active">
+                    <a ui-sref="content.show.history({contentId: content.id, langCode: langCode })">
+                        {{ 'HISTORY_OF_CHANGES' | translate }}
+                    </a>
+                </li>
+            </ul>
+            <div ui-view="contentTab"></div>
         </div>
         <div class="col-lg-3">
             <div ui-view="langSwitcher"></div>

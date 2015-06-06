@@ -18,8 +18,8 @@ function CoreCtrl($scope, $state, Translations, NavBar, TopNavBar) {
     };
 
     // refresh current state
-   $scope.refreshCurrentState = function() {
-       $state.go($state.current, {}, {reload: true});
+    $scope.refreshCurrentState = function() {
+        $state.go($state.current, {}, {reload: true});
     };
 
     $scope.navBar = NavBar.getItems();
@@ -30,6 +30,16 @@ function CoreCtrl($scope, $state, Translations, NavBar, TopNavBar) {
 
     // toggle sidebar
     $scope.$state = $state;
+
+    // check for loading mask
+    $scope.$on('$stateChangeStart', function(event, toState) {
+        if (typeof toState.data !== 'undefined') {
+            $scope.activeState = toState.name;
+            $scope.showMask = toState.data.showMask;
+        } else {
+            $scope.showMask = false;
+        }
+    });
 }
 
 CoreCtrl.$inject = ['$scope', '$state', 'Translations', 'NavBar', 'TopNavBar', '$state'];

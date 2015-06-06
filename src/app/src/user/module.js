@@ -38,7 +38,7 @@ angular.module('admin.user', ['ngTable'])
                         'content': {
                             templateUrl: viewPath + 'list.html'
                         }
-                    },
+                    }
 
                 });
         }
