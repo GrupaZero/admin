@@ -1,8 +1,12 @@
 <ul class="nav nav-tabs margin-top" ng-class="{'active-tabs': (activeState === $state.current.name)}">
     <li role="presentation" ui-sref-active="active" ng-repeat="tab in tabs" ng-switch="tab.action"
-        ng-init="statePath = (showMask ? 'content.edit.' : 'content.show.')"
-        ng-class="{'disabled': activeState && (statePath + tab.action) !== activeState}">
-        <a href="" ui-sref="{{ statePath + tab.action }}({ contentId: content.id, langCode: langCode })">
+        ng-init="statePath = (showMask ? 'content.edit.' : 'content.show.');
+        disabled = activeState && (statePath + tab.action) !== activeState"
+        ng-class="{'disabled': disabled}">
+        <a href="" ng-if="!disabled" ui-sref="{{ statePath + tab.action + '({ contentId: content.id, langCode: langCode })' }}">
+            {{ tab.title | translate }}
+        </a>
+        <a href="" ng-if="disabled">
             {{ tab.title | translate }}
         </a>
     </li>

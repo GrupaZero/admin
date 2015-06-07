@@ -169,6 +169,14 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
                         }
                     }
                 })
+                .state('content.edit.history', {
+                    url: '/history',
+                    views: {
+                        'contentTab': {
+                            templateUrl: viewPath + 'details/tabs/detailsEdit.html'
+                        }
+                    }
+                })
                 // CONTENT TRASHCAN
                 .state('content.trashcan', {
                     url: '/trashcan?isActive&type&page&perPage',
