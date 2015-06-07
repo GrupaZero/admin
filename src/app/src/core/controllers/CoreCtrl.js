@@ -34,8 +34,12 @@ function CoreCtrl($scope, $state, Translations, NavBar, TopNavBar) {
     // check for loading mask
     $scope.$on('$stateChangeStart', function(event, toState) {
         if (typeof toState.data !== 'undefined') {
+            if(toState.name !== 'content.edit.index'){
+                $scope.activeState = toState.name;
+            }
             $scope.showMask = toState.data.showMask;
         } else {
+            $scope.activeState = null;
             $scope.showMask = false;
         }
     });

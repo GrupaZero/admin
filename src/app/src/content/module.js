@@ -151,13 +151,13 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
                     }
                 })
                 .state('content.edit.index', {
+                    url: '',
                     views: {
                         'contentTab': {
                             templateUrl: viewPath + 'details/tabs/details.html'
                         },
                         'contentSettings': {
                             templateUrl: viewPath + 'details/settingsEdit.html'
-
                         }
                     }
                 })
