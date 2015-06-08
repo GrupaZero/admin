@@ -9,7 +9,8 @@ function ContentDeleteButton() {
         link: function(scope, element, attrs, ContentDeleteCtrl) {
             element.on('click', function() {
                 // Show a delete modal from a controller
-                ContentDeleteCtrl.deleteModal.showModal(attrs.id, attrs.type);
+                console.log(attrs);
+                ContentDeleteCtrl.deleteModal.showModal(attrs.id, attrs.type, attrs.force);
             });
         }
     };

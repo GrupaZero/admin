@@ -1,19 +1,19 @@
 'use strict';
 
-function ContentDeleteButton() {
+function ContentRestoreButton() {
     return {
         restrict: 'A',
-        controller: 'ContentDeleteCtrl',
+        controller: 'ContentRestoreCtrl',
         controllerAs: 'vm',
         bindToController: true,// because the scope is isolated
-        link: function(scope, element, attrs, ContentDeleteCtrl) {
+        link: function(scope, element, attrs, ContentRestoreCtrl) {
             element.on('click', function() {
                 // Show a delete modal from a controller
-                ContentDeleteCtrl.restoreContent(attrs.id, attrs.type);
+                ContentRestoreCtrl.restoreModal.showModal(attrs.id);
             });
         }
     };
 }
 
-ContentDeleteButton.$inject = [];
-module.exports = ContentDeleteButton;
+ContentRestoreButton.$inject = [];
+module.exports = ContentRestoreButton;
