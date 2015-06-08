@@ -1,8 +1,6 @@
 'use strict';
 
 function ContentDetailsCtrl($scope, content, langCode, ContentRepository, Notifications) {
-    $scope.content = ContentRepository.clean(content);
-    $scope.langCode = langCode;
     $scope.tabs = [
         {
             title: 'CONTENT',
@@ -13,6 +11,17 @@ function ContentDetailsCtrl($scope, content, langCode, ContentRepository, Notifi
             action: 'history'
         }
     ];
+
+    // if lang code exists
+    if (typeof langCode !== 'undefined') {
+        $scope.langCode = langCode;
+    }
+
+    // if content exists
+    if (typeof content !== 'undefined') {
+        $scope.content = ContentRepository.clean(content);
+    }
+
     $scope.saveContent = function() {
         ContentRepository
             .updateContent($scope.content.id, $scope.content)
