@@ -132,8 +132,8 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
                             }
                         ]
                     },
-                    data:{
-                        showMask:  true // enter edit mode
+                    data: {
+                        showMask: true // enter edit mode
                     },
                     views: {
                         'content': {
@@ -229,6 +229,7 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
     .controller('ContentAddTranslationCtrl', require('./controllers/ContentAddTranslationCtrl'))
     .controller('ContentRouteCtrl', require('./controllers/ContentRouteCtrl'))
     .factory('ContentRepository', require('./services/ContentRepository.js'))
+    .directive('contentAddButton', ['$dropdown', require('./directives/ContentAddButton.js')])
     .directive('contentDeleteButton', require('./directives/ContentDeleteButton.js'))
     .directive('contentEditRouteButton', require('./directives/ContentEditRouteButton.js'))
     .run([
