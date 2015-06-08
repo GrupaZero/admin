@@ -81,18 +81,13 @@
 
 .table {
   tr.inactive {
-    color   : $gray-light;
-    opacity : .6;
-    &:hover {
-      opacity : 1;
-    }
-    h5 a {
-      color : $gray-light;
+    &, h5 a,
+    {
+      color : #8b91a0;
     }
     .label {
-      background-color : $gray;
-      border-color     : $gray;
-      opacity          : .6;
+      background-color : #8b91a0;
+      border-color     : #8b91a0;
     }
   }
   td.text-center {

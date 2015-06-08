@@ -246,7 +246,7 @@ $dropdown-fallback-border:       #ccc !default;
 $dropdown-divider-bg:            #e5e5e5 !default;
 
 //** Dropdown link text color.
-$dropdown-link-color:            #2a2e36 !default;
+$dropdown-link-color:            $gray-dark !default;
 //** Hover color for dropdown links.
 $dropdown-link-hover-color:      #1b1e24 !default;
 //** Hover background for dropdown links.
@@ -569,7 +569,7 @@ $popover-arrow-outer-fallback-color:  darken($popover-fallback-border-color, 20%
 //##
 
 //** Default label background color
-$label-default-bg:            $gray-light !default;
+$label-default-bg:            $gray !default;
 //** Primary label background color
 $label-primary-bg:            $brand-primary !default;
 //** Success label background color
