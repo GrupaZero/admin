@@ -1,6 +1,16 @@
 'use strict';
 
 function ContentListCtrl($scope, $stateParams, listParent, ContentRepository, NgTableParams) {
+    $scope.contentTypes = [
+        {
+            title: 'CONTENT',
+            action: 'details'
+        },
+        {
+            title: 'HISTORY_OF_CHANGES',
+            action: 'history'
+        }
+    ];
     // if parent category exists
     if (typeof listParent !== 'undefined') {
         $scope.listParent = listParent; // selected category

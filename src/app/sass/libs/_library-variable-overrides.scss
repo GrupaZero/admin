@@ -22,10 +22,10 @@ $gray-light:             lighten($gray-base, 46.7%) !default; // #777
 $gray-lighter:           lighten($gray-base, 93.5%) !default; // #eee
 
 $brand-primary : #2196F3 !default;
-$brand-success : #4CAF50 !default;
+$brand-success : #88DA18 !default;
 $brand-info : #03A9F4 !default;
 $brand-warning : #FF9800 !default;
-$brand-danger : #F44336 !default;
+$brand-danger : #CC181E !default;
 
 //== Scaffolding
 //
@@ -159,8 +159,8 @@ $btn-default-bg:                 #fff !default;
 $btn-default-border:             #ccc !default;
 
 $btn-primary-color:              #fff !default;
-$btn-primary-bg:                 $brand-primary !default;
-$btn-primary-border:             darken($btn-primary-bg, 5%) !default;
+$btn-primary-bg:                 #1f3853 !default;
+$btn-primary-border:             #424651 !default;
 
 $btn-success-color:              #fff !default;
 $btn-success-bg:                 $brand-success !default;
@@ -174,9 +174,9 @@ $btn-warning-color:              #fff !default;
 $btn-warning-bg:                 $brand-warning !default;
 $btn-warning-border:             darken($btn-warning-bg, 5%) !default;
 
-$btn-danger-color:               #fff !default;
-$btn-danger-bg:                  $brand-danger !default;
-$btn-danger-border:              darken($btn-danger-bg, 5%) !default;
+$btn-danger-color:               $brand-danger !default;
+$btn-danger-bg:                  #fff !default;
+$btn-danger-border:              #ccc !default;
 
 $btn-link-disabled-color:        $gray-light !default;
 
@@ -500,7 +500,7 @@ $jumbotron-font-size:            ceil(($font-size-base * 1.5)) !default;
 //
 //## Define colors for form feedback states and, by default, alerts.
 
-$state-success-text : #438a85 !default;
+$state-success-text : #69AD08 !default;
 $state-success-bg : #f3faf8 !default;
 $state-success-border : #bfd1cf !default;
 
@@ -512,7 +512,7 @@ $state-warning-text : #ce8f22 !default;
 $state-warning-bg : #fffcee !default;
 $state-warning-border : #F0DBB4 !default;
 
-$state-danger-text : #e76e70 !default;
+$state-danger-text : $brand-danger !default;
 $state-danger-bg : #fff6f4 !default;
 $state-danger-border : #f8cdcd !default;
 
