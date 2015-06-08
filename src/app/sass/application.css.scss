@@ -105,7 +105,7 @@
     position   : relative;
     transition : all .25s ease-in-out;
     .list-group-item-heading {
-      margin-bottom : $line-height-computed / 2;
+      margin-bottom : 0;
     }
     .box-inner {
       color      : $white;

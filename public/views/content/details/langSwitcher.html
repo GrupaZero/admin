@@ -10,7 +10,7 @@
                          'active': lang.code === langCode}">
 
             <div ng-show="(content.translations | getTranslation:lang.code:'title')">
-                <h2 class="list-group-item-heading" translate="{{ lang.code | langName }}"></h2>
+                <h4 class="list-group-item-heading" translate="{{ lang.code | langName }}"></h4>
             </div>
 
             <div ng-hide="(content.translations | getTranslation:lang.code:'title')">
