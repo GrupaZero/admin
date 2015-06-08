@@ -69,10 +69,37 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
                 })
                 .state('content.trashcan', {
                     url: '/trashcan?isActive&type&page&perPage',
+                    resolve: {
+                        listParent: [
+                            '$stateParams', 'Storage', 'ContentRepository', function($stateParams, Storage, ContentRepository) {
+                                // if state param has category id
+                                if ($stateParams.contentId) {
+                                    Storage.setStorageItem({contentListParent: $stateParams.contentId});
+                                    return ContentRepository.one($stateParams.contentId);
+                                } else {
+                                    // if storage has category id
+                                    if (Storage.getStorageItem('contentListParent')) {
+                                        $stateParams.contentId = Storage.getStorageItem('contentListParent');
+                                        return ContentRepository.one(Storage.getStorageItem('contentListParent'));
+                                    }
+                                }
+                            }
+                        ],
+                        openCategories: [
+                            // get open categories from Storage
+                            'Storage', function(Storage) {
+                                return Storage.getStorageItem('openCategories');
+                            }
+                        ]
+                    },
                     views: {
                         'content': {
                             templateUrl: viewPath + 'trashcan.html',
                             controller: 'ContentTrashcanCtrl'
+                        },
+                        'quickSidebarLeft': {
+                            templateUrl: viewPath + 'categories.html',
+                            controller: 'ContentCategoryTreeCtrl'
                         }
                     }
                 })

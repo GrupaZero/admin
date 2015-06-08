@@ -109,6 +109,9 @@
                 <td data-title="'ID' | translate" sortable="'id'" class="text-center">
                     {{ content.id }}
                 </td>
+                <td data-title="'ACTION' | translate" class="text-center action-column">
+
+                </td>
             </tr>
             <tr ng-hide="$data[0]">
                 <td colspan="6" class="text-center"><strong>{{ 'NO_ENTRIES' | translate }}</strong></td>
@@ -123,7 +126,7 @@
     <div class="ng-cloak ng-table-pager">
         <ul ng-if="params.settings().counts.length" class="ng-table-counts pagination pull-right">
             <li ng-repeat="count in params.settings().counts" ng-class="{'active':params.count() == count}">
-                <a href="" ui-sref="content.list({ page: page.number, perPage:count })">
+                <a href="" ui-sref="content.trashcan({ page: page.number, perPage:count })">
                     <span ng-bind="count"></span>
                 </a>
             </li>
@@ -132,18 +135,18 @@
         <ul class="pagination ng-table-pagination">
             <li ng-class="{'active': !page.active, 'disabled': !page.active && (page.type == 'prev' || page.type == 'next')}"
                 ng-repeat="page in pages" ng-switch="page.type">
-                <a ng-switch-when="prev" ui-sref="content.list({ page: page.number })" href="">&laquo;</a>
-                <a ng-switch-when="first" ui-sref="content.list({ page: page.number })" href="">
+                <a ng-switch-when="prev" ui-sref="content.trashcan({ page: page.number })" href="">&laquo;</a>
+                <a ng-switch-when="first" ui-sref="content.trashcan({ page: page.number })" href="">
                     <span ng-bind="page.number"></span>
                 </a>
-                <a ng-switch-when="page" ui-sref="content.list({ page: page.number })" href="">
+                <a ng-switch-when="page" ui-sref="content.trashcan({ page: page.number })" href="">
                     <span ng-bind="page.number"></span>
                 </a>
-                <a ng-switch-when="more" ui-sref="content.list({ page: page.number })" href="">&#8230;</a>
-                <a ng-switch-when="last" ui-sref="content.list({ page: page.number })" href="">
+                <a ng-switch-when="more" ui-sref="content.trashcan({ page: page.number })" href="">&#8230;</a>
+                <a ng-switch-when="last" ui-sref="content.trashcan({ page: page.number })" href="">
                     <span ng-bind="page.number"></span>
                 </a>
-                <a ng-switch-when="next" ui-sref="content.list({ page: page.number })" href="">&raquo;</a>
+                <a ng-switch-when="next" ui-sref="content.trashcan({ page: page.number })" href="">&raquo;</a>
             </li>
         </ul>
     </div>
