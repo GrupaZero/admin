@@ -6,7 +6,7 @@ function ContentDetailsCtrl($scope, content, langCode, ContentRepository, Notifi
         {
             title: 'CONTENT',
             action: 'details',
-            default: true
+            default: true // default active tab in settings edit mode
         },
         {
             title: 'HISTORY_OF_CHANGES',

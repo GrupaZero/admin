@@ -26,9 +26,7 @@
                 ui-tree-node ng-include="'treeChildrenRenderer'"
                 data-collapsed="!{{ openCategories | nodeInPath:category.id  }}">
             </li>
-            <li>
-                <hr/>
-            </li>
+            <li><hr/></li>
             <li>
                 <a ui-sref="content.trashcan"
                    ui-sref-opts="{ inherit: false }"
