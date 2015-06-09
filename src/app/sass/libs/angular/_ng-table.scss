@@ -1,5 +1,7 @@
 .ng-table {
   th {
+    color                 : #8B91A0;
+    background-color      : #33363F;
     text-align            : center;
     -webkit-touch-callout : none;
     -webkit-user-select   : none;
@@ -7,7 +9,9 @@
     -moz-user-select      : none;
     -ms-user-select       : none;
     user-select           : none;
-
+    &:hover {
+      color : #FFF;
+    }
     &.sortable {
       cursor : pointer;
 
@@ -19,7 +23,7 @@
           content      : "";
           border-width : 0 4px 4px;
           border-style : solid;
-          border-color : #000 transparent;
+          border-color : #FFF transparent;
           visibility   : visible;
           right        : 8px;
           top          : 50%;
@@ -32,7 +36,7 @@
           border-bottom : none;
           border-left   : 4px solid transparent;
           border-right  : 4px solid transparent;
-          border-top    : 4px solid #000;
+          border-top    : 4px solid #FFF;
         }
       }
 
@@ -41,8 +45,8 @@
         visibility : visible;
       }
       &.sort-desc, &.sort-asc {
-        background-color : #d1dade;
-        text-shadow      : 0 1px 1px rgba(255, 255, 255, 0.75);
+        color : #FFF;
+        background-color : #1B1E24;
 
         div:after {
           margin-top : -2px;
@@ -62,7 +66,7 @@
         border-bottom      : none;
         border-left        : 4px solid transparent;
         border-right       : 4px solid transparent;
-        border-top         : 4px solid #000;
+        border-top         : 4px solid #FFF;
         visibility         : visible;
         -webkit-box-shadow : none;
         -moz-box-shadow    : none;

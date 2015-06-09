@@ -1,0 +1,30 @@
+<div class="panel">
+    <div class="panel-heading">
+        <div class="page-header no-margin-bottom no-margin-top">
+            <h1 ng-show="content.translations | getTranslation:langCode:'title'">
+                {{ content.translations | getTranslation:langCode:'title' }}
+                <button ui-sref="content.edit.details({ contentId: content.id, langCode: langCode })"
+                        type="button" class="btn btn-primary pull-right">
+                    {{ 'EDIT' | translate }}
+                </button>
+            </h1>
+
+            <h1 ng-hide="content.translations | getTranslation:langCode:'title'">
+                {{ 'NO_TRANSLATION' | translate }}
+                <button ui-sref="content.addTranslation({ contentId: content.id, langCode: langCode })"
+                        type="button" class="btn btn-primary pull-right">
+                    {{ 'NO_TRANSLATION_BUTTON' | translate }}
+                </button>
+            </h1>
+
+        </div>
+    </div>
+    <div class="panel-body">
+        <div ng-show="content.translations | getTranslation:langCode:'body'"
+             ng-bind-html="content.translations | getTranslation:langCode:'body' | trustAsHtml">
+        </div>
+        <div ng-hide="content.translations | getTranslation:langCode:'body'">
+            {{ 'NO_TRANSLATION_INFO' | translate }}
+        </div>
+    </div>
+</div>

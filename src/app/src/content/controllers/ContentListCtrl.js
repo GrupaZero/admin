@@ -45,13 +45,14 @@ function ContentListCtrl($scope, $stateParams, listParent, ContentRepository, Ng
             queryOptions = _.merge(queryOptions, filters);
             $scope.activeFilter = filters;
 
-            // get list by default
-            var promise = ContentRepository.list(queryOptions);
+            // list promise
+            var promise = {};
 
             // if parent category is not selected
             if (typeof listParent === 'undefined') {
                 // get uncategorized
                 queryOptions.level = 0;
+                promise = ContentRepository.list(queryOptions);
             } else {
                 // get children's
                 promise = ContentRepository.children(listParent.id, queryOptions);

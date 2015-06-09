@@ -62,10 +62,12 @@
 }
 .btn-primary {
   @include button-variant($btn-primary-color, $btn-primary-bg, $btn-primary-border);
+  @include gradient-vertical($btn-primary-bg, darken($btn-primary-bg, 10%));
 }
 // Success appears as green
 .btn-success {
   @include button-variant($btn-success-color, $btn-success-bg, $btn-success-border);
+  @include gradient-vertical($btn-success-bg, darken($btn-success-bg, 10%));
 }
 // Info appears as blue-green
 .btn-info {

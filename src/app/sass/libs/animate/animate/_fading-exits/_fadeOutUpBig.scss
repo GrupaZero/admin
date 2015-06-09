@@ -1,10 +1,17 @@
 @include keyframes(fadeOutUpBig) {
-  0% {opacity: 1; transform: translateY(0);}
-  100% {opacity: 0; transform: translateY(-2000px);}
+  0% {
+    opacity: 1;
+    @include transform(translateY(0));
+  }
+  100% {
+    opacity: 0;
+    @include transform(translateY(-2000px));
+  }
 }
 
-@mixin fadeOutUpBig($duration: $durationDefault, $delay: $delayDefault, $function: $functionDefault, $fill: $fillDefault, $visibility: $visibilityDefault) {
+@mixin fadeOutUpBig($count: $countDefault, $duration: $durationDefault, $delay: $delayDefault, $function: $functionDefault, $fill: $fillDefault, $visibility: $visibilityDefault) {
   @include animation-name(fadeOutUpBig);
+  @include count($count);
   @include duration($duration);
   @include delay($delay);
   @include function($function);

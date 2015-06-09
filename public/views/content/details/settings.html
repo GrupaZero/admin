@@ -1,0 +1,75 @@
+<div class="panel panel-default margin-top">
+    <div class="panel-heading">
+        <strong>{{ 'SETTINGS' | translate | uppercase }}</strong>
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item" ng-show="(content.route.translations | getTranslation:langCode:'url')">
+            {{ 'PERMALINK' | translate}}
+            <div class="pull-right">
+                {{ content.route.translations | getTranslation:langCode:'url' }}
+                <button content-edit-route-button
+                        ng-if="content.type != 'category'"
+                        data-id="{{ content.id }}"
+                        data-route="{{ content.route.translations | getTranslation:langCode:'url' }}"
+                        data-lang="{{ langCode }}"
+                        class="btn btn-primary btn-xs"
+                        type="button">
+                    {{ 'EDIT' | translate }}
+                </button>
+            </div>
+        </li>
+        <li class="list-group-item">
+            {{ 'IS_ON_HOME' | translate}}
+            <div class="pull-right">
+                <i class="fa"
+                   ng-class="content.isOnHome ? 'fa-check-circle text-success' : 'fa-times-circle text-danger'"></i>
+            </div>
+        </li>
+        <li class="list-group-item">
+            {{ 'IS_COMMENT_ALLOWED' | translate}}
+            <div class="pull-right">
+                <i class="fa"
+                   ng-class="content.isCommentAllowed ? 'fa-check-circle text-success' : 'fa-times-circle text-danger'"></i>
+            </div>
+        </li>
+        <li class="list-group-item">
+            {{ 'IS_PROMOTED' | translate}}
+            <div class="pull-right">
+                <i class="fa"
+                   ng-class="content.isPromoted ? 'fa-check-circle text-success' : 'fa-times-circle text-danger'"></i>
+            </div>
+        </li>
+        <li class="list-group-item">
+            {{ 'IS_STICKY' | translate}}
+            <div class="pull-right">
+                <i class="fa"
+                   ng-class="content.isSticky ? 'fa-check-circle text-success' : 'fa-times-circle text-danger'"></i>
+            </div>
+        </li>
+        <li class="list-group-item">
+            {{ 'IS_PUBLISHED' | translate}}
+            <div class="pull-right">
+                <i class="fa"
+                   ng-class="content.isActive ? 'fa-check-circle text-success' : 'fa-times-circle text-danger'"></i>
+            </div>
+        </li>
+        <li class="list-group-item">
+            {{ 'WEIGHT' | translate}}
+            <div class="pull-right">
+                {{ content.weight }}
+            </div>
+        </li>
+    </ul>
+    <div class="panel-footer text-right">
+        <button content-delete-button
+                data-id="{{ content.id }}"
+                data-type="{{ content.type }}"
+                type="button"
+                class="btn btn-danger">
+            {{ 'MOVE_TO_TRASH' | translate }}
+        </button>
+        <button ui-sref="content.edit({ contentId: content.id, langCode: langCode })" type="button" class="btn btn-primary">
+            {{ 'EDIT' | translate }}
+        </button>
+    </div>
+</div>
