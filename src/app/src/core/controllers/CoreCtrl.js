@@ -31,16 +31,16 @@ function CoreCtrl($scope, $state, Translations, NavBar, TopNavBar) {
     // toggle sidebar
     $scope.$state = $state;
 
-    // check for loading mask
+    // check for edit state
     $scope.$on('$stateChangeStart', function(event, toState) {
         if (typeof toState.data !== 'undefined') {
             if(toState.name !== 'content.edit.index'){
-                $scope.activeState = toState.name;
+                $scope.editStateName = toState.name;
             }
-            $scope.showMask = toState.data.showMask;
+            $scope.editMode = toState.data.editMode;
         } else {
-            $scope.activeState = null;
-            $scope.showMask = false;
+            $scope.editStateName = null;
+            $scope.editMode = false;
         }
     });
 }

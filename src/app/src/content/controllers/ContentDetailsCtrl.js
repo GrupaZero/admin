@@ -1,10 +1,12 @@
 'use strict';
 
 function ContentDetailsCtrl($scope, content, langCode, ContentRepository, Notifications) {
+    // TODO: get registered tabs
     $scope.tabs = [
         {
             title: 'CONTENT',
-            action: 'details'
+            action: 'details',
+            default: true
         },
         {
             title: 'HISTORY_OF_CHANGES',

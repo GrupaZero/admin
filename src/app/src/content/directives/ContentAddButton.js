@@ -11,7 +11,7 @@ function ContentAddButton($dropdown) {
             });
 
             element.on('click', function() {
-                // TODO: get registered  content types
+                // TODO: get registered content types
                 dropdown.$scope.content = [
                     {
                         text: 'ADD_CONTENT',
