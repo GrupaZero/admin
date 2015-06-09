@@ -2,7 +2,7 @@
     <li role="presentation" ui-sref-active="active" ng-repeat="tab in tabs" ng-switch="tab.action"
         ng-init="statePath = (editStateName ? 'content.edit.' : 'content.show.');
         disabled = editStateName && (statePath + tab.action) !== editStateName"
-        ng-class="{'disabled': disabled, 'default-tab': tab.default}">
+        ng-class="{'disabled': disabled, 'default-tab': tab.default && $state.current.name === 'content.edit.index'}">
         <a href="" ng-if="!disabled" ui-sref="{{ statePath + tab.action + '({ contentId: content.id, langCode: langCode })' }}">
             {{ tab.title | translate }}
         </a>
