@@ -22,7 +22,7 @@
 %quick-s-sidebar {
   @extend %sidebar-s-offcanvas;
   background-color : $blue-dark;
-  border-right     : 1px solid #CCC;
+  border-right     : 1px solid $black;
 }
 
 // -------------------------------------

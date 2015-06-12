@@ -1,10 +1,19 @@
 @include keyframes(rotateInDownRight) {
-  0% {transform-origin: right bottom; transform: rotate(90deg); opacity: 0;}
-  100% {transform-origin: right bottom; transform: rotate(0); opacity: 1;}
+  0% {
+    opacity: 0;
+    @include transform(rotate(90deg));
+    @include transform-origin(right bottom);
+  }
+  100% {
+    opacity: 1;
+    @include transform(rotate(0));
+    @include transform-origin(right bottom);
+  }
 }
 
-@mixin rotateInDownRight($duration: $durationDefault, $delay: $delayDefault, $function: $functionDefault, $fill: $fillDefault, $visibility: $visibilityDefault) {
+@mixin rotateInDownRight($count: $countDefault, $duration: $durationDefault, $delay: $delayDefault, $function: $functionDefault, $fill: $fillDefault, $visibility: $visibilityDefault) {
   @include animation-name(rotateInDownRight);
+  @include count($count);
   @include duration($duration);
   @include delay($delay);
   @include function($function);

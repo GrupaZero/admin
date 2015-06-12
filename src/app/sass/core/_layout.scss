@@ -38,6 +38,12 @@ body.is-sidebar {
   margin : $line-height-computed 0 0;
 }
 
+.active-tabs,
+.panel.active-panel {
+  position : relative;
+  z-index: $zindex-navbar-fixed * 3;
+}
+
 /*
  * Top navigation
  */

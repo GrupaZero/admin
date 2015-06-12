@@ -34,7 +34,8 @@
     </script>
 </head>
 
-<body ng-controller="CoreCtrl" class="mini-sidebar" ng-class="{'is-sidebar': $state.current.views.quickSidebarLeft}">
+<body ng-controller="CoreCtrl" class="mini-sidebar"
+      ng-class="{'is-sidebar': $state.current.views.quickSidebarLeft, 'animate-on': !$state.current.views.contentTab}">
 <script type="text/ng-template" id="dropdown-template">
     <ul tabindex="-1" class="dropdown-menu" role="menu">
         <li role="presentation" ng-class="{divider: item.divider}" ng-repeat="item in content">
@@ -119,7 +120,7 @@
         </div>
     </div>
 </div>
-<div class="loading-mask"><!-- Loading Mask --></div>
+<div class="loading-mask" ng-show="editMode"><!-- Loading Mask --></div>
 <!-- core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->

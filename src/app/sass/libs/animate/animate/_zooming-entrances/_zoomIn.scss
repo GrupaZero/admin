@@ -1,15 +1,16 @@
 @include keyframes(zoomIn) {
   0% {
     opacity: 0;
-    transform: scale3d(.3, .3, .3);
+    @include transform(scale3d(.3, .3, .3));
   }
   50% {
     opacity: 1;
   }
 }
 
-@mixin zoomIn($duration: $durationDefault, $delay: $delayDefault, $function: $functionDefault, $fill: $fillDefault, $visibility: $visibilityDefault) {
+@mixin zoomIn($count: $countDefault, $duration: $durationDefault, $delay: $delayDefault, $function: $functionDefault, $fill: $fillDefault, $visibility: $visibilityDefault) {
   @include animation-name(zoomIn);
+  @include count($count);
   @include duration($duration);
   @include delay($delay);
   @include function($function);

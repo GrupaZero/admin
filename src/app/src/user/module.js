@@ -38,7 +38,7 @@ angular.module('admin.user', ['ngTable'])
                         'content': {
                             templateUrl: viewPath + 'list.html'
                         }
-                    },
+                    }
 
                 });
         }
@@ -53,7 +53,7 @@ angular.module('admin.user', ['ngTable'])
         'NavBar',
         function(NavBar) {
             NavBar.add({
-                title: 'USER', action: 'user.list', icon: 'fa fa-user'
+                title: 'USERS', action: 'user.list', icon: 'fa fa-user'
                 //children: [
                 //    {
                 //        title: 'USER_LIST',

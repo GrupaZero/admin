@@ -35,8 +35,8 @@ angular.module('admin.core', ['CoreFilters'])
             TopNavBar.addLastChild(
                 'SETTINGS',
                 {
-                    title: 'ADD_NEW',
-                    action: 'content.add'
+                    title: 'USERS',
+                    action: 'user.list'
                 }
             );
         }
