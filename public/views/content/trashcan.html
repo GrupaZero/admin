@@ -52,44 +52,18 @@
                 <td data-title="'TITLE' | translate" sortable="'translations.title'">
                     <h5 ng-if="(content.translations | getTranslation:listLang.code:'title')">
                         <span
-                                ng-show="(content.route.translations | getTranslation:listLang.code:'url')">
+                           ng-show="(content.route.translations | getTranslation:listLang.code:'url')">
                            {{ content.translations | getTranslation:listLang.code:'title' }}
                         </span>
                     </h5>
 
                     <h5 ng-hide="(content.translations | getTranslation:listLang.code:'title')">
-                        <a href="" ui-sref="content.addTranslation({ contentId: content.id, langCode: listLang.code })"
-                           class="text-muted">
-                            <i class="glyphicon glyphicon-ban-circle hidden-sm"></i> {{ 'NO_TRANSLATION_BUTTON' | translate }}
-                        </a>
+                        <i class="glyphicon glyphicon-ban-circle hidden-sm"></i> {{ 'NO_TRANSLATION' | translate }}
                     </h5>
 
                     <div class="btn-toolbar" role="toolbar">
                         <div class="btn-group btn-group-xs" ng-repeat="lang in langs" ng-switch="lang.code"
                              ng-init="isTranslated = (content.translations | getTranslation:lang.code:'title')">
-                            <!-- TRANSLATION IS AVAILABLE -->
-                            <a href="" class="label label-default"
-                               ng-if="isTranslated"
-                               title="{{ isTranslated }}"
-                               ng-click="selectLanguage(lang)"
-                               ui-sref="content.show({ contentId: content.id })"
-                               ng-class="{
-                               'label-danger' : !isTranslated && lang.code == listLang.code,
-                               'label-primary' : isTranslated && lang.code == listLang.code
-                               }">
-                                <i class="glyphicon glyphicon-ok-circle"></i> {{ lang.code }}
-                            </a>
-                            <!-- TRANSLATION IS NOT AVAILABLE -->
-                            <a href="" class="label label-default"
-                               ng-if="!isTranslated"
-                               title="{{ 'ADD_TRANSLATION' | translate  }}"
-                               ui-sref="content.addTranslation({ contentId: content.id, langCode: lang.code })"
-                               ng-class="{
-                               'label-danger' : !isTranslated && lang.code == listLang.code,
-                               'label-primary' : isTranslated && lang.code == listLang.code
-                               }">
-                                <i class="glyphicon glyphicon-ban-circle"></i> {{ lang.code }}
-                            </a>
                         </div>
                     </div>
                 </td>
@@ -109,23 +83,6 @@
                 <td data-title="'ID' | translate" sortable="'id'" class="text-center">
                     {{ content.id }}
                 </td>
-                <td data-title="'ACTION' | translate" class="text-center action-column">
-                    <a content-delete-button
-                       data-id="{{ content.id }}"
-                       data-type="{{ content.type }}"
-                       data-force="true"
-                       class="pull-left btn btn-danger btn-xs"
-                       style="margin-top: 7px;">
-                        {{ 'MOVE_TO_TRASH' | translate }}
-                    </a>
-
-                    <a content-restore-button
-                       data-id="{{ content.id }}"
-                       class="pull-left btn btn-primary btn-xs"
-                       style="margin-top: 7px;">
-                        {{ 'RESTORE' | translate }}
-                    </a>
-                </td>
             </tr>
             <tr ng-hide="$data[0]">
                 <td colspan="6" class="text-center"><strong>{{ 'NO_ENTRIES' | translate }}</strong></td>
@@ -140,7 +97,7 @@
     <div class="ng-cloak ng-table-pager">
         <ul ng-if="params.settings().counts.length" class="ng-table-counts pagination pull-right">
             <li ng-repeat="count in params.settings().counts" ng-class="{'active':params.count() == count}">
-                <a href="" ui-sref="content.trashcan({ page: page.number, perPage:count })">
+                <a href="" ui-sref="content.list({ page: page.number, perPage:count })">
                     <span ng-bind="count"></span>
                 </a>
             </li>
@@ -149,18 +106,18 @@
         <ul class="pagination ng-table-pagination">
             <li ng-class="{'active': !page.active, 'disabled': !page.active && (page.type == 'prev' || page.type == 'next')}"
                 ng-repeat="page in pages" ng-switch="page.type">
-                <a ng-switch-when="prev" ui-sref="content.trashcan({ page: page.number })" href="">&laquo;</a>
-                <a ng-switch-when="first" ui-sref="content.trashcan({ page: page.number })" href="">
+                <a ng-switch-when="prev" ui-sref="content.list({ page: page.number })" href="">&laquo;</a>
+                <a ng-switch-when="first" ui-sref="content.list({ page: page.number })" href="">
                     <span ng-bind="page.number"></span>
                 </a>
-                <a ng-switch-when="page" ui-sref="content.trashcan({ page: page.number })" href="">
+                <a ng-switch-when="page" ui-sref="content.list({ page: page.number })" href="">
                     <span ng-bind="page.number"></span>
                 </a>
-                <a ng-switch-when="more" ui-sref="content.trashcan({ page: page.number })" href="">&#8230;</a>
-                <a ng-switch-when="last" ui-sref="content.trashcan({ page: page.number })" href="">
+                <a ng-switch-when="more" ui-sref="content.list({ page: page.number })" href="">&#8230;</a>
+                <a ng-switch-when="last" ui-sref="content.list({ page: page.number })" href="">
                     <span ng-bind="page.number"></span>
                 </a>
-                <a ng-switch-when="next" ui-sref="content.trashcan({ page: page.number })" href="">&raquo;</a>
+                <a ng-switch-when="next" ui-sref="content.list({ page: page.number })" href="">&raquo;</a>
             </li>
         </ul>
     </div>
