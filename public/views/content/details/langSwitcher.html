@@ -1,0 +1,32 @@
+<div class="panel panel-default  margin-top">
+    <div class="panel-heading">
+        <strong>{{ 'TRANSLATIONS' | translate | uppercase }}</strong>
+        <span class="label pull-right label-default">{{'CLICK_TO_SELECT' | translate }}</span>
+    </div>
+    <div class="list-group action-group">
+        <div ng-repeat="lang in langs" ng-switch="lang.code" class="list-group-item"
+             ui-sref="content.show({ langCode: lang.code })"
+             ng-class="{'empty': !(content.translations | getTranslation:lang.code:'title'),
+                         'active': lang.code === langCode}">
+
+            <div ng-show="(content.translations | getTranslation:lang.code:'title')">
+                <h4 class="list-group-item-heading" translate="{{ lang.code | langName }}"></h4>
+            </div>
+
+            <div ng-hide="(content.translations | getTranslation:lang.code:'title')">
+                <h4 class="list-group-item-heading" translate="{{ lang.code | langName }}"></h4>
+
+                <p class="list-group-item-text">
+                    {{ 'NO_TRANSLATION_INFO' | translate }}
+                </p>
+
+                <div class="box-inner">
+                    <a class="btn btn-default btn-block" href=""
+                       ui-sref="content.addTranslation({ contentId: content.id, langCode: lang.code })">
+                        <i class="icon glyphicon glyphicon-plus-sign"></i> {{ 'ADD_TRANSLATION' | translate }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
