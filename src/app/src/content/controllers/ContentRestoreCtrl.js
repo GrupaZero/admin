@@ -30,7 +30,6 @@ function ContentRestoreCtrl($scope, $state, $modal, ContentRepository, Notificat
         showModal: function(contentId) {
             var self = this;
             vm.contentId = contentId;
-            // check for children
             self.initModal('PLEASE_CONFIRM', 'RESTORE_CONTENT_QUESTION');
         },
         /**
