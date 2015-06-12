@@ -1,6 +1,6 @@
 'use strict';
 
-function ContentRestoreCtrl($scope, $state, $modal, ContentRepository, Notifications) { // jshint ignore:line
+function ContentRestoreCtrl($scope, $state, $modal, ContentRepository, Notifications) {
     var vm = this;
     var viewPath = 'gzero/admin/views/content/directives/';
     // Restore modal

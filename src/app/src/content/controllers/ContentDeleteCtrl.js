@@ -72,7 +72,6 @@ function ContentDeleteCtrl($scope, $state, $modal, Storage, ContentRepository, N
                     Notifications.addSuccess('CATEGORY_HAS_BEEN_DELETED');
                 } else {
                     // removed content
-                    console.log($state.current.name);
                     if ($state.$current.name === 'content.show.details') {
                         $state.go('content.list', {contentId: null}, {reload: true, inherit: false});
                     } else {
