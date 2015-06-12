@@ -182,24 +182,13 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
                     url: '/trashcan?isActive&type&page&perPage',
                     resolve: {
                         listParent: [
-                            '$stateParams', 'Storage', 'ContentRepository', function($stateParams, Storage, ContentRepository) {
-                                // if state param has category id
-                                if ($stateParams.contentId) {
-                                    Storage.setStorageItem({contentListParent: $stateParams.contentId});
-                                    return ContentRepository.one($stateParams.contentId);
-                                } else {
-                                    // if storage has category id
-                                    if (Storage.getStorageItem('contentListParent')) {
-                                        $stateParams.contentId = Storage.getStorageItem('contentListParent');
-                                        return ContentRepository.one(Storage.getStorageItem('contentListParent'));
-                                    }
-                                }
+                            function() {
+                                return undefined;
                             }
                         ],
                         openCategories: [
-                            // get open categories from Storage
-                            'Storage', function(Storage) {
-                                return Storage.getStorageItem('openCategories');
+                            function() {
+                                return undefined;
                             }
                         ]
                     },

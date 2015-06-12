@@ -25,7 +25,7 @@ function ContentRestoreCtrl($scope, $state, $modal, ContentRepository, Notificat
         /**
          * Function shows the AngularStrap modal
          *
-         * @param contentId content id to be removed, it is saved in the scope
+         * @param contentId content id to be restored, it is saved in the scope
          */
         showModal: function(contentId) {
             var self = this;
