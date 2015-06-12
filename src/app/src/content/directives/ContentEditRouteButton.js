@@ -2,6 +2,7 @@
 
 function ContentEditRouteButton() {
     return {
+        scope: true,
         restrict: 'A',
         controller: 'ContentRouteCtrl',
         controllerAs: 'vm',

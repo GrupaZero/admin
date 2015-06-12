@@ -12,7 +12,7 @@
     </div>
     <div ui-tree="treeOptions" class="categories-c-tree" data-drag-enabled="false">
         <ul ui-tree-nodes ng-model="categories" class="nav">
-            <li class="uncategorized" ng-class="{'active': !activeNode}">
+            <li class="uncategorized" ng-class="{'active': !activeNode && $state.current.name !== 'content.trashcan'}">
                 <a href=""
                    ui-sref="content.list({ contentId: null })"
                    ui-sref-opts="{ inherit: false }"
@@ -27,7 +27,7 @@
                 data-collapsed="!{{ openCategories | nodeInPath:category.id  }}">
             </li>
             <li><hr/></li>
-            <li>
+            <li ng-class="{'active': $state.current.name === 'content.trashcan'}">
                 <a ui-sref="content.trashcan"
                    ui-sref-opts="{ inherit: false }"
                         >

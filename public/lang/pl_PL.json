@@ -88,5 +88,9 @@
     "CONTENT_HAS_BEEN_DELETED": "Usunięto treść.",
     "CATEGORY_HAS_BEEN_DELETED": "Usunięto kategorie.",
     "THE_CHANGES_HAVE_BEEN_SAVED": "Zmiany zostały zapisane.",
-    "TYPE": "Typ"
+    "TYPE": "Typ",
+    "RESTORE": "Przywróć",
+    "RESTORE_CONTENT_QUESTION": "Czy napewno chcesz przywrócić tą treść?",
+    "CONTENT_HAS_BEEN_RESTORED": "Treść została przywrócona."
+
 }

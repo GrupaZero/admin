@@ -2,6 +2,7 @@
 
 function ContentRestoreButton() {
     return {
+        scope: true,
         restrict: 'A',
         controller: 'ContentRestoreCtrl',
         controllerAs: 'vm',

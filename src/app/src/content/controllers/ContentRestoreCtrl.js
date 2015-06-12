@@ -1,6 +1,6 @@
 'use strict';
 
-function ContentRestoreCtrl($scope, $state, $modal, Storage, ContentRepository, Notifications) { // jshint ignore:line
+function ContentRestoreCtrl($scope, $state, $modal, ContentRepository, Notifications) { // jshint ignore:line
     var vm = this;
     var viewPath = 'gzero/admin/views/content/directives/';
     // Restore modal
@@ -56,5 +56,5 @@ function ContentRestoreCtrl($scope, $state, $modal, Storage, ContentRepository, 
         }
     };
 }
-ContentRestoreCtrl.$inject = ['$scope', '$state', '$modal', 'Storage', 'ContentRepository', 'Notifications'];
+ContentRestoreCtrl.$inject = ['$scope', '$state', '$modal', 'ContentRepository', 'Notifications'];
 module.exports = ContentRestoreCtrl;

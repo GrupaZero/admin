@@ -15,6 +15,7 @@
 
 function UserDeleteButton() {
     return {
+        scope: true,
         restrict: 'A',
         controller: 'UserDeleteCtrl',
         controllerAs: 'vm',
