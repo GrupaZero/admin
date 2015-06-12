@@ -27,20 +27,26 @@ function ContentDeleteCtrl($scope, $state, $modal, Storage, ContentRepository, N
          *
          * @param contentId content id to be removed, it is saved in the scope
          * @param contentType content type
+         * @param forceDelete use forceDelete
          */
-        showModal: function(contentId, contentType) {
+        showModal: function(contentId, contentType, forceDelete) {
             var self = this;
             vm.contentId = contentId;
             vm.contentType = contentType;
+            vm.forceDelete = forceDelete;
             // check for children
-            ContentRepository.children(contentId).then(function(response) {
-                if (ContentRepository.clean(response).length === 0) {
-                    self.initModal('PLEASE_CONFIRM', 'DELETE_CONTENT_QUESTION');
-                } else {
-                    vm.hideSubmitButton = true;
-                    self.initModal('INFORMATION', 'DELETE_NOT_EMPTY_CATEGORY_INFO');
-                }
-            });
+            if (!vm.forceDelete) {
+                ContentRepository.children(contentId).then(function(response) {
+                    if (ContentRepository.clean(response).length === 0) {
+                        self.initModal('PLEASE_CONFIRM', 'DELETE_CONTENT_QUESTION');
+                    } else {
+                        vm.hideSubmitButton = true;
+                        self.initModal('INFORMATION', 'DELETE_NOT_EMPTY_CATEGORY_INFO');
+                    }
+                });
+            } else {
+                self.initModal('PLEASE_CONFIRM', 'DELETE_CONTENT_QUESTION');
+            }
         },
         /**
          * Function close the modal
@@ -56,7 +62,7 @@ function ContentDeleteCtrl($scope, $state, $modal, Storage, ContentRepository, N
          */
         deleteContent: function() {
             var self = this;
-            ContentRepository.deleteContent(vm.contentId).then(function(response) {
+            ContentRepository.deleteContent(vm.contentId, vm.forceDelete).then(function(response) {
                 self.closeModal();
                 // refresh current state
                 if (vm.contentType === 'category') {
@@ -66,14 +72,13 @@ function ContentDeleteCtrl($scope, $state, $modal, Storage, ContentRepository, N
                     Notifications.addSuccess('CATEGORY_HAS_BEEN_DELETED');
                 } else {
                     // removed content
-                    if ($state.$current.name === 'content.show') {
+                    if ($state.$current.name === 'content.show.details') {
                         $state.go('content.list', {contentId: null}, {reload: true, inherit: false});
                     } else {
                         $state.go($state.current, {}, {reload: true});
                     }
                     Notifications.addSuccess('CONTENT_HAS_BEEN_DELETED');
                 }
-
             });
         }
     };

@@ -52,7 +52,7 @@
                 <td data-title="'TITLE' | translate" sortable="'translations.title'">
                     <h5 ng-if="(content.translations | getTranslation:listLang.code:'title')">
                         <span
-                           ng-show="(content.route.translations | getTranslation:listLang.code:'url')">
+                                ng-show="(content.route.translations | getTranslation:listLang.code:'url')">
                            {{ content.translations | getTranslation:listLang.code:'title' }}
                         </span>
                     </h5>
@@ -82,6 +82,31 @@
                 </td>
                 <td data-title="'ID' | translate" sortable="'id'" class="text-center">
                     {{ content.id }}
+                </td>
+                <td data-title="'ACTION' | translate" class="text-center action-column">
+
+                    <!-- TODO: we need exception - now soft deleted contents can't be shown
+                    <a href="{{ baseUrl }}/{{ listLang.code }}/{{ content.route.translations | getTranslation:listLang.code:'url' }}"
+                       target="_blank"
+                       class="btn btn-sm btn-default">
+                        {{ 'VIEW' | translate }}
+                    </a>
+                    --------------- -->
+
+                    <button content-restore-button
+                       data-id="{{ content.id }}"
+                       class="btn btn-sm btn-primary">
+                        {{ 'RESTORE' | translate }}
+                    </button>
+
+                    <button content-delete-button
+                            data-id="{{ content.id }}"
+                            data-type="{{ content.type }}"
+                            data-force="true"
+                            class="btn btn-sm btn-danger"
+                            type="button">
+                        {{ 'DELETE' | translate }}
+                    </button>
                 </td>
             </tr>
             <tr ng-hide="$data[0]">

@@ -180,10 +180,26 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
                 // CONTENT TRASHCAN
                 .state('content.trashcan', {
                     url: '/trashcan?isActive&type&page&perPage',
+                    resolve: {
+                        listParent: [
+                            function() {
+                                return undefined;
+                            }
+                        ],
+                        openCategories: [
+                            function() {
+                                return undefined;
+                            }
+                        ]
+                    },
                     views: {
                         'content': {
                             templateUrl: viewPath + 'trashcan.html',
                             controller: 'ContentTrashcanCtrl'
+                        },
+                        'quickSidebarLeft': {
+                            templateUrl: viewPath + 'categories.html',
+                            controller: 'ContentCategoryTreeCtrl'
                         }
                     }
                 })
@@ -221,6 +237,7 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
     ])
     .controller('ContentAddCtrl', require('./controllers/ContentAddCtrl'))
     .controller('ContentDeleteCtrl', require('./controllers/ContentDeleteCtrl'))
+    .controller('ContentRestoreCtrl', require('./controllers/ContentRestoreCtrl'))
     .controller('ContentCategoryTreeCtrl', require('./controllers/ContentCategoryTreeCtrl'))
     .controller('ContentDashboardCtrl', require('./controllers/ContentDashboardCtrl'))
     .controller('ContentDetailsCtrl', require('./controllers/ContentDetailsCtrl'))
@@ -231,6 +248,7 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
     .factory('ContentRepository', require('./services/ContentRepository.js'))
     .directive('contentAddButton', ['$dropdown', require('./directives/ContentAddButton.js')])
     .directive('contentDeleteButton', require('./directives/ContentDeleteButton.js'))
+    .directive('contentRestoreButton', require('./directives/ContentRestoreButton.js'))
     .directive('contentEditRouteButton', require('./directives/ContentEditRouteButton.js'))
     .run([
         'NavBar',
