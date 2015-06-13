@@ -187,8 +187,9 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
                             }
                         ],
                         openCategories: [
-                            function() {
-                                return undefined;
+                            // get open categories from Storage
+                            'Storage', function(Storage) {
+                                return Storage.getStorageItem('openCategories');
                             }
                         ]
                     },

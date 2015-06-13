@@ -149,6 +149,20 @@
     & > ul {
     }
   }
+
+  .divider {
+    @include nav-divider(#5C606B);
+    margin: 0 -15px;
+  }
+
+  .menu-title {
+    color: $white;
+    font-size: 10.5px;
+    padding: 25px 30px 10px;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+  }
 }
 
 // - - - - - - - - - - - - - - - - - - -
