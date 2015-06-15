@@ -3,13 +3,6 @@
 function ContentDetailsEditCtrl($scope, content, langCode, ContentRepository, Notifications) {
 
     /**
-     * Currently active translation object
-     *
-     * @type Object
-     */
-    $scope.activeTranslation = getTranslationByLang(content.translations, langCode);
-
-    /**
      * Return object with specified lang property from objects array
      *
      * @param translations Translations array
@@ -25,6 +18,13 @@ function ContentDetailsEditCtrl($scope, content, langCode, ContentRepository, No
             return getTranslationByLang(translations, langCode);
         }
     }
+    
+    /**
+     * Currently active translation object
+     *
+     * @type Object
+     */
+    $scope.activeTranslation = getTranslationByLang(content.translations, langCode);
 
     /**
      * save current active translation as new active translation  
