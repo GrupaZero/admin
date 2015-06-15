@@ -138,7 +138,7 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
                     views: {
                         'content': {
                             templateUrl: viewPath + 'show.html',
-                            controller: 'ContentDetailsCtrl'
+                            controller: 'ContentDetailsEditCtrl'
                         },
                         'langSwitcher@content.edit': {
                             templateUrl: viewPath + 'details/langSwitcher.html'
@@ -224,6 +224,7 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
     .controller('ContentCategoryTreeCtrl', require('./controllers/ContentCategoryTreeCtrl'))
     .controller('ContentDashboardCtrl', require('./controllers/ContentDashboardCtrl'))
     .controller('ContentDetailsCtrl', require('./controllers/ContentDetailsCtrl'))
+    .controller('ContentDetailsEditCtrl', require('./controllers/ContentDetailsEditCtrl'))
     .controller('ContentListCtrl', require('./controllers/ContentListCtrl'))
     .controller('ContentTrashcanCtrl', require('./controllers/ContentTrashcanCtrl'))
     .controller('ContentAddTranslationCtrl', require('./controllers/ContentAddTranslationCtrl'))
