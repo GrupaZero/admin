@@ -185,6 +185,10 @@ li:hover {
   font-size : 14px;
 }
 
+.ng-invalid {
+  border-color : $brand-danger;
+}
+
 // PNotify
 
 .ui-pnotify {

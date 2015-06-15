@@ -1,46 +1,47 @@
 <div class="panel active-panel">
+    <form name="contentForm" novalidate>
 
-    <div class="panel-heading">
-        <div class="page-header no-margin-bottom no-margin-top">
+        <div class="panel-heading">
+            <div class="page-header no-margin-bottom no-margin-top">
 
-            <div class="row">
-                <div class="col-md-12">
-                    <label for="contentTitle" class="control-label">Title</label>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="contentTitle" class="control-label">Title</label>
+                    </div>
                 </div>
+
+                <div class="row">
+
+                    <div class="col-md-7">
+                        <input ng-model="activeTranslation.title" required class="form-control" id="contentTitle"
+                               type="text"/>
+                    </div>
+
+                    <div class="col-md-5 text-right">
+                        <button ng-click="showSeoDetails = !showSeoDetails"
+                                type="button"
+                                class="btn btn-default">
+                            {{ 'SHOW_SEO_SETTINGS' | translate }}
+                        </button>
+                        <button ui-sref="content.show({ contentId: content.id, langCode: langCode })" type="button"
+                                class="btn btn-primary">
+                            {{ 'CANCEL' | translate }}
+                        </button>
+                        <button ng-click="saveTranslation()"
+                                ng-disabled="contentForm.$invalid"
+                                type="button"
+                                class="btn btn-success">
+                            {{ 'SAVE' | translate }}
+                        </button>
+                    </div>
+
+                </div>
+
+
             </div>
-
-            <div class="row">
-
-                <div class="col-md-7">
-                    <input ng-model="activeTranslation.title" class="form-control" id="contentTitle" type="text"/>
-                </div>
-
-                <div class="col-md-5 text-right">
-                    <button ng-click="showSeoDetails = !showSeoDetails"
-                            type="button"
-                            class="btn btn-default">
-                        {{ 'SHOW_SEO_SETTINGS' | translate }}
-                    </button>
-                    <button ui-sref="content.show({ contentId: content.id, langCode: langCode })" type="button"
-                            class="btn btn-primary">
-                        {{ 'CANCEL' | translate }}
-                    </button>
-                    <button ng-click="saveTranslation()"
-                            ng-disabled="!activeTranslation.title"
-                            type="button"
-                            class="btn btn-success">
-                        {{ 'SAVE' | translate }}
-                    </button>
-                </div>
-
-            </div>
-
-
         </div>
-    </div>
 
-    <div class="panel-body">
-        <form>
+        <div class="panel-body">
             <div ng-show="showSeoDetails" class="am-fade-and-slide-top">
                 <div class="row">
                     <div class="col-md-12">
@@ -113,7 +114,8 @@
                 </div>
             </div>
 
-        </form>
-    </div>
+        </div>
+
+    </form>
 
 </div>
