@@ -7,6 +7,11 @@
                         type="button" class="btn btn-primary pull-right">
                     {{ 'EDIT' | translate }}
                 </button>
+                <button ng-click="showSeoSettings = !showSeoSettings"
+                        type="button"
+                        class="btn btn-default pull-right mr-sm">
+                    {{ 'SHOW_SEO_SETTINGS' | translate }}
+                </button>
             </h1>
 
             <h1 ng-hide="content.translations | getTranslation:langCode:'title'">
@@ -16,6 +21,23 @@
                     {{ 'NO_TRANSLATION_BUTTON' | translate }}
                 </button>
             </h1>
+
+            <div ng-show="showSeoSettings" class="row am-fade-and-slide-top">
+                <div class="col-md-12">
+                    <hr/>
+                    <p class="googleResultTitle">
+                        {{ (content.translations | getTranslation:langCode:'seoTitle') ? (content.translations | getTranslation:langCode:'seoTitle') : (content.translations | getTranslation:langCode:'title')}}
+                    </p>
+
+                    <p class="googleResultUrl">
+                        {{ baseUrl }}/{{ listLang.code }}/{{ content.route.translations | getTranslation:listLang.code:'url' }}
+                    </p>
+
+                    <p class="googleResultDescription">
+                        {{ (content.translations | getTranslation:langCode:'seoDescription') ? (content.translations | getTranslation:langCode:'seoDescription') : (content.translations | getTranslation:langCode:'teaser')}}
+                    </p>
+                </div>
+            </div>
 
         </div>
     </div>

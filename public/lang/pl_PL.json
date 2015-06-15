@@ -89,6 +89,11 @@
     "CATEGORY_HAS_BEEN_DELETED": "Usunięto kategorie.",
     "THE_CHANGES_HAVE_BEEN_SAVED": "Zmiany zostały zapisane.",
     "TYPE": "Typ",
+    "SEO_TITLE": "Tytuł SEO",
+    "SEO_DESCRIPTION": "Opis SEO",
+    "SHOW_SEO_SETTINGS": "Pokaż ustawienia SEO",
+    "SEO_TITLE_DESCRIPTION": "To jest tytuł strony który ukaże się u góry przeglądarki. Jeżeli zostawisz to pole puste, użyjemy tytułu.",
+    "SEO_DESCRIPTION_DESCRIPTION": "TO jest opis tej strony. Jeżeli zostawisz to pole puste spróbujemy użyć kilku pierwszych zdań treści.",
     "RESTORE": "Przywróć",
     "RESTORE_CONTENT_QUESTION": "Czy napewno chcesz przywrócić tą zawartość?",
     "CONTENT_HAS_BEEN_RESTORED": "Treść została przywrócona."

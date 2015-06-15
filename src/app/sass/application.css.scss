@@ -162,6 +162,33 @@ li:hover {
   }
 }
 
+.mr-sm {
+  margin-right : 10px;
+}
+
+.ml-sm {
+  margin-left : 10px;
+}
+
+.googleResultTitle {
+  font-size : 18px;
+  color     : #1a0dab;
+}
+
+.googleResultUrl {
+  color     : #006621;
+  font-size : 16px;
+}
+
+.googleResultDescription {
+  color     : #545454;
+  font-size : 14px;
+}
+
+.ng-invalid {
+  border-color : $brand-danger;
+}
+
 // PNotify
 
 .ui-pnotify {

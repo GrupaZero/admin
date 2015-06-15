@@ -165,6 +165,7 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
                     url: '/details',
                     views: {
                         'contentTab': {
+                            controller: 'ContentDetailsEditCtrl',
                             templateUrl: viewPath + 'details/tabs/detailsEdit.html'
                         }
                     }
@@ -242,6 +243,7 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
     .controller('ContentCategoryTreeCtrl', require('./controllers/ContentCategoryTreeCtrl'))
     .controller('ContentDashboardCtrl', require('./controllers/ContentDashboardCtrl'))
     .controller('ContentDetailsCtrl', require('./controllers/ContentDetailsCtrl'))
+    .controller('ContentDetailsEditCtrl', require('./controllers/ContentDetailsEditCtrl'))
     .controller('ContentListCtrl', require('./controllers/ContentListCtrl'))
     .controller('ContentTrashcanCtrl', require('./controllers/ContentTrashcanCtrl'))
     .controller('ContentAddTranslationCtrl', require('./controllers/ContentAddTranslationCtrl'))
