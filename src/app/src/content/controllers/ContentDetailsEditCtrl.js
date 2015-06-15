@@ -16,7 +16,8 @@
 function ContentDetailsEditCtrl($scope, content, langCode, ContentRepository, Notifications) {
 
     /**
-     * Return object with specified lang property from objects array
+     * Return translation with specified lang property from translations array
+     * and fetch lang property
      *
      * @param translations Translations array
      * @param langCode language code
