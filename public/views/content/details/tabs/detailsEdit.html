@@ -26,6 +26,7 @@
                         {{ 'CANCEL' | translate }}
                     </button>
                     <button ng-click="saveTranslation()"
+                            ng-disabled="!activeTranslation.title"
                             type="button"
                             class="btn btn-success">
                         {{ 'SAVE' | translate }}
@@ -39,80 +40,80 @@
     </div>
 
     <div class="panel-body">
-
-        <div ng-show="showSeoDetails" class="am-fade-and-slide-top">
-            <div class="row">
-                <div class="col-md-12">
-                    <label for="contentSeoTitle" class="control-label">{{ "SEO_TITLE" | translate }}</label>
-                </div>
-            </div>
-
-            <div class="row">
-
-                <div class="col-md-12">
-                    <input ng-model="activeTranslation.seoTitle" class="form-control" id="contentSeoTitle" type="text"/>
-
-                    <p><i>
-                        <small>{{ 'SEO_TITLE_DESCRIPTION' | translate }}</small>
-                    </i></p>
+        <form>
+            <div ng-show="showSeoDetails" class="am-fade-and-slide-top">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="contentSeoTitle" class="control-label">{{ "SEO_TITLE" | translate }}</label>
+                    </div>
                 </div>
 
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <input ng-model="activeTranslation.seoTitle" class="form-control" id="contentSeoTitle" type="text"/>
+
+                        <p><i>
+                            <small>{{ 'SEO_TITLE_DESCRIPTION' | translate }}</small>
+                        </i></p>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="contentSeoDescription" class="control-label">{{ "SEO_DESCRIPTION" | translate }}</label>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <input ng-model="activeTranslation.seoDescription" class="form-control" id="contentSeoDescription"
+                               type="text"/>
+
+                        <p><i>
+                            <small>{{ 'SEO_DESCRIPTION_DESCRIPTION' | translate }}</small>
+                        </i></p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <hr/>
+                    </div>
+                </div>
+
             </div>
 
             <div class="row">
                 <div class="col-md-12">
-                    <label for="contentSeoDescription" class="control-label">{{ "SEO_DESCRIPTION" | translate }}</label>
+                    <label for="contentTeaser" class="control-label">{{ "TEASER" | translate }}</label>
                 </div>
-            </div>
-
-            <div class="row">
-
                 <div class="col-md-12">
-                    <input ng-model="activeTranslation.seoDescription" class="form-control" id="contentSeoDescription"
-                           type="text"/>
-
-                    <p><i>
-                        <small>{{ 'SEO_DESCRIPTION_DESCRIPTION' | translate }}</small>
-                    </i></p>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-12">
-                    <hr/>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="row">
-            <div class="col-md-12">
-                <label for="contentTeaser" class="control-label">{{ "TEASER" | translate }}</label>
-            </div>
-            <div class="col-md-12">
                 <textarea ng-model="activeTranslation.teaser"
-                        class="form-control"
-                        id="contentTeaser"
+                          class="form-control"
+                          id="contentTeaser"
                         >
                 </textarea>
+                </div>
             </div>
-        </div>
 
-        <div class="row">
-            <div class="col-md-12">
-                <label for="contentBody" class="control-label">{{ "BODY" | translate }}</label>
-            </div>
-            <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-12">
+                    <label for="contentBody" class="control-label">{{ "BODY" | translate }}</label>
+                </div>
+                <div class="col-md-12">
                 <textarea ng-model="activeTranslation.body"
                           class="form-control"
                           id="contentBody"
                           rows="10"
                         >
                 </textarea>
+                </div>
             </div>
-        </div>
 
-
+        </form>
     </div>
 
 </div>
