@@ -138,7 +138,7 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
                     views: {
                         'content': {
                             templateUrl: viewPath + 'show.html',
-                            controller: 'ContentDetailsEditCtrl'
+                            controller: 'ContentDetailsCtrl'
                         },
                         'langSwitcher@content.edit': {
                             templateUrl: viewPath + 'details/langSwitcher.html'
@@ -165,6 +165,7 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
                     url: '/details',
                     views: {
                         'contentTab': {
+                            controller: 'ContentDetailsEditCtrl',
                             templateUrl: viewPath + 'details/tabs/detailsEdit.html'
                         }
                     }
