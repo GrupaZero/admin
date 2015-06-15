@@ -93,5 +93,8 @@
     "SEO_DESCRIPTION": "SEO Description",
     "SHOW_SEO_SETTINGS": "Show SEO settings",
     "SEO_TITLE_DESCRIPTION": "This is the title of the page that will show up in the top of the browser, if you leave it blank, we will use content title.",
-    "SEO_DESCRIPTION_DESCRIPTION": "This is the description for the page, if blank, we will try to use the first few sentences of the body field (if there is one)"
+    "SEO_DESCRIPTION_DESCRIPTION": "This is the description for the page, if blank, we will try to use the first few sentences of the body field (if there is one)",
+    "RESTORE": "Restore",
+    "RESTORE_CONTENT_QUESTION": "Are you sure you want to restore this content?",
+    "CONTENT_HAS_BEEN_RESTORED": "Content has been restored."
 }

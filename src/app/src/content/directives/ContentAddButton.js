@@ -2,6 +2,7 @@
 
 function ContentAddButton($dropdown) {
     return {
+        scope: true,
         restrict: 'A',
         link: function(scope, element, attrs) {
             var dropdown = $dropdown(element, {
