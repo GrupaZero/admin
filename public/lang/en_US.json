@@ -96,5 +96,11 @@
     "SEO_DESCRIPTION_DESCRIPTION": "This is the description for the page, if blank, we will try to use the first few sentences of the body field (if there is one)",
     "RESTORE": "Restore",
     "RESTORE_CONTENT_QUESTION": "Are you sure you want to restore this content?",
-    "CONTENT_HAS_BEEN_RESTORED": "Content has been restored."
+    "CONTENT_HAS_BEEN_RESTORED": "Content has been restored.",
+    "CURRENTLY_ACTIVE_VERSION": "Currently active version",
+    "COMPARE": "Compare",
+    "SET_AS_ACTIVE": "Set as active",
+    "SET_TRANSLATION_AS_ACTIVE_QUESTION": "Are you sure you want to set this translation as new active translation?",
+    "CONFIRM": "Confirm",
+    "DELETE_TRANSLATION_QUESTION": "Are you sure you want to delete this translation?"
 }

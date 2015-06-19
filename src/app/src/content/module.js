@@ -106,13 +106,13 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
                     }
                 })
                 .state('content.show.history', {
-                    url: '/history',
+                    url: '/history?isActive&type&page&perPage',
                     deepStateRedirect: true,
                     sticky: true,
                     views: {
                         'contentTab': {
-                            templateUrl: viewPath + 'details/tabs/history.html'
-
+                            templateUrl: viewPath + 'details/tabs/history.html',
+                            controller: 'ContentHistoryCtrl'
                         }
                     }
                 })
@@ -244,15 +244,20 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
     .controller('ContentDashboardCtrl', require('./controllers/ContentDashboardCtrl'))
     .controller('ContentDetailsCtrl', require('./controllers/ContentDetailsCtrl'))
     .controller('ContentDetailsEditCtrl', require('./controllers/ContentDetailsEditCtrl'))
+    .controller('ContentHistoryCtrl', require('./controllers/ContentHistoryCtrl'))
     .controller('ContentListCtrl', require('./controllers/ContentListCtrl'))
     .controller('ContentTrashcanCtrl', require('./controllers/ContentTrashcanCtrl'))
     .controller('ContentAddTranslationCtrl', require('./controllers/ContentAddTranslationCtrl'))
     .controller('ContentRouteCtrl', require('./controllers/ContentRouteCtrl'))
+    .controller('SetTranslationAsActiveCtrl', require('./controllers/directives/SetTranslationAsActiveCtrl'))
+    .controller('TranslationDeleteCtrl', require('./controllers/directives/TranslationDeleteCtrl'))
     .factory('ContentRepository', require('./services/ContentRepository.js'))
     .directive('contentAddButton', ['$dropdown', require('./directives/ContentAddButton.js')])
     .directive('contentDeleteButton', require('./directives/ContentDeleteButton.js'))
     .directive('contentRestoreButton', require('./directives/ContentRestoreButton.js'))
     .directive('contentEditRouteButton', require('./directives/ContentEditRouteButton.js'))
+    .directive('setTranslationAsActiveButton', require('./directives/SetTranslationAsActiveButton.js'))
+    .directive('translationDeleteButton', require('./directives/TranslationDeleteButton.js'))
     .run([
         'NavBar',
         function(NavBar) {

@@ -3,14 +3,96 @@
         <div class="page-header no-margin-bottom no-margin-top">
             <h1>
                 {{ 'HISTORY_OF_CHANGES' | translate }}
-                <button ui-sref="content.edit.history({ contentId: content.id, langCode: langCode })"
-                        type="button" class="btn btn-primary pull-right">
-                    {{ 'EDIT' | translate }}
-                </button>
+                -
+                <span class="text-gray">{{ 'LANG_NAME_'+langCode.toUpperCase() | translate }}</span>
             </h1>
         </div>
     </div>
     <div class="panel-body">
-        {{ 'HISTORY_OF_CHANGES' | translate }}
+
+        <div class="table-box"> <!-- START TRANSLATIONS TABLE -->
+            <table ng-table="tableParams" template-pagination="tablePager" class="table table-striped">
+                <tbody>
+                <tr ng-repeat="translation in $data">
+
+                    <td data-title="'TITLE' | translate" sortable="'email'" class="text-center">
+                        {{translation.title}}
+                    </td>
+                    <td data-title="'CREATED_AT' | translate" sortable="'firstName'" class="text-center">
+                        {{translation.createdAt}}
+                    </td>
+                    <td data-title="'ACTION' | translate" class="text-center">
+
+                        <div ng-show="translation.id != ( content.translations | getTranslation:langCode:'id' )">
+
+                            <!--
+                            <a class="btn btn-default btn-xs">
+                                <i class="fa fa-search"></i> {{ "COMPARE" | translate }}
+                            </a>
+                            -->
+
+                            <a set-translation-as-active-button
+                               data-id="{{translation.id}}"
+                               data-content="{{content.id}}"
+                               class="btn btn-success btn-xs">
+                                <i class="fa fa-check"></i> {{ "SET_AS_ACTIVE" | translate }}
+                            </a>
+
+                            <button translation-delete-button
+                                    translation-id="{{ translation.id }}"
+                                    data-content="{{content.id}}"
+                                    class="btn btn-danger btn-xs">
+                                <i class="fa fa-times"></i> {{ "DELETE" | translate }}
+                            </button>
+
+                        </div>
+
+                        <div ng-hide="translation.id != ( content.translations | getTranslation:langCode:'id' )">
+                            {{ 'CURRENTLY_ACTIVE_VERSION' | translate }}
+                        </div>
+
+                    </td>
+
+                </tr>
+                <tr ng-hide="$data[0]">
+                    <td colspan="6" class="text-center"><strong>{{ 'NO_ENTRIES' | translate }}</strong></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- END TRANSLATIONS TABLE -->
+
     </div>
 </div>
+
+<!--TEMPLATE-->
+<script type="text/ng-template" id="tablePager">
+    <div class="ng-cloak ng-table-pager">
+        <ul ng-if="params.settings().counts.length" class="ng-table-counts pagination pull-right">
+            <li ng-repeat="count in params.settings().counts" ng-class="{'active':params.count() == count}">
+                <a href="" ui-sref="content.show.history({ page: page.number, perPage:count })">
+                    <span ng-bind="count"></span>
+                </a>
+            </li>
+
+        </ul>
+        <ul class="pagination ng-table-pagination">
+            <li ng-class="{'active': !page.active, 'disabled': !page.active && (page.type == 'prev' || page.type == 'next')}"
+                ng-repeat="page in pages" ng-switch="page.type">
+                <a ng-switch-when="prev" ui-sref="content.show.history({ page: page.number })" href="">&laquo;</a>
+                <a ng-switch-when="first" ui-sref="content.show.history({ page: page.number })" href="">
+                    <span ng-bind="page.number"></span>
+                </a>
+                <a ng-switch-when="page" ui-sref="content.show.history({ page: page.number })" href="">
+                    <span ng-bind="page.number"></span>
+                </a>
+                <a ng-switch-when="more" ui-sref="content.show.history({ page: page.number })" href="">&#8230;</a>
+                <a ng-switch-when="last" ui-sref="content.show.history({ page: page.number })" href="">
+                    <span ng-bind="page.number"></span>
+                </a>
+                <a ng-switch-when="next" ui-sref="content.show.history({ page: page.number })" href="">&raquo;</a>
+            </li>
+        </ul>
+    </div>
+</script>
+
