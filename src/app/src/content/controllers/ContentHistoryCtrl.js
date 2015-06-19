@@ -13,7 +13,7 @@
 
 'use strict';
 
-function ContentHistoryCtrl($scope, $stateParams, content, langCode, ContentRepository, NgTableParams) {
+function ContentHistoryCtrl($scope, $stateParams, content, langCode, ContentRepository, NgTableParams) { //jshint ignore:line
     $scope.tableParams = new NgTableParams({
         count: 25, // count per page
         sorting: {
