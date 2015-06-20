@@ -17,8 +17,8 @@
             <h1 ng-hide="content.translations | getTranslation:langCode:'title'">
                 {{ 'NO_TRANSLATION' | translate }}
                 <button ui-sref="content.addTranslation({ contentId: content.id, langCode: langCode })"
-                        type="button" class="btn btn-primary pull-right">
-                    {{ 'NO_TRANSLATION_BUTTON' | translate }}
+                        type="button" class="btn btn-warning pull-right">
+                    <i class="glyphicon glyphicon-exclamation-sign hidden-sm"></i> {{ 'NO_TRANSLATION_BUTTON' | translate }}
                 </button>
             </h1>
 
