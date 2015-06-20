@@ -5,7 +5,10 @@
     <div class="list-group action-group">
         <div ng-repeat="lang in langs" ng-switch="lang.code" ui-sref="content.show({ langCode: lang.code })"
              class="list-group-item"
-             ng-class="{'inactive': !(content.translations | getTranslation:lang.code:'title'), 'active': lang.code === langCode}">
+             ng-class="{
+             'inactive': !(content.translations | getTranslation:lang.code:'title'),
+             'active': lang.code === langCode
+             }">
 
             <h4 class="list-group-item-heading" translate="{{ lang.code | langName }}"></h4>
 
