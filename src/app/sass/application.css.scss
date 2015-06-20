@@ -113,13 +113,16 @@
       cursor     : pointer;
       z-index    : $zindex-navbar-fixed - 1;
     }
-    &.empty {
+    &.inactive {
       background-color : $gray-lighter;
       border-color     : $btn-default-border;
       color            : $gray;
       &.active {
         color            : $white;
         background-color : $gray-dark;
+      }
+      .list-group-item-heading {
+        margin-bottom : 5px;
       }
     }
   }
