@@ -57,4 +57,12 @@ angular.module('CoreFilters', [])
     .filter('trustAsHtml', function($sce) {
         'use strict';
         return $sce.trustAsHtml;
+    })
+
+    .filter('formatDate', function($filter) {
+        'use strict';
+        return function(dateSTR) {
+            var d = Date.parse(dateSTR);
+            return $filter('date')(d, 'yyyy-MM-dd hh:mm:ss');
+        };
     });

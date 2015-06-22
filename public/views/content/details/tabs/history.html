@@ -4,7 +4,7 @@
             <h1>
                 {{ 'HISTORY_OF_CHANGES' | translate }}
                 -
-                <span class="text-gray">{{ 'LANG_NAME_'+langCode.toUpperCase() | translate }}</span>
+                <span class="text-muted">{{ 'LANG_NAME_'+langCode.toUpperCase() | translate }}</span>
             </h1>
         </div>
     </div>
@@ -19,7 +19,7 @@
                         {{translation.title}}
                     </td>
                     <td data-title="'CREATED_AT' | translate" sortable="'firstName'" class="text-center">
-                        {{translation.createdAt}}
+                        {{translation.createdAt | formatDate:'YYYY-MM-DD'}}
                     </td>
                     <td data-title="'ACTION' | translate" class="text-center">
 

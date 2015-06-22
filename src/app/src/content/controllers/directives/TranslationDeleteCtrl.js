@@ -13,7 +13,7 @@
 
 'use strict';
 
-function DeleteTranslationCtrl($scope, $state, $modal, ContentRepository, Notifications) { // jshint ignore:line
+function DeleteTranslationCtrl($scope, $state, $modal, ContentRepository, Notifications) {
     var vm = this;
     var viewPath = 'gzero/admin/views/content/directives/';
     // Delete modal
