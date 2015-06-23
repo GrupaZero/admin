@@ -15,10 +15,10 @@
                 <tbody>
                 <tr ng-repeat="translation in $data">
 
-                    <td data-title="'TITLE' | translate" sortable="'email'" class="text-center">
+                    <td data-title="'TITLE' | translate" sortable="'title'" class="text-center">
                         {{translation.title}}
                     </td>
-                    <td data-title="'CREATED_AT' | translate" sortable="'firstName'" class="text-center">
+                    <td data-title="'CREATED_AT' | translate" sortable="'createdAt'" class="text-center">
                         {{translation.createdAt | formatDate:'YYYY-MM-DD'}}
                     </td>
                     <td data-title="'ACTION' | translate" class="text-center">
@@ -55,7 +55,7 @@
 
                 </tr>
                 <tr ng-hide="$data[0]">
-                    <td colspan="6" class="text-center"><strong>{{ 'NO_ENTRIES' | translate }}</strong></td>
+                    <td colspan="3" class="text-center"><strong>{{ 'NO_ENTRIES' | translate }}</strong></td>
                 </tr>
                 </tbody>
             </table>
