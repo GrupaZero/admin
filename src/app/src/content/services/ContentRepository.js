@@ -31,6 +31,12 @@ function ContentRepository(Restangular) {
         newContentRoute: function(id, newRoute) {
             return Restangular.one(api, id).all('route').post(newRoute);
         },
+        translations: function(id, params) {
+            return Restangular.one(api, id).all('translations').getList(params);
+        },
+        deleteTranslation: function(contentId, translationId) {
+            return Restangular.one(api, contentId).one('translations', translationId).remove();
+        },
         deleteContent: function(id, forceDelete) {
             return Restangular.one(api, id).one(forceDelete).remove();
         },
