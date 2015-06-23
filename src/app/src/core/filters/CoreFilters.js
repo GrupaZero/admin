@@ -54,15 +54,26 @@ angular.module('CoreFilters', [])
         };
     })
 
+/**
+ * This filter lets you mark HTML as “safe” for angular to use and show on a page.
+ * Otherwise, angular would just show the HTML as plain text.
+ */
     .filter('trustAsHtml', function($sce) {
         'use strict';
         return $sce.trustAsHtml;
     })
 
+/**
+ * Parse ISO 8601 date to specified format
+ * @param format string expected date format
+ */
     .filter('formatDate', function($filter) {
         'use strict';
-        return function(dateSTR) {
+        return function(dateSTR, format) {
             var d = Date.parse(dateSTR);
-            return $filter('date')(d, 'yyyy-MM-dd hh:mm:ss');
+            if (!format) {
+                format = 'yyyy-MM-dd hh:mm:ss';
+            }
+            return $filter('date')(d, format);
         };
     });
