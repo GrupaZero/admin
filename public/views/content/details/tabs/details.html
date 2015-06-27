@@ -7,7 +7,7 @@
                         type="button" class="btn btn-primary pull-right">
                     {{ 'EDIT' | translate }}
                 </button>
-                <button ng-click="showSeoSettings = !showSeoSettings"
+                <button ng-click="$root.showSeoDetails = !$root.showSeoDetails"
                         type="button"
                         class="btn btn-default pull-right mr-sm">
                     {{ 'SHOW_SEO_SETTINGS' | translate }}
@@ -22,7 +22,7 @@
                 </button>
             </h1>
 
-            <div ng-show="showSeoSettings" class="row am-fade-and-slide-top">
+            <div ng-show="$root.showSeoDetails" class="row am-fade-and-slide-top">
                 <div class="col-md-12">
                     <hr/>
                     <p class="googleResultTitle">
