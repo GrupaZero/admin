@@ -92,6 +92,7 @@
     "SEO_TITLE": "SEO Title",
     "SEO_DESCRIPTION": "SEO Description",
     "SHOW_SEO_SETTINGS": "Show SEO settings",
+    "HIDE_SEO_SETTINGS": "Hide SEO settings",
     "SEO_TITLE_DESCRIPTION": "This is the title of the page that will show up in the top of the browser, if you leave it blank, we will use content title.",
     "SEO_DESCRIPTION_DESCRIPTION": "This is the description for the page, if blank, we will try to use the first few sentences of the body field (if there is one)",
     "RESTORE": "Restore",
