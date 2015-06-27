@@ -103,5 +103,8 @@
     "SET_AS_ACTIVE": "Aktywuj",
     "SET_TRANSLATION_AS_ACTIVE_QUESTION": "Czy napewno chcesz ustawić to tłumaczenie jako aktywne?",
     "CONFIRM": "Potwierdź",
-    "DELETE_TRANSLATION_QUESTION": "Czy napewno chcesz usunąć to tłumaczenie?"
+    "DELETE_TRANSLATION_QUESTION": "Czy napewno chcesz usunąć to tłumaczenie?",
+    "RESTORE_AND_EDIT": "Przywróć i edytuj",
+    "MOVE_CONTENT_TO_TRASH_QUESTION": "Czy napewno chcesz przenieść zawartość do kosza?",
+    "CONTENT_HAS_BEEN_MOVED_TO_TRASH": "Zawartość została przeniesiona do kosza."
 }

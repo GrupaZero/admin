@@ -10,13 +10,19 @@
                 <button type="button"
                         class="btn btn-success"
                         ng-click="vm.restoreModal.closeModal()">
-                    {{ (vm.hideSubmitButton) ? 'OK' : 'CANCEL' | translate }}
+                    {{ 'CANCEL' | translate }}
                 </button>
                 <button type="button"
                         class="btn btn-primary"
-                        ng-click="vm.restoreModal.restoreContent()">
+                        ng-click="vm.restoreModal.restoreContent(false)">
                     <i class="glyphicon glyphicon-remove-circle"></i>
                     {{ 'RESTORE' | translate }}
+                </button>
+                <button type="button"
+                        class="btn btn-primary"
+                        ng-click="vm.restoreModal.restoreContent(true)">
+                    <i class="glyphicon glyphicon-remove-circle"></i>
+                    {{ 'RESTORE_AND_EDIT' | translate }}
                 </button>
             </div>
         </div>
