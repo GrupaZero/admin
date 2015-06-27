@@ -10,7 +10,7 @@
                 <button ng-click="$root.showSeoDetails = !$root.showSeoDetails"
                         type="button"
                         class="btn btn-default pull-right mr-sm">
-                    {{ 'SHOW_SEO_SETTINGS' | translate }}
+                    {{ $root.showSeoDetails ? 'HIDE_SEO_SETTINGS' : 'SHOW_SEO_SETTINGS' | translate }}
                 </button>
             </h1>
 

@@ -21,7 +21,7 @@
                         <button ng-click="$root.showSeoDetails = !$root.showSeoDetails"
                                 type="button"
                                 class="btn btn-default">
-                            {{ 'SHOW_SEO_SETTINGS' | translate }}
+                            {{ $root.showSeoDetails ? 'HIDE_SEO_SETTINGS' : 'SHOW_SEO_SETTINGS' | translate }}
                         </button>
                         <button ui-sref="content.show({ contentId: content.id, langCode: langCode })" type="button"
                                 class="btn btn-primary">
@@ -54,11 +54,16 @@
                     <div class="row">
 
                         <div class="col-md-12">
-                            <input ng-model="activeTranslation.seoTitle" class="form-control" id="contentSeoTitle" type="text"/>
+                            <input ng-model="activeTranslation.seoTitle"
+                                   class="form-control"
+                                   id="contentSeoTitle"
+                                   type="text"
+                                   aria-describedby="seoTitleHelpBlock"
+                                    />
 
-                            <p><i>
-                                <small>{{ 'SEO_TITLE_DESCRIPTION' | translate }}</small>
-                            </i></p>
+                            <p class="help-block" id="seoTitleHelpBlock">
+                                {{ 'SEO_TITLE_DESCRIPTION' | translate }}
+                            </p>
                         </div>
 
                     </div>
@@ -74,12 +79,16 @@
                     <div class="row">
 
                         <div class="col-md-12">
-                            <input ng-model="activeTranslation.seoDescription" class="form-control" id="contentSeoDescription"
-                                   type="text"/>
+                            <input ng-model="activeTranslation.seoDescription"
+                                   class="form-control"
+                                   id="contentSeoDescription"
+                                   type="text"
+                                   aria-describedby="seoDescriptionHelpBlock"
+                                    />
 
-                            <p><i>
-                                <small>{{ 'SEO_DESCRIPTION_DESCRIPTION' | translate }}</small>
-                            </i></p>
+                            <p class="help-block" id="seoDescriptionHelpBlock">
+                                {{ 'SEO_DESCRIPTION_DESCRIPTION' | translate }}
+                            </p>
                         </div>
                     </div>
                 </div>
