@@ -42,14 +42,17 @@ function ContentRestoreCtrl($scope, $state, $modal, ContentRepository, Notificat
         },
         /**
          * Function restore softDeleted content
-         *
+         * @param editAfterRestore if true redirect to edit state after restore
          */
-        restoreContent: function() {
+        restoreContent: function(editAfterRestore) {
             var self = this;
             ContentRepository.restoreContent(vm.contentId).then(function(response) {
                 self.closeModal();
-                // refresh current state
-                $state.go($state.current, {}, {reload: true});
+                if (editAfterRestore) {
+                    $state.go('content.edit.details', {contentId: vm.contentId, langCode: $scope.currentLang.code});
+                } else {
+                    $state.go($state.current, {}, {reload: true});
+                }
                 Notifications.addSuccess('CONTENT_HAS_BEEN_RESTORED');
             });
         }
