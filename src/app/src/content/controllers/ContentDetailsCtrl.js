@@ -1,6 +1,9 @@
 'use strict';
 
 function ContentDetailsCtrl($scope, content, langCode, ContentRepository, Notifications) {
+
+    $scope.Config = Config; // we need this to access config values in template
+
     // TODO: get registered tabs
     $scope.tabs = [
         {

@@ -76,4 +76,17 @@ angular.module('CoreFilters', [])
             }
             return $filter('date')(d, format);
         };
+    })
+
+/**
+ * Remove html tags, and trim string to given length without breaking words
+ * @param len expected length
+ */
+    .filter('stripTagsAndTrim', function() {
+        'use strict';
+        return function(str, len) {
+            str = str.replace(/<\/?[^>]+(>|$)/g, '').substr(0, len);
+            str = str.substr(0, Math.min(str.length, str.lastIndexOf(' ')));
+            return str;
+        };
     });
