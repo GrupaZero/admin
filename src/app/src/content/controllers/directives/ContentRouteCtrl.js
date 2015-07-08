@@ -3,7 +3,7 @@
 function ContentRouteCtrl($scope, $state, $modal, ContentRepository) {
     var vm = this;
     var viewPath = 'gzero/admin/views/content/directives/';
-    // Delete modal
+    // Route modal
     vm.editRouteModal = {
         /**
          * Function initiates the AngularStrap modal
