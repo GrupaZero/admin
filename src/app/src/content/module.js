@@ -228,6 +228,17 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
                 // CONTENT ADD TRANSLATION
                 .state('content.addTranslation', {
                     url: '/{contentId}/add-translation/{langCode}',
+                    resolve: {
+                        PreviousState: [
+                            '$state', function($state) {
+                                return {
+                                    name: $state.current.name,
+                                    params: $state.params,
+                                    url: $state.href($state.current.name, $state.params)
+                                };
+                            }
+                        ]
+                    },
                     views: {
                         'content': {
                             templateUrl: viewPath + 'addTranslation.html',

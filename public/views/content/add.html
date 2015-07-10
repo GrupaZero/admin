@@ -1,5 +1,4 @@
 <div class="container-fluid">
-
     <form name="contentForm" novalidate>
         <div class="row">
             <div class="col-lg-9">
@@ -17,7 +16,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-7">
-                                    <input id="title" name="title" type="text" class="form-control" required
+                                    <input id="title" name="title" type="text" class="form-control margin-bottom" required
                                            ng-model="newContent.translations.title">
                                 </div>
                                 <div class="col-md-5 text-right">
@@ -66,10 +65,11 @@
                                 </div>
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group no-margin-bottom">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <label for="contentSeoDescription" class="control-label">{{ "SEO_DESCRIPTION" | translate }}</label>
+                                        <label for="contentSeoDescription" class="control-label">{{ "SEO_DESCRIPTION" | translate
+                                            }}</label>
                                     </div>
                                 </div>
 
