@@ -30,10 +30,23 @@
                                             class="btn btn-primary">
                                         {{ 'CANCEL' | translate }}
                                     </button>
-                                    <button type="submit" class="btn btn-success" ng-click="addNewContent(newContent)"
-                                            ng-disabled="contentForm.$invalid">
-                                        {{ 'SAVE' | translate }}
-                                    </button>
+
+                                    <!-- Split button -->
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-success" ng-click="addNewContent(newContent)"
+                                                ng-disabled="contentForm.$invalid">
+                                            {{ 'SAVE' | translate }}
+                                        </button>
+                                        <button type="button" class="btn btn-success dropdown-toggle"
+                                                data-template="gzero/admin/views/core/directives/StatesDropdown.tpl.html"
+                                                data-placement="bottom-right" data-animation="am-flip-x"
+                                                bs-dropdown="contentSaveButtonLinks" ng-disabled="contentForm.$invalid">
+                                            <span class="caret"></span>
+                                            <span class="sr-only">
+                                              {{ 'TOGGLE_DROPDOWN' | translate }}
+                                            </span>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>

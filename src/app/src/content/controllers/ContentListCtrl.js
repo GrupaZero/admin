@@ -6,6 +6,24 @@ function ContentListCtrl($scope, $stateParams, listParent, ContentRepository, Ng
         $scope.listParent = listParent; // selected category
     }
 
+    // TODO: content add button links
+    $scope.contentAddButtonLinks = [
+        {
+            text: 'ADD_CONTENT',
+            href: 'content.add({ type: "content" })',
+            icon: 'fa fa-file-text-o'
+
+        },
+        {
+            divider: true
+        },
+        {
+            text: 'ADD_CATEGORY',
+            href: 'content.add({ type: "category" })',
+            icon: 'fa fa-folder-o'
+        }
+    ];
+
     //  ngTable configuration
     $scope.tableParams = new NgTableParams({
         count: 25, // count per page
