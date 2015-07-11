@@ -10,6 +10,7 @@ angular.module('admin.core', ['CoreFilters'])
     .factory('Notifications', require('./services/Notifications.js'))
     .factory('Translations', require('./services/Translations.js'))
     .factory('Storage', require('./services/Storage.js'))
+    .directive('statesDropdown', ['$dropdown', require('./directives/StatesDropdown.js')])
     .run([
         'TopNavBar',
         function(TopNavBar) {
