@@ -16,7 +16,7 @@ function ContentCategoryTreeCtrl($scope, categories, openCategories, listParent,
             throw new Error('Node path is too short!');
         }
     }
-
+console.log(Utils);
     /**
      * Function returns specified node form provided collection
      *
@@ -51,7 +51,7 @@ function ContentCategoryTreeCtrl($scope, categories, openCategories, listParent,
         $scope.openCategories = _.union($scope.openCategories, listParent.path);
         $scope.root = getNodeById($scope.categories, getRootIdFromPath(listParent.path));
         // save open categories in the store
-        Utils.Storage.setUtils.StorageItem({openCategories: $scope.openCategories});
+        Utils.Storage.setStorageItem({openCategories: $scope.openCategories});
     }
 
     // removes listParent id from Utils.Storage
@@ -72,7 +72,7 @@ function ContentCategoryTreeCtrl($scope, categories, openCategories, listParent,
             $scope.openCategories = _.without($scope.openCategories, nodeId);
         }
         // save in the store
-        Utils.Storage.setUtils.StorageItem({openCategories: $scope.openCategories});
+        Utils.Storage.setStorageItem({openCategories: $scope.openCategories});
     };
 
 }
