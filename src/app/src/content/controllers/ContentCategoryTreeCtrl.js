@@ -16,7 +16,7 @@ function ContentCategoryTreeCtrl($scope, categories, openCategories, listParent,
             throw new Error('Node path is too short!');
         }
     }
-console.log(Utils);
+
     /**
      * Function returns specified node form provided collection
      *
