@@ -16,8 +16,24 @@ function ContentAddCtrl($scope, $state, $stateParams, listParent, ContentReposit
             langCode: $scope.listLang.code
         }
     };
+
+    // Angular strap dropdown for save button
+    $scope.contentSaveButtonLinks = [
+        {
+            text: 'SAVE_AND_CONTINUE_EDITING',
+            click: 'addNewContent(newContent, "content.edit.details")'
+        },
+        {
+            divider: true
+        },
+        {
+            text: 'SAVE_AND_ADD_ANOTHER',
+            click: 'addNewContent(newContent, "content.add")'
+        }
+    ];
+
     // contents POST action
-    $scope.addNewContent = function addNewContent(newContent) {
+    $scope.addNewContent = function addNewContent(newContent, redirect) {
         newContent.parentId = parentId; // set parent category as null
         newContent.publishedAt = new Date().toISOString().slice(0, 19).replace('T', ' '); // set publish at date
         // if parent category exists
@@ -29,12 +45,22 @@ function ContentAddCtrl($scope, $state, $stateParams, listParent, ContentReposit
             }
         }
         ContentRepository.newContent(newContent).then(function(response) {
-            if ($stateParams.type === 'category') {
-                // when create a category then set it as a new listParent on content list
-                $state.go('content.list', {contentId: response.id}, {reload: true});
+            // when there is custom redirect
+            if (typeof redirect !== 'undefined') {
+                var params = (redirect === 'content.edit.details') ? {
+                    contentId: response.id,
+                    langCode: newContent.translations.langCode
+                } : {type: $stateParams.type};
+
+                $state.go(redirect, params, {reload: true});
             } else {
-                // otherwise go to list without new listParent
-                $state.go('content.list', {}, {reload: true});
+                if ($stateParams.type === 'category') {
+                    // when create a category then set it as a new listParent on content list
+                    $state.go('content.list', {contentId: response.id}, {reload: true});
+                } else {
+                    // otherwise go to list without new listParent
+                    $state.go('content.list', {}, {reload: true});
+                }
             }
         });
     };
