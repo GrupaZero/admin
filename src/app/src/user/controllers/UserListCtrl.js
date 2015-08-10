@@ -13,7 +13,7 @@
 
 'use strict';
 
-function UserListCtrl($scope, $stateParams, $rootScope, UserRepository, NgTableParams) {
+function UserListCtrl($scope, Utils, $rootScope, UserRepository, NgTableParams) {
     $scope.tableParams = new NgTableParams({
         count: 25, // count per page
         sorting: {
@@ -29,14 +29,14 @@ function UserListCtrl($scope, $stateParams, $rootScope, UserRepository, NgTableP
             };
 
             // params.count() - number of items per page declared in view
-            if (typeof $stateParams.perPage !== 'undefined') {
-                params.count($stateParams.perPage);
+            if (typeof Utils.$stateParams.perPage !== 'undefined') {
+                params.count(Utils.$stateParams.perPage);
                 queryOptions.perPage = params.count();
             }
 
             // params.page() - current page
-            if (typeof $stateParams.page !== 'undefined') {
-                params.page($stateParams.page);
+            if (typeof Utils.$stateParams.page !== 'undefined') {
+                params.page(Utils.$stateParams.page);
                 queryOptions.page = params.page();
             }
 
@@ -60,5 +60,5 @@ function UserListCtrl($scope, $stateParams, $rootScope, UserRepository, NgTableP
     });
 }
 
-UserListCtrl.$inject = ['$scope', '$stateParams', '$rootScope', 'UserRepository', 'ngTableParams'];
+UserListCtrl.$inject = ['$scope', 'Utils', '$rootScope', 'UserRepository', 'ngTableParams'];
 module.exports = UserListCtrl;

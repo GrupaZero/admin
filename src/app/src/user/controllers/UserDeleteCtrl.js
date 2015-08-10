@@ -13,7 +13,7 @@
 
 'use strict';
 
-function UserListCtrl($scope, $state, UserRepository, $modal) {
+function UserListCtrl($scope, Utils, UserRepository, $modal) {
     var vm = this;
     var viewPath = 'gzero/admin/views/user/directives/';
     // Delete modal
@@ -64,12 +64,12 @@ function UserListCtrl($scope, $state, UserRepository, $modal) {
             var self = this;
             UserRepository.delete(vm.userId).then(function(response) {
                 self.closeModal();
-                $state.go($state.current, {}, {reload: true});
+                Utils.$state.go(Utils.$state.current, {}, {reload: true});
             });
         }
 
     };
 }
 
-UserListCtrl.$inject = ['$scope', '$state', 'UserRepository', '$modal'];
+UserListCtrl.$inject = ['$scope', 'Utils', 'UserRepository', '$modal'];
 module.exports = UserListCtrl;

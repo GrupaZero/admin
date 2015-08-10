@@ -1,6 +1,6 @@
 'use strict';
 
-function ContentCategoryTreeCtrl($scope, categories, openCategories, listParent, Storage) {
+function ContentCategoryTreeCtrl($scope, categories, openCategories, listParent, Utils) {
     /**
      * Function returns root id from provided path
      *
@@ -31,7 +31,7 @@ function ContentCategoryTreeCtrl($scope, categories, openCategories, listParent,
         });
     }
 
-    // if there are open categories in the Storage
+    // if there are open categories in the Utils.Storage
     if (typeof openCategories !== 'undefined') {
         $scope.openCategories = openCategories;
     } else {
@@ -51,15 +51,15 @@ function ContentCategoryTreeCtrl($scope, categories, openCategories, listParent,
         $scope.openCategories = _.union($scope.openCategories, listParent.path);
         $scope.root = getNodeById($scope.categories, getRootIdFromPath(listParent.path));
         // save open categories in the store
-        Storage.setStorageItem({openCategories: $scope.openCategories});
+        Utils.Storage.setUtils.StorageItem({openCategories: $scope.openCategories});
     }
 
-    // removes listParent id from storage
+    // removes listParent id from Utils.Storage
     $scope.uncategorized = function() {
-        Storage.removeStorageItem('contentListParent');
+        Utils.Storage.removeUtils.StorageItem('contentListParent');
     };
 
-    // toggles Node in categories tree and manage Storage open categories object
+    // toggles Node in categories tree and manage Utils.Storage open categories object
     $scope.toggleNode = function(scope) {
         scope.toggle();
         var nodeId = _.parseInt(scope.$element[0].id, 10);
@@ -72,9 +72,9 @@ function ContentCategoryTreeCtrl($scope, categories, openCategories, listParent,
             $scope.openCategories = _.without($scope.openCategories, nodeId);
         }
         // save in the store
-        Storage.setStorageItem({openCategories: $scope.openCategories});
+        Utils.Storage.setUtils.StorageItem({openCategories: $scope.openCategories});
     };
 
 }
-ContentCategoryTreeCtrl.$inject = ['$scope', 'categories', 'openCategories', 'listParent', 'Storage'];
+ContentCategoryTreeCtrl.$inject = ['$scope', 'categories', 'openCategories', 'listParent', 'Utils'];
 module.exports = ContentCategoryTreeCtrl;

@@ -13,11 +13,11 @@
 
 'use strict';
 
-function UserDetailsCtrl($scope, $stateParams, UserRepository) {
+function UserDetailsCtrl($scope, Utils, UserRepository) {
     // get single user
-    UserRepository.one($stateParams.userId).then(function(response) {
+    UserRepository.one(Utils.$stateParams.userId).then(function(response) {
         $scope.user = UserRepository.clean(response);
     });
 }
-UserDetailsCtrl.$inject = ['$scope', '$stateParams', 'UserRepository'];
+UserDetailsCtrl.$inject = ['$scope', 'Utils', 'UserRepository'];
 module.exports = UserDetailsCtrl;

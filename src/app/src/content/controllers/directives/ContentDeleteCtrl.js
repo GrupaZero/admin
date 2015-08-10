@@ -1,6 +1,6 @@
 'use strict';
 
-function ContentDeleteCtrl($scope, $state, $modal, Storage, ContentRepository, Notifications) { // jshint ignore:line
+function ContentDeleteCtrl($scope, Utils, $modal, Storage, ContentRepository, Notifications) { // jshint ignore:line
     var vm = this;
     var viewPath = 'gzero/admin/views/content/directives/';
     // Delete modal
@@ -60,14 +60,14 @@ function ContentDeleteCtrl($scope, $state, $modal, Storage, ContentRepository, N
                 if (vm.contentType === 'category') {
                     // removed category
                     Storage.removeStorageItem('contentListParent');
-                    $state.go('content.list', {contentId: null}, {reload: true, inherit: false});
+                    Utils.$state.go('content.list', {contentId: null}, {reload: true, inherit: false});
                     Notifications.addSuccess('CATEGORY_HAS_BEEN_DELETED');
                 } else {
                     // removed content
-                    if ($state.$current.name === 'content.show.details') {
-                        $state.go('content.list', {contentId: null}, {reload: true, inherit: false});
+                    if (Utils.$state.$current.name === 'content.show.details') {
+                        Utils.$state.go('content.list', {contentId: null}, {reload: true, inherit: false});
                     } else {
-                        $state.go($state.current, {}, {reload: true});
+                        Utils.$state.go(Utils.$state.current, {}, {reload: true});
                     }
                     Notifications.addSuccess(
                         vm.forceDelete ? 'CONTENT_HAS_BEEN_DELETED' : 'CONTENT_HAS_BEEN_MOVED_TO_TRASH'
@@ -77,5 +77,5 @@ function ContentDeleteCtrl($scope, $state, $modal, Storage, ContentRepository, N
         }
     };
 }
-ContentDeleteCtrl.$inject = ['$scope', '$state', '$modal', 'Storage', 'ContentRepository', 'Notifications'];
+ContentDeleteCtrl.$inject = ['$scope', 'Utils', '$modal', 'Storage', 'ContentRepository', 'Notifications'];
 module.exports = ContentDeleteCtrl;
