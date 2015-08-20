@@ -13,7 +13,7 @@
 
 'use strict';
 
-function ContentHistoryCtrl($scope, $stateParams, content, langCode, ContentRepository, NgTableParams) { //jshint ignore:line
+function ContentHistoryCtrl($scope, Utils, content, langCode, ContentRepository, NgTableParams) { //jshint ignore:line
     $scope.tableParams = new NgTableParams({
         count: 25, // count per page
         sorting: {
@@ -28,14 +28,14 @@ function ContentHistoryCtrl($scope, $stateParams, content, langCode, ContentRepo
             };
 
             // params.count() - number of items per page declared in view
-            if (typeof $stateParams.perPage !== 'undefined') {
-                params.count($stateParams.perPage);
+            if (typeof Utils.$stateParams.perPage !== 'undefined') {
+                params.count(Utils.$stateParams.perPage);
                 queryOptions.perPage = params.count();
             }
 
             // params.page() - current page
-            if (typeof $stateParams.page !== 'undefined') {
-                params.page($stateParams.page);
+            if (typeof Utils.$stateParams.page !== 'undefined') {
+                params.page(Utils.$stateParams.page);
                 queryOptions.page = params.page();
             }
 
@@ -59,5 +59,5 @@ function ContentHistoryCtrl($scope, $stateParams, content, langCode, ContentRepo
     });
 }
 
-ContentHistoryCtrl.$inject = ['$scope', '$stateParams', 'content' ,'langCode', 'ContentRepository', 'ngTableParams'];
+ContentHistoryCtrl.$inject = ['$scope', 'Utils', 'content', 'langCode', 'ContentRepository', 'ngTableParams'];
 module.exports = ContentHistoryCtrl;

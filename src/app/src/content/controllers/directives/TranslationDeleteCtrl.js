@@ -13,7 +13,7 @@
 
 'use strict';
 
-function DeleteTranslationCtrl($scope, $state, $modal, ContentRepository, Notifications) {
+function DeleteTranslationCtrl($scope, Utils, $modal, ContentRepository) {
     var vm = this;
     var viewPath = 'gzero/admin/views/content/directives/';
     // Delete modal
@@ -66,11 +66,11 @@ function DeleteTranslationCtrl($scope, $state, $modal, ContentRepository, Notifi
             var self = this;
             self.closeModal();
             ContentRepository.deleteTranslation(vm.contentId, vm.translationId).then(function() {
-                Notifications.addSuccess('CONTENT_HAS_BEEN_DELETED');
-                $state.reload();
+                Utils.Notifications.addSuccess('CONTENT_HAS_BEEN_DELETED');
+                Utils.$state.reload();
             });
         }
     };
 }
-DeleteTranslationCtrl.$inject = ['$scope', '$state', '$modal', 'ContentRepository', 'Notifications'];
+DeleteTranslationCtrl.$inject = ['$scope', 'Utils', '$modal', 'ContentRepository'];
 module.exports = DeleteTranslationCtrl;

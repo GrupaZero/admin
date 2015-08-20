@@ -13,7 +13,7 @@
 
 'use strict';
 
-function ContentTrashcanCtrl($scope, $stateParams, ContentRepository, NgTableParams) {
+function ContentTrashcanCtrl($scope, ContentRepository, NgTableParams, Utils) {
     $scope.tableParams = new NgTableParams({
         count: 25, // count per page
         sorting: {
@@ -28,14 +28,14 @@ function ContentTrashcanCtrl($scope, $stateParams, ContentRepository, NgTablePar
             };
 
             // params.count() - number of items per page declared in view
-            if (typeof $stateParams.perPage !== 'undefined') {
-                params.count($stateParams.perPage);
+            if (typeof Utils.$stateParams.perPage !== 'undefined') {
+                params.count(Utils.$stateParams.perPage);
                 queryOptions.perPage = params.count();
             }
 
             // params.page() - current page
-            if (typeof $stateParams.page !== 'undefined') {
-                params.page($stateParams.page);
+            if (typeof Utils.$stateParams.page !== 'undefined') {
+                params.page(Utils.$stateParams.page);
                 queryOptions.page = params.page();
             }
 
@@ -46,9 +46,9 @@ function ContentTrashcanCtrl($scope, $stateParams, ContentRepository, NgTablePar
                 queryOptions.sort = orderBy[0] === '+' ? orderBy.substring(1) : orderBy;
             }
 
-            // $stateParams filters
-            queryOptions = _.merge(queryOptions, $stateParams);
-            $scope.activeFilter = $stateParams;
+            // Utils.$stateParams filters
+            queryOptions = _.merge(queryOptions, Utils.$stateParams);
+            $scope.activeFilter = Utils.$stateParams;
 
             // get list by default
             var promise = ContentRepository.deleted(queryOptions);
@@ -63,5 +63,5 @@ function ContentTrashcanCtrl($scope, $stateParams, ContentRepository, NgTablePar
     });
 }
 
-ContentTrashcanCtrl.$inject = ['$scope', '$stateParams', 'ContentRepository', 'ngTableParams'];
+ContentTrashcanCtrl.$inject = ['$scope', 'ContentRepository', 'ngTableParams', 'Utils'];
 module.exports = ContentTrashcanCtrl;

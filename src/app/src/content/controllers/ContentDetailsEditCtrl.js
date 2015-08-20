@@ -13,7 +13,7 @@
 
 'use strict';
 
-function ContentDetailsEditCtrl($scope, $state, content, langCode, ContentRepository, Notifications) { //jshint ignore:line
+function ContentDetailsEditCtrl($scope, Utils, content, langCode, ContentRepository) { //jshint ignore:line
 
     /**
      * Return translation with specified lang property from translations array
@@ -47,14 +47,14 @@ function ContentDetailsEditCtrl($scope, $state, content, langCode, ContentReposi
      */
     $scope.saveTranslation = function() {
         ContentRepository.newContentTranslation(content.id, $scope.activeTranslation).then(function() {
-            $state.go('content.show.details', {
+            Utils.$state.go('content.show.details', {
                 contentId: content.id,
                 langCode: langCode
             });
-            Notifications.addSuccess('SUCCESS');
+            Utils.Notifications.addSuccess('SUCCESS');
         });
     };
 
 }
-ContentDetailsEditCtrl.$inject = ['$scope', '$state', 'content', 'langCode', 'ContentRepository', 'Notifications'];
+ContentDetailsEditCtrl.$inject = ['$scope', 'Utils', 'content', 'langCode', 'ContentRepository'];
 module.exports = ContentDetailsEditCtrl;

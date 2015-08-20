@@ -1,24 +1,24 @@
 'use strict';
 
-function ContentAddTranslationCtrl($scope, $state, $stateParams, PreviousState, ContentRepository) {
+function ContentAddTranslationCtrl($scope, Utils, PreviousState, ContentRepository) {
     $scope.showTeaser = false;
     // default translations lang code
     $scope.newContentTranslation = {
-        contentId: $stateParams.contentId,
-        langCode: $stateParams.langCode
+        contentId: Utils.$stateParams.contentId,
+        langCode: Utils.$stateParams.langCode
     };
     // contents POST action
     $scope.addnewContentTranslation = function addNewContent(newContentTranslation) {
-        ContentRepository.newContentTranslation($stateParams.contentId, newContentTranslation).then(function(response) {
+        ContentRepository.newContentTranslation(Utils.$stateParams.contentId, newContentTranslation).then(function(response) {
             if (PreviousState.url.length > 0) {
                 // redirected back to the state we came from
-                $state.go(PreviousState.name, PreviousState.params, {reload: true});
+                Utils.$state.go(PreviousState.name, PreviousState.params, {reload: true});
             } else {
                 // otherwise go to content list
-                $state.go('content.list', {}, {reload: true});
+                Utils.$state.go('content.list', {}, {reload: true});
             }
         });
     };
 }
-ContentAddTranslationCtrl.$inject = ['$scope', '$state', '$stateParams', 'PreviousState', 'ContentRepository'];
+ContentAddTranslationCtrl.$inject = ['$scope', 'Utils', 'PreviousState', 'ContentRepository'];
 module.exports = ContentAddTranslationCtrl;
