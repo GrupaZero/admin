@@ -1,6 +1,6 @@
 'use strict';
 
-function ContentListCtrl($scope, $stateParams, listParent, ContentRepository, NgTableParams) {
+function ContentListCtrl($scope, Utils, listParent, ContentRepository, NgTableParams) {
     // if parent category exists
     if (typeof listParent !== 'undefined') {
         $scope.listParent = listParent; // selected category
@@ -40,14 +40,14 @@ function ContentListCtrl($scope, $stateParams, listParent, ContentRepository, Ng
             };
 
             // params.count() - number of items per page declared in view
-            if (typeof $stateParams.perPage !== 'undefined') {
-                params.count($stateParams.perPage);
+            if (typeof Utils.$stateParams.perPage !== 'undefined') {
+                params.count(Utils.$stateParams.perPage);
                 queryOptions.perPage = params.count();
             }
 
             // params.page() - current page
-            if (typeof $stateParams.page !== 'undefined') {
-                params.page($stateParams.page);
+            if (typeof Utils.$stateParams.page !== 'undefined') {
+                params.page(Utils.$stateParams.page);
                 queryOptions.page = params.page();
             }
 
@@ -58,8 +58,8 @@ function ContentListCtrl($scope, $stateParams, listParent, ContentRepository, Ng
                 queryOptions.sort = orderBy[0] === '+' ? orderBy.substring(1) : orderBy;
             }
 
-            // $stateParams - filters without contentId
-            var filters = _.omit($stateParams, 'contentId');
+            // Utils.$stateParams - filters without contentId
+            var filters = _.omit(Utils.$stateParams, 'contentId');
             queryOptions = _.merge(queryOptions, filters);
             $scope.activeFilter = filters;
 
@@ -85,5 +85,5 @@ function ContentListCtrl($scope, $stateParams, listParent, ContentRepository, Ng
         }
     });
 }
-ContentListCtrl.$inject = ['$scope', '$stateParams', 'listParent', 'ContentRepository', 'ngTableParams'];
+ContentListCtrl.$inject = ['$scope', 'Utils', 'listParent', 'ContentRepository', 'ngTableParams'];
 module.exports = ContentListCtrl;

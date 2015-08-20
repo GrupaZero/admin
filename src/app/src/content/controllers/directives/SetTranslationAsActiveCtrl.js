@@ -13,7 +13,7 @@
 
 'use strict';
 
-function SetTranslationAsActiveCtrl($scope, $state, $modal, ContentRepository, Notifications) {
+function SetTranslationAsActiveCtrl($scope, Utils, $modal, ContentRepository) {
     var vm = this;
     var viewPath = 'gzero/admin/views/content/directives/';
     // Set as active modal
@@ -87,12 +87,12 @@ function SetTranslationAsActiveCtrl($scope, $state, $modal, ContentRepository, N
         setAsActive: function() {
             var self = this;
             ContentRepository.newContentTranslation(vm.contentId, vm.selectedTranslation).then(function() {
-                Notifications.addSuccess('SUCCESS');
-                $state.reload();
+                Utils.Notifications.addSuccess('SUCCESS');
+                Utils.$state.reload();
                 self.closeModal();
             });
         }
     };
 }
-SetTranslationAsActiveCtrl.$inject = ['$scope', '$state', '$modal', 'ContentRepository', 'Notifications'];
+SetTranslationAsActiveCtrl.$inject = ['$scope', 'Utils', '$modal', 'ContentRepository'];
 module.exports = SetTranslationAsActiveCtrl;

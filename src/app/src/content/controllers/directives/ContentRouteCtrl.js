@@ -1,6 +1,6 @@
 'use strict';
 
-function ContentRouteCtrl($scope, $state, $modal, ContentRepository) {
+function ContentRouteCtrl($scope, Utils, $modal, ContentRepository) {
     var vm = this;
     var viewPath = 'gzero/admin/views/content/directives/';
     // Route modal
@@ -54,11 +54,11 @@ function ContentRouteCtrl($scope, $state, $modal, ContentRepository) {
             };
             ContentRepository.newContentRoute(vm.contentId, newRoute).then(function(response) {
                 self.closeModal();
-                $state.go($state.current, {}, {reload: true});
+                Utils.$state.go(Utils.$state.current, {}, {reload: true});
             });
 
         }
     };
 }
-ContentRouteCtrl.$inject = ['$scope', '$state', '$modal', 'ContentRepository'];
+ContentRouteCtrl.$inject = ['$scope', 'Utils', '$modal', 'ContentRepository'];
 module.exports = ContentRouteCtrl;

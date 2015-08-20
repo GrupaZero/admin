@@ -13,19 +13,19 @@
 
 'use strict';
 
-function UserDetailsCtrl($scope, $state, $stateParams, UserRepository, Notifications) {
+function UserDetailsCtrl($scope, UserRepository, Utils) {
     // get single user
-    UserRepository.one($stateParams.userId).then(function(response) {
+    UserRepository.one(Utils.$stateParams.userId).then(function(response) {
         $scope.user = UserRepository.clean(response);
     });
 
-    $scope.saveUser = function(){
-        UserRepository.update($scope.user.id, $scope.user).then(function(response){
-            $state.go('user.list');
-            Notifications.addSuccess('THE_CHANGES_HAVE_BEEN_SAVED');
+    $scope.saveUser = function() {
+        UserRepository.update($scope.user.id, $scope.user).then(function(response) {
+            Utils.$state.go('user.list');
+            Utils.Notifications.addSuccess('THE_CHANGES_HAVE_BEEN_SAVED');
         });
     };
 
 }
-UserDetailsCtrl.$inject = ['$scope', '$state','$stateParams', 'UserRepository', 'Notifications'];
+UserDetailsCtrl.$inject = ['$scope', 'UserRepository', 'Utils'];
 module.exports = UserDetailsCtrl;

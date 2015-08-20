@@ -1,8 +1,8 @@
 'use strict';
 
-function ContentAddCtrl($scope, $state, $stateParams, listParent, ContentRepository) {
+function ContentAddCtrl($scope, Utils, listParent, ContentRepository) {
     var parentId = null;
-    $scope.contentType = $stateParams.type;
+    $scope.contentType = Utils.$stateParams.type;
     // if parent category exists
     if (typeof listParent !== 'undefined') {
         $scope.listParent = listParent; // selected category
@@ -10,7 +10,7 @@ function ContentAddCtrl($scope, $state, $stateParams, listParent, ContentReposit
     }
     // default translations lang code
     $scope.newContent = {
-        type: $stateParams.type,
+        type: Utils.$stateParams.type,
         isActive: true,
         translations: {
             langCode: $scope.listLang.code
@@ -50,20 +50,20 @@ function ContentAddCtrl($scope, $state, $stateParams, listParent, ContentReposit
                 var params = (redirect === 'content.edit.details') ? {
                     contentId: response.id,
                     langCode: newContent.translations.langCode
-                } : {type: $stateParams.type};
+                } : {type: Utils.$stateParams.type};
 
-                $state.go(redirect, params, {reload: true});
+                Utils.$state.go(redirect, params, {reload: true});
             } else {
-                if ($stateParams.type === 'category') {
+                if (Utils.$stateParams.type === 'category') {
                     // when create a category then set it as a new listParent on content list
-                    $state.go('content.list', {contentId: response.id}, {reload: true});
+                    Utils.$state.go('content.list', {contentId: response.id}, {reload: true});
                 } else {
                     // otherwise go to list without new listParent
-                    $state.go('content.list', {}, {reload: true});
+                    Utils.$state.go('content.list', {}, {reload: true});
                 }
             }
         });
     };
 }
-ContentAddCtrl.$inject = ['$scope', '$state', '$stateParams', 'listParent', 'ContentRepository'];
+ContentAddCtrl.$inject = ['$scope', 'Utils', 'listParent', 'ContentRepository'];
 module.exports = ContentAddCtrl;

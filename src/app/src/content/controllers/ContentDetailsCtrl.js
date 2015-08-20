@@ -1,8 +1,8 @@
 'use strict';
 
-function ContentDetailsCtrl($scope, content, langCode, ContentRepository, Notifications) {
+function ContentDetailsCtrl($scope, content, langCode, ContentRepository, Utils) {
 
-    $scope.Config = Config; // we need this to access config values in template
+    $scope.Config = Utils.Config;
 
     // TODO: get registered tabs
     $scope.tabs = [
@@ -31,10 +31,10 @@ function ContentDetailsCtrl($scope, content, langCode, ContentRepository, Notifi
         ContentRepository
             .updateContent($scope.content.id, $scope.content)
             .then(function() {
-                Notifications.addSuccess('SAVED');
+                Utils.Notifications.addSuccess('SAVED');
             });
     };
 
 }
-ContentDetailsCtrl.$inject = ['$scope', 'content', 'langCode', 'ContentRepository', 'Notifications'];
+ContentDetailsCtrl.$inject = ['$scope', 'content', 'langCode', 'ContentRepository', 'Utils'];
 module.exports = ContentDetailsCtrl;

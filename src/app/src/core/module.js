@@ -7,9 +7,10 @@ angular.module('admin.core', ['CoreFilters'])
     .factory('LangRepository', require('./services/LangRepository.js'))
     .factory('NavBar', require('./services/NavBar.js'))
     .factory('TopNavBar', require('./services/TopNavBar.js'))
-    .factory('Notifications', require('./services/Notifications.js'))
+    .factory('Notifications', require('../lib/Notifications.js'))
     .factory('Translations', require('./services/Translations.js'))
-    .factory('Storage', require('./services/Storage.js'))
+    .factory('Storage', require('../lib/Storage.js'))
+    .factory('Utils', require('./services/Utils.js'))
     .directive('statesDropdown', ['$dropdown', require('./directives/StatesDropdown.js')])
     .run([
         'TopNavBar',

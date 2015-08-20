@@ -1,6 +1,6 @@
 'use strict';
 
-function ContentRestoreCtrl($scope, $state, $modal, ContentRepository, Notifications) {
+function ContentRestoreCtrl($scope, Utils, $modal, ContentRepository, Notifications) {
     var vm = this;
     var viewPath = 'gzero/admin/views/content/directives/';
     // Restore modal
@@ -49,14 +49,14 @@ function ContentRestoreCtrl($scope, $state, $modal, ContentRepository, Notificat
             ContentRepository.restoreContent(vm.contentId).then(function(response) {
                 self.closeModal();
                 if (editAfterRestore) {
-                    $state.go('content.edit.details', {contentId: vm.contentId, langCode: $scope.currentLang.code});
+                    Utils.$state.go('content.edit.details', {contentId: vm.contentId, langCode: $scope.currentLang.code});
                 } else {
-                    $state.go($state.current, {}, {reload: true});
+                    Utils.$state.go(Utils.$state.current, {}, {reload: true});
                 }
                 Notifications.addSuccess('CONTENT_HAS_BEEN_RESTORED');
             });
         }
     };
 }
-ContentRestoreCtrl.$inject = ['$scope', '$state', '$modal', 'ContentRepository', 'Notifications'];
+ContentRestoreCtrl.$inject = ['$scope', 'Utils', '$modal', 'ContentRepository', 'Notifications'];
 module.exports = ContentRestoreCtrl;
