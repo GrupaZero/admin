@@ -21,7 +21,7 @@
     "CREATED_AT": "Created at",
     "DASHBOARD": "Dashboard",
     "DELETE": "Delete",
-    "DELETE_CONTENT_QUESTION": "Are you sure you want to delete this entry with all its language versions?",
+    "DELETE_CONTENT_QUESTION": "Are you sure you want to permanently delete this entry with all its language versions?",
     "DELETE_NOT_EMPTY_CATEGORY_INFO": "Category is not empty, you can delete only empty categories.",
     "DETAILS": "Details",
     "DRAFT": "Draft",
@@ -109,5 +109,6 @@
     "DELETE_TRANSLATION_QUESTION": "Are you sure you want to delete this translation?",
     "RESTORE_AND_EDIT": "Restore and edit",
     "MOVE_CONTENT_TO_TRASH_QUESTION": "Are you sure you want to move this content to trash ?",
-    "CONTENT_HAS_BEEN_MOVED_TO_TRASH": "Content has been moved to trash."
+    "CONTENT_HAS_BEEN_MOVED_TO_TRASH": "Content has been moved to trash.",
+    "PERM_DELETE": "Delete permanently"
 }
