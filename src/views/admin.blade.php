@@ -24,7 +24,10 @@
     <script type="application/javascript">
         var Config = {
             url: '{{ Request::root() }}',
-            apiUrl: 'http://api.{{ Request::getHTTPHost()}}'
+            apiUrl: 'http://api.{{ Request::getHTTPHost()}}',
+            seoDescriptionLength: '{{ config("gzero.seoDescLength") }}',
+            seoDescriptionAlternativeField: '{{ config("gzero.seoDescriptionAlternativeField") }}',
+            seoTitleAlternativeField: '{{ config("gzero.seoTitleAlternativeField") }}'
         };
         var modules = [
             @foreach ($modules->getModulesNames() as $moduleName)

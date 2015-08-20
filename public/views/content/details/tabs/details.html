@@ -34,7 +34,7 @@
                     </p>
 
                     <p class="googleResultDescription">
-                        {{ (content.translations | getTranslation:langCode:'seoDescription') ? (content.translations | getTranslation:langCode:'seoDescription') : (content.translations | getTranslation:langCode:'teaser')}}
+                        {{ (content.translations | getTranslation:langCode:'seoDescription') ? (content.translations | getTranslation:langCode:'seoDescription') : (content.translations | getTranslation:langCode:Config.seoDescriptionAlternativeField | stripTagsAndTrim:Config.seoDescriptionLength)}}
                     </p>
                 </div>
             </div>

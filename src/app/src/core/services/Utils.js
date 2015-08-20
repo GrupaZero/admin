@@ -7,7 +7,8 @@ function Utils(Notifications, Storage, $state, $stateParams) {
         Notifications: Notifications,
         Storage: Storage,
         $state: $state,
-        $stateParams: $stateParams
+        $stateParams: $stateParams,
+        Config: Config
     };
 
 }

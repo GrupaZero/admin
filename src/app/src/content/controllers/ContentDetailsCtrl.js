@@ -1,6 +1,9 @@
 'use strict';
 
 function ContentDetailsCtrl($scope, content, langCode, ContentRepository, Utils) {
+
+    $scope.Config = Utils.Config;
+
     // TODO: get registered tabs
     $scope.tabs = [
         {
