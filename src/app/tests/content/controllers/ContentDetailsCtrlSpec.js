@@ -5,12 +5,12 @@ describe('ContentDetailsCtrl', function() {
     var langCode = 'en';
     var content;
     var ContentRepository;
-    var Notifications;
     var ctrl;
+    var Utils = {};
 
     beforeEach(function() {
         scope = {};
-        ctrl = new controller(scope, content, langCode, ContentRepository, Notifications);
+        ctrl = new controller(scope, content, langCode, ContentRepository, Utils);
     });
 
     it('should set lang code', function() {
