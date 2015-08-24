@@ -14,32 +14,43 @@ angular.module('admin.core', ['CoreFilters'])
     .directive('statesDropdown', ['$dropdown', require('./directives/StatesDropdown.js')])
     .run([
         'TopNavBar',
-        function(TopNavBar) {
-            TopNavBar.add(
-                {
-                    title: 'DASHBOARD',
-                    action: 'home'
-                }
-            );
-            TopNavBar.add(
-                {
-                    title: 'SETTINGS',
-                    action: 'content.list'
-                }
-            );
-            TopNavBar.addLastChild(
-                'SETTINGS',
-                {
-                    title: 'ALL_CONTENTS',
-                    action: 'content.list'
-                }
-            );
-            TopNavBar.addLastChild(
-                'SETTINGS',
-                {
-                    title: 'USERS',
-                    action: 'user.list'
-                }
-            );
+        'UserRepository',
+        'Utils',
+        function(TopNavBar, UserRepository, Utils) {
+
+            UserRepository.one(Utils.Config.currentUserId).then(function(response) {
+                var user = response;
+                user.fullName = user.firstName + ' ' + user.lastName;
+
+                TopNavBar.add(
+                    {
+                        title: 'PAGE_PREVIEW',
+                        action: false,
+                        url: '/'
+                    }
+                );
+                TopNavBar.add(
+                    {
+                        title: user.fullName,
+                        action: 'content.list'
+                    }
+                );
+                TopNavBar.addLastChild(
+                    user.fullName,
+                    {
+                        title: 'PROFILE',
+                        action: 'user.edit({userId: '+user.id+'})'
+                    }
+                );
+                TopNavBar.addLastChild(
+                    user.fullName,
+                    {
+                        title: 'LOG_OUT',
+                        action: false,
+                        url: '/admin/logout'
+                    }
+                );
+            });
+
         }
     ]);

@@ -110,5 +110,8 @@
     "RESTORE_AND_EDIT": "Restore and edit",
     "MOVE_CONTENT_TO_TRASH_QUESTION": "Are you sure you want to move this content to trash ?",
     "CONTENT_HAS_BEEN_MOVED_TO_TRASH": "Content has been moved to trash.",
-    "PERM_DELETE": "Delete permanently"
+    "PERM_DELETE": "Delete permanently",
+    "PROFILE": "Profile",
+    "PAGE_PREVIEW": "Page preview",
+    "LOG_OUT": "Log out"
 }

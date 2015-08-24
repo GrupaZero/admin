@@ -110,5 +110,8 @@
     "RESTORE_AND_EDIT": "Przywróć i edytuj",
     "MOVE_CONTENT_TO_TRASH_QUESTION": "Czy napewno chcesz przenieść zawartość do kosza?",
     "CONTENT_HAS_BEEN_MOVED_TO_TRASH": "Zawartość została przeniesiona do kosza.",
-    "PERM_DELETE": "Usuń na zawsze"
+    "PERM_DELETE": "Usuń na zawsze",
+    "PROFILE": "Profil",
+    "PAGE_PREVIEW": "Podgląd strony",
+    "LOG_OUT": "Wyloguj się"
 }
