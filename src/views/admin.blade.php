@@ -27,7 +27,8 @@
             apiUrl: 'http://api.{{ Request::getHTTPHost()}}',
             seoDescriptionLength: '{{ config("gzero.seoDescLength") }}',
             seoDescriptionAlternativeField: '{{ config("gzero.seoDescriptionAlternativeField") }}',
-            seoTitleAlternativeField: '{{ config("gzero.seoTitleAlternativeField") }}'
+            seoTitleAlternativeField: '{{ config("gzero.seoTitleAlternativeField") }}',
+            currentUserId: {{ app('auth')->user()->id }}
         };
         var modules = [
             @foreach ($modules->getModulesNames() as $moduleName)
@@ -80,11 +81,22 @@
                 </div>
                 <ul class="nav navbar-nav navbar-right hidden-xs">
                     <li ng-repeat="link in topNavBar">
-                        <a ng-if="!link.children" ui-sref="@{{ link.action }}">@{{ link.title | translate }}</a>
+
+                        <a ng-if="!link.children && link.action" ui-sref="@{{ link.action }}">@{{ link.title | translate }}</a>
+
+                        <a ng-if="!link.children && !link.action" target="__blank"
+                           href="@{{ link.url }}">@{{ link.title | translate }}
+                        </a>
+
                         <a ng-if="link.children">@{{ link.title | translate }} <span class="caret"></span></a>
                         <ul ng-if="link.children" class="dropdown-menu" role="menu">
                             <li ui-sref-active="active" ng-repeat="subLink in link.children">
-                                <a ui-sref="@{{ subLink.action }}">@{{ subLink.title | translate }}</a>
+                                <a ng-if="subLink.action" ui-sref="@{{ subLink.action }}">
+                                    @{{ subLink.title | translate }}
+                                </a>
+                                <a ng-if="!subLink.action" href="@{{ subLink.url }}">
+                                    @{{ subLink.title | translate }}
+                                </a>
                             </li>
                         </ul>
                     </li>
