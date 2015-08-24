@@ -56,7 +56,7 @@ function ContentCategoryTreeCtrl($scope, categories, openCategories, listParent,
 
     // removes listParent id from Utils.Storage
     $scope.uncategorized = function() {
-        Utils.Storage.removeUtils.StorageItem('contentListParent');
+        Utils.Storage.removeStorageItem('contentListParent');
     };
 
     // toggles Node in categories tree and manage Utils.Storage open categories object
