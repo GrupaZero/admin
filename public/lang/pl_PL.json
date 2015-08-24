@@ -21,7 +21,7 @@
     "CREATED_AT": "Utworzono",
     "DASHBOARD": "Panel",
     "DELETE": "Usuń",
-    "DELETE_CONTENT_QUESTION": "Czy na pewno chcesz usunąć ten wpis razem z wszystkimi jego wersjami językowymi?",
+    "DELETE_CONTENT_QUESTION": "Czy na pewno chcesz bezpowrotnie usunąć ten wpis razem z wszystkimi jego wersjami językowymi?",
     "DELETE_NOT_EMPTY_CATEGORY_INFO": "Kategoria nie jest pusta, możesz usunąć tylko puste kategorie.",
     "DETAILS": "Szczegóły",
     "DRAFT": "Szkic",
@@ -109,5 +109,6 @@
     "DELETE_TRANSLATION_QUESTION": "Czy napewno chcesz usunąć to tłumaczenie?",
     "RESTORE_AND_EDIT": "Przywróć i edytuj",
     "MOVE_CONTENT_TO_TRASH_QUESTION": "Czy napewno chcesz przenieść zawartość do kosza?",
-    "CONTENT_HAS_BEEN_MOVED_TO_TRASH": "Zawartość została przeniesiona do kosza."
+    "CONTENT_HAS_BEEN_MOVED_TO_TRASH": "Zawartość została przeniesiona do kosza.",
+    "PERM_DELETE": "Usuń na zawsze"
 }
