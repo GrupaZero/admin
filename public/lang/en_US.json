@@ -113,5 +113,7 @@
     "PERM_DELETE": "Delete permanently",
     "PROFILE": "Profile",
     "PAGE_PREVIEW": "Page preview",
-    "LOG_OUT": "Log out"
+    "LOG_OUT": "Log out",
+    "CONTENT_CREATED": "Content was created successfully.",
+    "CATEGORY_CREATED": "Category was created successfully."
 }

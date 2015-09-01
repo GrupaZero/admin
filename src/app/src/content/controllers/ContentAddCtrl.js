@@ -45,6 +45,8 @@ function ContentAddCtrl($scope, Utils, listParent, ContentRepository) {
             }
         }
         ContentRepository.newContent(newContent).then(function(response) {
+            var message = Utils.$stateParams.type === 'category' ? 'CATEGORY_CREATED' : 'CONTENT_CREATED';
+            Utils.Notifications.addSuccess(message);
             // when there is custom redirect
             if (typeof redirect !== 'undefined') {
                 var params = (redirect === 'content.edit.details') ? {
