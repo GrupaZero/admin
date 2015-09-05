@@ -17,7 +17,7 @@ function ContentRestoreCtrl($scope, Utils, $modal, ContentRepository, Notificati
                 scope: $scope,
                 title: title,
                 content: message,
-                template: viewPath + 'contentRestoreModal.tpl.html',
+                templateUrl: viewPath + 'contentRestoreModal.tpl.html',
                 show: true,
                 placement: 'center'
             });

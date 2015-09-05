@@ -30,7 +30,7 @@ function DeleteTranslationCtrl($scope, Utils, $modal, ContentRepository) {
                 scope: $scope,
                 title: title,
                 content: message,
-                template: viewPath + 'translationDeleteModal.tpl.html',
+                templateUrl: viewPath + 'translationDeleteModal.tpl.html',
                 show: true,
                 placement: 'center'
             });
