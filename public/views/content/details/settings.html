@@ -3,7 +3,8 @@
         <strong>{{ 'SETTINGS' | translate | uppercase }}</strong>
     </div>
     <ul class="list-group">
-        <li class="list-group-item" ng-show="(content.route.translations | getTranslation:langCode:'url')">
+        <li class="list-group-item clearfix"
+            ng-show="(content.route.translations | getTranslation:langCode:'url')">
             {{ 'PERMALINK' | translate}}
             <div class="pull-right">
                 {{ content.route.translations | getTranslation:langCode:'url' }}
@@ -16,6 +17,22 @@
                         type="button">
                     {{ 'EDIT' | translate }}
                 </button>
+            </div>
+        </li>
+        <li class="list-group-item clearfix">
+            {{ 'CATEGORY' | translate}}
+            <div class="pull-right" ng-show="contentParent">
+                <a href="#" ui-sref="content.show({ contentId: contentParent.id, langCode: langCode.code })"
+                   ng-show="contentParent.translations | getTranslation:langCode:'title'">
+                    {{ contentParent.translations | getTranslation:langCode:'title' }}
+                </a>
+
+                <div ng-hide="contentParent.translations | getTranslation:langCode:'title'">
+                    {{ 'NO_TRANSLATION_INFO' | translate }}
+                </div>
+            </div>
+            <div class="pull-right" ng-hide="contentParent">
+                {{ 'UNCATEGORIZED' | translate }}
             </div>
         </li>
         <li class="list-group-item">

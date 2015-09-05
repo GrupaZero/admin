@@ -25,6 +25,14 @@ function ContentDetailsCtrl($scope, content, langCode, ContentRepository, Utils)
     // if content exists
     if (typeof content !== 'undefined') {
         $scope.content = ContentRepository.clean(content);
+        // if content parent exists
+        if (content.path.length > 1) {
+            //  last but one id from path
+            var parentId = _.takeRight(content.path, 2)[0];
+            ContentRepository.one(parentId).then(function(response) {
+                $scope.contentParent = ContentRepository.clean(response);
+            });
+        }
     }
 
     $scope.saveContent = function() {
