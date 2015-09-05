@@ -6,8 +6,8 @@
 // - - layout
 
 %categories-l-tree {
-  overflow-x   : hidden; /* Prevent scroll on narrow devices */
-  padding      : 10px 15px 60px;
+  overflow-x : hidden; /* Prevent scroll on narrow devices */
+  padding    : 10px 15px 60px;
 
   .nav > li.uncategorized > a {
     padding : 10px 15px 10px 36px;
@@ -40,7 +40,6 @@
   .angular-ui-tree-handle {
     font-weight : normal;
     cursor      : auto;
-    padding     : 10px 15px;
 
     .fa.pull-left:hover {
       cursor : pointer;
@@ -48,8 +47,9 @@
     a {
       white-space     : nowrap;
       text-decoration : none;
+      padding         : 10px 15px;
     }
-    &.no-arrow {
+    &.no-arrow a {
       padding-left : 36px;
     }
   }
@@ -84,22 +84,22 @@
   }
 
   .fa.pull-left {
-    margin-top : .2em;
-    color: $white;
+    margin : 13px 5px 13px 13px;
+    color  : $white;
   }
 
   ul {
     ul {
-      background-color :  lighten($blue-dark, 10%);
+      background-color : lighten($blue-dark, 10%);
       .angular-ui-tree-handle {
         & > a {
           &:hover {
-            color           : #8b91a0;
+            color           : #8B91A0;
             text-decoration : none;
           }
         }
 
-        &.no-arrow {
+        &.no-arrow a {
           padding-left : 37px;
         }
       }
@@ -120,7 +120,7 @@
       & > div {
         background-color : $white;
         .fa.pull-left {
-          color: $brand-primary;
+          color : $brand-primary;
         }
       }
     }
@@ -133,7 +133,7 @@
           color : $white;
         }
         .fa.pull-left {
-          color: $white;
+          color : $white;
         }
       }
     }
@@ -152,16 +152,16 @@
 
   .divider {
     @include nav-divider(#5C606B);
-    margin: 0 -15px;
+    margin : 0 -15px;
   }
 
   .menu-title {
-    color: $white;
-    font-size: 10.5px;
-    padding: 25px 30px 10px;
-    text-transform: uppercase;
-    font-weight: 600;
-    letter-spacing: 0.2px;
+    color          : $white;
+    font-size      : 10.5px;
+    padding        : 25px 30px 10px;
+    text-transform : uppercase;
+    font-weight    : 600;
+    letter-spacing : 0.2px;
   }
 }
 
