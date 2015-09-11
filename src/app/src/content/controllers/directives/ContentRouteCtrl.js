@@ -15,7 +15,7 @@ function ContentRouteCtrl($scope, Utils, $modal, ContentRepository) {
             self.modal = $modal({
                 scope: $scope,
                 title: title,
-                template: viewPath + 'contentEditRouteModal.tpl.html',
+                templateUrl: viewPath + 'contentEditRouteModal.tpl.html',
                 show: true,
                 placement: 'center'
             });

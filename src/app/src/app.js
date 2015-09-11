@@ -45,6 +45,9 @@ angular.module('admin', dependencies).config([
         //$translateProvider.preferredLanguage('pl_PL');
         $translateProvider.preferredLanguage('en_US');
 
+        //User more secure variant sanitize strategy for escaping;
+        $translateProvider.useSanitizeValueStrategy('escape');
+
         RestangularProvider.setBaseUrl(Config.apiUrl + '/v1');
 
         RestangularProvider.setDefaultHttpFields({

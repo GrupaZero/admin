@@ -17,7 +17,7 @@ function ContentDeleteCtrl($scope, Utils, $modal, Storage, ContentRepository, No
                 scope: $scope,
                 title: title,
                 content: message,
-                template: viewPath + 'contentDeleteModal.tpl.html',
+                templateUrl: viewPath + 'contentDeleteModal.tpl.html',
                 show: true,
                 placement: 'center'
             });

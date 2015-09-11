@@ -50,7 +50,7 @@ function SetTranslationAsActiveCtrl($scope, Utils, $modal, ContentRepository) {
                 scope: $scope,
                 title: title,
                 content: message,
-                template: viewPath + 'setTranslationAsActiveModal.tpl.html',
+                templateUrl: viewPath + 'setTranslationAsActiveModal.tpl.html',
                 show: true,
                 placement: 'center'
             });

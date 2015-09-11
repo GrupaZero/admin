@@ -30,7 +30,7 @@ function UserListCtrl($scope, Utils, UserRepository, $modal) {
                 scope: $scope,
                 title: title,
                 content: message,
-                template: viewPath + 'userDeleteModal.tpl.html',
+                templateUrl: viewPath + 'userDeleteModal.tpl.html',
                 show: true,
                 placement: 'center'
             });
