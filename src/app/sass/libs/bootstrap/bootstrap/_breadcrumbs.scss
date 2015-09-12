@@ -2,25 +2,30 @@
 // Breadcrumbs
 // --------------------------------------------------
 
-
 .breadcrumb {
-  padding: $breadcrumb-padding-vertical $breadcrumb-padding-horizontal;
-  margin-bottom: $line-height-computed;
-  list-style: none;
-  background-color: $breadcrumb-bg;
-  border-radius: $border-radius-base;
+  padding          : $breadcrumb-padding-vertical $breadcrumb-padding-horizontal;
+  list-style       : none;
+  background-color : $breadcrumb-bg;
+  border-radius    : $border-radius-base;
 
   > li {
-    display: inline-block;
+    display : inline-block;
+
+    p {
+      font-size   : $font-size-small;
+      font-weight : 400;
+      color       : #7B7D82;
+    }
 
     + li:before {
-      content: "#{$breadcrumb-separator}\00a0"; // Unicode space added since inline-block means non-collapsing white-space
-      padding: 0 5px;
-      color: $breadcrumb-color;
+      font-family : FontAwesome;
+      content     : "\f105"; // Unicode space added since inline-block means non-collapsing white-space
+      padding     : 0 5px;
+      color       : #515050;
     }
   }
 
-  > .active {
-    color: $breadcrumb-active-color;
+  .active {
+    color : $breadcrumb-active-color;
   }
 }

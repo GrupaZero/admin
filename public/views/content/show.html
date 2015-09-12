@@ -1,5 +1,44 @@
 <div class="container-fluid">
     <div class="row">
+        <div class="col-lg-12">
+            <ol class="breadcrumb margin-top">
+                <li>
+                    <p>
+                        {{ 'YOU_ARE_HERE' | translate | uppercase }}
+                    </p>
+                </li>
+                <li ng-repeat="link in (content.route.translations | getTranslation:langCode:'url').split('/')">
+                    <a href="#"
+                       ng-class="{ active: content.path[$index] === content.id }"
+                       ui-sref="content.show({ contentId: content.path[$index], langCode: langCode })">
+                        {{ link }}
+                        <span ng-hide="link">
+                            {{ 'NO_TRANSLATION' | translate }}
+                        </span>
+                    </a>
+                </li>
+                <li ng-hide="(content.route.translations | getTranslation:langCode:'url').length">
+                    {{ 'NO_TRANSLATION' | translate }}
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="page-title">
+                <h2>
+                    {{ content.type | uppercase | translate }} -
+                    <span class="semi-bold">
+                        {{ content.translations | getTranslation:langCode:'title' }}
+                    </span>
+                    <span class="semi-bold" ng-hide="content.translations | getTranslation:langCode:'title'">
+                        {{ 'NO_TRANSLATION' | translate }}
+                    </span>
+                </h2>
+            </div>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-lg-9">
             <div ng-include src="'gzero/admin/views/content/details/tabs.html'"></div>
             <div ui-view="contentTab"></div>
