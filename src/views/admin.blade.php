@@ -34,8 +34,6 @@
             @foreach ($modules->getModulesNames() as $moduleName)
             "{{ $moduleName }}",
             @endforeach
-
-
         ];
     </script>
 </head>
