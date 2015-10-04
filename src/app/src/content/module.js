@@ -268,6 +268,7 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
     .directive('contentEditRouteButton', require('./directives/ContentEditRouteButton.js'))
     .directive('setTranslationAsActiveButton', require('./directives/SetTranslationAsActiveButton.js'))
     .directive('translationDeleteButton', require('./directives/TranslationDeleteButton.js'))
+    .directive('contentActionsDropdown', ['$dropdown', require('./directives/ContentActionsDropdown.js')])
     .run([
         'NavBar',
         function(NavBar) {

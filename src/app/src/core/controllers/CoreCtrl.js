@@ -45,5 +45,5 @@ function CoreCtrl($scope, $state, Translations, NavBar, TopNavBar) {
     });
 }
 
-CoreCtrl.$inject = ['$scope', '$state', 'Translations', 'NavBar', 'TopNavBar', '$state'];
+CoreCtrl.$inject = ['$scope', '$state', 'Translations', 'NavBar', 'TopNavBar'];
 module.exports = CoreCtrl;

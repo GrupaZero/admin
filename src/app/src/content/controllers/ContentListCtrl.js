@@ -15,12 +15,28 @@ function ContentListCtrl($scope, Utils, listParent, ContentRepository, NgTablePa
 
         },
         {
-            divider: true
-        },
-        {
             text: 'ADD_CATEGORY',
             href: 'content.add({ type: "category" })',
             icon: 'fa fa-folder-o'
+        }
+    ];
+
+    // TODO: content list actions
+    $scope.contentListActions = [
+        {
+            text: 'VIEW',
+            url: 'publicUrl', // this will be replaced with content public url
+            icon: 'fa fa-search'
+        },
+        {
+            text: 'EDIT',
+            href: 'content.show({ contentId: record_id, langCode: lang_code })',
+            icon: 'fa fa-pencil'
+        },
+        {
+            text: 'MOVE_TO_TRASH',
+            click: 'delete', // this will be replaced with delete action
+            icon: 'fa fa-times'
         }
     ];
 
