@@ -1,0 +1,24 @@
+<div class="row">
+    <div class="col-lg-12">
+        <ol class="breadcrumb margin-top">
+            <li>
+                <p>
+                    {{ 'YOU_ARE_HERE' | translate | uppercase }}
+                </p>
+            </li>
+            <li ng-repeat="link in (content.route.translations | getTranslation:langCode:'url').split('/')">
+                <a href="#"
+                   ng-class="{ active: content.path[$index] === content.id }"
+                   ui-sref="content.show({ contentId: content.path[$index], langCode: langCode })">
+                    {{ link }}
+                        <span ng-hide="link">
+                            {{ 'NO_TRANSLATION' | translate }}
+                        </span>
+                </a>
+            </li>
+            <li ng-hide="(content.route.translations | getTranslation:langCode:'url').length">
+                {{ 'NO_TRANSLATION' | translate }}
+            </li>
+        </ol>
+    </div>
+</div>

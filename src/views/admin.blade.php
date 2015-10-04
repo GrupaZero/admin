@@ -113,13 +113,14 @@
     <div class="row row-offcanvas left" ng-class="{ 'is-active': showSidebar, '' : !showSidebar }">
         <div class="col-sm-3 col-md-2 sidebar-c-offcanvas">
             <ul class="nav nav-c-sidebar">
-                <li ui-sref-active="active" ng-repeat="link in navBar">
+                <li ng-repeat="link in navBar" ng-class="{ active: $state.includes(link.action.split('.')[0]) }">
                     <a ui-sref="@{{ link.action }}">
                         <i ng-if="link.icon" class="icon @{{ link.icon }}" title="@{{ link.title | translate }}"></i>
                         <span class="title">@{{ link.title | translate }}</span>
                     </a>
                     <ul class="nav">
-                        <li ui-sref-active="active" ng-repeat="subLink in link.children">
+                        <li ng-repeat="subLink in link.children"
+                            ng-class="{ active: $state.includes(subLink.action.split('.')[0]) }">
                             <a ui-sref="@{{ subLink.action }}">
                                 <i ng-if="subLink.icon" class="icon @{{ subLink.icon }}"
                                    title="@{{ subLink.title | translate }}"></i>

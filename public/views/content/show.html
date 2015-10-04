@@ -1,6 +1,22 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-9">
+            <div ng-include src="'gzero/admin/views/content/details/breadcrumbs.html'"></div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="page-title">
+                        <h2>
+                            {{ content.type | uppercase | translate }} -
+                            <span class="semi-bold">
+                                {{ content.translations | getTranslation:langCode:'title' }}
+                            </span>
+                            <span class="semi-bold" ng-hide="content.translations | getTranslation:langCode:'title'">
+                                {{ 'NO_TRANSLATION' | translate }}
+                            </span>
+                        </h2>
+                    </div>
+                </div>
+            </div>
             <div ng-include src="'gzero/admin/views/content/details/tabs.html'"></div>
             <div ui-view="contentTab"></div>
         </div>
