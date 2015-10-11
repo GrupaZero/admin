@@ -1,0 +1,29 @@
+<div class="row">
+    <div class="col-lg-1">
+        <div class="list-group action-group">
+            <div ng-repeat="lang in langs" ng-switch="lang.code"
+                 ui-sref="{{ 'settings.show' + '({ key: categoryKey, langCode: lang.code })' }}"
+                 ng-click="$parent.$parent.langCode = lang.code"
+                 class="list-group-item"
+                 ng-class="{'active': lang.code === langCode}">
+
+                <p class="list-group-item-heading" translate="{{ lang.code | langName }}"></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-11">
+        <div class="form-group" ng-repeat="(label, setting) in settings track by $index">
+            <div class="row">
+                <div class="col-md-12">
+                    <label for="{{ label }}" class="control-label">{{ label | uppercase | translate }}</label>
+                </div>
+                <div class="col-md-12">
+                    <input class="form-control" id="{{ label }}" value="{{ setting | getOptionValue:langCode  }}"
+                           type="text"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
