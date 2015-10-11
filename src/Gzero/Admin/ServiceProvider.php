@@ -16,6 +16,13 @@ use Illuminate\Support\ServiceProvider as SP;
 class ServiceProvider extends SP {
 
     /**
+     * Indicates if loading of the provider is deferred.
+     *
+     * @var bool
+     */
+    protected $defer = false;
+
+    /**
      * Bootstrap the application events.
      *
      * @return void
@@ -55,6 +62,6 @@ class ServiceProvider extends SP {
 
     private function registerRoutes()
     {
-        require_once __DIR__ . '/../routes.php';
+        require __DIR__ . '/../routes.php';
     }
 } 

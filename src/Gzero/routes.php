@@ -3,22 +3,22 @@
 /**
  * Return admin view so we can run AngularJS admin panel
  */
-Route::group(
-    ['domain' => Config::get('gzero.domain'), 'prefix' => 'admin', 'middleware' => 'access'],
+group(
+    ['domain' => config('gzero.domain'), 'prefix' => 'admin', 'middleware' => 'access'],
     function () {
-        Route::get(
+        get(
             '/',
             function () {
                 \Debugbar::disable();
-                return View::make('gzero-admin::admin', ['modules' => \App::make('admin.module')]);
+                return view('gzero-admin::admin', ['modules' => app()->make('admin.module')]);
             }
         );
 
-        Route::get(
+        get(
             'logout',
             function () {
                 Auth::logout();
-                return Redirect::route('home');
+                return redirect(route('home'));
             }
         );
     }
