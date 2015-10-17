@@ -15,6 +15,7 @@ angular.module('admin.settings', [])
                     url: '/settings/{key}',
                     templateUrl: viewPath + 'index.html',
                     controller: 'SettingsCtrl',
+                    deepStateRedirect: true,
                     resolve: {
                         categories: [
                             'SettingsRepository', function(SettingsRepository) {
@@ -32,8 +33,6 @@ angular.module('admin.settings', [])
                 // SETTINGS SHOW
                 .state('settings.show', {
                     url: '/{langCode}',
-                    deepStateRedirect: true,
-                    sticky: true,
                     views: {
                         'contentTab': {
                             templateUrl: viewPath + 'show.html',

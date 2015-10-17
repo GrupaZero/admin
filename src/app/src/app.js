@@ -95,7 +95,7 @@ angular.module('admin', dependencies).config([
                 Notifications.addError('COMMON_ERROR');
                 return false; // error handled
             } else if (response.status === 500) {
-                Notifications.addError(response.data.message);
+                Notifications.addError(response.data.error.message);
             }
             Notifications.addErrors(response.data.messages);
             return false; // error not handled

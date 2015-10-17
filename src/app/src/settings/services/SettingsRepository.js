@@ -16,8 +16,8 @@ function SettingsRepository(Restangular) {
         delete: function(id) {
             return Restangular.one(api, id).remove();
         },
-        update: function(id, user) {
-            return Restangular.one(api, id).customPUT(user);
+        update: function(categoryKey, data) {
+            return Restangular.one(api, categoryKey).customPUT(data);
         }
     };
 }

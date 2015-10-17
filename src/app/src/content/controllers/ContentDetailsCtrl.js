@@ -39,7 +39,7 @@ function ContentDetailsCtrl($scope, content, langCode, ContentRepository, Utils)
         ContentRepository
             .updateContent($scope.content.id, $scope.content)
             .then(function() {
-                Utils.Notifications.addSuccess('SAVED');
+                Utils.Notifications.addSuccess('THE_CHANGES_HAVE_BEEN_SAVED');
             });
     };
 

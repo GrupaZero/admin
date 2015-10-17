@@ -21,6 +21,20 @@ function SettingsCtrl($scope, Utils, SettingsRepository, categories, settings) {
     if (typeof settings !== 'undefined') {
         $scope.settings = SettingsRepository.clean(settings); // category settings
     }
+
+    // save settings category options
+    $scope.save = function(key, value) {
+        // prepare option data
+        var data = {
+            key: key,
+            value: value
+        };
+
+        // save option
+        SettingsRepository.update($scope.categoryKey, data).then(function() {
+            Utils.Notifications.addSuccess('THE_CHANGES_HAVE_BEEN_SAVED');
+        });
+    };
 }
 
 SettingsCtrl.$inject = ['$scope', 'Utils', 'SettingsRepository', 'categories', 'settings'];

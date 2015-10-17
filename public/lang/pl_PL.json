@@ -10,6 +10,7 @@
     "ALL_CATEGORIES": "Wszystkie kategorie",
     "ALL_CONTENTS": "Wszystkie zawartości",
     "AUTHOR": "Autor",
+    "AUTO_SAVE_HINT": "Wszystkie zmiany zostaną zapisane automatycznie.",
     "BODY": "Treść",
     "CANCEL": "Anuluj",
     "CATEGORIES": "Kategorie",
@@ -46,6 +47,7 @@
     "HOLD_PUBLICATION": "Wstrzymaj publikację",
     "ID": "id",
     "INFORMATION": "Informacja",
+    "INTRODUCTION": "Wprowadzenie",
     "IS_COMMENT_ALLOWED": "Komentarze dozwolone",
     "IS_ON_HOME": "Na głównej",
     "IS_PROMOTED": "Promowanie",
@@ -57,7 +59,6 @@
     "LANG_NAME_PL": "Polski",
     "LAST_NAME": "Nazwisko",
     "LOG_OUT": "Wyloguj się",
-    "MAIN_SETTINGS": "Główne",
     "MOVE_CONTENT_TO_TRASH_QUESTION": "Czy napewno chcesz przenieść zawartość do kosza?",
     "MOVE_TO_TRASH": "Przenieś do kosza",
     "NOT_FOUND": "Nie znaleziono",
@@ -116,5 +117,23 @@
     "WEIGHT": "Waga",
     "WELCOME": "Witaj",
     "WELCOME_MESSAGE": "Jesteś na miejscu",
-    "YOU_ARE_HERE": "Jesteś tutaj"
+    "YOU_ARE_HERE": "Jesteś tutaj",
+    "OPTIONS_LANG": {
+        "NO_SETTINGS": "Niestety, ale ta kategoria nie zawiera żadnych ustawień.",
+        "HELP_TEXT": "Ustawienia pozwalają na wprowadzenie danych konfiguracyjnych, takich jak tytuł i opis na stronie. Ta strona podzielona jest na wiele zakładek, które dzielą opcje na logicznie uporządkowane sekcje. Wybierz zakładkę, aby zobaczyć ustawienia dla wybranej kategorii.",
+        "TABS": {
+            "BASIC": "Podstawowe",
+            "GENERAL": "Ogólne",
+            "SEO": "SEO"
+        },
+        "LABELS": {
+            "SITENAME": "Tytuł strony",
+            "SITEDESC": "Opis strony",
+            "GOOGLEANALYTICSID": "Google Analytics ID",
+            "DEFAULTPAGESIZE": "Ilośc wpisów na stronę",
+            "SEOTITLEALTERNATIVEFIELD": "Alternatywne pole dla tytułu SEO",
+            "SEODESCRIPTIONALTERNATIVEFIELD": "Alternatywne pole dla opisu SEO",
+            "SEODESCLENGTH": "Ilość znaków w opisie SEO strony"
+        }
+    }
 }

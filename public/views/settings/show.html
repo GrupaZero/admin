@@ -16,13 +16,19 @@
         <div class="form-group" ng-repeat="(label, setting) in settings track by $index">
             <div class="row">
                 <div class="col-md-12">
-                    <label for="{{ label }}" class="control-label">{{ label | uppercase | translate }}</label>
+                    <label for="{{ label }}" class="control-label">
+                        {{ 'OPTIONS_LANG.LABELS.' + label | uppercase | translate }}
+                    </label>
                 </div>
                 <div class="col-md-12">
-                    <input class="form-control" id="{{ label }}" value="{{ setting | getOptionValue:langCode  }}"
-                           type="text"/>
+                    <input class="form-control" id="{{ label }}" type="text"
+                           ng-change="save(label ,settings[label])" ng-model-options="{updateOn: 'blur'}"
+                           ng-model="settings[label][langCode]"/>
                 </div>
             </div>
+        </div>
+        <div ng-show="settings.length === 0">
+            <h4>{{ 'OPTIONS_LANG.NO_SETTINGS' | translate }}</h4>
         </div>
     </div>
 </div>
