@@ -43,6 +43,8 @@ angular.module('admin.settings', [])
         }
     ])
     .controller('SettingsCtrl', require('./controllers/SettingsCtrl'))
+    .controller('SettingCopyCtrl', require('./controllers/directives/SettingCopyCtrl'))
+    .directive('settingCopyButton', require('./directives/SettingCopyButton.js'))
     .factory('SettingsRepository', require('./services/SettingsRepository.js'))
     .run([
         'NavBar',

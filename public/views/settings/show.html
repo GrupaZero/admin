@@ -21,9 +21,24 @@
                     </label>
                 </div>
                 <div class="col-md-12">
-                    <input class="form-control" id="{{ label }}" type="text"
-                           ng-change="save(label ,settings[label])" ng-model-options="{updateOn: 'blur'}"
-                           ng-model="settings[label][langCode]"/>
+                    <div class="input-group">
+                        <input class="form-control" id="{{ label }}" aria-describedby="{{ label }}HelpBlock"
+                               type="{{ (label === 'seoDescLength' || label === 'defaultPageSize') ? 'number' : 'text' }}"
+                               ng-change="save(label, settings[label])" ng-model-options="{updateOn: 'blur'}"
+                               ng-model="settings[label][langCode]"/>
+
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" type="button"
+                                    category-key="{{ categoryKey }}" option-key="{{ label }}"
+                                    option-value="{{ settings[label] }}" option-new-value="{{settings[label][langCode]}}"
+                                    setting-copy-button bs-tooltip data-title="{{ 'OPTIONS_LANG.COPY_TIP' | translate }}">
+                                <i class="fa fa-files-o"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <small id="{{ label }}HelpBlock" class="help-block">
+                        {{ 'OPTIONS_LANG.COPY_HELP' | translate }}
+                    </small>
                 </div>
             </div>
         </div>
