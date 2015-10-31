@@ -1,0 +1,50 @@
+<div class="row">
+    <div class="col-lg-1">
+        <div class="list-group action-group">
+            <div ng-repeat="lang in langs" ng-switch="lang.code"
+                 ui-sref="{{ 'settings.show' + '({ key: categoryKey, langCode: lang.code })' }}"
+                 ng-click="$parent.$parent.langCode = lang.code"
+                 class="list-group-item"
+                 ng-class="{'active': lang.code === langCode}">
+
+                <p class="list-group-item-heading" translate="{{ lang.code | langName }}"></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-11">
+        <div class="form-group" ng-repeat="(label, setting) in settings track by $index">
+            <div class="row">
+                <div class="col-md-12">
+                    <label for="{{ label }}" class="control-label">
+                        {{ 'OPTIONS_LANG.LABELS.' + label | uppercase | translate }}
+                    </label>
+                </div>
+                <div class="col-md-12">
+                    <div class="input-group">
+                        <input class="form-control" id="{{ label }}" aria-describedby="{{ label }}HelpBlock"
+                               type="{{ (label === 'seoDescLength' || label === 'defaultPageSize') ? 'number' : 'text' }}"
+                               ng-change="save(label, settings[label])" ng-model-options="{updateOn: 'blur'}"
+                               ng-model="settings[label][langCode]"/>
+
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" type="button"
+                                    category-key="{{ categoryKey }}" option-key="{{ label }}"
+                                    option-value="{{ settings[label] }}" option-new-value="{{settings[label][langCode]}}"
+                                    setting-copy-button bs-tooltip data-title="{{ 'OPTIONS_LANG.COPY_TIP' | translate }}">
+                                <i class="fa fa-files-o"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <small id="{{ label }}HelpBlock" class="help-block">
+                        {{ 'OPTIONS_LANG.COPY_HELP' | translate }}
+                    </small>
+                </div>
+            </div>
+        </div>
+        <div ng-show="settings.length === 0">
+            <h4>{{ 'OPTIONS_LANG.NO_SETTINGS' | translate }}</h4>
+        </div>
+    </div>
+</div>
+

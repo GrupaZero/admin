@@ -3,6 +3,7 @@
 require('./core/module.js');
 require('./content/module.js');
 require('./user/module.js');
+require('./settings/module.js');
 
 var dependencies = [
     'restangular',
@@ -14,7 +15,8 @@ var dependencies = [
     'pascalprecht.translate',
     'admin.core',
     'admin.content',
-    'admin.user'
+    'admin.user',
+    'admin.settings'
 ];
 dependencies.push.apply(dependencies, modules); // Other modules are loaded by twig
 
@@ -93,7 +95,7 @@ angular.module('admin', dependencies).config([
                 Notifications.addError('COMMON_ERROR');
                 return false; // error handled
             } else if (response.status === 500) {
-                Notifications.addError(response.data.message);
+                Notifications.addError(response.data.error.message);
             }
             Notifications.addErrors(response.data.messages);
             return false; // error not handled

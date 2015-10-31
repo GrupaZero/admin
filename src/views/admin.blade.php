@@ -73,7 +73,7 @@
                 <a class="navbar-brand" ui-sref="home">G-ZERO ADMIN</a>
             </div>
             <div class="col-xs-6 col-sm-9 col-md-10">
-                <div class="navbar-form navbar-left" ng-if="!$state.current.views.contentTab">
+                <div class="navbar-form navbar-left" ng-if="$state.includes('content') && !$state.current.views.contentTab">
                     <label for="langCode" class="hidden-xs">@{{ 'TRANSLATION_LANGUAGE' | translate }}</label>
                     <select id="langCode" ng-model="listLang" class="form-control" ng-change="selectLanguage(listLang)"
                             ng-options="lang.code | langName | translate for lang in langs">

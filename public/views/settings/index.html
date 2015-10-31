@@ -1,0 +1,43 @@
+<div class="row">
+    <div ui-view="content" class="clearfix main-view">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel margin-top">
+                        <div class="panel-heading no-padding-top no-padding-bottom">
+                            <div class="page-header no-margin-bottom no-margin-top">
+                                <h2 ng-hide="langCode">
+                                    {{ 'SETTINGS' | uppercase | translate }}
+                                </h2>
+
+                                <h2 ng-show="langCode">
+                                    {{ 'SETTINGS' | uppercase | translate }} -
+                                    <span class="semi-bold">
+                                        {{ 'OPTIONS_LANG.TABS.' + categoryKey | uppercase | translate }}
+                                    </span>
+                                </h2>
+                                <p class="text-muted">
+                                    {{ 'AUTO_SAVE_HINT' | translate }}
+                                </p>
+                            </div>
+                        </div>
+                        <ul class="nav nav-tabs">
+                            <li role="presentation" ng-repeat="category in categories" ng-switch="category.key"
+                                ng-class="{ active: categoryKey === category.key}">
+                                <a href=""
+                                   ui-sref="{{ 'settings.show' + '({ key: category.key, langCode: (langCode) ? langCode : currentLang.code })' }}">
+                                    {{ 'OPTIONS_LANG.TABS.' + category.key | uppercase | translate }}
+                                </a>
+                            </li>
+                        </ul>
+                        <div ui-view="contentTab" class="panel-body">
+                            <h3>{{ 'INTRODUCTION' | translate }}</h3>
+
+                            <p>{{ 'OPTIONS_LANG.HELP_TEXT' | translate }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

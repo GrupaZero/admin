@@ -10,6 +10,7 @@
     "ALL_CATEGORIES": "Wszystkie kategorie",
     "ALL_CONTENTS": "Wszystkie zawartości",
     "AUTHOR": "Autor",
+    "AUTO_SAVE_HINT": "Wszystkie zmiany zostaną zapisane automatycznie.",
     "BODY": "Treść",
     "CANCEL": "Anuluj",
     "CATEGORIES": "Kategorie",
@@ -32,8 +33,8 @@
     "DELETE": "Usuń",
     "DELETE_CONTENT_QUESTION": "Czy na pewno chcesz bezpowrotnie usunąć ten wpis razem z wszystkimi jego wersjami językowymi?",
     "DELETE_NOT_EMPTY_CATEGORY_INFO": "Kategoria nie jest pusta, możesz usunąć tylko puste kategorie.",
-    "DELETE_TRANSLATION_QUESTION": "Czy napewno chcesz usunąć to tłumaczenie?",
-    "DELETE_USER_QUESTION": "Czy napewno chcesz usunąć to konto użytkownika?",
+    "DELETE_TRANSLATION_QUESTION": "Czy na pewno chcesz usunąć to tłumaczenie?",
+    "DELETE_USER_QUESTION": "Czy na pewno chcesz usunąć to konto użytkownika?",
     "DETAILS": "Szczegóły",
     "DRAFT": "Szkic",
     "EDIT": "Edytuj",
@@ -46,6 +47,7 @@
     "HOLD_PUBLICATION": "Wstrzymaj publikację",
     "ID": "id",
     "INFORMATION": "Informacja",
+    "INTRODUCTION": "Wprowadzenie",
     "IS_COMMENT_ALLOWED": "Komentarze dozwolone",
     "IS_ON_HOME": "Na głównej",
     "IS_PROMOTED": "Promowanie",
@@ -57,7 +59,7 @@
     "LANG_NAME_PL": "Polski",
     "LAST_NAME": "Nazwisko",
     "LOG_OUT": "Wyloguj się",
-    "MOVE_CONTENT_TO_TRASH_QUESTION": "Czy napewno chcesz przenieść zawartość do kosza?",
+    "MOVE_CONTENT_TO_TRASH_QUESTION": "Czy na pewno chcesz przenieść zawartość do kosza?",
     "MOVE_TO_TRASH": "Przenieś do kosza",
     "NOT_FOUND": "Nie znaleziono",
     "NOT_PUBLISHED": "Niepublikowany",
@@ -79,7 +81,7 @@
     "REFRESH_LIST": "Odśwież listę",
     "RESTORE": "Przywróć",
     "RESTORE_AND_EDIT": "Przywróć i edytuj",
-    "RESTORE_CONTENT_QUESTION": "Czy napewno chcesz przywrócić tą zawartość?",
+    "RESTORE_CONTENT_QUESTION": "Czy na pewno chcesz przywrócić tą zawartość?",
     "SAVE": "Zapisz",
     "SAVE_AND_ADD_ANOTHER": "Zapisz i dodaj kolejny",
     "SAVE_AND_CONTINUE_EDITING": "Zapisz i kontynuuj edycję",
@@ -90,7 +92,7 @@
     "SEO_TITLE_DESCRIPTION": "To jest tytuł strony który ukaże się u góry przeglądarki. Jeżeli zostawisz to pole puste, użyjemy tytułu.",
     "SETTINGS": "Ustawienia",
     "SET_AS_ACTIVE": "Aktywuj",
-    "SET_TRANSLATION_AS_ACTIVE_QUESTION": "Czy napewno chcesz ustawić to tłumaczenie jako aktywne?",
+    "SET_TRANSLATION_AS_ACTIVE_QUESTION": "Czy na pewno chcesz ustawić to tłumaczenie jako aktywne?",
     "SHOW": "Pokaż",
     "SHOW_SEO_SETTINGS": "Pokaż ustawienia SEO",
     "SHOW_TEASER_FIELD": "Pokaż pole Wstęp",
@@ -115,5 +117,28 @@
     "WEIGHT": "Waga",
     "WELCOME": "Witaj",
     "WELCOME_MESSAGE": "Jesteś na miejscu",
-    "YOU_ARE_HERE": "Jesteś tutaj"
+    "YES": "Tak",
+    "YOU_ARE_HERE": "Jesteś tutaj",
+    "OPTIONS_LANG": {
+        "NO_SETTINGS": "Niestety, ale ta kategoria nie zawiera żadnych ustawień.",
+        "HELP_TEXT": "Ustawienia pozwalają na wprowadzenie danych konfiguracyjnych, takich jak tytuł i opis na stronie. Ta strona podzielona jest na wiele zakładek, które dzielą opcje na logicznie uporządkowane sekcje. Wybierz zakładkę, aby zobaczyć ustawienia dla wybranej kategorii.",
+        "COPY_CONFIRM": "Ustawienie zostało zastosowane w innych językach.",
+        "COPY_OPTION_QUESTION": "Czy na pewno chcesz ustawić tą opcję dla innych języków?",
+        "COPY_TIP": "Zastosuj dla pozostałych języków",
+        "COPY_HELP": "Kliknij przycisk po prawej, aby zastosować to ustawienie dla innych języków - wszelkie istniejące ustawienia tego pola w tych językach zostaną nadpisane.",
+        "TABS": {
+            "BASIC": "Podstawowe",
+            "GENERAL": "Ogólne",
+            "SEO": "SEO"
+        },
+        "LABELS": {
+            "SITENAME": "Tytuł strony",
+            "SITEDESC": "Opis strony",
+            "GOOGLEANALYTICSID": "Google Analytics ID",
+            "DEFAULTPAGESIZE": "Ilośc wpisów na stronę",
+            "SEOTITLEALTERNATIVEFIELD": "Alternatywne pole dla tytułu SEO",
+            "SEODESCRIPTIONALTERNATIVEFIELD": "Alternatywne pole dla opisu SEO",
+            "SEODESCLENGTH": "Ilość znaków w opisie SEO strony"
+        }
+    }
 }

@@ -10,6 +10,7 @@
     "ALL_CATEGORIES": "All categories",
     "ALL_CONTENTS": "All contents",
     "AUTHOR": "Author",
+    "AUTO_SAVE_HINT": "All changes are saved automatically.",
     "BODY": "Body",
     "CANCEL": "Cancel",
     "CATEGORIES": "Categories",
@@ -46,6 +47,7 @@
     "HOLD_PUBLICATION": "Hold publication",
     "ID": "id",
     "INFORMATION": "Information",
+    "INTRODUCTION": "Introduction",
     "IS_COMMENT_ALLOWED": "Comments allowed",
     "IS_ON_HOME": "Home",
     "IS_PROMOTED": "Promoted",
@@ -115,5 +117,28 @@
     "WEIGHT": "Weight",
     "WELCOME": "Welcome",
     "WELCOME_MESSAGE": "You have arrived",
-    "YOU_ARE_HERE": "You are here"
+    "YES": "Yes",
+    "YOU_ARE_HERE": "You are here",
+    "OPTIONS_LANG": {
+        "NO_SETTINGS": "Sorry, but this category does not contain any settings.",
+        "HELP_TEXT": "Settings allow you to enter configuration information such as the title and page description. This page is divided into numerous tabs that reasonably separate the options into various logical sections. Please select a tab to see the settings for the selected category.",
+        "COPY_CONFIRM": "Setting has been applied to other languages.",
+        "COPY_OPTION_QUESTION": "Are you sure you want to set this option for other languages?",
+        "COPY_TIP": "Apply for other languages.",
+        "COPY_HELP": "Click button on the right to apply this setting for other languages - any existing settings in other languages will be overwritten.",
+        "TABS": {
+            "BASIC": "Basic",
+            "GENERAL": "General",
+            "SEO": "SEO"
+        },
+        "LABELS": {
+            "SITENAME": "Site title",
+            "SITEDESC": "Site description",
+            "GOOGLEANALYTICSID": "Google Analytics ID",
+            "DEFAULTPAGESIZE": "Number of entries per page",
+            "SEOTITLEALTERNATIVEFIELD": "SEO tile alternative field",
+            "SEODESCRIPTIONALTERNATIVEFIELD": "SEO description alternative field",
+            "SEODESCLENGTH": "Site SEO description character number"
+        }
+    }
 }

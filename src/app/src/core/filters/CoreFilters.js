@@ -35,6 +35,22 @@ angular.module('CoreFilters', [])
         };
     })
 /**
+ * Filter returns the option value in provided language
+ *
+ * @param values the collection to iterate over
+ * @param langCode  language code
+ *
+ * @returns {object} value field
+ */
+    .filter('getOptionValue', function() {
+        'use strict';
+        return function(values, langCode) {
+            return _.filter(values, function(value, code) {
+                return code === langCode;
+            }).shift();
+        };
+    })
+/**
  * Filter checks if specified node exists in provided path
  *
  * @param path the node path to iterate over
