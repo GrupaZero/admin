@@ -42,9 +42,13 @@
         </div>
     </div>
     <div class="panel-body">
-        <div ng-show="content.translations | getTranslation:langCode:'body'"
+        <!--<div ng-show="content.translations | getTranslation:langCode:'body'"
              ng-bind-html="content.translations | getTranslation:langCode:'body' | trustAsHtml">
+        </div>--->
+
+        <div btf-markdown="content.translations | getTranslation:langCode:'body'">
         </div>
+
         <div ng-hide="content.translations | getTranslation:langCode:'body'">
             {{ 'NO_TRANSLATION_INFO' | translate }}
         </div>
