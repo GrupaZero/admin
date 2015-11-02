@@ -13,6 +13,7 @@ var dependencies = [
     'ngAnimate',
     'mgcrea.ngStrap',
     'pascalprecht.translate',
+    'ckeditor',
     'admin.core',
     'admin.content',
     'admin.user',

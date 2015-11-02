@@ -16,6 +16,23 @@
 function ContentDetailsEditCtrl($scope, Utils, content, langCode, ContentRepository) { //jshint ignore:line
 
     /**
+     * CKEditor settings
+     * @type {{language: string, uiColor: string}}
+     */
+    $scope.editorOptions = {
+        language: langCode,
+        toolbarGroups: [
+            {name: 'tools'},
+            {name: 'links'},
+            {name: 'basicstyles', groups: ['basicstyles', 'cleanup']},
+            {name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align', 'bidi']},
+            {name: 'styles'},
+            {name: 'others'}
+        ],
+        extraPlugins: 'markdown'
+    };
+
+    /**
      * Return translation with specified lang property from translations array
      * and fetch lang property
      *
