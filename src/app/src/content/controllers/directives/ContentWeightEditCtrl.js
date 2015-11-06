@@ -23,7 +23,7 @@ function ContentRouteCtrl($scope, Utils, $modal, ContentRepository) {
         /**
          * Function shows the AngularStrap modal
          *
-         * @param contentId content id to be removed, it is saved in the scope
+         * @param contentId content id to be updated, it is saved in the scope
          * @param contentWeight content weight
          */
         showModal: function(contentId, contentWeight) {

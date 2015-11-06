@@ -36,7 +36,7 @@ function ContentPublishedAtEditCtrl($scope, Utils, $modal, ContentRepository) {
         /**
          * Function shows the AngularStrap modal
          *
-         * @param contentId content id to be removed, it is saved in the scope
+         * @param contentId content id to be updated, it is saved in the scope
          * @param contentPublishedAt content published at date
          */
         showModal: function(contentId, contentPublishedAt) {
