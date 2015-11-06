@@ -25,7 +25,7 @@ function ContentTogglePropertyButton() {
                 ContentTogglePropertyCtrl.toggleProperty.toggleProperty(
                     attrs.contentId,
                     attrs.propertyName,
-                    String(attrs.value) !== "false"
+                    String(attrs.value) !== 'false'
                 );
             });
         }
