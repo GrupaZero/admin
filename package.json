@@ -56,7 +56,8 @@
       "require",
       "Config",
       "_",
-      "PNotify"
+      "PNotify",
+      "moment"
     ],
     "jquery": true,
     "node": true,
