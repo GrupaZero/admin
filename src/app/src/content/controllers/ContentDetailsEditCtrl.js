@@ -16,6 +16,11 @@
 function ContentDetailsEditCtrl($scope, Utils, content, langCode, ContentRepository) { //jshint ignore:line
 
     /**
+     * CKEditor settings getter
+     */
+    $scope.ckOptions = Utils.ckOptions;
+
+    /**
      * Return translation with specified lang property from translations array
      * and fetch lang property
      *

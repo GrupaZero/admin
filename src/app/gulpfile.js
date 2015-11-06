@@ -83,6 +83,10 @@ gulp.task('compress-vendor', function() {
     'vendor/ie10-viewport-bug-workaround.js',
     'vendor/jquery.js',
     'vendor/pnotify.custom.js',
+    'vendor/angular/angular-ckeditor.js',
+    'vendor/angular/angular-sanitize.min.js',
+    'vendor/Showdown.min.js',
+    'vendor/angular/markdown.js',
     'vendor/moment.js'
   ])
     .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
@@ -109,6 +113,10 @@ gulp.task('compress-vendor', function() {
     'vendor/ie10-viewport-bug-workaround.min.js',
     'vendor/jquery.min.js',
     'vendor/pnotify.custom.min.js',
+    'vendor/angular/angular-ckeditor.js',
+    'vendor/angular/angular-sanitize.min.js',
+    'vendor/Showdown.min.js',
+    'vendor/angular/markdown.js',
     'vendor/moment.js'
   ])
     .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))

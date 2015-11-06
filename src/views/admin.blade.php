@@ -140,6 +140,7 @@
 <!-- core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
+<script src="/gzero/admin/js/ckeditor/ckeditor.js"></script>
 <script src="/gzero/admin/js/vendor.min.js"></script>
 <script src="/gzero/admin/js/admin.js"></script>
 @foreach ($modules->getModulesPaths() as $modulePath)

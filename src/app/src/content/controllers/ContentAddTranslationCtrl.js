@@ -2,6 +2,9 @@
 
 function ContentAddTranslationCtrl($scope, Utils, PreviousState, ContentRepository) {
     $scope.showTeaser = false;
+
+    $scope.ckOptions = Utils.ckOptions;
+
     // default translations lang code
     $scope.newContentTranslation = {
         contentId: Utils.$stateParams.contentId,
@@ -10,13 +13,19 @@ function ContentAddTranslationCtrl($scope, Utils, PreviousState, ContentReposito
     // contents POST action
     $scope.addnewContentTranslation = function addNewContent(newContentTranslation) {
         ContentRepository.newContentTranslation(Utils.$stateParams.contentId, newContentTranslation).then(function(response) {
-            if (PreviousState.url.length > 0) {
-                // redirected back to the state we came from
-                Utils.$state.go(PreviousState.name, PreviousState.params, {reload: true});
-            } else {
-                // otherwise go to content list
+
+            try {
+                if (PreviousState.url.length > 0) {
+                    // redirected back to the state we came from
+                    Utils.$state.go(PreviousState.name, PreviousState.params, {reload: true});
+                } else {
+                    // otherwise go to content list
+                    Utils.$state.go('content.list', {}, {reload: true});
+                }
+            } catch (exception) { // if PreviousState is not resolved we still want to go back to list
                 Utils.$state.go('content.list', {}, {reload: true});
             }
+
         });
     };
 }

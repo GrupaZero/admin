@@ -98,12 +98,15 @@
                         <div class="form-group">
                             <label for="teaser">{{ 'TEASER' | translate }}</label>
                             <textarea id="teaser" name="teaser" class="form-control"
+                                      ckeditor="ckOptions({height: '100px'})"
                                       ng-model="newContentTranslation.teaser"></textarea>
                         </div>
                         <!--  Body Form textarea -->
                         <div class="form-group">
                             <label for="body">{{ 'BODY' | translate }}</label>
-                            <textarea id="body" name="body" class="form-control" rows="20"
+                            <textarea id="body" name="body"
+                                      ckeditor="ckOptions({height: '350px'})"
+                                      class="form-control" rows="20"
                                       ng-model="newContentTranslation.body"></textarea>
                         </div>
                     </div>
