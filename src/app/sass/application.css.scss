@@ -275,3 +275,22 @@ li:hover {
   }
 
 }
+
+ul.content-settings {
+  li {
+    a {
+      cursor     : pointer;
+      color      : black;
+      position   : relative;
+      left       : 0;
+      transition : 0.2s all;
+    }
+
+    a:hover {
+      left       : 5px;
+      transition : 0.2s all;
+      color      : blue;
+    }
+  }
+}
+
