@@ -3,6 +3,9 @@
 function ContentAddCtrl($scope, Utils, listParent, ContentRepository) {
     var parentId = null;
     $scope.contentType = Utils.$stateParams.type;
+
+    $scope.ckOptions = Utils.ckOptions;
+
     // if parent category exists
     if (typeof listParent !== 'undefined') {
         $scope.listParent = listParent; // selected category
