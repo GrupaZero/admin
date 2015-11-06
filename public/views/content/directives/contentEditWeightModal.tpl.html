@@ -1,0 +1,38 @@
+<div class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" ng-show="title">
+                <button type="button" class="close" ng-click="vm.editModal.closeModal()">&times;</button>
+                <h4 class="modal-title" translate="{{title}}"></h4>
+            </div>
+            <div class="modal-body">
+                <form name="contentRouteForm" novalidate>
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <!-- Title Form input -->
+                            <div class="form-group">
+                                <label for="title">{{ 'WEIGHT' | translate }} <strong class="text-danger">*</strong></label>
+                                <input id="title" name="title" type="number" class="form-control" required
+                                       ng-model="vm.contentWeight">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button"
+                        class="btn btn-success"
+                        ng-click="vm.editModal.closeModal()">
+                    {{ (vm.hideSubmitButton) ? 'OK' : 'CANCEL' | translate }}
+                </button>
+                <button type="button"
+                        class="btn btn-primary"
+                        ng-disabled="contentRouteForm.$invalid"
+                        ng-click="vm.editModal.saveContentWeight()">
+                    <i class="glyphicon glyphicon-ok-circle"></i>
+                    {{ 'SAVE' | translate }}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -65,7 +65,7 @@ function ContentDeleteCtrl($scope, Utils, $modal, Storage, ContentRepository, No
                 } else {
                     // removed content
                     if (Utils.$state.$current.name === 'content.show.details') {
-                        Utils.$state.go('content.list', {contentId: null}, {reload: true, inherit: false});
+                        Utils.$state.go('content.trashcan', {contentId: null}, {reload: true, inherit: false});
                     } else {
                         Utils.$state.go(Utils.$state.current, {}, {reload: true});
                     }

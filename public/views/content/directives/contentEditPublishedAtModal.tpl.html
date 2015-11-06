@@ -1,0 +1,60 @@
+<div class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" ng-show="title">
+                <button type="button" class="close" ng-click="vm.editModal.closeModal()">&times;</button>
+                <h4 class="modal-title" translate="{{title}}"></h4>
+            </div>
+            <div class="modal-body">
+                <form name="contentRouteForm" novalidate>
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <!-- Title Form input -->
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <label for="date">{{ 'PUBLISHED_AT' | translate }} <strong
+                                            class="text-danger">*</strong></label>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <input bs-datepicker
+                                           id="date"
+                                           name="title"
+                                           class="form-control"
+                                           required
+                                           data-date-format="yyyy-mm-dd"
+                                           ng-model="vm.contentPublishedAt">
+                                </div>
+
+                                <div class="col-md-4">
+                                    <input bs-timepicker
+                                           type="text"
+                                           size="8"
+                                           class="form-control"
+                                           ng-model="vm.contentPublishedAt"
+                                           data-time-format="HH:mm:ss"
+                                           data-autoclose="1"
+                                           placeholder="Time">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button"
+                        class="btn btn-success"
+                        ng-click="vm.editModal.closeModal()">
+                    {{ (vm.hideSubmitButton) ? 'OK' : 'CANCEL' | translate }}
+                </button>
+                <button type="button"
+                        class="btn btn-primary"
+                        ng-disabled="contentRouteForm.$invalid"
+                        ng-click="vm.editModal.saveContentPublishedAt()">
+                    <i class="glyphicon glyphicon-ok-circle"></i>
+                    {{ 'SAVE' | translate }}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

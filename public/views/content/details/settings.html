@@ -2,25 +2,23 @@
     <div class="panel-heading">
         <strong>{{ 'SETTINGS' | translate | uppercase }}</strong>
     </div>
-    <ul class="list-group">
+    <ul class="list-group content-settings">
         <li class="list-group-item clearfix"
             ng-show="(content.route.translations | getTranslation:langCode:'url')">
-            {{ 'PERMALINK' | translate}}
-            <div class="pull-right">
-                {{ content.route.translations | getTranslation:langCode:'url' }}
-                <button content-edit-route-button
-                        ng-if="content.type != 'category'"
-                        data-id="{{ content.id }}"
-                        data-route="{{ content.route.translations | getTranslation:langCode:'url' }}"
-                        data-lang="{{ langCode }}"
-                        class="btn btn-primary btn-xs"
-                        type="button">
-                    {{ 'EDIT' | translate }}
-                </button>
-            </div>
+            <a content-edit-route-button
+               ng-if="content.type != 'category'"
+               data-id="{{ content.id }}"
+               data-route="{{ content.route.translations | getTranslation:langCode:'url' }}"
+               data-lang="{{ langCode }}">
+                <i class="fa fa-pencil"></i> {{ 'PERMALINK' | translate}}
+
+                <div class="pull-right">
+                    {{ content.route.translations | getTranslation:langCode:'url' }}
+                </div>
+            </a>
         </li>
         <li class="list-group-item clearfix">
-            {{ 'CATEGORY' | translate}}
+            <i class="fa fa-folder-o"></i> {{ 'CATEGORY' | translate}}
             <div class="pull-right" ng-show="contentParent">
                 <a href="#" ui-sref="content.show({ contentId: contentParent.id, langCode: langCode.code })"
                    ng-show="contentParent.translations | getTranslation:langCode:'title'">
@@ -36,58 +34,101 @@
             </div>
         </li>
         <li class="list-group-item">
-            {{ 'IS_ON_HOME' | translate}}
-            <div class="pull-right">
-                <i class="fa"
-                   ng-class="content.isOnHome ? 'fa-check-circle text-success' : 'fa-times-circle text-danger'"></i>
-            </div>
+            <a content-toggle-property-button
+               content_id="{{content.id}}"
+               property_name="isOnHome"
+               value="{{content.isOnHome}}">
+                <i class="fa fa-home"></i> {{ 'IS_ON_HOME' | translate}}
+                <div class="pull-right">
+                    <i class="fa"
+                       ng-class="content.isOnHome ? 'fa-check-circle text-success' : 'fa-times-circle text-danger'"></i>
+                </div>
+            </a>
         </li>
         <li class="list-group-item">
-            {{ 'IS_COMMENT_ALLOWED' | translate}}
-            <div class="pull-right">
-                <i class="fa"
-                   ng-class="content.isCommentAllowed ? 'fa-check-circle text-success' : 'fa-times-circle text-danger'"></i>
-            </div>
+            <a content-toggle-property-button
+               content_id="{{content.id}}"
+               property_name="isCommentAllowed"
+               value="{{content.isCommentAllowed}}">
+                <i class="fa fa-comment-o"></i> {{ 'IS_COMMENT_ALLOWED' | translate}}
+                <div class="pull-right">
+                    <i class="fa"
+                       ng-class="content.isCommentAllowed ? 'fa-check-circle text-success' : 'fa-times-circle text-danger'"></i>
+                </div>
+            </a>
         </li>
         <li class="list-group-item">
-            {{ 'IS_PROMOTED' | translate}}
-            <div class="pull-right">
-                <i class="fa"
-                   ng-class="content.isPromoted ? 'fa-check-circle text-success' : 'fa-times-circle text-danger'"></i>
-            </div>
+            <a content-toggle-property-button
+               content_id="{{content.id}}"
+               property_name="isPromoted"
+               value="{{content.isPromoted}}">
+                <i class="fa fa-star-o"></i> {{ 'IS_PROMOTED' | translate}}
+                <div class="pull-right">
+                    <i class="fa"
+                       ng-class="content.isPromoted ? 'fa-check-circle text-success' : 'fa-times-circle text-danger'"></i>
+                </div>
+            </a>
         </li>
         <li class="list-group-item">
-            {{ 'IS_STICKY' | translate}}
-            <div class="pull-right">
-                <i class="fa"
-                   ng-class="content.isSticky ? 'fa-check-circle text-success' : 'fa-times-circle text-danger'"></i>
-            </div>
+            <a content-toggle-property-button
+               content_id="{{content.id}}"
+               property_name="isSticky"
+               value="{{content.isSticky}}">
+                <i class="fa fa-thumb-tack"></i> {{ 'IS_STICKY' | translate}}
+                <div class="pull-right">
+                    <i class="fa"
+                       ng-class="content.isSticky ? 'fa-check-circle text-success' : 'fa-times-circle text-danger'"></i>
+                </div>
+            </a>
         </li>
         <li class="list-group-item">
-            {{ 'IS_PUBLISHED' | translate}}
-            <div class="pull-right">
-                <i class="fa"
-                   ng-class="content.isActive ? 'fa-check-circle text-success' : 'fa-times-circle text-danger'"></i>
-            </div>
+            <a content-toggle-property-button
+               content_id="{{content.id}}"
+               property_name="isActive"
+               value="{{content.iActive}}">
+                <i class="fa fa-power-off"></i> {{ 'IS_PUBLISHED' | translate}}
+                <div class="pull-right">
+                    <i class="fa"
+                       ng-class="content.isActive ? 'fa-check-circle text-success' : 'fa-times-circle text-danger'"></i>
+                </div>
+            </a>
         </li>
         <li class="list-group-item">
-            {{ 'WEIGHT' | translate}}
-            <div class="pull-right">
-                {{ content.weight }}
-            </div>
+            <a content-weight-edit-button
+               content_id="{{content.id}}"
+               content_weight="{{content.weight}}">
+                <i class="fa fa-sort"></i> {{ 'WEIGHT' | translate}}
+
+                <div class="pull-right">
+                    {{ content.weight }}
+                </div>
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a content-published-at-edit-button
+               content_id="{{content.id}}"
+               content_published_at="{{content.publishedAt}}">
+                <i class="fa fa-calendar"></i> {{ 'PUBLISHED_AT' | translate}}
+                <div class="pull-right">
+                    {{ content.publishedAt }}
+                </div>
+            </a>
         </li>
     </ul>
     <div class="panel-footer text-right">
+        <a ui-sref="content.list"
+           class="btn btn-default pull-left">
+            <i class="fa fa-times"></i>
+            {{ 'CANCEL' | translate}}
+        </a>
         <button content-delete-button
                 data-id="{{ content.id }}"
                 data-type="{{ content.type }}"
                 data-force="false"
                 type="button"
                 class="btn btn-danger">
+            <i class="fa fa-trash-o"></i>
             {{ 'MOVE_TO_TRASH' | translate }}
-        </button>
-        <button ui-sref="content.edit({ contentId: content.id, langCode: langCode })" type="button" class="btn btn-primary">
-            {{ 'EDIT' | translate }}
         </button>
     </div>
 </div>
