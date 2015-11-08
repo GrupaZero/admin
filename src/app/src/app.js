@@ -46,10 +46,10 @@ angular.module('admin', dependencies).config([
         });
         $translatePartialLoaderProvider.addPart('admin');
 
-        //$translateProvider.preferredLanguage('pl_PL');
+        // $translateProvider.preferredLanguage('pl_PL');
         $translateProvider.preferredLanguage('en_US');
 
-        //User more secure variant sanitize strategy for escaping;
+        // User more secure variant sanitize strategy for escaping;
         $translateProvider.useSanitizeValueStrategy('escape');
 
         RestangularProvider.setBaseUrl(Config.apiUrl + '/v1');
@@ -59,10 +59,15 @@ angular.module('admin', dependencies).config([
             withCredentials: true
         });
 
+        // Set X-Requested-With header
+        RestangularProvider.setDefaultHeaders({
+            'X-Requested-With': 'XMLHttpRequest'
+        });
+
         // Rename Restangular route field to use a $ prefix for easy distinction between data and metadata
         RestangularProvider.setRestangularFields({route: '$route'});
 
-        // add a response intereceptor
+        // Add a response intereceptor
         RestangularProvider.addResponseInterceptor(function(data, operation) {
             var extractedData;
             // .. to look for getList operations
