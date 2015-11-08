@@ -31,6 +31,7 @@ function ContentRouteCtrl($scope, Utils, $modal, ContentRepository) {
             var self = this;
             vm.contentId = contentId;
             vm.contentRoute = contentRoute.substr(contentRoute.lastIndexOf('/') + 1); // last url segment
+            vm.oldRoute = vm.contentRoute;
             vm.langCode = langCode;
             self.initModal('EDIT');
         },
@@ -52,11 +53,15 @@ function ContentRouteCtrl($scope, Utils, $modal, ContentRepository) {
                 langCode: vm.langCode,
                 url: vm.contentRoute
             };
-            ContentRepository.newContentRoute(vm.contentId, newRoute).then(function(response) {
+            // only when route has been changed
+            if (vm.contentRoute !== vm.oldRoute) {
+                ContentRepository.newContentRoute(vm.contentId, newRoute).then(function(response) {
+                    self.closeModal();
+                    Utils.$state.go(Utils.$state.current, {}, {reload: true});
+                });
+            } else {
                 self.closeModal();
-                Utils.$state.go(Utils.$state.current, {}, {reload: true});
-            });
-
+            }
         }
     };
 }

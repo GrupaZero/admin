@@ -15,7 +15,9 @@
             <div ng-hide="(content.route.translations | getTranslation:lang.code:'url')">
 
                 <p class="list-group-item-text">
-                    {{ 'NO_TRANSLATION_INFO' | translate }}
+                    <small>
+                        {{ 'NO_TRANSLATION_INFO' | translate }}
+                    </small>
                 </p>
 
                 <div class="box-inner">

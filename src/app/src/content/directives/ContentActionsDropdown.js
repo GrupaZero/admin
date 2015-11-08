@@ -8,7 +8,7 @@ function ContentActionsDropdown($dropdown) {
         restrict: 'A',
         link: function(scope, element, attrs, ContentDeleteCtrl) {
             var dropdown = $dropdown(element, {
-                templateUrl: 'gzero/admin/views/content/directives/ContentActionsDropdown.tpl.html',
+                templateUrl: 'gzero/admin/views/content/directives/contentActionsDropdown.tpl.html',
                 animation: 'am-flip-x',
                 placement: 'bottom-right'
             });
