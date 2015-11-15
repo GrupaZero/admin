@@ -18,6 +18,9 @@ function LangRepository(Restangular) {
         },
         list: function() {
             return api.getList();
+        },
+        clean: function(elem) {
+            return Restangular.stripRestangular(elem);
         }
     };
 }

@@ -26,10 +26,14 @@ function ContentDetailsEditCtrl($scope, Utils, content, langCode, ContentReposit
      *
      * @param translations Translations array
      * @param langCode language code
-     * @returns Object
+     * @returns Object | false
      */
     function getTranslationByLang(translations, langCode) {
         var translation = translations.shift();
+
+        if(!translation){
+            return false;
+        }
 
         if (translation.lang === langCode) {
             translation.langCode = translation.lang; // Couse we change name of this property in ContentTranslationTransformer

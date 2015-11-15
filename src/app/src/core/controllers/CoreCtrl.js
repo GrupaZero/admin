@@ -1,6 +1,6 @@
 'use strict';
 
-function CoreCtrl($scope, $state, Translations, NavBar, TopNavBar) {
+function CoreCtrl($scope, $state, $stateParams, Translations, NavBar, TopNavBar) {
     // get translations languages
     Translations.getTranslations().then(function(response) {
         $scope.langs = response.langs;
@@ -34,7 +34,7 @@ function CoreCtrl($scope, $state, Translations, NavBar, TopNavBar) {
     // check for edit state
     $scope.$on('$stateChangeStart', function(event, toState) {
         if (typeof toState.data !== 'undefined') {
-            if(toState.name !== 'content.edit.index'){
+            if (toState.name !== 'content.edit.index') {
                 $scope.editStateName = toState.name;
             }
             $scope.editMode = toState.data.editMode;
@@ -43,7 +43,14 @@ function CoreCtrl($scope, $state, Translations, NavBar, TopNavBar) {
             $scope.editMode = false;
         }
     });
+
+    // if there is langCode param validate it
+    $scope.$on('$stateChangeSuccess', function() {
+        if ($stateParams.hasOwnProperty('langCode')) {
+            Translations.checkIfLanguageIsAvailable($stateParams.langCode);
+        }
+    });
 }
 
-CoreCtrl.$inject = ['$scope', '$state', 'Translations', 'NavBar', 'TopNavBar'];
+CoreCtrl.$inject = ['$scope', '$state', '$stateParams', 'Translations', 'NavBar', 'TopNavBar'];
 module.exports = CoreCtrl;
