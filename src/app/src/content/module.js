@@ -122,7 +122,7 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
                     abstract: '.index',
                     resolve: {
                         langCode: [
-                            '$state', '$stateParams', 'Translations', function($state, $stateParams, Translations) {
+                            '$state', '$stateParams', function($state, $stateParams) {
                                 return $stateParams.langCode;
                             }
                         ],
