@@ -1,6 +1,6 @@
 'use strict';
 
-function CoreCtrl($scope, $state, $stateParams, Translations, NavBar, TopNavBar) {
+function CoreCtrl($scope, Utils, Translations, NavBar, TopNavBar) {
     // get translations languages
     Translations.getTranslations().then(function(response) {
         $scope.langs = response.langs;
@@ -19,7 +19,7 @@ function CoreCtrl($scope, $state, $stateParams, Translations, NavBar, TopNavBar)
 
     // refresh current state
     $scope.refreshCurrentState = function() {
-        $state.go($state.current, {}, {reload: true});
+        Utils.$state.go(Utils.$state.current, {}, {reload: true});
     };
 
     $scope.navBar = NavBar.getItems();
@@ -29,10 +29,10 @@ function CoreCtrl($scope, $state, $stateParams, Translations, NavBar, TopNavBar)
     $scope.showSidebar = false;
 
     // toggle sidebar
-    $scope.$state = $state;
+    $scope.$state = Utils.$state;
 
     // check for edit state
-    $scope.$on('$stateChangeStart', function(event, toState) {
+    $scope.$on('Utils.$stateChangeStart', function(event, toState) {
         if (typeof toState.data !== 'undefined') {
             if (toState.name !== 'content.edit.index') {
                 $scope.editStateName = toState.name;
@@ -45,12 +45,12 @@ function CoreCtrl($scope, $state, $stateParams, Translations, NavBar, TopNavBar)
     });
 
     // if there is langCode param validate it
-    $scope.$on('$stateChangeSuccess', function() {
-        if ($stateParams.hasOwnProperty('langCode')) {
-            Translations.checkIfLanguageIsAvailable($stateParams.langCode);
+    $scope.$on('Utils.$stateChangeSuccess', function() {
+        if (Utils.$stateParams.hasOwnProperty('langCode')) {
+            Translations.checkIfLanguageIsAvailable(Utils.$stateParams.langCode);
         }
     });
 }
 
-CoreCtrl.$inject = ['$scope', '$state', '$stateParams', 'Translations', 'NavBar', 'TopNavBar'];
+CoreCtrl.$inject = ['$scope', 'Utils', 'Translations', 'NavBar', 'TopNavBar'];
 module.exports = CoreCtrl;
