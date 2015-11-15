@@ -140,5 +140,6 @@
             "SEODESCRIPTIONALTERNATIVEFIELD": "SEO description alternative field",
             "SEODESCLENGTH": "Site SEO description character number"
         }
-    }
+    },
+    "LANGUAGE_NOT_FOUND": "Language not found."
 }

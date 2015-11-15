@@ -140,5 +140,6 @@
             "SEODESCRIPTIONALTERNATIVEFIELD": "Alternatywne pole dla opisu SEO",
             "SEODESCLENGTH": "Ilość znaków w opisie SEO strony"
         }
-    }
+    },
+    "LANGUAGE_NOT_FOUND": "Nie znaleziono języka."
 }

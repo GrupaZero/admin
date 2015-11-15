@@ -37,7 +37,6 @@ function Translations($q, $translate, LangRepository, Utils) {
          */
         checkIfLanguageIsAvailable: function(langCode) {
             var available = [];
-            console.log('test');
             if(languages==={}){
                 angular.forEach(languages, function(v, k) {
                     available.push(v.code);
@@ -45,9 +44,6 @@ function Translations($q, $translate, LangRepository, Utils) {
                 if(available.indexOf(langCode) === -1){
                     Utils.Notifications.addError('LANGUAGE_NOT_FOUND');
                     Utils.$state.go('home');
-                }else{
-                    console.log(langCode);
-                    console.log(available);
                 }
             }else{
                 LangRepository.list().then(function(response) {
@@ -57,9 +53,6 @@ function Translations($q, $translate, LangRepository, Utils) {
                     if(available.indexOf(langCode) === -1){
                         Utils.Notifications.addError('LANGUAGE_NOT_FOUND');
                         Utils.$state.go('home');
-                    }else{
-                        console.log(available);
-                        console.log(langCode);
                     }
                 });
             }
