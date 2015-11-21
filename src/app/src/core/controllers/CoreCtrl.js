@@ -32,7 +32,7 @@ function CoreCtrl($scope, Utils, Translations, NavBar, TopNavBar) {
     $scope.$state = Utils.$state;
 
     // check for edit state
-    $scope.$on('Utils.$stateChangeStart', function(event, toState) {
+    $scope.$on('$stateChangeStart', function(event, toState) {
         if (typeof toState.data !== 'undefined') {
             if (toState.name !== 'content.edit.index') {
                 $scope.editStateName = toState.name;
@@ -45,7 +45,7 @@ function CoreCtrl($scope, Utils, Translations, NavBar, TopNavBar) {
     });
 
     // if there is langCode param validate it
-    $scope.$on('Utils.$stateChangeSuccess', function() {
+    $scope.$on('$stateChangeSuccess', function() {
         if (Utils.$stateParams.hasOwnProperty('langCode')) {
             Translations.checkIfLanguageIsAvailable(Utils.$stateParams.langCode);
         }
