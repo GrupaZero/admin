@@ -51,7 +51,9 @@
            title="{{category.translations | getTranslation:listLang.code:'title'}}">
             <i class="fa fa-fw"
                ng-class="(collapsed || !category.children.length) ? 'fa-folder-o' : 'fa-folder-open-o'">
+                <i ng-show="!category.isActive" class="fa unpublishedMark fa-times"></i>
             </i>
+
             {{ category.translations | getTranslation:listLang.code:'title' | limitTo: 36}}
             <span ng-hide="(category.translations | getTranslation:listLang.code:'title')">
                     {{ 'NO_TRANSLATION' | translate }}
