@@ -81,7 +81,7 @@
 
 .table {
   tr.inactive {
-    &, h5 a,
+    &, h5 a
     {
       color : #8B91A0;
     }
@@ -294,3 +294,9 @@ ul.content-settings {
   }
 }
 
+.unpublishedMark {
+  font-size : 0.6em !important;
+  position  : absolute;
+  top       : 14px;
+  left      : 42px;
+}
