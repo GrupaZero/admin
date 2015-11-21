@@ -279,6 +279,10 @@ li:hover {
 
 ul.content-settings {
   li {
+    .field-label {
+      margin-right : 10px;
+    }
+
     a {
       cursor     : pointer;
       color      : black;
