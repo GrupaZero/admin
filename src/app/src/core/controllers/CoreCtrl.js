@@ -10,6 +10,18 @@ function CoreCtrl($scope, Utils, Translations, NavBar, TopNavBar) {
     // admin panel language
     $scope.selectAdminLang = function() {
         Translations.selectAdminLang($scope.currentLang);
+        if (typeof CKEDITOR.instances !== 'undefined') {
+            _.forEach(CKEDITOR.instances, function(editor) {
+                editor.destroy();
+                CKEDITOR.replace(editor.name, {
+                    language: $scope.currentLang.code
+                });
+            });
+        }
+        //ckeditorInstance.destroy();
+        //CKEDITOR.replace('body', {
+        //    language: 'de'
+        //});
     };
 
     // translations language

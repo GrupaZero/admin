@@ -13,6 +13,7 @@ angular.module('admin.core', ['CoreFilters'])
     .factory('Storage', require('../lib/Storage.js'))
     .factory('Utils', require('./services/Utils.js'))
     .directive('statesDropdown', ['$dropdown', require('./directives/StatesDropdown.js')])
+    .directive('richEditor', require('./directives/RichEditor.js'))
     .run([
         'TopNavBar',
         'UserRepository',
