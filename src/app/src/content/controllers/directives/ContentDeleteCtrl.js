@@ -1,6 +1,6 @@
 'use strict';
 
-function ContentDeleteCtrl($scope, Utils, $modal, Storage, ContentRepository, Notifications) { // jshint ignore:line
+function ContentDeleteCtrl($scope, Utils, $modal, ContentRepository) { // jshint ignore:line
     var vm = this;
     var viewPath = 'gzero/admin/views/content/directives/';
     // Delete modal
@@ -59,9 +59,9 @@ function ContentDeleteCtrl($scope, Utils, $modal, Storage, ContentRepository, No
                 // refresh current state
                 if (vm.contentType === 'category') {
                     // removed category
-                    Storage.removeStorageItem('contentListParent');
+                    Utils.Storage.removeStorageItem('contentListParent');
                     Utils.$state.go('content.list', {contentId: null}, {reload: true, inherit: false});
-                    Notifications.addSuccess('CATEGORY_HAS_BEEN_DELETED');
+                    Utils.Notifications.addSuccess('CATEGORY_HAS_BEEN_DELETED');
                 } else {
                     // removed content
                     if (Utils.$state.$current.name === 'content.show.details') {
@@ -69,7 +69,7 @@ function ContentDeleteCtrl($scope, Utils, $modal, Storage, ContentRepository, No
                     } else {
                         Utils.$state.go(Utils.$state.current, {}, {reload: true});
                     }
-                    Notifications.addSuccess(
+                    Utils.Notifications.addSuccess(
                         vm.forceDelete ? 'CONTENT_HAS_BEEN_DELETED' : 'CONTENT_HAS_BEEN_MOVED_TO_TRASH'
                     );
                 }
@@ -77,5 +77,5 @@ function ContentDeleteCtrl($scope, Utils, $modal, Storage, ContentRepository, No
         }
     };
 }
-ContentDeleteCtrl.$inject = ['$scope', 'Utils', '$modal', 'Storage', 'ContentRepository', 'Notifications'];
+ContentDeleteCtrl.$inject = ['$scope', 'Utils', '$modal', 'ContentRepository'];
 module.exports = ContentDeleteCtrl;

@@ -27,24 +27,24 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
                     url: '/list/{contentId}?isActive&page&perPage',
                     resolve: {
                         listParent: [
-                            '$stateParams', 'Storage', 'ContentRepository', function($stateParams, Storage, ContentRepository) {
+                            '$stateParams', 'Utils', 'ContentRepository', function($stateParams, Utils, ContentRepository) {
                                 // if state param has category id
                                 if ($stateParams.contentId) {
-                                    Storage.setStorageItem({contentListParent: $stateParams.contentId});
+                                    Utils.Storage.setStorageItem({contentListParent: $stateParams.contentId});
                                     return ContentRepository.one($stateParams.contentId);
                                 } else {
                                     // if storage has category id
-                                    if (Storage.getStorageItem('contentListParent')) {
-                                        $stateParams.contentId = Storage.getStorageItem('contentListParent');
-                                        return ContentRepository.one(Storage.getStorageItem('contentListParent'));
+                                    if (Utils.Storage.getStorageItem('contentListParent')) {
+                                        $stateParams.contentId = Utils.Storage.getStorageItem('contentListParent');
+                                        return ContentRepository.one(Utils.Storage.getStorageItem('contentListParent'));
                                     }
                                 }
                             }
                         ],
                         openCategories: [
                             // get open categories from Storage
-                            'Storage', function(Storage) {
-                                return Storage.getStorageItem('openCategories');
+                            'Utils', function(Utils) {
+                                return Utils.Storage.getStorageItem('openCategories');
                             }
                         ]
                     },
@@ -210,10 +210,10 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
                     url: '/add/{type}',
                     resolve: {
                         listParent: [
-                            'Storage', 'ContentRepository', function(Storage, ContentRepository) {
+                            'Utils', 'ContentRepository', function(Utils, ContentRepository) {
                                 // if storage has category id
-                                if (Storage.getStorageItem('contentListParent')) {
-                                    return ContentRepository.one(Storage.getStorageItem('contentListParent'));
+                                if (Utils.Storage.getStorageItem('contentListParent')) {
+                                    return ContentRepository.one(Utils.Storage.getStorageItem('contentListParent'));
                                 }
                             }
                         ]
