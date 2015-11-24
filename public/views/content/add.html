@@ -117,7 +117,7 @@
                         <div class="form-group">
                             <label for="teaser">{{ 'TEASER' | translate }}</label>
                             <textarea id="teaser"
-                                      ckeditor="ckOptions({height:'100px'})"
+                                      ckeditor="ckOptions.getEditorOptions({height:'100px'})"
                                       name="teaser" class="form-control"
                                       ng-model="newContent.translations.teaser"></textarea>
                         </div>
@@ -125,8 +125,7 @@
                         <div class="form-group">
                             <label for="body">{{ 'BODY' | translate }}</label>
                             <textarea id="body" name="body"
-                                      rich-editor
-                                      ckeditor="ckOptions({height: '350px'})"
+                                      ckeditor="ckOptions.getEditorOptions()"
                                       class="form-control" rows="20"
                                       ng-model="newContent.translations.body"></textarea>
                         </div>

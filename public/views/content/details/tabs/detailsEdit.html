@@ -108,10 +108,9 @@
                     </div>
                     <div class="col-md-12">
                         <textarea ng-model="activeTranslation.teaser"
-                                  ckeditor="ckOptions({height: '100px'})"
+                                  ckeditor="ckOptions.getEditorOptions({height: '100px'})"
                                   class="form-control"
-                                  id="contentTeaser"
-                                >
+                                  id="contentTeaser">
                         </textarea>
                     </div>
                 </div>
@@ -124,11 +123,10 @@
                     </div>
                     <div class="col-md-12">
                         <textarea ng-model="activeTranslation.body"
-                                  ckeditor="ckOptions()"
+                                  ckeditor="ckOptions.getEditorOptions()"
                                   class="form-control"
                                   id="contentBody"
-                                  rows="20"
-                                >
+                                  rows="20">
                         </textarea>
                     </div>
                 </div>

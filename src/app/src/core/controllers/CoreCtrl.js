@@ -5,23 +5,15 @@ function CoreCtrl($scope, Utils, Translations, NavBar, TopNavBar) {
     Translations.getTranslations().then(function(response) {
         $scope.langs = response.langs;
         $scope.currentLang = $scope.listLang = response.currentLang;
+        // set CKEditor language
+        Utils.ckOptions.setEditorOption({language: $scope.currentLang.code});
     });
 
     // admin panel language
     $scope.selectAdminLang = function() {
         Translations.selectAdminLang($scope.currentLang);
-        if (typeof CKEDITOR.instances !== 'undefined') {
-            _.forEach(CKEDITOR.instances, function(editor) {
-                editor.destroy();
-                CKEDITOR.replace(editor.name, {
-                    language: $scope.currentLang.code
-                });
-            });
-        }
-        //ckeditorInstance.destroy();
-        //CKEDITOR.replace('body', {
-        //    language: 'de'
-        //});
+        // set CKEditor language
+        Utils.ckOptions.setEditorOption({language: $scope.currentLang.code});
     };
 
     // translations language
@@ -37,10 +29,13 @@ function CoreCtrl($scope, Utils, Translations, NavBar, TopNavBar) {
     $scope.navBar = NavBar.getItems();
     $scope.topNavBar = TopNavBar.getItems();
 
-    //Off canvas sidebar
+    // Off canvas sidebar
     $scope.showSidebar = false;
-
-    // toggle sidebar
+    // content translations language switcher
+    $scope.showTransLangSwitcher = false;
+    // admin language switcher
+    $scope.showAdminLangSwitcher = true;
+    // pass state to view
     $scope.$state = Utils.$state;
 
     // check for edit state
@@ -58,6 +53,10 @@ function CoreCtrl($scope, Utils, Translations, NavBar, TopNavBar) {
 
     // if there is langCode param validate it
     $scope.$on('$stateChangeSuccess', function() {
+        // set content translations language switcher
+        $scope.showTransLangSwitcher = Utils.$state.includes('content.list') || Utils.$state.includes('content.trashcan');
+        // disable admin language switcher
+        $scope.showAdminLangSwitcher = Utils.$state.includes('content.add') || Utils.$state.includes('content.addTranslation');
         if (Utils.$stateParams.hasOwnProperty('langCode')) {
             Translations.checkIfLanguageIsAvailable(Utils.$stateParams.langCode);
         }
