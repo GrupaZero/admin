@@ -16,6 +16,7 @@
                 <a href=""
                    ui-sref="content.list({ contentId: null })"
                    ui-sref-opts="{ inherit: false }"
+                   class="activeCategory"
                    ng-click="uncategorized()">
                     <i class="fa fa-fw fa-folder-o"></i>
                     {{ 'UNCATEGORIZED' | translate }}
@@ -48,10 +49,12 @@
            ng-class="{'fa-caret-right': collapsed, 'fa-caret-down': !collapsed }">
         </i>
         <a href="" ui-sref="content.list({ contentId: category.id })" ui-sref-opts="{ inherit: false, reload: false }"
-           title="{{category.translations | getTranslation:listLang.code:'title'}}">
+           title="{{category.translations | getTranslation:listLang.code:'title'}}"
+           class="category"
+           ng-class="category.isActive ? 'activeCategory' : 'unactiveCategory'"
+        >
             <i class="fa fa-fw"
                ng-class="(collapsed || !category.children.length) ? 'fa-folder-o' : 'fa-folder-open-o'">
-                <i ng-show="!category.isActive" class="fa unpublishedMark fa-times"></i>
             </i>
 
             {{ category.translations | getTranslation:listLang.code:'title' | limitTo: 36}}
