@@ -37,20 +37,20 @@ function Translations($q, $translate, LangRepository, Utils) {
          */
         checkIfLanguageIsAvailable: function(langCode) {
             var available = [];
-            if(languages==={}){
+            if (languages === {}) {
                 angular.forEach(languages, function(v, k) {
                     available.push(v.code);
                 });
-                if(available.indexOf(langCode) === -1){
+                if (available.indexOf(langCode) === -1) {
                     Utils.Notifications.addError('LANGUAGE_NOT_FOUND');
                     Utils.$state.go('home');
                 }
-            }else{
+            } else {
                 LangRepository.list().then(function(response) {
                     angular.forEach(LangRepository.clean(response), function(v, k) {
                         available.push(v.code);
                     });
-                    if(available.indexOf(langCode) === -1){
+                    if (available.indexOf(langCode) === -1) {
                         Utils.Notifications.addError('LANGUAGE_NOT_FOUND');
                         Utils.$state.go('home');
                     }

@@ -59,7 +59,7 @@ function ContentPublishedAtEditCtrl($scope, Utils, $modal, ContentRepository) {
          */
         saveContentPublishedAt: function() {
             var self = this;
-            var dateTime = moment($scope.vm.contentPublishedAt).format('YYYY-mm-DD HH:mm:ss');
+            var dateTime = moment($scope.vm.contentPublishedAt).format('YYYY-MM-DD HH:mm:ss');
             var content = {
                 publishedAt: dateTime
             };

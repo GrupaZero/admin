@@ -13,6 +13,8 @@
 @import "libs/bootstrap/bootstrap";
 // ----- BootstrapAdditions ----- //
 @import "libs/bootstrap-additions/bootstrap-additions";
+// ----- Font Awesome ----- //
+@import "libs/font-awesome/font-awesome";
 // ----- Animate.scss ----- //
 @import "libs/animate/animate";
 // ----- AngularMotion ----- //
@@ -277,9 +279,14 @@ li:hover {
 
 ul.content-settings {
   li {
+    .field-label {
+      margin-right : 10px;
+    }
+
     a {
       cursor     : pointer;
       color      : black;
+      display    : block;
       position   : relative;
       left       : 0;
       transition : 0.2s all;
@@ -288,7 +295,7 @@ ul.content-settings {
     a:hover {
       left       : 5px;
       transition : 0.2s all;
-      color      : blue;
+      color      : $brand-primary;
     }
   }
 }

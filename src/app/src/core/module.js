@@ -40,7 +40,7 @@ angular.module('admin.core', ['CoreFilters'])
                     user.fullName,
                     {
                         title: 'PROFILE',
-                        action: 'user.edit({userId: '+user.id+'})'
+                        action: 'user.edit({userId: ' + user.id + '})'
                     }
                 );
                 TopNavBar.addLastChild(

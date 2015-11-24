@@ -61,3 +61,10 @@
 body.animate-on [ui-view="content"].ng-enter {
   @include fadeIn(.33s);
 }
+
+// Content settings wrapping value fix
+[ui-view="contentSettings"] .content-settings-panel .list-group-item {
+  .fade-box {
+    @include fadeIn(.33s);
+  }
+}

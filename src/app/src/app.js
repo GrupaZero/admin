@@ -92,19 +92,19 @@ angular.module('admin', dependencies).config([
     'NavBar',
     '$rootScope',
     'Restangular',
-    'Notifications',
-    function(NavBar, $rootScope, Restangular, Notifications) {
+    'Utils',
+    function(NavBar, $rootScope, Restangular, Utils) {
         NavBar.addFirst({title: 'DASHBOARD', action: 'home', icon: 'fa fa-home'});
-        $rootScope.baseUrl = Config.url;
+        $rootScope.baseUrl = Utils.Config.url;
 
         Restangular.setErrorInterceptor(function(response, deferred, responseHandler) {
             if (response.status === 404) {
-                Notifications.addError('COMMON_ERROR');
+                Utils.Notifications.addError('COMMON_ERROR');
                 return false; // error handled
             } else if (response.status === 500) {
-                Notifications.addError(response.data.error.message);
+                Utils.Notifications.addError(response.data.error.message);
             }
-            Notifications.addErrors(response.data.messages);
+            Utils.Notifications.addErrors(response.data.messages);
             return false; // error not handled
         });
     }

@@ -101,11 +101,11 @@ angular.module('CoreFilters', [])
     .filter('stripTagsAndTrim', function() {
         'use strict';
         return function(str, len) {
-            try{
+            try {
                 str = str.replace(/<\/?[^>]+(>|$)/g, '').substr(0, len);
                 str = str.substr(0, Math.min(str.length, str.lastIndexOf(' ')));
                 return str;
-            }catch(e){
+            } catch (e) {
                 return '';
             }
         };

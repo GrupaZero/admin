@@ -6,7 +6,7 @@
                 <h4 class="modal-title" translate="{{title}}"></h4>
             </div>
             <div class="modal-body">
-                <form name="contentRouteForm" novalidate>
+                <form name="contentWeightForm" novalidate>
                     <div class="row">
                         <div class="col-lg-9">
                             <!-- Title Form input -->
@@ -27,7 +27,7 @@
                 </button>
                 <button type="button"
                         class="btn btn-primary"
-                        ng-disabled="contentRouteForm.$invalid"
+                        ng-disabled="contentWeightForm.$invalid"
                         ng-click="vm.editModal.saveContentWeight()">
                     <i class="glyphicon glyphicon-ok-circle"></i>
                     {{ 'SAVE' | translate }}

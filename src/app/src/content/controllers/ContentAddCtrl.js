@@ -27,9 +27,6 @@ function ContentAddCtrl($scope, Utils, listParent, ContentRepository) {
             click: 'addNewContent(newContent, "content.edit.details")'
         },
         {
-            divider: true
-        },
-        {
             text: 'SAVE_AND_ADD_ANOTHER',
             click: 'addNewContent(newContent, "content.add")'
         }
