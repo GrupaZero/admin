@@ -125,7 +125,7 @@
                         <div class="form-group">
                             <label for="body">{{ 'BODY' | translate }}</label>
                             <textarea id="body" name="body"
-                                      ckeditor="ckOptions.getEditorOptions()"
+                                      ckeditor="ckOptions.getEditorOptions({height:'300px'})"
                                       class="form-control" rows="20"
                                       ng-model="newContent.translations.body"></textarea>
                         </div>

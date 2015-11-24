@@ -14,7 +14,6 @@ var dependencies = [
     'mgcrea.ngStrap',
     'pascalprecht.translate',
     'ckeditor',
-    'btford.markdown',
     'admin.core',
     'admin.content',
     'admin.user',

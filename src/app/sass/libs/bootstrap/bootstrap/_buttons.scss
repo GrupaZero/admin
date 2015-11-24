@@ -91,6 +91,7 @@
   color: $link-color;
   font-weight: normal;
   border-radius: 0;
+  @include box-shadow(none);
 
   &,
   &:active,
@@ -105,6 +106,7 @@
   &:focus,
   &:active {
     border-color: transparent;
+    @include box-shadow(none);
   }
   &:hover,
   &:focus {
