@@ -308,6 +308,7 @@ ul.content-settings {
   color : $brand-danger;
 }
 
-li.active .category i{
-  color: white !important;
+li.active > div i,
+li.active > a i {
+  color : $white !important;
 }
