@@ -300,9 +300,15 @@ ul.content-settings {
   }
 }
 
-.unpublishedMark {
-  font-size : 0.6em !important;
-  position  : absolute;
-  top       : 14px;
-  left      : 42px;
+.activeCategory i {
+  color : $brand-success;
+}
+
+.unactiveCategory i {
+  color : $brand-danger;
+}
+
+li.active > div i,
+li.active > a i {
+  color : $white !important;
 }
