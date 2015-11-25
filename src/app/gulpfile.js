@@ -86,7 +86,6 @@ gulp.task('compress-vendor', function() {
     'vendor/angular/angular-ckeditor.js',
     'vendor/angular/angular-sanitize.min.js',
     'vendor/Showdown.min.js',
-    'vendor/angular/markdown.js',
     'vendor/moment.js'
   ])
     .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
@@ -116,7 +115,6 @@ gulp.task('compress-vendor', function() {
     'vendor/angular/angular-ckeditor.js',
     'vendor/angular/angular-sanitize.min.js',
     'vendor/Showdown.min.js',
-    'vendor/angular/markdown.js',
     'vendor/moment.js'
   ])
     .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
