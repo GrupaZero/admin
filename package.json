@@ -46,7 +46,7 @@
     "strict": true,
     "quotmark": "single",
     "indent": 4,
-    "maxparams": 5,
+    "maxparams": 6,
     "maxdepth": 3,
     "maxcomplexity": 6,
     "predef": [

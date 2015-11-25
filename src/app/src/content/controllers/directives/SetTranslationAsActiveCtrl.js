@@ -87,7 +87,7 @@ function SetTranslationAsActiveCtrl($scope, Utils, $modal, ContentRepository) {
         setAsActive: function() {
             var self = this;
             ContentRepository.newContentTranslation(vm.contentId, vm.selectedTranslation).then(function() {
-                Utils.Notifications.addSuccess('SUCCESS');
+                Utils.Notifications.addSuccess('THE_CHANGES_HAVE_BEEN_SAVED');
                 Utils.$state.reload();
                 self.closeModal();
             });

@@ -56,7 +56,7 @@ function CoreCtrl($scope, Utils, Translations, NavBar, TopNavBar) {
         // set content translations language switcher
         $scope.showTransLangSwitcher = Utils.$state.includes('content.list') || Utils.$state.includes('content.trashcan');
         // disable admin language switcher
-        $scope.showAdminLangSwitcher = Utils.$state.includes('content.add') || Utils.$state.includes('content.addTranslation');
+        $scope.showAdminLangSwitcher = Utils.$state.includes('content.add') || Utils.$state.includes('content.edit') || Utils.$state.includes('content.addTranslation');
         if (Utils.$stateParams.hasOwnProperty('langCode')) {
             Translations.checkIfLanguageIsAvailable(Utils.$stateParams.langCode);
         }

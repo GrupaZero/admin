@@ -60,7 +60,7 @@ function ContentDetailsEditCtrl($scope, Utils, content, langCode, ContentReposit
                 contentId: content.id,
                 langCode: langCode
             });
-            Utils.Notifications.addSuccess('SUCCESS');
+            Utils.Notifications.addSuccess('THE_CHANGES_HAVE_BEEN_SAVED');
         });
     };
 
