@@ -65,6 +65,7 @@
     "NOT_PUBLISHED": "Not published",
     "NO_ENTRIES": "No entries",
     "NO_PARENT_TRANSLATION_INFO": "This category does not have a translation in this language, translate the category first!",
+    "NO_PARENT_TRANSLATION_ERROR": "Before adding translations to this page, you need to translate the categories in which it is located!",
     "NO_TRANSLATION": "No translation",
     "NO_TRANSLATION_BUTTON": "No translation, click here to add",
     "NO_TRANSLATION_INFO": "This page does not have a translation in this language.",

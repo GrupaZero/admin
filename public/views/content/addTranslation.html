@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <form name="contentForm" novalidate>
+    <form name="contentForm" novalidate ng-if="isLoaded">
         <div class="row">
             <div class="col-lg-9">
                 <div class="panel panel-default margin-top">
@@ -94,12 +94,27 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-12 text-right">
+                                <button ng-click="$root.showTeaser = !$root.showTeaser"
+                                        type="button"
+                                        class="btn-xs btn-link">
+                                    {{ $root.showTeaser ? 'HIDE_TEASER_FIELD' : 'SHOW_TEASER_FIELD' | translate }}
+                                </button>
+                            </div>
+                        </div>
                         <!--  Teaser Form textarea -->
-                        <div class="form-group">
-                            <label for="teaser">{{ 'TEASER' | translate }}</label>
-                            <textarea id="teaser" name="teaser" class="form-control"
-                                      ckeditor="ckOptions.getEditorOptions({height: '100px'})"
-                                      ng-model="newContentTranslation.teaser"></textarea>
+                        <div class="form-group" ng-show="$root.showTeaser">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="teaser" class="control-label">{{ "TEASER" | translate }}</label>
+                                </div>
+                                <div class="col-md-12">
+                                    <textarea id="teaser" name="teaser" class="form-control"
+                                              ckeditor="ckOptions.getEditorOptions({height: '100px'})"
+                                              ng-model="newContentTranslation.teaser"></textarea>
+                                </div>
+                            </div>
                         </div>
                         <!--  Body Form textarea -->
                         <div class="form-group">
