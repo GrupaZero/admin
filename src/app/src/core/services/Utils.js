@@ -1,12 +1,13 @@
 'use strict';
 
-function Utils(Notifications, Storage, $state, $previousState, $stateParams, $timeout, ckOptions) {
+function Utils(Notifications, Storage, $state, $previousState, $stateParams, ckOptions) {
 
     return {
         Notifications: Notifications,
         Storage: Storage,
         $state: $state,
         $stateParams: $stateParams,
+        $previousState: $previousState,
         Config: Config,
         ckOptions: ckOptions,
         /**
@@ -14,28 +15,25 @@ function Utils(Notifications, Storage, $state, $previousState, $stateParams, $ti
          * @param {string} defaultStateName default state name
          */
         redirectBack: function(defaultStateName) {
-            // Gets a reference to the previous state.
+            // gets a reference to the previous state.
             var previousState = $previousState.get();
-            // Set default name for the redirect if it is is not specified
+            // set default name for the redirect if it is is not specified
             if (typeof defaultStateName === 'undefined') {
                 defaultStateName = 'home'; // Redirect to home
             }
 
-            // Wait for CKEeditor instance, so that it can be removed without errors
-            $timeout(function() {
-                // if there is a previousState
-                if (previousState !== null) {
-                    // redirected back to the state we came from
-                    $state.go(previousState.state.name, previousState.params, {reload: true});
-                } else {
-                    // otherwise go to default state
-                    $state.go(defaultStateName, {}, {reload: true});
-                }
-            }, 100);
+            // if there is a previousState
+            if (previousState !== null) {
+                // redirected back to the state we came from
+                $state.go(previousState.state.name, previousState.params, {reload: true});
+            } else {
+                // otherwise go to default state
+                $state.go(defaultStateName, {}, {reload: true});
+            }
         }
     };
 
 }
 
-module.$inject = ['Notifications', 'Storage', '$state', '$stateParams', '$timeout', 'ckOptions'];
+module.$inject = ['Notifications', 'Storage', '$state', '$previousState', '$stateParams', 'ckOptions'];
 module.exports = Utils;
