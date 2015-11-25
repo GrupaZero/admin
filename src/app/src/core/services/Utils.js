@@ -16,6 +16,11 @@ function Utils(Notifications, Storage, $state, $previousState, $stateParams, $ti
         redirectBack: function(defaultStateName) {
             // Gets a reference to the previous state.
             var previousState = $previousState.get();
+            // Set default name for the redirect if it is is not specified
+            if (typeof defaultStateName === 'undefined') {
+                defaultStateName = 'home'; // Redirect to home
+            }
+
             // Wait for CKEeditor instance, so that it can be removed without errors
             $timeout(function() {
                 // if there is a previousState
