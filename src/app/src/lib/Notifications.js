@@ -53,11 +53,12 @@ function Notifications($translate) {
          * Function shows the AngularStrap info type alert
          *
          * @param message translatable message string eg. 'COMMON_ERROR'
+         * @param translationParams dynamic params for the translation
          */
-        addInfo: function(message) {
+        addInfo: function(message, translationParams) {
             return new PNotify({
                 title: $translate.instant('INFORMATION') + ':',
-                text: $translate.instant(message),
+                text: $translate.instant(message, translationParams),
                 type: 'info'
             });
         },
@@ -65,11 +66,12 @@ function Notifications($translate) {
          * Function shows the AngularStrap danger type alert
          *
          * @param message translatable message string eg. 'COMMON_ERROR'
+         * @param translationParams dynamic params for the translation
          */
-        addError: function(message) {
+        addError: function(message, translationParams) {
             return new PNotify({
                 title: $translate.instant('ERROR') + ':',
-                text: $translate.instant(message),
+                text: $translate.instant(message, translationParams),
                 type: 'error',
                 icon: 'fa fa-times'
             });
@@ -78,11 +80,12 @@ function Notifications($translate) {
          * Function shows the AngularStrap warning type alert
          *
          * @param message translatable message string eg. 'COMMON_ERROR'
+         * @param translationParams dynamic params for the translation
          */
-        addWarning: function(message) {
+        addWarning: function(message, translationParams) {
             return new PNotify({
                 title: $translate.instant('WARNING') + ':',
-                text: $translate.instant(message),
+                text: $translate.instant(message, translationParams),
                 type: 'warning'
             });
         },
@@ -90,11 +93,12 @@ function Notifications($translate) {
          * Function shows the AngularStrap success type alert
          *
          * @param message translatable message string eg. 'COMMON_ERROR'
+         * @param translationParams dynamic params for the translation
          */
-        addSuccess: function(message) {
+        addSuccess: function(message, translationParams) {
             return new PNotify({
                 title: $translate.instant('SUCCESS') + ':',
-                text: $translate.instant(message),
+                text: $translate.instant(message, translationParams),
                 type: 'success'
             });
         }

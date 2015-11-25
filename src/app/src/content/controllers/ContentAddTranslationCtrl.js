@@ -1,6 +1,6 @@
 'use strict';
 
-function ContentAddTranslationCtrl($scope, Utils, content, ContentRepository) {
+function ContentAddTranslationCtrl($scope, $translate, Utils, content, ContentRepository) {
     $scope.ckOptions = Utils.ckOptions;
     $scope.isLoaded = true; // form visibility
 
@@ -21,8 +21,8 @@ function ContentAddTranslationCtrl($scope, Utils, content, ContentRepository) {
             if (!route.length) {
                 // Redirect user to previous state or content list
                 Utils.redirectBack('content.list');
-                // "Before adding translations to this page, you need to translate the categories in which it is located!"
-                Utils.Notifications.addInfo('NO_PARENT_TRANSLATION_ERROR');
+                // "Before adding translations to this content, you need to translate the categories in which it is located!"
+                Utils.Notifications.addInfo('NO_PARENT_TRANSLATION_ERROR', { contentType: $translate.instant(content.type.toUpperCase()).toLowerCase() });
             } else {
                 // parent url is translated, show form
                 $scope.isLoaded = true;
@@ -38,5 +38,5 @@ function ContentAddTranslationCtrl($scope, Utils, content, ContentRepository) {
         });
     };
 }
-ContentAddTranslationCtrl.$inject = ['$scope', 'Utils', 'content', 'ContentRepository'];
+ContentAddTranslationCtrl.$inject = ['$scope', '$translate', 'Utils', 'content', 'ContentRepository'];
 module.exports = ContentAddTranslationCtrl;
