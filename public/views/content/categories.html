@@ -16,7 +16,6 @@
                 <a href=""
                    ui-sref="content.list({ contentId: null })"
                    ui-sref-opts="{ inherit: false }"
-                   class="activeCategory"
                    ng-click="uncategorized()">
                     <i class="fa fa-fw fa-folder-o"></i>
                     {{ 'UNCATEGORIZED' | translate }}
@@ -35,7 +34,17 @@
                     {{ 'TRASHCAN' | translate }}
                 </a>
             </li>
+            <li role="presentation" class="divider"></li>
         </ul>
+    </div>
+    <div class="aside-header">
+        <small class="text-muted">
+            <i class="fa fa-folder-o text-success"></i> - {{ 'PUBLISHED' | translate }}
+        </small>
+        <br>
+        <small class="text-muted">
+            <i class="fa fa-folder-o text-danger"></i> - {{ 'NOT_PUBLISHED' | translate }}
+        </small>
     </div>
 </div>
 
@@ -52,7 +61,7 @@
            title="{{category.translations | getTranslation:listLang.code:'title'}}"
            class="category"
            ng-class="category.isActive ? 'activeCategory' : 'unactiveCategory'"
-        >
+                >
             <i class="fa fa-fw"
                ng-class="(collapsed || !category.children.length) ? 'fa-folder-o' : 'fa-folder-open-o'">
             </i>

@@ -13,6 +13,9 @@
                             <span class="semi-bold" ng-hide="content.translations | getTranslation:langCode:'title'">
                                 {{ 'NO_TRANSLATION' | translate }}
                             </span>
+                            <small class="fade-box" ng-if="!content.isActive">
+                                <i>({{ 'NOT_PUBLISHED' | translate }})</i>
+                            </small>
                         </h2>
                     </div>
                 </div>
