@@ -26,17 +26,11 @@ function SettingCopyCtrl($scope, Utils, $modal, SettingsRepository) {
         /**
          * Function shows the AngularStrap modal
          *
-         * @param categoryKey option category key
-         * @param optionKey option value key
-         * @param optionValue option value
-         * @param optionNewValue option value to copy
+         * @param attrs attributes from directive
          */
-        showModal: function(categoryKey, optionKey, optionValue, optionNewValue) {
+        showModal: function(attrs) {
             var self = this;
-            vm.categoryKey = categoryKey;
-            vm.optionKey = optionKey;
-            vm.optionValue = optionValue;
-            vm.optionNewValue = optionNewValue;
+            vm.attrs = attrs;
             self.initModal('PLEASE_CONFIRM', 'OPTIONS_LANG.COPY_OPTION_QUESTION');
         },
 
@@ -58,18 +52,19 @@ function SettingCopyCtrl($scope, Utils, $modal, SettingsRepository) {
             self.closeModal();
             // prepare option data
             var data = {
-                key: vm.optionKey,
-                value: vm.optionValue
+                key: vm.attrs.optionKey,
+                value: angular.fromJson(vm.attrs.optionValue)
             };
 
             // set option value to all other languages
-            _.forEach(vm.optionValue, function(n, key) {
-                data.value[key] = vm.optionNewValue;
+            _.forEach(angular.fromJson(vm.attrs.optionValue), function(n, key) {
+                data.value[key] = vm.attrs.optionNewValue;
             });
 
             // save option
-            SettingsRepository.update(vm.categoryKey, data).then(function() {
+            SettingsRepository.update(vm.attrs.categoryKey, data).then(function() {
                 Utils.Notifications.addSuccess('OPTIONS_LANG.COPY_CONFIRM');
+                Utils.$state.reload();
             });
         }
     };

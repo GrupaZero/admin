@@ -9,7 +9,7 @@ function SettingCopyButton() {
         bindToController: true,
         link: function(scope, element, attrs, SettingCopyCtrl) {
             element.on('click', function() {
-                SettingCopyCtrl.copyModal.showModal(attrs.categoryKey, attrs.optionKey, angular.fromJson(attrs.optionValue), attrs.optionNewValue);
+                SettingCopyCtrl.copyModal.showModal(attrs);
             });
         }
     };
