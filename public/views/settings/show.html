@@ -23,7 +23,7 @@
                 <div class="col-md-12">
                     <div class="input-group">
                         <input class="form-control" id="{{ label }}" aria-describedby="{{ label }}HelpBlock"
-                               type="{{ (label === 'seoDescLength' || label === 'defaultPageSize') ? 'number' : 'text' }}"
+                               type="{{ numericFields.indexOf(label) !== -1 ? 'number' : 'text' }}"
                                ng-change="save(label, settings[label])" ng-model-options="{updateOn: 'blur'}"
                                ng-model="settings[label][langCode]"/>
 

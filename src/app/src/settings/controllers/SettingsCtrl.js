@@ -2,6 +2,8 @@
 
 function SettingsCtrl($scope, Utils, SettingsRepository, categories, settings) {
 
+    $scope.numericFields = ['defaultPageSize', 'seoDescLength'];
+
     // option category
     if (typeof Utils.$stateParams.key !== 'undefined') {
         $scope.categoryKey = Utils.$stateParams.key;
@@ -22,12 +24,14 @@ function SettingsCtrl($scope, Utils, SettingsRepository, categories, settings) {
         $scope.settings = SettingsRepository.clean(settings); // category settings
     }
 
-    // we need integer values for number type input
-    if ($scope.settings.hasOwnProperty('defaultPageSize')) {
-        angular.forEach($scope.settings.defaultPageSize, function(v, k) {
-            $scope.settings.defaultPageSize[k] = parseInt(v);
-        });
-    }
+    // we need integer values for number type inputs
+    angular.forEach($scope.numericFields, function(propertyName){
+        if ($scope.settings.hasOwnProperty(propertyName)) {
+            angular.forEach($scope.settings[propertyName], function(v, k) {
+                $scope.settings[propertyName][k] = parseInt(v);
+            });
+        }
+    });
 
     // save settings category options
     $scope.save = function(key, value) {
