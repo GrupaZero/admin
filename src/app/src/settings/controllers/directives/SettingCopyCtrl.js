@@ -57,7 +57,7 @@ function SettingCopyCtrl($scope, Utils, $modal, SettingsRepository) {
             };
 
             // set option value to all other languages
-            _.forEach(angular.fromJson(vm.attrs.optionValue), function(n, key) {
+            _.forEach(data.value, function(n, key) {
                 data.value[key] = vm.attrs.optionNewValue;
             });
 
