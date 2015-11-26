@@ -2,6 +2,7 @@
 
 function SettingsCtrl($scope, Utils, SettingsRepository, categories, settings) {
 
+    // fields that will use number type input
     $scope.numericFields = ['defaultPageSize', 'seoDescLength'];
 
     // option category
