@@ -12,6 +12,7 @@ function Notifications($translate) {
             callback(messages[0]);
         });
     };
+    var stack_bottomright = {"dir1": "up", "dir2": "left", "firstpos1": 25, "firstpos2": 25};
     return {
         /**
          * Function shows multiple AngularStrap info type alerts
@@ -57,9 +58,18 @@ function Notifications($translate) {
          */
         addInfo: function(message, translationParams) {
             return new PNotify({
-                title: $translate.instant('INFORMATION') + ':',
+                title: $translate.instant('INFORMATION'),
                 text: $translate.instant(message, translationParams),
-                type: 'info'
+                type: 'info',
+                addclass: "stack-bottomright",
+                stack: stack_bottomright,
+                nonblock: {
+                    nonblock: true,
+                    nonblock_opacity: .2
+                },
+                buttons: {
+                    show_on_nonblock: true
+                }
             });
         },
         /**
@@ -70,7 +80,7 @@ function Notifications($translate) {
          */
         addError: function(message, translationParams) {
             return new PNotify({
-                title: $translate.instant('ERROR') + ':',
+                title: $translate.instant('ERROR'),
                 text: $translate.instant(message, translationParams),
                 type: 'error',
                 icon: 'fa fa-times'
@@ -84,7 +94,7 @@ function Notifications($translate) {
          */
         addWarning: function(message, translationParams) {
             return new PNotify({
-                title: $translate.instant('WARNING') + ':',
+                title: $translate.instant('WARNING'),
                 text: $translate.instant(message, translationParams),
                 type: 'warning'
             });
@@ -97,7 +107,7 @@ function Notifications($translate) {
          */
         addSuccess: function(message, translationParams) {
             return new PNotify({
-                title: $translate.instant('SUCCESS') + ':',
+                title: $translate.instant('SUCCESS'),
                 text: $translate.instant(message, translationParams),
                 type: 'success'
             });

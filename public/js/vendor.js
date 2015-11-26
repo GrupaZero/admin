@@ -73080,16 +73080,16 @@ return jQuery;
 }));
 
 /*
-PNotify 2.0.1 sciactive.com/pnotify/
-(C) 2014 Hunter Perrin
-license GPL/LGPL/MPL
-*/
+ PNotify 2.1.0 sciactive.com/pnotify/
+ (C) 2015 Hunter Perrin
+ license GPL/LGPL/MPL
+ */
 /*
  * ====== PNotify ======
  *
  * http://sciactive.com/pnotify/
  *
- * Copyright 2009-2014 Hunter Perrin
+ * Copyright 2009-2015 Hunter Perrin
  *
  * Triple licensed under the GPL, LGPL, and MPL.
  * 	http://gnu.org/licenses/gpl.html
@@ -73097,15 +73097,17 @@ license GPL/LGPL/MPL
  * 	http://mozilla.org/MPL/MPL-1.1.html
  */
 
-// Uses AMD or browser globals for jQuery.
 (function (factory) {
-    if (typeof define === 'function' && define.amd) {
-        // AMD. Register as a module.
-        define('pnotify', ['jquery'], factory);
-    } else {
-        // Browser globals
-        factory(jQuery);
-    }
+	if (typeof exports === 'object' && typeof module !== 'undefined') {
+		// CommonJS
+		module.exports = factory(require('jquery'));
+	} else if (typeof define === 'function' && define.amd) {
+		// AMD. Register as a module.
+		define('pnotify', ['jquery'], factory);
+	} else {
+		// Browser globals
+		factory(jQuery);
+	}
 }(function($){
 	var default_stack = {
 		dir1: "down",
@@ -73115,7 +73117,7 @@ license GPL/LGPL/MPL
 		spacing2: 25,
 		context: $("body")
 	};
-	var timer, // Position all timer.
+	var posTimer, // Position all timer.
 		body,
 		jwindow = $(window);
 	// Set global variables.
@@ -73125,9 +73127,12 @@ license GPL/LGPL/MPL
 		jwindow = $(window);
 		// Reposition the notices when the window resizes.
 		jwindow.bind('resize', function(){
-			if (timer)
-				clearTimeout(timer);
-			timer = setTimeout(function(){ PNotify.positionAll(true) }, 10);
+			if (posTimer) {
+				clearTimeout(posTimer);
+			}
+			posTimer = setTimeout(function(){
+				PNotify.positionAll(true);
+			}, 10);
 		});
 	};
 	PNotify = function(options){
@@ -73136,7 +73141,7 @@ license GPL/LGPL/MPL
 	};
 	$.extend(PNotify.prototype, {
 		// The current version of PNotify.
-		version: "2.0.1",
+		version: "2.1.0",
 
 		// === Options ===
 
@@ -73207,8 +73212,9 @@ license GPL/LGPL/MPL
 			var curArg;
 			for (var module in this.modules) {
 				curArg = ((typeof arg === "object" && module in arg) ? arg[module] : arg);
-				if (typeof this.modules[module][event] === 'function')
+				if (typeof this.modules[module][event] === 'function') {
 					this.modules[module][event](this, typeof this.options[module] === 'object' ? this.options[module] : {}, curArg);
+				}
 			}
 		},
 
@@ -73245,77 +73251,93 @@ license GPL/LGPL/MPL
 			this.elem = $("<div />", {
 				"class": "ui-pnotify "+this.options.addclass,
 				"css": {"display": "none"},
+				"aria-live": "assertive",
 				"mouseenter": function(e){
 					if (that.options.mouse_reset && that.animating === "out") {
-						if (!that.timerHide)
+						if (!that.timerHide) {
 							return;
+						}
 						that.cancelRemove();
 					}
 					// Stop the close timer.
-					if (that.options.hide && that.options.mouse_reset) that.cancelRemove();
+					if (that.options.hide && that.options.mouse_reset) {
+						that.cancelRemove();
+					}
 				},
 				"mouseleave": function(e){
 					// Start the close timer.
-					if (that.options.hide && that.options.mouse_reset) that.queueRemove();
+					if (that.options.hide && that.options.mouse_reset && that.animating !== "out") {
+						that.queueRemove();
+					}
 					PNotify.positionAll();
 				}
 			});
 			// Create a container for the notice contents.
-			this.container = $("<div />", {"class": this.styles.container+" ui-pnotify-container "+(this.options.type === "error" ? this.styles.error : (this.options.type === "info" ? this.styles.info : (this.options.type === "success" ? this.styles.success : this.styles.notice)))})
-			.appendTo(this.elem);
-			if (this.options.cornerclass !== "")
+			this.container = $("<div />", {
+				"class": this.styles.container+" ui-pnotify-container "+(this.options.type === "error" ? this.styles.error : (this.options.type === "info" ? this.styles.info : (this.options.type === "success" ? this.styles.success : this.styles.notice))),
+				"role": "alert"
+			}).appendTo(this.elem);
+			if (this.options.cornerclass !== "") {
 				this.container.removeClass("ui-corner-all").addClass(this.options.cornerclass);
+			}
 			// Create a drop shadow.
-			if (this.options.shadow)
+			if (this.options.shadow) {
 				this.container.addClass("ui-pnotify-shadow");
+			}
 
 
 			// Add the appropriate icon.
 			if (this.options.icon !== false) {
 				$("<div />", {"class": "ui-pnotify-icon"})
-				.append($("<span />", {"class": this.options.icon === true ? (this.options.type === "error" ? this.styles.error_icon : (this.options.type === "info" ? this.styles.info_icon : (this.options.type === "success" ? this.styles.success_icon : this.styles.notice_icon))) : this.options.icon}))
-				.prependTo(this.container);
+					.append($("<span />", {"class": this.options.icon === true ? (this.options.type === "error" ? this.styles.error_icon : (this.options.type === "info" ? this.styles.info_icon : (this.options.type === "success" ? this.styles.success_icon : this.styles.notice_icon))) : this.options.icon}))
+					.prependTo(this.container);
 			}
 
 			// Add a title.
 			this.title_container = $("<h4 />", {
 				"class": "ui-pnotify-title"
 			})
-			.appendTo(this.container);
-			if (this.options.title === false)
+				.appendTo(this.container);
+			if (this.options.title === false) {
 				this.title_container.hide();
-			else if (this.options.title_escape)
+			} else if (this.options.title_escape) {
 				this.title_container.text(this.options.title);
-			else
+			} else {
 				this.title_container.html(this.options.title);
+			}
 
 			// Add text.
 			this.text_container = $("<div />", {
 				"class": "ui-pnotify-text"
 			})
-			.appendTo(this.container);
-			if (this.options.text === false)
+				.appendTo(this.container);
+			if (this.options.text === false) {
 				this.text_container.hide();
-			else if (this.options.text_escape)
+			} else if (this.options.text_escape) {
 				this.text_container.text(this.options.text);
-			else
+			} else {
 				this.text_container.html(this.options.insert_brs ? String(this.options.text).replace(/\n/g, "<br />") : this.options.text);
+			}
 
 			// Set width and min height.
-			if (typeof this.options.width === "string")
+			if (typeof this.options.width === "string") {
 				this.elem.css("width", this.options.width);
-			if (typeof this.options.min_height === "string")
+			}
+			if (typeof this.options.min_height === "string") {
 				this.container.css("min-height", this.options.min_height);
+			}
 
 
 			// Add the notice to the notice array.
-			if (this.options.stack.push === "top")
+			if (this.options.stack.push === "top") {
 				PNotify.notices = $.merge([this], PNotify.notices);
-			else
+			} else {
 				PNotify.notices = $.merge(PNotify.notices, [this]);
+			}
 			// Now position all the notices if they are to push to the top.
-			if (this.options.stack.push === "top")
+			if (this.options.stack.push === "top") {
 				this.queuePosition(false, 1);
+			}
 
 
 
@@ -73327,8 +73349,9 @@ license GPL/LGPL/MPL
 			this.runModules('init');
 
 			// Display the notice.
-			if (this.options.auto_display)
+			if (this.options.auto_display) {
 				this.open();
+			}
 			return this;
 		},
 
@@ -73339,55 +73362,62 @@ license GPL/LGPL/MPL
 			// Then update to the new options.
 			this.parseOptions(oldOpts, options);
 			// Update the corner class.
-			if (this.options.cornerclass !== oldOpts.cornerclass)
+			if (this.options.cornerclass !== oldOpts.cornerclass) {
 				this.container.removeClass("ui-corner-all "+oldOpts.cornerclass).addClass(this.options.cornerclass);
+			}
 			// Update the shadow.
 			if (this.options.shadow !== oldOpts.shadow) {
-				if (this.options.shadow)
+				if (this.options.shadow) {
 					this.container.addClass("ui-pnotify-shadow");
-				else
+				} else {
 					this.container.removeClass("ui-pnotify-shadow");
+				}
 			}
 			// Update the additional classes.
-			if (this.options.addclass === false)
+			if (this.options.addclass === false) {
 				this.elem.removeClass(oldOpts.addclass);
-			else if (this.options.addclass !== oldOpts.addclass)
+			} else if (this.options.addclass !== oldOpts.addclass) {
 				this.elem.removeClass(oldOpts.addclass).addClass(this.options.addclass);
+			}
 			// Update the title.
-			if (this.options.title === false)
+			if (this.options.title === false) {
 				this.title_container.slideUp("fast");
-			else if (this.options.title !== oldOpts.title) {
-				if (this.options.title_escape)
+			} else if (this.options.title !== oldOpts.title) {
+				if (this.options.title_escape) {
 					this.title_container.text(this.options.title);
-				else
+				} else {
 					this.title_container.html(this.options.title);
-				if (oldOpts.title === false)
+				}
+				if (oldOpts.title === false) {
 					this.title_container.slideDown(200)
+				}
 			}
 			// Update the text.
 			if (this.options.text === false) {
 				this.text_container.slideUp("fast");
 			} else if (this.options.text !== oldOpts.text) {
-				if (this.options.text_escape)
+				if (this.options.text_escape) {
 					this.text_container.text(this.options.text);
-				else
+				} else {
 					this.text_container.html(this.options.insert_brs ? String(this.options.text).replace(/\n/g, "<br />") : this.options.text);
-				if (oldOpts.text === false)
+				}
+				if (oldOpts.text === false) {
 					this.text_container.slideDown(200)
+				}
 			}
 			// Change the notice type.
 			if (this.options.type !== oldOpts.type)
 				this.container.removeClass(
 					this.styles.error+" "+this.styles.notice+" "+this.styles.success+" "+this.styles.info
 				).addClass(this.options.type === "error" ?
-					this.styles.error :
-					(this.options.type === "info" ?
-						this.styles.info :
-						(this.options.type === "success" ?
-							this.styles.success :
-							this.styles.notice
-						)
-					)
+						   this.styles.error :
+						   (this.options.type === "info" ?
+							this.styles.info :
+							(this.options.type === "success" ?
+							 this.styles.success :
+							 this.styles.notice
+							)
+						   )
 				);
 			if (this.options.icon !== oldOpts.icon || (this.options.icon === true && this.options.type !== oldOpts.type)) {
 				// Remove any old icon.
@@ -73395,24 +73425,28 @@ license GPL/LGPL/MPL
 				if (this.options.icon !== false) {
 					// Build the new icon.
 					$("<div />", {"class": "ui-pnotify-icon"})
-					.append($("<span />", {"class": this.options.icon === true ? (this.options.type === "error" ? this.styles.error_icon : (this.options.type === "info" ? this.styles.info_icon : (this.options.type === "success" ? this.styles.success_icon : this.styles.notice_icon))) : this.options.icon}))
-					.prependTo(this.container);
+						.append($("<span />", {"class": this.options.icon === true ? (this.options.type === "error" ? this.styles.error_icon : (this.options.type === "info" ? this.styles.info_icon : (this.options.type === "success" ? this.styles.success_icon : this.styles.notice_icon))) : this.options.icon}))
+						.prependTo(this.container);
 				}
 			}
 			// Update the width.
-			if (this.options.width !== oldOpts.width)
+			if (this.options.width !== oldOpts.width) {
 				this.elem.animate({width: this.options.width});
+			}
 			// Update the minimum height.
-			if (this.options.min_height !== oldOpts.min_height)
+			if (this.options.min_height !== oldOpts.min_height) {
 				this.container.animate({minHeight: this.options.min_height});
+			}
 			// Update the opacity.
-			if (this.options.opacity !== oldOpts.opacity)
+			if (this.options.opacity !== oldOpts.opacity) {
 				this.elem.fadeTo(this.options.animate_speed, this.options.opacity);
+			}
 			// Update the timed hiding.
-			if (!this.options.hide)
+			if (!this.options.hide) {
 				this.cancelRemove();
-			else if (!oldOpts.hide)
+			} else if (!oldOpts.hide) {
 				this.queueRemove();
+			}
 			this.queuePosition(true);
 
 			// Run the modules.
@@ -73428,26 +73462,30 @@ license GPL/LGPL/MPL
 
 			var that = this;
 			// If the notice is not in the DOM, append it.
-			if (!this.elem.parent().length)
+			if (!this.elem.parent().length) {
 				this.elem.appendTo(this.options.stack.context ? this.options.stack.context : body);
+			}
 			// Try to put it in the right position.
-			if (this.options.stack.push !== "top")
+			if (this.options.stack.push !== "top") {
 				this.position(true);
+			}
 			// First show it, then set its opacity, then hide it.
 			if (this.options.animation === "fade" || this.options.animation.effect_in === "fade") {
 				// If it's fading in, it should start at 0.
 				this.elem.show().fadeTo(0, 0).hide();
 			} else {
 				// Or else it should be set to the opacity.
-				if (this.options.opacity !== 1)
+				if (this.options.opacity !== 1) {
 					this.elem.show().fadeTo(0, this.options.opacity).hide();
+				}
 			}
 			this.animateIn(function(){
 				that.queuePosition(true);
 
 				// Now set it to hide.
-				if (that.options.hide)
+				if (that.options.hide) {
 					that.queueRemove();
+				}
 
 				that.state = "open";
 
@@ -73500,7 +73538,9 @@ license GPL/LGPL/MPL
 		// === Class Methods ===
 
 		// Get the DOM element.
-		get: function(){ return this.elem; },
+		get: function(){
+			return this.elem;
+		},
 
 		// Put all the options in the right places.
 		parseOptions: function(options, moreOptions){
@@ -73508,10 +73548,11 @@ license GPL/LGPL/MPL
 			// This is the only thing that *should* be copied by reference.
 			this.options.stack = PNotify.prototype.options.stack;
 			var optArray = [options, moreOptions], curOpts;
-			for (var curIndex in optArray) {
+			for (var curIndex=0; curIndex < optArray.length; curIndex++) {
 				curOpts = optArray[curIndex];
-				if (typeof curOpts == "undefined")
+				if (typeof curOpts == "undefined") {
 					break;
+				}
 				if (typeof curOpts !== 'object') {
 					this.options.text = curOpts;
 				} else {
@@ -73532,27 +73573,34 @@ license GPL/LGPL/MPL
 			// Declare that the notice is animating in. (Or has completed animating in.)
 			this.animating = "in";
 			var animation;
-			if (typeof this.options.animation.effect_in !== "undefined")
+			if (typeof this.options.animation.effect_in !== "undefined") {
 				animation = this.options.animation.effect_in;
-			else
+			} else {
 				animation = this.options.animation;
+			}
 			if (animation === "none") {
 				this.elem.show();
 				callback();
-			} else if (animation === "show")
+			} else if (animation === "show") {
 				this.elem.show(this.options.animate_speed, callback);
-			else if (animation === "fade")
+			} else if (animation === "fade") {
 				this.elem.show().fadeTo(this.options.animate_speed, this.options.opacity, callback);
-			else if (animation === "slide")
+			} else if (animation === "slide") {
 				this.elem.slideDown(this.options.animate_speed, callback);
-			else if (typeof animation === "function")
+			} else if (typeof animation === "function") {
 				animation("in", callback, this.elem);
-			else
+			} else {
 				this.elem.show(animation, (typeof this.options.animation.options_in === "object" ? this.options.animation.options_in : {}), this.options.animate_speed, callback);
-			if (this.elem.parent().hasClass('ui-effects-wrapper'))
-				this.elem.parent().css({"position": "fixed", "overflow": "visible"});
-			if (animation !== "slide")
+			}
+			if (this.elem.parent().hasClass('ui-effects-wrapper')) {
+				this.elem.parent().css({
+					"position": "fixed",
+					"overflow": "visible"
+				});
+			}
+			if (animation !== "slide") {
 				this.elem.css("overflow", "visible");
+			}
 			this.container.css("overflow", "hidden");
 		},
 
@@ -73561,27 +73609,34 @@ license GPL/LGPL/MPL
 			// Declare that the notice is animating out. (Or has completed animating out.)
 			this.animating = "out";
 			var animation;
-			if (typeof this.options.animation.effect_out !== "undefined")
+			if (typeof this.options.animation.effect_out !== "undefined") {
 				animation = this.options.animation.effect_out;
-			else
+			} else {
 				animation = this.options.animation;
+			}
 			if (animation === "none") {
 				this.elem.hide();
 				callback();
-			} else if (animation === "show")
+			} else if (animation === "show") {
 				this.elem.hide(this.options.animate_speed, callback);
-			else if (animation === "fade")
+			} else if (animation === "fade") {
 				this.elem.fadeOut(this.options.animate_speed, callback);
-			else if (animation === "slide")
+			} else if (animation === "slide") {
 				this.elem.slideUp(this.options.animate_speed, callback);
-			else if (typeof animation === "function")
+			} else if (typeof animation === "function") {
 				animation("out", callback, this.elem);
-			else
+			} else {
 				this.elem.hide(animation, (typeof this.options.animation.options_out === "object" ? this.options.animation.options_out : {}), this.options.animate_speed, callback);
-			if (this.elem.parent().hasClass('ui-effects-wrapper'))
-				this.elem.parent().css({"position": "fixed", "overflow": "visible"});
-			if (animation !== "slide")
+			}
+			if (this.elem.parent().hasClass('ui-effects-wrapper')) {
+				this.elem.parent().css({
+					"position": "fixed",
+					"overflow": "visible"
+				});
+			}
+			if (animation !== "slide") {
 				this.elem.css("overflow", "visible");
+			}
 			this.container.css("overflow", "hidden");
 		},
 
@@ -73591,17 +73646,29 @@ license GPL/LGPL/MPL
 			// Get the notice's stack.
 			var s = this.options.stack,
 				e = this.elem;
-			if (e.parent().hasClass('ui-effects-wrapper'))
-				e = this.elem.css({"left": "0", "top": "0", "right": "0", "bottom": "0"}).parent();
-			if (typeof s.context === "undefined")
+			if (e.parent().hasClass('ui-effects-wrapper')) {
+				e = this.elem.css({
+					"left": "0",
+					"top": "0",
+					"right": "0",
+					"bottom": "0"
+				}).parent();
+			}
+			if (typeof s.context === "undefined") {
 				s.context = body;
-			if (!s) return;
-			if (typeof s.nextpos1 !== "number")
+			}
+			if (!s) {
+				return;
+			}
+			if (typeof s.nextpos1 !== "number") {
 				s.nextpos1 = s.firstpos1;
-			if (typeof s.nextpos2 !== "number")
+			}
+			if (typeof s.nextpos2 !== "number") {
 				s.nextpos2 = s.firstpos2;
-			if (typeof s.addpos2 !== "number")
+			}
+			if (typeof s.addpos2 !== "number") {
 				s.addpos2 = 0;
+			}
 			var hidden = e.css("display") === "none";
 			// Skip this notice if it's not shown.
 			if (!hidden || dontSkipHidden) {
@@ -73625,8 +73692,9 @@ license GPL/LGPL/MPL
 						break;
 				}
 				curpos1 = parseInt(e.css(csspos1).replace(/(?:\..*|[^0-9.])/g, ''));
-				if (isNaN(curpos1))
+				if (isNaN(curpos1)) {
 					curpos1 = 0;
+				}
 				// Remember the first pos1, so the first visible notice goes there.
 				if (typeof s.firstpos1 === "undefined" && !hidden) {
 					s.firstpos1 = curpos1;
@@ -73649,8 +73717,9 @@ license GPL/LGPL/MPL
 						break;
 				}
 				curpos2 = parseInt(e.css(csspos2).replace(/(?:\..*|[^0-9.])/g, ''));
-				if (isNaN(curpos2))
+				if (isNaN(curpos2)) {
 					curpos2 = 0;
+				}
 				// Remember the first pos2, so the first visible notice goes there.
 				if (typeof s.firstpos2 === "undefined" && !hidden) {
 					s.firstpos2 = curpos2;
@@ -73683,20 +73752,23 @@ license GPL/LGPL/MPL
 							break;
 					}
 				} else {
-					if(typeof s.nextpos2 === "number")
+					if (typeof s.nextpos2 === "number") {
 						e.css(csspos2, s.nextpos2+"px");
+					}
 				}
 				// Keep track of the widest/tallest notice in the column/row, so we can push the next column/row.
 				switch (s.dir2) {
 					case "down":
 					case "up":
-						if (e.outerHeight(true) > s.addpos2)
+						if (e.outerHeight(true) > s.addpos2) {
 							s.addpos2 = e.height();
+						}
 						break;
 					case "left":
 					case "right":
-						if (e.outerWidth(true) > s.addpos2)
+						if (e.outerWidth(true) > s.addpos2) {
 							s.addpos2 = e.width();
+						}
 						break;
 				}
 				// Move the notice on dir1.
@@ -73717,12 +73789,17 @@ license GPL/LGPL/MPL
 								animate.left = s.nextpos1+"px";
 								break;
 						}
-					} else
+					} else {
 						e.css(csspos1, s.nextpos1+"px");
+					}
 				}
 				// Run the animation.
-				if (animate.top || animate.bottom || animate.right || animate.left)
-					e.animate(animate, {duration: this.options.position_animate_speed, queue: false});
+				if (animate.top || animate.bottom || animate.right || animate.left) {
+					e.animate(animate, {
+						duration: this.options.position_animate_speed,
+						queue: false
+					});
+				}
 				// Calculate the next dir1 position.
 				switch (s.dir1) {
 					case "down":
@@ -73740,25 +73817,33 @@ license GPL/LGPL/MPL
 		// Queue the position all function so it doesn't run repeatedly and
 		// use up resources.
 		queuePosition: function(animate, milliseconds){
-			if (timer)
-				clearTimeout(timer);
-			if (!milliseconds)
+			if (posTimer) {
+				clearTimeout(posTimer);
+			}
+			if (!milliseconds) {
 				milliseconds = 10;
-			timer = setTimeout(function(){ PNotify.positionAll(animate) }, milliseconds);
+			}
+			posTimer = setTimeout(function(){
+				PNotify.positionAll(animate);
+			}, milliseconds);
 			return this;
 		},
 
 
 		// Cancel any pending removal timer.
 		cancelRemove: function(){
-			if (this.timer)
+			if (this.timer) {
 				window.clearTimeout(this.timer);
+			}
 			if (this.state === "closing") {
 				// If it's animating out, animate back in really quickly.
 				this.elem.stop(true);
 				this.state = "open";
 				this.animating = "in";
-				this.elem.css("height", "auto").animate({"width": this.options.width, "opacity": this.options.opacity}, "fast");
+				this.elem.css("height", "auto").animate({
+					"width": this.options.width,
+					"opacity": this.options.opacity
+				}, "fast");
 			}
 			return this;
 		},
@@ -73779,30 +73864,54 @@ license GPL/LGPL/MPL
 		notices: [],
 		removeAll: function () {
 			$.each(PNotify.notices, function(){
-				if (this.remove)
-					this.remove();
+				if (this.remove) {
+					this.remove(false);
+				}
 			});
 		},
 		positionAll: function (animate) {
 			// This timer is used for queueing this function so it doesn't run
 			// repeatedly.
-			if (timer)
-				clearTimeout(timer);
-			timer = null;
+			if (posTimer) {
+				clearTimeout(posTimer);
+			}
+			posTimer = null;
 			// Reset the next position data.
-			$.each(PNotify.notices, function(){
-				var s = this.options.stack;
-				if (!s) return;
-				s.nextpos1 = s.firstpos1;
-				s.nextpos2 = s.firstpos2;
-				s.addpos2 = 0;
-				s.animation = animate;
-			});
-			$.each(PNotify.notices, function(){
-				this.position();
-			});
+			if (PNotify.notices && PNotify.notices.length) {
+				$.each(PNotify.notices, function(){
+					var s = this.options.stack;
+					if (!s) {
+						return;
+					}
+					s.nextpos1 = s.firstpos1;
+					s.nextpos2 = s.firstpos2;
+					s.addpos2 = 0;
+					s.animation = animate;
+				});
+				$.each(PNotify.notices, function(){
+					this.position();
+				});
+			} else {
+				var s = PNotify.prototype.options.stack;
+				if (s) {
+					delete s.nextpos1;
+					delete s.nextpos2;
+				}
+			}
 		},
 		styling: {
+			brighttheme: {
+				// Bright Theme doesn't require any UI libraries.
+				container: "brighttheme",
+				notice: "brighttheme-notice",
+				notice_icon: "brighttheme-icon-notice",
+				info: "brighttheme-info",
+				info_icon: "brighttheme-icon-info",
+				success: "brighttheme-success",
+				success_icon: "brighttheme-icon-success",
+				error: "brighttheme-error",
+				error_icon: "brighttheme-icon-error"
+			},
 			jqueryui: {
 				container: "ui-widget ui-widget-content ui-corner-all",
 				notice: "ui-state-highlight",
@@ -73851,22 +73960,26 @@ license GPL/LGPL/MPL
 		error_icon: "fa fa-warning"
 	});
 
-	if (document.body)
+	if (document.body) {
 		do_when_ready();
-	else
+	} else {
 		$(do_when_ready);
+	}
 	return PNotify;
 }));
 // Buttons
 // Uses AMD or browser globals for jQuery.
 (function (factory) {
-    if (typeof define === 'function' && define.amd) {
-        // AMD. Register as a module.
-        define('pnotify.buttons', ['jquery', 'pnotify'], factory);
-    } else {
-        // Browser globals
-        factory(jQuery, PNotify);
-    }
+	if (typeof exports === 'object' && typeof module !== 'undefined') {
+		// CommonJS
+		module.exports = factory(require('jquery'), require('pnotify'));
+	} else if (typeof define === 'function' && define.amd) {
+		// AMD. Register as a module.
+		define('pnotify.buttons', ['jquery', 'pnotify'], factory);
+	} else {
+		// Browser globals
+		factory(jQuery, PNotify);
+	}
 }(function($, PNotify){
 	PNotify.prototype.options.buttons = {
 		// Provide a button for the user to manually close the notice.
@@ -73877,6 +73990,8 @@ license GPL/LGPL/MPL
 		sticker: true,
 		// Only show the sticker button on hover.
 		sticker_hover: true,
+		// Show the buttons even when the nonblock module is in use.
+		show_on_nonblock: false,
 		// The various displayed text, helps facilitating internationalization.
 		labels: {
 			close: "Close",
@@ -73896,38 +74011,49 @@ license GPL/LGPL/MPL
 			notice.elem.on({
 				"mouseenter": function(e){
 					// Show the buttons.
-					if (that.myOptions.sticker && !(notice.options.nonblock && notice.options.nonblock.nonblock)) that.sticker.trigger("pnotify_icon").css("visibility", "visible");
-					if (that.myOptions.closer && !(notice.options.nonblock && notice.options.nonblock.nonblock)) that.closer.css("visibility", "visible");
+					if (that.myOptions.sticker && (!(notice.options.nonblock && notice.options.nonblock.nonblock) || that.myOptions.show_on_nonblock)) {
+						that.sticker.trigger("pnotify_icon").css("visibility", "visible");
+					}
+					if (that.myOptions.closer && (!(notice.options.nonblock && notice.options.nonblock.nonblock) || that.myOptions.show_on_nonblock)) {
+						that.closer.css("visibility", "visible");
+					}
 				},
 				"mouseleave": function(e){
 					// Hide the buttons.
-					if (that.myOptions.sticker_hover)
+					if (that.myOptions.sticker_hover) {
 						that.sticker.css("visibility", "hidden");
-					if (that.myOptions.closer_hover)
+					}
+					if (that.myOptions.closer_hover) {
 						that.closer.css("visibility", "hidden");
+					}
 				}
 			});
 
 			// Provide a button to stick the notice.
 			this.sticker = $("<div />", {
 				"class": "ui-pnotify-sticker",
-				"css": {"cursor": "pointer", "visibility": options.sticker_hover ? "hidden" : "visible"},
+				"css": {
+					"cursor": "pointer",
+					"visibility": options.sticker_hover ? "hidden" : "visible"
+				},
 				"click": function(){
 					notice.options.hide = !notice.options.hide;
-					if (notice.options.hide)
+					if (notice.options.hide) {
 						notice.queueRemove();
-					else
+					} else {
 						notice.cancelRemove();
+					}
 					$(this).trigger("pnotify_icon");
 				}
 			})
-			.bind("pnotify_icon", function(){
-				$(this).children().removeClass(notice.styles.pin_up+" "+notice.styles.pin_down).addClass(notice.options.hide ? notice.styles.pin_up : notice.styles.pin_down);
-			})
-			.append($("<span />", {"class": notice.styles.pin_up, "title": options.labels.stick}))
-			.prependTo(notice.container);
-			if (!options.sticker || (notice.options.nonblock && notice.options.nonblock.nonblock))
+				.bind("pnotify_icon", function(){
+					$(this).children().removeClass(notice.styles.pin_up+" "+notice.styles.pin_down).addClass(notice.options.hide ? notice.styles.pin_up : notice.styles.pin_down);
+				})
+				.append($("<span />", {"class": notice.styles.pin_up, "title": options.labels.stick}))
+				.prependTo(notice.container);
+			if (!options.sticker || (notice.options.nonblock && notice.options.nonblock.nonblock && !options.show_on_nonblock)) {
 				this.sticker.css("display", "none");
+			}
 
 			// Provide a button to close the notice.
 			this.closer = $("<div />", {
@@ -73939,35 +74065,45 @@ license GPL/LGPL/MPL
 					that.closer.css("visibility", "hidden");
 				}
 			})
-			.append($("<span />", {"class": notice.styles.closer, "title": options.labels.close}))
-			.prependTo(notice.container);
-			if (!options.closer || (notice.options.nonblock && notice.options.nonblock.nonblock))
+				.append($("<span />", {"class": notice.styles.closer, "title": options.labels.close}))
+				.prependTo(notice.container);
+			if (!options.closer || (notice.options.nonblock && notice.options.nonblock.nonblock && !options.show_on_nonblock)) {
 				this.closer.css("display", "none");
+			}
 		},
 		update: function(notice, options){
 			this.myOptions = options;
 			// Update the sticker and closer buttons.
-			if (!options.closer || (notice.options.nonblock && notice.options.nonblock.nonblock))
+			if (!options.closer || (notice.options.nonblock && notice.options.nonblock.nonblock && !options.show_on_nonblock)) {
 				this.closer.css("display", "none");
-			else if (options.closer)
+			} else if (options.closer) {
 				this.closer.css("display", "block");
-			if (!options.sticker || (notice.options.nonblock && notice.options.nonblock.nonblock))
+			}
+			if (!options.sticker || (notice.options.nonblock && notice.options.nonblock.nonblock && !options.show_on_nonblock)) {
 				this.sticker.css("display", "none");
-			else if (options.sticker)
+			} else if (options.sticker) {
 				this.sticker.css("display", "block");
+			}
 			// Update the sticker icon.
 			this.sticker.trigger("pnotify_icon");
 			// Update the hover status of the buttons.
-			if (options.sticker_hover)
+			if (options.sticker_hover) {
 				this.sticker.css("visibility", "hidden");
-			else if (!(notice.options.nonblock && notice.options.nonblock.nonblock))
+			} else if (!(notice.options.nonblock && notice.options.nonblock.nonblock && !options.show_on_nonblock)) {
 				this.sticker.css("visibility", "visible");
-			if (options.closer_hover)
+			}
+			if (options.closer_hover) {
 				this.closer.css("visibility", "hidden");
-			else if (!(notice.options.nonblock && notice.options.nonblock.nonblock))
+			} else if (!(notice.options.nonblock && notice.options.nonblock.nonblock && !options.show_on_nonblock)) {
 				this.closer.css("visibility", "visible");
+			}
 		}
 	};
+	$.extend(PNotify.styling.brighttheme, {
+		closer: "brighttheme-icon-closer",
+		pin_up: "brighttheme-icon-sticker",
+		pin_down: "brighttheme-icon-sticker brighttheme-icon-stuck"
+	});
 	$.extend(PNotify.styling.jqueryui, {
 		closer: "ui-icon ui-icon-close",
 		pin_up: "ui-icon ui-icon-pin-w",
@@ -73989,16 +74125,68 @@ license GPL/LGPL/MPL
 		pin_down: "fa fa-play"
 	});
 }));
-// Desktop
-// Uses AMD or browser globals for jQuery.
+// Callbacks
 (function (factory) {
-    if (typeof define === 'function' && define.amd) {
-        // AMD. Register as a module.
-        define('pnotify.desktop', ['jquery', 'pnotify'], factory);
-    } else {
-        // Browser globals
-        factory(jQuery, PNotify);
-    }
+	if (typeof exports === 'object' && typeof module !== 'undefined') {
+		// CommonJS
+		module.exports = factory(require('jquery'), require('pnotify'));
+	} else if (typeof define === 'function' && define.amd) {
+		// AMD. Register as a module.
+		define('pnotify.callbacks', ['jquery', 'pnotify'], factory);
+	} else {
+		// Browser globals
+		factory(jQuery, PNotify);
+	}
+}(function($, PNotify){
+	var _init   = PNotify.prototype.init,
+		_open   = PNotify.prototype.open,
+		_remove = PNotify.prototype.remove;
+	PNotify.prototype.init = function(){
+		if (this.options.before_init) {
+			this.options.before_init(this.options);
+		}
+		_init.apply(this, arguments);
+		if (this.options.after_init) {
+			this.options.after_init(this);
+		}
+	};
+	PNotify.prototype.open = function(){
+		var ret;
+		if (this.options.before_open) {
+			ret = this.options.before_open(this);
+		}
+		if (ret !== false) {
+			_open.apply(this, arguments);
+			if (this.options.after_open) {
+				this.options.after_open(this);
+			}
+		}
+	};
+	PNotify.prototype.remove = function(timer_hide){
+		var ret;
+		if (this.options.before_close) {
+			ret = this.options.before_close(this, timer_hide);
+		}
+		if (ret !== false) {
+			_remove.apply(this, arguments);
+			if (this.options.after_close) {
+				this.options.after_close(this, timer_hide);
+			}
+		}
+	};
+}));
+// Desktop
+(function (factory) {
+	if (typeof exports === 'object' && typeof module !== 'undefined') {
+		// CommonJS
+		module.exports = factory(require('jquery'), require('pnotify'));
+	} else if (typeof define === 'function' && define.amd) {
+		// AMD. Register as a module.
+		define('pnotify.desktop', ['jquery', 'pnotify'], factory);
+	} else {
+		// Browser globals
+		factory(jQuery, PNotify);
+	}
 }(function($, PNotify){
 	var permission;
 	var notify = function(title, options){
@@ -74034,6 +74222,8 @@ license GPL/LGPL/MPL
 	PNotify.prototype.options.desktop = {
 		// Display the notification as a desktop notification.
 		desktop: false,
+		// If desktop notifications are not supported or allowed, fall back to a regular notice.
+		fallback: true,
 		// The URL of the icon to display. If false, no icon will show. If null, a default icon will show.
 		icon: null,
 		// Using a tag lets you update an existing notice, or keep from duplicating notices between tabs.
@@ -74060,7 +74250,7 @@ license GPL/LGPL/MPL
 				body: notice.options.text,
 				tag: this.tag
 			});
-			if (!("close" in notice.desktop)) {
+			if (!("close" in notice.desktop) && ("cancel" in notice.desktop)) {
 				notice.desktop.close = function(){
 					notice.desktop.cancel();
 				};
@@ -74078,22 +74268,27 @@ license GPL/LGPL/MPL
 			if (!options.desktop)
 				return;
 			permission = PNotify.desktop.checkPermission();
-			if (permission != 0)
+			if (permission !== 0) {
+				// Keep the notice from opening if fallback is false.
+				if (!options.fallback) {
+					notice.options.auto_display = false;
+				}
 				return;
+			}
 			this.genNotice(notice, options);
 		},
 		update: function(notice, options, oldOpts){
-			if (permission != 0 || !options.desktop)
+			if ((permission !== 0 && options.fallback) || !options.desktop)
 				return;
 			this.genNotice(notice, options);
 		},
 		beforeOpen: function(notice, options){
-			if (permission != 0 || !options.desktop)
+			if ((permission !== 0 && options.fallback) || !options.desktop)
 				return;
 			notice.elem.css({'left': '-10000px', 'display': 'none'});
 		},
 		afterOpen: function(notice, options){
-			if (permission != 0 || !options.desktop)
+			if ((permission !== 0 && options.fallback) || !options.desktop)
 				return;
 			notice.elem.css({'left': '-10000px', 'display': 'none'});
 			if ("show" in notice.desktop) {
@@ -74101,15 +74296,17 @@ license GPL/LGPL/MPL
 			}
 		},
 		beforeClose: function(notice, options){
-			if (permission != 0 || !options.desktop)
+			if ((permission !== 0 && options.fallback) || !options.desktop)
 				return;
 			notice.elem.css({'left': '-10000px', 'display': 'none'});
 		},
 		afterClose: function(notice, options){
-			if (permission != 0 || !options.desktop)
+			if ((permission !== 0 && options.fallback) || !options.desktop)
 				return;
 			notice.elem.css({'left': '-10000px', 'display': 'none'});
-			notice.desktop.close();
+			if ("close" in notice.desktop) {
+				notice.desktop.close();
+			}
 		}
 	};
 	PNotify.desktop = {
@@ -74122,15 +74319,171 @@ license GPL/LGPL/MPL
 		},
 		checkPermission: function(){
 			if (typeof Notification !== "undefined" && "permission" in Notification) {
-				return (Notification.permission == "granted" ? 0 : 1);
+				return (Notification.permission === "granted" ? 0 : 1);
 			} else if ("webkitNotifications" in window) {
-				return window.webkitNotifications.checkPermission();
+				return window.webkitNotifications.checkPermission() == 0 ? 0 : 1;
 			} else {
 				return 1;
 			}
 		}
 	};
 	permission = PNotify.desktop.checkPermission();
+}));
+// Nonblock
+(function (factory) {
+	if (typeof exports === 'object' && typeof module !== 'undefined') {
+		// CommonJS
+		module.exports = factory(require('jquery'), require('pnotify'));
+	} else if (typeof define === 'function' && define.amd) {
+		// AMD. Register as a module.
+		define('pnotify.nonblock', ['jquery', 'pnotify'], factory);
+	} else {
+		// Browser globals
+		factory(jQuery, PNotify);
+	}
+}(function($, PNotify){
+	// Some useful regexes.
+	var re_on = /^on/,
+		re_mouse_events = /^(dbl)?click$|^mouse(move|down|up|over|out|enter|leave)$|^contextmenu$/,
+		re_ui_events = /^(focus|blur|select|change|reset)$|^key(press|down|up)$/,
+		re_html_events = /^(scroll|resize|(un)?load|abort|error)$/;
+	// Fire a DOM event.
+	var dom_event = function(e, orig_e){
+		var event_object;
+		e = e.toLowerCase();
+		if (document.createEvent && this.dispatchEvent) {
+			// FireFox, Opera, Safari, Chrome
+			e = e.replace(re_on, '');
+			if (e.match(re_mouse_events)) {
+				// This allows the click event to fire on the notice. There is
+				// probably a much better way to do it.
+				$(this).offset();
+				event_object = document.createEvent("MouseEvents");
+				event_object.initMouseEvent(
+					e, orig_e.bubbles, orig_e.cancelable, orig_e.view, orig_e.detail,
+					orig_e.screenX, orig_e.screenY, orig_e.clientX, orig_e.clientY,
+					orig_e.ctrlKey, orig_e.altKey, orig_e.shiftKey, orig_e.metaKey, orig_e.button, orig_e.relatedTarget
+				);
+			} else if (e.match(re_ui_events)) {
+				event_object = document.createEvent("UIEvents");
+				event_object.initUIEvent(e, orig_e.bubbles, orig_e.cancelable, orig_e.view, orig_e.detail);
+			} else if (e.match(re_html_events)) {
+				event_object = document.createEvent("HTMLEvents");
+				event_object.initEvent(e, orig_e.bubbles, orig_e.cancelable);
+			}
+			if (!event_object) return;
+			this.dispatchEvent(event_object);
+		} else {
+			// Internet Explorer
+			if (!e.match(re_on)) e = "on"+e;
+			event_object = document.createEventObject(orig_e);
+			this.fireEvent(e, event_object);
+		}
+	};
+
+
+	// This keeps track of the last element the mouse was over, so
+	// mouseleave, mouseenter, etc can be called.
+	var nonblock_last_elem;
+	// This is used to pass events through the notice if it is non-blocking.
+	var nonblock_pass = function(notice, e, e_name){
+		notice.elem.css("display", "none");
+		var element_below = document.elementFromPoint(e.clientX, e.clientY);
+		notice.elem.css("display", "block");
+		var jelement_below = $(element_below);
+		var cursor_style = jelement_below.css("cursor");
+		if (cursor_style === "auto" && element_below.tagName === "A") {
+			cursor_style = "pointer";
+		}
+		notice.elem.css("cursor", cursor_style !== "auto" ? cursor_style : "default");
+		// If the element changed, call mouseenter, mouseleave, etc.
+		if (!nonblock_last_elem || nonblock_last_elem.get(0) != element_below) {
+			if (nonblock_last_elem) {
+				dom_event.call(nonblock_last_elem.get(0), "mouseleave", e.originalEvent);
+				dom_event.call(nonblock_last_elem.get(0), "mouseout", e.originalEvent);
+			}
+			dom_event.call(element_below, "mouseenter", e.originalEvent);
+			dom_event.call(element_below, "mouseover", e.originalEvent);
+		}
+		dom_event.call(element_below, e_name, e.originalEvent);
+		// Remember the latest element the mouse was over.
+		nonblock_last_elem = jelement_below;
+	};
+
+
+	PNotify.prototype.options.nonblock = {
+		// Create a non-blocking notice. It lets the user click elements underneath it.
+		nonblock: false,
+		// The opacity of the notice (if it's non-blocking) when the mouse is over it.
+		nonblock_opacity: .2
+	};
+	PNotify.prototype.modules.nonblock = {
+		// This lets us update the options available in the closures.
+		myOptions: null,
+
+		init: function(notice, options){
+			var that = this;
+			this.myOptions = options;
+			notice.elem.on({
+				"mouseenter": function(e){
+					if (that.myOptions.nonblock) e.stopPropagation();
+					if (that.myOptions.nonblock) {
+						// If it's non-blocking, animate to the other opacity.
+						notice.elem.stop().animate({"opacity": that.myOptions.nonblock_opacity}, "fast");
+					}
+				},
+				"mouseleave": function(e){
+					if (that.myOptions.nonblock) e.stopPropagation();
+					nonblock_last_elem = null;
+					notice.elem.css("cursor", "auto");
+					// Animate back to the normal opacity.
+					if (that.myOptions.nonblock && notice.animating !== "out")
+						notice.elem.stop().animate({"opacity": notice.options.opacity}, "fast");
+				},
+				"mouseover": function(e){
+					if (that.myOptions.nonblock) e.stopPropagation();
+				},
+				"mouseout": function(e){
+					if (that.myOptions.nonblock) e.stopPropagation();
+				},
+				"mousemove": function(e){
+					if (that.myOptions.nonblock) {
+						e.stopPropagation();
+						nonblock_pass(notice, e, "onmousemove");
+					}
+				},
+				"mousedown": function(e){
+					if (that.myOptions.nonblock) {
+						e.stopPropagation();
+						e.preventDefault();
+						nonblock_pass(notice, e, "onmousedown");
+					}
+				},
+				"mouseup": function(e){
+					if (that.myOptions.nonblock) {
+						e.stopPropagation();
+						e.preventDefault();
+						nonblock_pass(notice, e, "onmouseup");
+					}
+				},
+				"click": function(e){
+					if (that.myOptions.nonblock) {
+						e.stopPropagation();
+						nonblock_pass(notice, e, "onclick");
+					}
+				},
+				"dblclick": function(e){
+					if (that.myOptions.nonblock) {
+						e.stopPropagation();
+						nonblock_pass(notice, e, "ondblclick");
+					}
+				}
+			});
+		},
+		update: function(notice, options){
+			this.myOptions = options;
+		}
+	};
 }));
 
 (function (root, factory) {
