@@ -225,6 +225,11 @@ li:hover {
 
 // PNotify
 
+/* Hides position: fixed from IE6 */
+html > body > .ui-pnotify {
+  position : fixed;
+}
+
 .ui-pnotify {
   top      : 25px;
   right    : 25px;
@@ -232,9 +237,18 @@ li:hover {
   height   : auto;
   z-index  : 9999;
 
+  .ui-pnotify-shadow {
+    @include box-shadow(0px 2px 10px rgba(50, 50, 50, 0.5));
+  }
+
   .ui-pnotify-container {
     opacity    : 0.9;
     margin-top : 0;
+    padding    : 10px;
+
+    &.ui-pnotify-sharp {
+      border-radius : 0;
+    }
   }
 
   .ui-pnotify-closer, .ui-pnotify-sticker {
@@ -242,12 +256,12 @@ li:hover {
   }
 
   .ui-pnotify-title {
-    font-size     : $font-size-base;
-    font-weight   : bold;
+    font-size      : $font-size-base;
+    font-weight    : bold;
     text-transform : uppercase;
-    display       : block;
-    margin-bottom : .4em;
-    margin-top    : 0;
+    display        : block;
+    margin-bottom  : .4em;
+    margin-top     : 0;
   }
   .ui-pnotify-text {
     display : block;
@@ -270,7 +284,7 @@ li:hover {
   }
 
   .alert-success {
-    background : $brand-success;
+    background : darken($brand-success, 2%);
     color      : $white;
   }
 
