@@ -96,6 +96,12 @@ angular.module('admin', dependencies).config([
         NavBar.addFirst({title: 'DASHBOARD', action: 'home', icon: 'fa fa-home'});
         $rootScope.baseUrl = Utils.Config.url;
 
+        // Add a request intereceptor
+        Restangular.setRequestInterceptor(function(response) {
+            $rootScope.showLoading = true;
+        });
+
+
         Restangular.setErrorInterceptor(function(response, deferred, responseHandler) {
             if (response.status === 404) {
                 Utils.Notifications.addError('COMMON_ERROR');

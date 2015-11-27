@@ -44,10 +44,11 @@ function CoreCtrl($scope, Utils, Translations, NavBar, TopNavBar) {
             if (toState.name !== 'content.edit.index') {
                 $scope.editStateName = toState.name;
             }
-            $scope.editMode = toState.data.editMode;
+            console.log(toState);
+            $scope.showLoading = toState.data.showLoading;
         } else {
             $scope.editStateName = null;
-            $scope.editMode = false;
+            $scope.showLoading = false;
         }
     });
 

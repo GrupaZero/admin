@@ -134,7 +134,7 @@
         </div>
     </div>
 </div>
-<div class="loading-mask" ng-show="editMode"><!-- Loading Mask --></div>
+<div class="loading-mask" ng-show="showLoading"><!-- Loading Mask --></div>
 <!-- core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->

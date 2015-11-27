@@ -133,7 +133,7 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
                         ]
                     },
                     data: {
-                        editMode: true // enter edit mode
+                        showLoading: true // enter edit mode
                     },
                     views: {
                         'content': {
