@@ -1,6 +1,17 @@
 'use strict';
 
 function Notifications($translate) {
+    // Notifications stack
+    var stackBottomRight = {'dir1': 'up', 'dir2': 'left', 'firstpos1': 25, 'firstpos2': 25};
+    // Notifications options
+    var options = {
+        addclass: 'stack-bottomright',
+        stack: stackBottomRight,
+        shadow: false,
+        buttons: {
+            sticker: false
+        }
+    };
     /**
      * Function which shows messages of given type
      *
@@ -56,11 +67,10 @@ function Notifications($translate) {
          * @param translationParams dynamic params for the translation
          */
         addInfo: function(message, translationParams) {
-            return new PNotify({
-                title: $translate.instant('INFORMATION') + ':',
+            return new PNotify(_.merge(options, {
                 text: $translate.instant(message, translationParams),
                 type: 'info'
-            });
+            }));
         },
         /**
          * Function shows the AngularStrap danger type alert
@@ -69,12 +79,11 @@ function Notifications($translate) {
          * @param translationParams dynamic params for the translation
          */
         addError: function(message, translationParams) {
-            return new PNotify({
-                title: $translate.instant('ERROR') + ':',
+            return new PNotify(_.merge(options, {
                 text: $translate.instant(message, translationParams),
                 type: 'error',
                 icon: 'fa fa-times'
-            });
+            }));
         },
         /**
          * Function shows the AngularStrap warning type alert
@@ -83,11 +92,10 @@ function Notifications($translate) {
          * @param translationParams dynamic params for the translation
          */
         addWarning: function(message, translationParams) {
-            return new PNotify({
-                title: $translate.instant('WARNING') + ':',
+            return new PNotify(_.merge(options, {
                 text: $translate.instant(message, translationParams),
                 type: 'warning'
-            });
+            }));
         },
         /**
          * Function shows the AngularStrap success type alert
@@ -96,11 +104,10 @@ function Notifications($translate) {
          * @param translationParams dynamic params for the translation
          */
         addSuccess: function(message, translationParams) {
-            return new PNotify({
-                title: $translate.instant('SUCCESS') + ':',
+            return new PNotify(_.merge(options, {
                 text: $translate.instant(message, translationParams),
                 type: 'success'
-            });
+            }));
         }
     };
 }

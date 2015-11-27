@@ -225,6 +225,11 @@ li:hover {
 
 // PNotify
 
+/* Hides position: fixed from IE6 */
+html > body > .ui-pnotify {
+  position : fixed;
+}
+
 .ui-pnotify {
   top      : 25px;
   right    : 25px;
@@ -232,49 +237,70 @@ li:hover {
   height   : auto;
   z-index  : 9999;
 
+  .ui-pnotify-shadow {
+    @include box-shadow(0px 2px 10px rgba(50, 50, 50, 0.5));
+  }
+
   .ui-pnotify-container {
-    opacity : 0.9;
+    opacity    : 0.9;
+    margin-top : 0;
+    padding    : 10px;
+
+    &.ui-pnotify-sharp {
+      border-radius : 0;
+    }
   }
 
   .ui-pnotify-closer, .ui-pnotify-sticker {
     float : right;
   }
 
-  .ui-pnotify-icon span {
-    font-size     : 50px;
-    padding-right : 20px;
-    float         : left;
-  }
-
   .ui-pnotify-title {
-    padding-bottom : 0;
+    font-size      : $font-size-base;
+    font-weight    : bold;
+    text-transform : uppercase;
+    display        : block;
+    margin-bottom  : .4em;
+    margin-top     : 0;
+  }
+  .ui-pnotify-text {
+    display : block;
   }
 
-  .ui-pnotify-text {
-    float : right;
-    width : 192px;
+  .ui-pnotify-icon, .ui-pnotify-icon span {
+    display      : block;
+    float        : left;
+    margin-right : .2em;
   }
 
   .alert-info {
     background : $brand-info;
-    color      : white;
+    color      : $white;
   }
 
   .alert-danger {
     background : $brand-danger;
-    color      : white;
+    color      : $white;
   }
 
   .alert-success {
-    background : $brand-success;
-    color      : white;
+    background : darken($brand-success, 2%);
+    color      : $white;
   }
 
   .alert-warning {
     background : $brand-warning;
-    color      : white;
+    color      : $white;
   }
-
+  /* Alternate stack initial positioning. */
+  &.stack-topleft, &.stack-bottomleft {
+    left  : 25px;
+    right : auto;
+  }
+  &.stack-bottomright, &.stack-bottomleft {
+    bottom : 25px;
+    top    : auto;
+  }
 }
 
 ul.content-settings {
