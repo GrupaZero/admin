@@ -14,6 +14,8 @@ var dependencies = [
     'mgcrea.ngStrap',
     'pascalprecht.translate',
     'ckeditor',
+    'angular-loading-bar',
+    'ng.httpLoader',
     'admin.core',
     'admin.content',
     'admin.user',
@@ -27,12 +29,14 @@ angular.module('admin', dependencies).config([
     'RestangularProvider',
     '$translateProvider',
     '$translatePartialLoaderProvider',
-    function($stateProvider, $urlRouterProvider, RestangularProvider, $translateProvider, $translatePartialLoaderProvider) {
+    'httpMethodInterceptorProvider',
+    function($stateProvider, $urlRouterProvider, RestangularProvider, $translateProvider, $translatePartialLoaderProvider, httpMethodInterceptorProvider) {
         var viewPath = 'gzero/admin/views/';
 
         // For any unmatched url, redirect to /state1
         $urlRouterProvider.otherwise('/');
-
+        // Whitelist the domains that the loader wil show for
+        httpMethodInterceptorProvider.whitelistDomain(Config.domain);
         // Now set up the states
         $stateProvider
             .state('home', {
@@ -65,8 +69,7 @@ angular.module('admin', dependencies).config([
 
         // Rename Restangular route field to use a $ prefix for easy distinction between data and metadata
         RestangularProvider.setRestangularFields({route: '$route'});
-
-        // Add a response intereceptor
+        // Add a response interceptor
         RestangularProvider.addResponseInterceptor(function(data, operation) {
             var extractedData;
             // .. to look for getList operations
@@ -95,12 +98,6 @@ angular.module('admin', dependencies).config([
     function(NavBar, $rootScope, Restangular, Utils) {
         NavBar.addFirst({title: 'DASHBOARD', action: 'home', icon: 'fa fa-home'});
         $rootScope.baseUrl = Utils.Config.url;
-
-        // Add a request intereceptor
-        Restangular.setRequestInterceptor(function(response) {
-            $rootScope.showLoading = true;
-        });
-
 
         Restangular.setErrorInterceptor(function(response, deferred, responseHandler) {
             if (response.status === 404) {

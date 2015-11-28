@@ -1,6 +1,6 @@
 'use strict';
 
-function CoreCtrl($scope, Utils, Translations, NavBar, TopNavBar) {
+function CoreCtrl($scope, Utils, Translations, NavBar, TopNavBar, Restangular) {
     // get translations languages
     Translations.getTranslations().then(function(response) {
         $scope.langs = response.langs;
@@ -44,11 +44,10 @@ function CoreCtrl($scope, Utils, Translations, NavBar, TopNavBar) {
             if (toState.name !== 'content.edit.index') {
                 $scope.editStateName = toState.name;
             }
-            console.log(toState);
-            $scope.showLoading = toState.data.showLoading;
+            $scope.showMask = toState.data.showMask;
         } else {
             $scope.editStateName = null;
-            $scope.showLoading = false;
+            $scope.showMask = false;
         }
     });
 
@@ -64,5 +63,5 @@ function CoreCtrl($scope, Utils, Translations, NavBar, TopNavBar) {
     });
 }
 
-CoreCtrl.$inject = ['$scope', 'Utils', 'Translations', 'NavBar', 'TopNavBar'];
+CoreCtrl.$inject = ['$scope', 'Utils', 'Translations', 'NavBar', 'TopNavBar', 'Restangular'];
 module.exports = CoreCtrl;
