@@ -1,6 +1,6 @@
 'use strict';
 
-function CoreCtrl($scope, Utils, Translations, NavBar, TopNavBar, Restangular) {
+function CoreCtrl($scope, Utils, Translations, NavBar, TopNavBar) {
     // get translations languages
     Translations.getTranslations().then(function(response) {
         $scope.langs = response.langs;
@@ -63,5 +63,5 @@ function CoreCtrl($scope, Utils, Translations, NavBar, TopNavBar, Restangular) {
     });
 }
 
-CoreCtrl.$inject = ['$scope', 'Utils', 'Translations', 'NavBar', 'TopNavBar', 'Restangular'];
+CoreCtrl.$inject = ['$scope', 'Utils', 'Translations', 'NavBar', 'TopNavBar'];
 module.exports = CoreCtrl;
