@@ -21,6 +21,7 @@
     <script type="application/javascript">
         var Config = {
             url: '{{ Request::root() }}',
+            domain: '{{ config("gzero.domain") }}',
             apiUrl: 'http://api.{{ Request::getHTTPHost()}}',
             seoDescriptionLength: '{{ config("gzero.seoDescLength") }}',
             seoDescriptionAlternativeField: '{{ config("gzero.seoDescriptionAlternativeField") }}',
@@ -134,7 +135,8 @@
         </div>
     </div>
 </div>
-<div class="loading-mask" ng-show="editMode"><!-- Loading Mask --></div>
+<div class="loading-mask" ng-show="showMask"><!-- Loading Mask --></div>
+<div ng-http-loader methods="['POST', 'PUT']" template="gzero/admin/views/partials/loader.tpl.html"></div>
 <!-- core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->

@@ -84,7 +84,9 @@ gulp.task('compress-vendor', function() {
     'vendor/jquery.js',
     'vendor/pnotify.custom.js',
     'vendor/angular/angular-ckeditor.js',
-    'vendor/angular/angular-sanitize.min.js',
+    'vendor/angular/angular-sanitize.js',
+    'vendor/angular/loading-bar.js',
+    'vendor/angular/angular-http-loader.js',
     'vendor/Showdown.min.js',
     'vendor/moment.js'
   ])
@@ -112,8 +114,10 @@ gulp.task('compress-vendor', function() {
     'vendor/ie10-viewport-bug-workaround.min.js',
     'vendor/jquery.min.js',
     'vendor/pnotify.custom.min.js',
-    'vendor/angular/angular-ckeditor.js',
+    'vendor/angular/angular-ckeditor.min.js',
     'vendor/angular/angular-sanitize.min.js',
+    'vendor/angular/loading-bar.min.js',
+    'vendor/angular/angular-http-loader.min.js',
     'vendor/Showdown.min.js',
     'vendor/moment.js'
   ])
