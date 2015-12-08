@@ -35,8 +35,7 @@ function ContentDetailsEditCtrl($scope, Utils, content, langCode, ContentReposit
             return false;
         }
 
-        if (translation.lang === langCode) {
-            translation.langCode = translation.lang; // Couse we change name of this property in ContentTranslationTransformer
+        if (translation.langCode === langCode) {
             return translation;
         } else {
             return getTranslationByLang(translations, langCode);
