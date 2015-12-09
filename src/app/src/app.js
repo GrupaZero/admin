@@ -16,6 +16,7 @@ var dependencies = [
     'ckeditor',
     'angular-loading-bar',
     'ng.httpLoader',
+    'cfp.hotkeys',
     'admin.core',
     'admin.content',
     'admin.user',

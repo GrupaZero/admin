@@ -1,6 +1,6 @@
 'use strict';
 
-function Utils(Notifications, Storage, $state, $previousState, $stateParams, ckOptions) {
+function Utils(Notifications, Storage, $state, $previousState, $stateParams, ckOptions, hotkeys, $filter) { // jshint ignore:line
 
     return {
         Notifications: Notifications,
@@ -10,6 +10,8 @@ function Utils(Notifications, Storage, $state, $previousState, $stateParams, ckO
         $previousState: $previousState,
         Config: Config,
         ckOptions: ckOptions,
+        hotkeys: hotkeys,
+        $filter: $filter,
         /**
          * Redirect user to previous state
          * @param {string} defaultStateName default state name
@@ -35,5 +37,15 @@ function Utils(Notifications, Storage, $state, $previousState, $stateParams, ckO
 
 }
 
-module.$inject = ['Notifications', 'Storage', '$state', '$previousState', '$stateParams', 'ckOptions'];
+module.$inject = [
+    'Notifications',
+    'Storage',
+    '$state',
+    '$previousState',
+    '$stateParams',
+    'ckOptions',
+    'hotkeys',
+    '$filter'
+];
+
 module.exports = Utils;

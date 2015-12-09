@@ -39,6 +39,17 @@ function ContentDeleteCtrl($scope, Utils, $modal, ContentRepository) { // jshint
             } else {
                 self.initModal('PLEASE_CONFIRM', 'MOVE_CONTENT_TO_TRASH_QUESTION');
             }
+
+            // Bind hotkeys
+            Utils.hotkeys.add({
+                combo: 'enter',
+                description: Utils.$filter('translate')(
+                    vm.forceDelete ? 'CONFIRM_DELETE' : 'CONFIRM_MOVE_TO_TRASH'
+                ),
+                callback: function(){
+                    self.deleteContent();
+                }
+            });
         },
         /**
          * Function close the modal
@@ -46,6 +57,7 @@ function ContentDeleteCtrl($scope, Utils, $modal, ContentRepository) { // jshint
          */
         closeModal: function() {
             var self = this;
+            Utils.hotkeys.del('enter');
             self.modal.hide();
         },
         /**
@@ -76,6 +88,7 @@ function ContentDeleteCtrl($scope, Utils, $modal, ContentRepository) { // jshint
             });
         }
     };
+
 }
 ContentDeleteCtrl.$inject = ['$scope', 'Utils', '$modal', 'ContentRepository'];
 module.exports = ContentDeleteCtrl;

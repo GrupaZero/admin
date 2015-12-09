@@ -34,6 +34,15 @@ function UserListCtrl($scope, Utils, UserRepository, $modal) {
                 show: true,
                 placement: 'center'
             });
+
+            // Bind hotkeys
+            Utils.hotkeys.add({
+                combo: 'enter',
+                description: 'CONFIRM_DELETE',
+                callback: function(){
+                    self.deleteUser();
+                }
+            });
         },
 
         /**
@@ -45,6 +54,7 @@ function UserListCtrl($scope, Utils, UserRepository, $modal) {
             var self = this;
             vm.userId = userId;
             self.initModal('PLEASE_CONFIRM', 'DELETE_USER_QUESTION');
+            Utils.hotkeys.del('enter');
         },
 
         /**

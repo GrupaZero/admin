@@ -144,5 +144,8 @@
             "SEODESCLENGTH": "Ilość znaków w opisie SEO strony"
         }
     },
-    "LANGUAGE_NOT_FOUND": "Nie znaleziono języka."
+    "LANGUAGE_NOT_FOUND": "Nie znaleziono języka.",
+    "CONFIRM_MOVE_TO_TRASH": "Potwierdź przeniesienie do kosza",
+    "CONFIRM_CONTENT_RESTORE": "Potwierdź przywrócenie zawartości",
+    "CONFIRM_DELETE": "Potwierdź usunięcie"
 }
