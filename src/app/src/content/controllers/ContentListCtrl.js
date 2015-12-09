@@ -49,6 +49,7 @@ function ContentListCtrl($scope, Utils, listParent, ContentRepository, NgTablePa
     }, {
         total: 0, // length of data
         getData: function($defer, params) {
+            $scope.requestPending = true;
             // prepare options to be sent to api
             var queryOptions = {
                 lang: $scope.listLang.code,
@@ -94,6 +95,7 @@ function ContentListCtrl($scope, Utils, listParent, ContentRepository, NgTablePa
 
             // Contents is a REST AngularJS service that talks to api and return promise
             promise.then(function(response) {
+                $scope.requestPending = false;
                 params.total(response.meta.total);
                 $defer.resolve(ContentRepository.clean(response));
                 $scope.meta = response.meta;
