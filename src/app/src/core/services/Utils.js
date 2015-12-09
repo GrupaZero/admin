@@ -1,13 +1,6 @@
 'use strict';
 
-function Utils(Notifications,
-    Storage,
-    $state,
-    $previousState,
-    $stateParams,
-    ckOptions,
-    hotkeys,
-    $filter) {
+function Utils(Notifications, Storage, $state, $previousState, $stateParams, ckOptions, hotkeys, $filter) { // jshint ignore:line
 
     return {
         Notifications: Notifications,

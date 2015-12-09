@@ -45,7 +45,7 @@ function ContentListCtrl($scope, Utils, listParent, ContentRepository, NgTablePa
         combo: 'ctrl+alt+n',
         description: Utils.$filter('translate')('ADD_CONTENT'),
         callback: function(){
-            Utils.$state.go('content.add', {type: "content"});
+            Utils.$state.go('content.add', {type: 'content'});
         }
     });
 
@@ -53,7 +53,7 @@ function ContentListCtrl($scope, Utils, listParent, ContentRepository, NgTablePa
         combo: 'ctrl+alt+m',
         description: Utils.$filter('translate')('ADD_CATEGORY'),
         callback: function(){
-            Utils.$state.go('content.add', {type: "category"});
+            Utils.$state.go('content.add', {type: 'category'});
         }
     });
 
