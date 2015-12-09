@@ -31,6 +31,15 @@ function ContentRestoreCtrl($scope, Utils, $modal, ContentRepository) {
             var self = this;
             vm.contentId = contentId;
             self.initModal('PLEASE_CONFIRM', 'RESTORE_CONTENT_QUESTION');
+
+            // Bind hotkeys
+            Utils.hotkeys.add({
+                combo: 'enter',
+                description: Utils.$filter('translate')('CONFIRM_CONTENT_RESTORE'),
+                callback: function() {
+                    self.restoreContent();
+                }
+            });
         },
         /**
          * Function close the modal
@@ -39,6 +48,7 @@ function ContentRestoreCtrl($scope, Utils, $modal, ContentRepository) {
         closeModal: function() {
             var self = this;
             self.modal.hide();
+            Utils.hotkeys.del('enter');
         },
         /**
          * Function restore softDeleted content

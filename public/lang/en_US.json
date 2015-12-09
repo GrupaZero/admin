@@ -144,5 +144,8 @@
             "SEODESCLENGTH": "Site SEO description character number"
         }
     },
-    "LANGUAGE_NOT_FOUND": "Language not found."
+    "LANGUAGE_NOT_FOUND": "Language not found.",
+    "CONFIRM_MOVE_TO_TRASH": "Confirm move to trash",
+    "CONFIRM_CONTENT_RESTORE": "Confirm content restore",
+    "CONFIRM_DELETE": "Confirm delete"
 }

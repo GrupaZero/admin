@@ -40,6 +40,23 @@ function ContentListCtrl($scope, Utils, listParent, ContentRepository, NgTablePa
         }
     ];
 
+    // Bind hotkeys
+    Utils.hotkeys.add({
+        combo: 'ctrl+alt+n',
+        description: Utils.$filter('translate')('ADD_CONTENT'),
+        callback: function(){
+            Utils.$state.go('content.add', {type: "content"});
+        }
+    });
+
+    Utils.hotkeys.add({
+        combo: 'ctrl+alt+m',
+        description: Utils.$filter('translate')('ADD_CATEGORY'),
+        callback: function(){
+            Utils.$state.go('content.add', {type: "category"});
+        }
+    });
+
     //  ngTable configuration
     $scope.tableParams = new NgTableParams({
         count: 25, // count per page
