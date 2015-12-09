@@ -35,8 +35,11 @@
                     </td>
 
                 </tr>
-                <tr ng-hide="$data[0]">
-                    <td colspan="6" class="text-center"><strong>{{ 'NO_ENTRIES' | translate }}</strong></td>
+                <tr ng-hide="$data[0] || requestPending">
+                    <td colspan="7" class="text-center"><strong>{{ 'NO_ENTRIES' | translate }}</strong></td>
+                </tr>
+                <tr ng-hide="!requestPending">
+                    <td colspan="7" class="text-center"><strong><i class="fa fa-spin fa-2x fa-spinner"></i></strong></td>
                 </tr>
                 </tbody>
             </table>
