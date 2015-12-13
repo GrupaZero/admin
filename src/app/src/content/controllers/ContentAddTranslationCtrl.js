@@ -17,7 +17,7 @@ function ContentAddTranslationCtrl($scope, $translate, Utils, content, ContentRe
         ContentRepository.one(content.parentId).then(function(response) {
             var parent = ContentRepository.clean(response);
             // check for route translation in selected language
-            var route = _.pluck(_.filter(parent.route.translations, 'lang', $scope.newContentTranslation.langCode), 'url');
+            var route = _.pluck(_.filter(parent.route.translations, 'langCode', $scope.newContentTranslation.langCode), 'url');
             if (!route.length) {
                 // Redirect user to previous state or content list
                 Utils.redirectBack('content.list');
