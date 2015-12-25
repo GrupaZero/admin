@@ -1,0 +1,121 @@
+<div class="container-fluid">
+    <form name="blockForm" novalidate>
+        <div class="row">
+            <div class="col-lg-9">
+                <div class="panel panel-default margin-top">
+                    <div class="panel-heading">
+                        <strong>{{ isEdited ? 'EDIT_BLOCK' : 'ADD_BLOCK' | translate | uppercase }}</strong>
+                    </div>
+                    <div class="panel-body">
+                        <div class="page-header no-margin-top">
+                            <!-- Title Form input -->
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="title">{{ 'TITLE' | translate }} <strong class="text-danger">*</strong></label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <input id="title" name="title" type="text" class="form-control margin-bottom" required
+                                           ng-model="newBlock.translations.title">
+                                </div>
+                                <div class="col-md-5 text-right">
+                                    <button ui-sref="blocks.list"
+                                            type="button"
+                                            class="btn btn-primary">
+                                        {{ 'CANCEL' | translate }}
+                                    </button>
+
+                                    <!-- Save button -->
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-success" ng-click="save(newBlock)"
+                                                ng-disabled="blockForm.$invalid">
+                                            {{ 'SAVE' | translate }}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--  Body Form textarea -->
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="body" class="control-label">{{ "BODY" | translate }}</label>
+                                </div>
+                                <div class="col-md-12">
+                                    <textarea id="body"
+                                              ckeditor="ckOptions.getEditorOptions({height:'300px'})"
+                                              name="body" class="form-control"
+                                              ng-model="newBlock.translations.body"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="panel panel-default margin-top">
+                    <div class="panel-heading">
+                        <strong>{{ 'SETTINGS' | translate | uppercase }}</strong>
+                    </div>
+                    <div class="panel-body">
+                        <!-- Lang Form input -->
+                        <div class="form-group" ng-if="!isEdited">
+                            <label for="langCode" class="hidden-xs">{{ 'TRANSLATION_LANGUAGE' | translate }}</label>
+                            <select id="langCode" ng-model="newBlock.translations.langCode" class="form-control"
+                                    ng-options="lang.code as lang.code | langName | translate for lang in langs">
+                            </select>
+                        </div>
+                        <!-- Block type input -->
+                        <div class="form-group" ng-if="!isEdited">
+                            <label for="type" class="hidden-xs">{{ 'TYPE' | translate }}</label>
+                            <select id="type" ng-model="newBlock.type" class="form-control" required
+                                    ng-options="type as type | uppercase | translate for type in blockTypes">
+                            </select>
+                        </div>
+                        <!-- Block region input -->
+                        <div class="form-group">
+                            <label for="region" class="hidden-xs">{{ 'REGION' | translate }}</label>
+                            <select id="region" ng-model="newBlock.region" class="form-control"
+                                    ng-options="region as 'BLOCK_REGIONS.' + region | uppercase | translate for region in blockRegions">
+                            </select>
+                        </div>
+                        <!-- Block Show Filter input -->
+                        <div class="form-group">
+                            <label for="filter-show" class="hidden-xs">{{ 'BLOCK_SHOW_ON_PAGES' | translate }}</label>
+                            <input id="filter-show" name="filter['+']" type="text" class="form-control"
+                                   ng-model="newBlock.filter['+']" placeholder="1/,1/2/,1/2/*" ng-list>
+                            <small class="help-block">
+                                {{ 'BLOCK_FILTER_HELP_TEXT' | translate }}
+                            </small>
+                        </div>
+                        <!-- Block Hide Filter input -->
+                        <div class="form-group">
+                            <label for="filter-hide" class="hidden-xs">{{ 'BLOCK_HIDE_ON_PAGES' | translate }}</label>
+                            <input id="filter-hide" name="filter['-']" type="text" class="form-control"
+                                   ng-model="newBlock.filter['-']" placeholder="1/,1/2/,1/2/*" ng-list>
+                            <small class="help-block">
+                                {{ 'BLOCK_FILTER_HELP_TEXT' | translate }}
+                            </small>
+                        </div>
+                        <!-- Block Weight input -->
+                        <div class="form-group">
+                            <label for="weight" class="hidden-xs">{{ 'WEIGHT' | translate }}</label>
+                            <input id="weight" name="weight" min="0" type="number" class="form-control"
+                                   ng-model="newBlock.weight">
+                        </div>
+                        <hr/>
+                        <!-- Is active Form input -->
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label>
+                                    <input ng-model="newBlock.isActive" type="checkbox">{{ 'PUBLISHED' | translate }}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

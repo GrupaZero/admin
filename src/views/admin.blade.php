@@ -26,7 +26,10 @@
             seoDescriptionLength: '{{ config("gzero.seoDescLength") }}',
             seoDescriptionAlternativeField: '{{ config("gzero.seoDescriptionAlternativeField") }}',
             seoTitleAlternativeField: '{{ config("gzero.seoTitleAlternativeField") }}',
-            currentUserId: {{ app('auth')->user()->id }}
+            currentUserId: {{ app('auth')->user()->id }},
+            contentTypes: {!! json_encode(array_keys(config("gzero.content_type")), true) !!},
+            blockTypes: {!! json_encode(array_keys(config("gzero.block_type")), true) !!},
+            blockRegions: {!! json_encode(config("gzero.available_blocks_regions"), true) !!}
         };
         var modules = [
             @foreach ($modules->getModulesNames() as $moduleName)

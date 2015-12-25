@@ -1,0 +1,107 @@
+<div class="col-sm-12 col-md-12">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>
+                {{ 'BLOCKS' | uppercase | translate }}
+                <button type="button" class="btn btn-success pull-right" ui-sref="blocks.add">
+                    <i class="glyphicon glyphicon-plus hidden-sm"></i> {{ 'ADD_BLOCK' | translate }}
+                </button>
+            </h1>
+        </div>
+    </div>
+    <!-- START BLOCKS TABLE -->
+    <div class="table-box">
+        <table ng-table="tableParams" template-pagination="tablePager" class="table table-striped">
+            <tbody>
+            <tr ng-repeat-start="block in $data track by block.id" ng-class="{ inactive: !block.isActive }"
+                ng-click="showTranslations = !showTranslations">
+                <td class="text-center">
+                    <i class="icon fa" ng-class="{'fa-minus-square-o': showTranslations, 'fa-plus-square-o': !showTranslations }">
+                        <!-- icon -->
+                    </i>
+                </td>
+                <td data-title="'TITLE' | translate" sortable="'translations.title'">
+                    <h5 ng-if="(block.translations | getTranslation:listLang.code:'title')">
+                        {{ block.translations | getTranslation:listLang.code:'title' }}
+                    </h5>
+                    <h5 ng-hide="(block.translations | getTranslation:listLang.code:'title')">
+                        <i class="glyphicon glyphicon-ban-circle hidden-sm"></i> {{ 'NO_TRANSLATION' | translate }}
+                    </h5>
+                </td>
+                <td data-title="'TYPE' | translate" sortable="'type'" class="text-center">
+                    {{ ::block.type | uppercase | translate }}
+                </td>
+                <td data-title="'REGION' | translate" sortable="'region'" class="text-center">
+                    {{ 'BLOCK_REGIONS.' + block.region | uppercase | translate }}
+                </td>
+                <td data-title="'WEIGHT' | translate" sortable="'weight'" class="text-center">
+                    {{ ::block.weight }}
+                </td>
+                <td data-title="'ACTION' | translate" class="text-center">
+                    <a href="" ui-sref="blocks.edit({ blockId: block.id, langCode: listLang.code})" class="btn btn-sm btn-primary">
+                        {{ 'EDIT' | translate }}
+                    </a>
+                </td>
+            </tr>
+            <tr ng-repeat-end ng-show="showTranslations">
+                <td class="details" colspan="6">
+                    <table class="table-inner">
+                        <tbody>
+                        <tr>
+                            <td colspan="6">
+                                <!-- TRANSLATION IS AVAILABLE -->
+                                <div ng-show="block.translations | getTranslation:langCode:'body'"
+                                     ng-bind-html="block.translations | getTranslation:langCode:'body' | trustAsHtml">
+                                </div>
+                                <!-- TRANSLATION IS NOT AVAILABLE -->
+
+                                <div ng-hide="block.translations | getTranslation:langCode:'body'">
+                                    {{ 'NO_TRANSLATION_INFO' | translate }}
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            <tr ng-if="!$data[0] || requestPending">
+                <td colspan="6" class="text-center">
+                    <strong ng-if="!$data[0] && !requestPending">{{ 'NO_ENTRIES' | translate }}</strong>
+                    <strong ng-if="requestPending"><i class="fa fa-spin fa-2x fa-spinner"></i></strong>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- END BLOCKS TABLE -->
+</div>
+
+<!--TEMPLATE-->
+<script type="text/ng-template" id="tablePager">
+    <div class="ng-cloak ng-table-pager">
+        <ul ng-if="params.settings().counts.length" class="ng-table-counts pagination pull-right">
+            <li ng-repeat="count in params.settings().counts" ng-class="{'active':params.count() == count}">
+                <a href="" ui-sref="blocks.list({ page: page.number, perPage:count })">
+                    <span ng-bind="count"></span>
+                </a>
+            </li>
+        </ul>
+        <ul class="pagination ng-table-pagination">
+            <li ng-class="{'active': !page.active, 'disabled': !page.active && (page.type == 'prev' || page.type == 'next')}"
+                ng-repeat="page in pages" ng-switch="page.type">
+                <a ng-switch-when="prev" ui-sref="blocks.list({ page: page.number })" href="">&laquo;</a>
+                <a ng-switch-when="first" ui-sref="blocks.list({ page: page.number })" href="">
+                    <span ng-bind="page.number"></span>
+                </a>
+                <a ng-switch-when="page" ui-sref="blocks.list({ page: page.number })" href="">
+                    <span ng-bind="page.number"></span>
+                </a>
+                <a ng-switch-when="more" ui-sref="blocks.list({ page: page.number })" href="">&#8230;</a>
+                <a ng-switch-when="last" ui-sref="blocks.list({ page: page.number })" href="">
+                    <span ng-bind="page.number"></span>
+                </a>
+                <a ng-switch-when="next" ui-sref="blocks.list({ page: page.number })" href="">&raquo;</a>
+            </li>
+        </ul>
+    </div>
+</script>

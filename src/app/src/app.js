@@ -2,6 +2,7 @@
 
 require('./core/module.js');
 require('./content/module.js');
+require('./blocks/module.js');
 require('./user/module.js');
 require('./settings/module.js');
 
@@ -19,6 +20,7 @@ var dependencies = [
     'cfp.hotkeys',
     'admin.core',
     'admin.content',
+    'admin.blocks',
     'admin.user',
     'admin.settings'
 ];

@@ -28,7 +28,19 @@ function CoreCtrl($scope, Utils, Translations, NavBar, TopNavBar) {
 
     $scope.navBar = NavBar.getItems();
     $scope.topNavBar = TopNavBar.getItems();
-
+    // if content types are set
+    if (typeof  Utils.Config.contentTypes !== 'undefined') {
+        $scope.contentTypes = Utils.Config.contentTypes;
+    }
+    // if block types are set
+    if (typeof  Utils.Config.blockTypes !== 'undefined') {
+        $scope.blockTypes = Utils.Config.blockTypes;
+    }
+    // if block regions are set
+    if (typeof  Utils.Config.blockRegions !== 'undefined') {
+        // add disabled region and pass to view
+        $scope.blockRegions = _.union([null], Utils.Config.blockRegions);
+    }
     // Off canvas sidebar
     $scope.showSidebar = false;
     // content translations language switcher
@@ -54,7 +66,7 @@ function CoreCtrl($scope, Utils, Translations, NavBar, TopNavBar) {
     // if there is langCode param validate it
     $scope.$on('$stateChangeSuccess', function() {
         // set content translations language switcher
-        $scope.showTransLangSwitcher = Utils.$state.includes('content.list') || Utils.$state.includes('content.trashcan');
+        $scope.showTransLangSwitcher = Utils.$state.includes('content.list') || Utils.$state.includes('content.trashcan') || Utils.$state.includes('blocks.list');
         // disable admin language switcher
         $scope.showAdminLangSwitcher = Utils.$state.includes('content.add') || Utils.$state.includes('content.edit') || Utils.$state.includes('content.addTranslation');
         if (Utils.$stateParams.hasOwnProperty('langCode')) {
