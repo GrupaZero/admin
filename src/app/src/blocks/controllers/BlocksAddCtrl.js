@@ -1,6 +1,6 @@
 'use strict';
 
-function BlocksAddCtrl($scope, Utils, BlocksRepository) {
+function BlocksAddCtrl($scope, Utils, BlocksRepository, BlockService) {
     $scope.ckOptions = Utils.ckOptions;
     $scope.isEdited = false;
     // default values
@@ -24,6 +24,7 @@ function BlocksAddCtrl($scope, Utils, BlocksRepository) {
 
     // block POST action
     $scope.save = function(newBlock) {
+        newBlock = BlockService.prepareRequestData(newBlock);
         BlocksRepository.create(newBlock).then(function(response) {
             Utils.Notifications.addSuccess('BLOCK_CREATED');
             Utils.$state.go('blocks.list', {}, {reload: true});
@@ -33,5 +34,5 @@ function BlocksAddCtrl($scope, Utils, BlocksRepository) {
     };
 }
 
-BlocksAddCtrl.$inject = ['$scope', 'Utils', 'BlocksRepository'];
+BlocksAddCtrl.$inject = ['$scope', 'Utils', 'BlocksRepository', 'BlockService'];
 module.exports = BlocksAddCtrl;
