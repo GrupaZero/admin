@@ -4,7 +4,7 @@ function BlockService() {
     return {
         prepareRequestData: function(block) {
             // handle block filter
-            if (block.filter !== null) {
+            if (block.filter !== null && typeof block.filter !== 'undefined') {
                 // set empty filter values if not exists
                 if (!('+' in block.filter)) {
                     block.filter['+'] = [];
