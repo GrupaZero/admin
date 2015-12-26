@@ -1,6 +1,6 @@
 'use strict';
 
-function BlocksEditCtrl($scope, Utils, BlocksRepository, langCode, block) {
+function BlocksEditCtrl($scope, Utils, langCode, block, BlocksRepository, BlockService) {
     $scope.ckOptions = Utils.ckOptions;
     $scope.isEdited = true;
     // if block types are set
@@ -21,6 +21,7 @@ function BlocksEditCtrl($scope, Utils, BlocksRepository, langCode, block) {
 
     // block PUT action
     $scope.save = function(newBlock) {
+        newBlock = BlockService.prepareRequestData(newBlock);
         // update block
         BlocksRepository.update(Utils.$stateParams.blockId, newBlock).then(function(response) {
             // add new translation @TODO use translations history
@@ -42,5 +43,5 @@ function BlocksEditCtrl($scope, Utils, BlocksRepository, langCode, block) {
     };
 }
 
-BlocksEditCtrl.$inject = ['$scope', 'Utils', 'BlocksRepository', 'langCode', 'block'];
+BlocksEditCtrl.$inject = ['$scope', 'Utils', 'langCode', 'block', 'BlocksRepository', 'BlockService'];
 module.exports = BlocksEditCtrl;

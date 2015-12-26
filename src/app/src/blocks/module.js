@@ -64,6 +64,7 @@ angular.module('admin.blocks', [])
     .controller('BlocksListCtrl', require('./controllers/BlocksListCtrl'))
     .controller('BlocksAddCtrl', require('./controllers/BlocksAddCtrl'))
     .controller('BlocksEditCtrl', require('./controllers/BlocksEditCtrl'))
+    .service('BlockService', require('./services/BlockService.js'))
     .factory('BlocksRepository', require('./services/BlocksRepository.js'))
     .run([
         'NavBar',

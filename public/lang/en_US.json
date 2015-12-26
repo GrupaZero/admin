@@ -45,6 +45,7 @@
     "CONTENT_HAS_BEEN_MOVED_TO_TRASH": "Content has been moved to trash.",
     "CONTENT_HAS_BEEN_RESTORED": "Content has been restored.",
     "CREATED_AT": "Created at",
+    "CSS_CLASS": "CSS class",
     "CURRENTLY_ACTIVE_VERSION": "Currently active version",
     "CUSTOM_FIELDS": "Custom fields",
     "DASHBOARD": "Dashboard",

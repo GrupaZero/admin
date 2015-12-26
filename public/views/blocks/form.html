@@ -80,6 +80,12 @@
                                     ng-options="region as 'BLOCK_REGIONS.' + region | uppercase | translate for region in blockRegions">
                             </select>
                         </div>
+                        <!-- Block theme input -->
+                        <div class="form-group">
+                            <label for="theme" class="hidden-xs">{{ 'CSS_CLASS' | translate }}</label>
+                            <input id="theme" name="theme" min="0" type="text" class="form-control"
+                                   ng-model="newBlock.theme">
+                        </div>
                         <!-- Block Show Filter input -->
                         <div class="form-group">
                             <label for="filter-show" class="hidden-xs">{{ 'BLOCK_SHOW_ON_PAGES' | translate }}</label>
