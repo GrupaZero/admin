@@ -13,7 +13,7 @@ describe('ContentAddCtrl', function() {
 
     beforeEach(function() {
         scope = {
-            listLang: {code: 'en'}
+            transLang: {code: 'en'}
         };
         ctrl = new controller(scope, Utils, listParent, ContentRepository);
     });

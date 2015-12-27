@@ -6,18 +6,18 @@
             <span class="sub-c-title">
                 {{ 'CATEGORY' | translate | uppercase }}
             </span>
-                <a href="" ui-sref="content.show({ contentId: listParent.id, langCode: listLang.code })">
-                    {{ listParent.translations | getTranslation:listLang.code:'title' }}
+                <a href="" ui-sref="content.show({ contentId: listParent.id, langCode: transLang.code })">
+                    {{ listParent.translations | getTranslation:transLang.code:'title' }}
                 </a>
-            <span ng-hide="(listParent.translations | getTranslation:listLang.code:'title')">
-                <a ui-sref="content.addTranslation({ contentId: listParent.id, langCode: listLang.code })"
+            <span ng-hide="(listParent.translations | getTranslation:transLang.code:'title')">
+                <a ui-sref="content.addTranslation({ contentId: listParent.id, langCode: transLang.code })"
                    href="" class="btn btn-warning">
                     <i class="glyphicon glyphicon-exclamation-sign hidden-sm"></i> {{ 'NO_TRANSLATION_BUTTON' | translate }}
                 </a>
             </span>
             <span class="pull-right">
                  <button type="button" class="btn btn-primary" content-actions-dropdown="contentListActions"
-                         data-record="listParent" data-lang="listLang">
+                         data-record="listParent" data-lang="transLang">
                      {{ 'ACTION' | translate }} <span class="caret"></span>
                  </button>
             </span>
@@ -67,16 +67,16 @@
                     </i>
                 </td>
                 <td data-title="'TITLE' | translate" sortable="'translations.title'">
-                    <h5 ng-if="(content.translations | getTranslation:listLang.code:'title')">
-                        <a href="" ui-sref="content.show({ contentId: content.id, langCode: listLang.code })"
-                           ng-show="(content.route.translations | getTranslation:listLang.code:'url')"
+                    <h5 ng-if="(content.translations | getTranslation:transLang.code:'title')">
+                        <a href="" ui-sref="content.show({ contentId: content.id, langCode: transLang.code })"
+                           ng-show="(content.route.translations | getTranslation:transLang.code:'url')"
                            ng-click="$event.stopPropagation();">
-                            {{ content.translations | getTranslation:listLang.code:'title' }}
+                            {{ content.translations | getTranslation:transLang.code:'title' }}
                         </a>
                     </h5>
 
-                    <h5 ng-hide="(content.translations | getTranslation:listLang.code:'title')">
-                        <a href="" ui-sref="content.addTranslation({ contentId: content.id, langCode: listLang.code })"
+                    <h5 ng-hide="(content.translations | getTranslation:transLang.code:'title')">
+                        <a href="" ui-sref="content.addTranslation({ contentId: content.id, langCode: transLang.code })"
                            ng-click="$event.stopPropagation();" class="text-muted">
                             <i class="glyphicon glyphicon-ban-circle hidden-sm"></i> {{ 'NO_TRANSLATION_BUTTON' | translate }}
                         </a>
@@ -97,7 +97,7 @@
                 </td>
                 <td data-title="'ACTION' | translate" class="text-center action-column">
                     <button type="button" class="btn btn-sm btn-primary" content-actions-dropdown="contentListActions"
-                            data-record="content" data-lang="listLang" ng-click="$event.stopPropagation();">
+                            data-record="content" data-lang="transLang" ng-click="$event.stopPropagation();">
                         {{ 'ACTION' | translate }} <span class="caret"></span>
                     </button>
                 </td>
@@ -109,7 +109,7 @@
                         <tr ng-repeat="lang in langs track by lang.code"
                             ng-init="isTranslated = (content.translations | getTranslation:lang.code:'title')">
                             <!-- TRANSLATION IS AVAILABLE -->
-                            <td ng-show="isTranslated && lang.code !== listLang.code" colspan="6">
+                            <td ng-show="isTranslated && lang.code !== transLang.code" colspan="6">
                                 <span class="label label-primary">{{ lang.code }}</span>
                                 <a href=""
                                    title="{{ isTranslated }}"
@@ -118,21 +118,21 @@
                                     {{ content.translations | getTranslation:lang.code:'title' }}
                                 </a>
                             </td>
-                            <td ng-show="isTranslated && lang.code !== listLang.code" class="action-column">
+                            <td ng-show="isTranslated && lang.code !== transLang.code" class="action-column">
                                 <a href="" ui-sref="content.show({ contentId: content.id, langCode: lang.code })"
                                    class="btn btn-default btn-sm btn-block">
                                     <i class="icon fa fa-pencil hidden-xs"></i> {{ 'EDIT' | translate }}
                                 </a>
                             </td>
                             <!-- TRANSLATION IS NOT AVAILABLE -->
-                            <td ng-show="!isTranslated && lang.code !== listLang.code" colspan="6">
+                            <td ng-show="!isTranslated && lang.code !== transLang.code" colspan="6">
                                 <span class="label label-danger">{{ lang.code }}</span>
                                 <a ui-sref="content.addTranslation({ contentId: listParent.id, langCode: lang.code })"
                                    href="" class="text-muted">
                                     {{ 'NO_TRANSLATION_INFO' | translate }}
                                 </a>
                             </td>
-                            <td ng-show="!isTranslated && lang.code !== listLang.code" class="action-column">
+                            <td ng-show="!isTranslated && lang.code !== transLang.code" class="action-column">
                                 <a class="btn btn-default btn-sm btn-block" href=""
                                    ui-sref="content.addTranslation({ contentId: content.id, langCode: lang.code })">
                                     <i class="icon glyphicon glyphicon-plus-sign hidden-xs"></i>

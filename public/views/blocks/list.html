@@ -21,10 +21,10 @@
                     </i>
                 </td>
                 <td data-title="'TITLE' | translate" sortable="'translations.title'">
-                    <h5 ng-if="(block.translations | getTranslation:listLang.code:'title')">
-                        {{ block.translations | getTranslation:listLang.code:'title' }}
+                    <h5 ng-if="(block.translations | getTranslation:transLang.code:'title')">
+                        {{ block.translations | getTranslation:transLang.code:'title' }}
                     </h5>
-                    <h5 ng-hide="(block.translations | getTranslation:listLang.code:'title')">
+                    <h5 ng-hide="(block.translations | getTranslation:transLang.code:'title')">
                         <i class="glyphicon glyphicon-ban-circle hidden-sm"></i> {{ 'NO_TRANSLATION' | translate }}
                     </h5>
                 </td>
@@ -38,7 +38,7 @@
                     {{ ::block.weight }}
                 </td>
                 <td data-title="'ACTION' | translate" class="text-center">
-                    <a href="" ui-sref="blocks.edit({ blockId: block.id, langCode: listLang.code})" class="btn btn-sm btn-primary"
+                    <a href="" ui-sref="blocks.edit({ blockId: block.id, langCode: transLang.code})" class="btn btn-sm btn-primary"
                        ng-click="$event.stopPropagation();">
                         {{ 'EDIT' | translate }}
                     </a>
@@ -51,11 +51,11 @@
                         <tr>
                             <td colspan="6">
                                 <!-- TRANSLATION IS AVAILABLE -->
-                                <div ng-show="block.translations | getTranslation:listLang.code:'body'"
-                                     ng-bind-html="block.translations | getTranslation:listLang.code:'body' | trustAsHtml">
+                                <div ng-show="block.translations | getTranslation:transLang.code:'body'"
+                                     ng-bind-html="block.translations | getTranslation:transLang.code:'body' | trustAsHtml">
                                 </div>
                                 <!-- TRANSLATION IS NOT AVAILABLE -->
-                                <div ng-hide="block.translations | getTranslation:listLang.code:'body'">
+                                <div ng-hide="block.translations | getTranslation:transLang.code:'body'">
                                     {{ 'NO_TRANSLATION_INFO' | translate }}
                                 </div>
                             </td>

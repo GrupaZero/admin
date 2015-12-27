@@ -16,7 +16,7 @@ function ContentAddCtrl($scope, Utils, listParent, ContentRepository) {
         type: Utils.$stateParams.type,
         isActive: true,
         translations: {
-            langCode: $scope.listLang.code
+            langCode: $scope.transLang.code
         }
     };
 

@@ -76,7 +76,7 @@
             <div class="col-xs-6 col-sm-9 col-md-10">
                 <div class="navbar-form navbar-left" ng-if="showTransLangSwitcher">
                     <label for="langCode" class="hidden-xs">@{{ 'TRANSLATION_LANGUAGE' | translate }}</label>
-                    <select id="langCode" ng-model="listLang" class="form-control" ng-change="selectLanguage(listLang)"
+                    <select id="langCode" ng-model="transLang" class="form-control" ng-change="selectLanguage(transLang)"
                             ng-options="lang.code | langName | translate for lang in langs">
                     </select>
                 </div>

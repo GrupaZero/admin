@@ -69,7 +69,7 @@ function ContentListCtrl($scope, Utils, listParent, ContentRepository, NgTablePa
             $scope.requestPending = true;
             // prepare options to be sent to api
             var queryOptions = {
-                lang: $scope.listLang.code,
+                lang: $scope.transLang.code,
                 type: 'content'
             };
 

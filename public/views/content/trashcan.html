@@ -50,14 +50,14 @@
             <tbody>
             <tr ng-repeat="content in $data" ng-class="{ inactive: !content.isActive }">
                 <td data-title="'TITLE' | translate" sortable="'translations.title'">
-                    <h5 ng-if="(content.translations | getTranslation:listLang.code:'title')">
+                    <h5 ng-if="(content.translations | getTranslation:transLang.code:'title')">
                         <span
-                                ng-show="(content.route.translations | getTranslation:listLang.code:'url')">
-                           {{ content.translations | getTranslation:listLang.code:'title' }}
+                                ng-show="(content.route.translations | getTranslation:transLang.code:'url')">
+                           {{ content.translations | getTranslation:transLang.code:'title' }}
                         </span>
                     </h5>
 
-                    <h5 ng-hide="(content.translations | getTranslation:listLang.code:'title')">
+                    <h5 ng-hide="(content.translations | getTranslation:transLang.code:'title')">
                         <i class="glyphicon glyphicon-ban-circle hidden-sm"></i> {{ 'NO_TRANSLATION' | translate }}
                     </h5>
 
@@ -86,7 +86,7 @@
                 <td data-title="'ACTION' | translate" class="text-center action-column">
 
                     <!-- TODO: we need exception - now soft deleted contents can't be shown
-                    <a href="{{ baseUrl }}/{{ listLang.code }}/{{ content.route.translations | getTranslation:listLang.code:'url' }}"
+                    <a href="{{ baseUrl }}/{{ transLang.code }}/{{ content.route.translations | getTranslation:transLang.code:'url' }}"
                        target="_blank"
                        class="btn btn-sm btn-default">
                         {{ 'VIEW' | translate }}

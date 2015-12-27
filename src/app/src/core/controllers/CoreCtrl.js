@@ -4,7 +4,7 @@ function CoreCtrl($scope, Utils, Translations, NavBar, TopNavBar) {
     // get translations languages
     Translations.getTranslations().then(function(response) {
         $scope.langs = response.langs;
-        $scope.currentLang = $scope.listLang = response.currentLang;
+        $scope.currentLang = $scope.transLang = response.currentLang;
         // set CKEditor language
         Utils.ckOptions.setEditorOption({language: $scope.currentLang.code});
     });
@@ -18,7 +18,7 @@ function CoreCtrl($scope, Utils, Translations, NavBar, TopNavBar) {
 
     // translations language
     $scope.selectLanguage = function(lang) {
-        $scope.listLang = lang;
+        $scope.transLang = lang;
     };
 
     // refresh current state

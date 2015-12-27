@@ -25,7 +25,6 @@ function UserListCtrl($scope, Utils, $rootScope, UserRepository, NgTableParams) 
             $scope.requestPending = true;
             // prepare options to be sent to api
             var queryOptions = {
-                lang: $scope.listLang.code,
                 type: 'user'
             };
 

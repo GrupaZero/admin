@@ -25,7 +25,7 @@ function ContentTrashcanCtrl($scope, ContentRepository, NgTableParams, Utils) {
             $scope.requestPending = true;
             // prepare options to be sent to api
             var queryOptions = {
-                lang: $scope.listLang.code
+                lang: $scope.transLang.code
             };
 
             // params.count() - number of items per page declared in view

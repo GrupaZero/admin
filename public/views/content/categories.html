@@ -58,7 +58,7 @@
            ng-class="{'fa-caret-right': collapsed, 'fa-caret-down': !collapsed }">
         </i>
         <a href="" ui-sref="content.list({ contentId: category.id })" ui-sref-opts="{ inherit: false, reload: false }"
-           title="{{category.translations | getTranslation:listLang.code:'title'}}"
+           title="{{category.translations | getTranslation:transLang.code:'title'}}"
            class="category"
            ng-class="category.isActive ? 'activeCategory' : 'unactiveCategory'"
                 >
@@ -66,8 +66,8 @@
                ng-class="(collapsed || !category.children.length) ? 'fa-folder-o' : 'fa-folder-open-o'">
             </i>
 
-            {{ category.translations | getTranslation:listLang.code:'title' | limitTo: 36}}
-            <span ng-hide="(category.translations | getTranslation:listLang.code:'title')">
+            {{ category.translations | getTranslation:transLang.code:'title' | limitTo: 36}}
+            <span ng-hide="(category.translations | getTranslation:transLang.code:'title')">
                     {{ 'NO_TRANSLATION' | translate }}
             </span>
         </a>

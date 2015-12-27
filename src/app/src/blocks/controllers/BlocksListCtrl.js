@@ -12,9 +12,12 @@ function BlocksListCtrl($scope, Utils, NgTableParams, BlocksRepository) {
         getData: function($defer, params) {
             $scope.requestPending = true;
             // prepare options to be sent to api
-            var queryOptions = {
-                lang: $scope.listLang.code
-            };
+            var queryOptions = {};
+
+            // lang sort options
+            if (typeof $scope.transLang !== 'undefined') {
+                queryOptions.lang = $scope.transLang.code;
+            }
 
             // params.count() - number of items per page declared in view
             if (typeof Utils.$stateParams.perPage !== 'undefined') {
@@ -29,7 +32,7 @@ function BlocksListCtrl($scope, Utils, NgTableParams, BlocksRepository) {
             }
 
             // tableParams.orderBy() - an array of string indicating both the sorting column and direction (e.g. ["+name", "-email"])
-            if (params.sorting()) {
+            if (params.sorting() && typeof $scope.transLang !== 'undefined') {
                 // only interested in first sort column for now
                 var orderBy = params.orderBy()[0];
                 queryOptions.sort = orderBy[0] === '+' ? orderBy.substring(1) : orderBy;

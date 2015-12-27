@@ -8,8 +8,8 @@ function Translations($q, $translate, LangRepository, Utils) {
     //get languages
     LangRepository.list().then(function(response) {
         languages.langs = response;
-        languages.currentLang = languages.listLang = response[0];
-        // resolve thr promise
+        languages.currentLang = languages.transLang = response[0];
+        // resolve the promise
         deferred.resolve(languages);
     });
 
