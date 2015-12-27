@@ -13,7 +13,7 @@
 
 'use strict';
 
-function UserListCtrl($scope, Utils, $rootScope, UserRepository, NgTableParams) {
+function UserListCtrl($scope, Utils, UserRepository, NgTableParams) {
     $scope.tableParams = new NgTableParams({
         count: 25, // count per page
         sorting: {
@@ -50,7 +50,7 @@ function UserListCtrl($scope, Utils, $rootScope, UserRepository, NgTableParams) 
             // get list by default
             var promise = UserRepository.list(queryOptions);
 
-            // Contents is a REST AngularJS service that talks to api and return promise
+            // Promise is a REST AngularJS service that talks to api and return promise
             promise.then(function(response) {
                 $scope.requestPending = false;
                 params.total(response.meta.total);
@@ -61,5 +61,5 @@ function UserListCtrl($scope, Utils, $rootScope, UserRepository, NgTableParams) 
     });
 }
 
-UserListCtrl.$inject = ['$scope', 'Utils', '$rootScope', 'UserRepository', 'ngTableParams'];
+UserListCtrl.$inject = ['$scope', 'Utils', 'UserRepository', 'ngTableParams'];
 module.exports = UserListCtrl;

@@ -18,6 +18,7 @@
         "NULL": "Disabled",
         "HEADER": "Header",
         "HOMEPAGE": "Home page",
+        "FEATURED": "Featured",
         "CONTENTHEADER": "Content header",
         "SIDEBARLEFT": "Sidebar left",
         "SIDEBARRIGHT": "Sidebar right",

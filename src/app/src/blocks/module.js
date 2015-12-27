@@ -29,12 +29,19 @@ angular.module('admin.blocks', [])
                 })
                 // BLOCK ADD
                 .state('blocks.add', {
-                    url: '/add',
+                    url: '/add/{langCode}',
                     views: {
                         'content': {
                             templateUrl: viewPath + 'form.html',
                             controller: 'BlocksAddCtrl'
                         }
+                    },
+                    resolve: {
+                        langCode: [
+                            '$state', '$stateParams', function($state, $stateParams) {
+                                return $stateParams.langCode;
+                            }
+                        ]
                     }
                 })
                 // BLOCK EDIT

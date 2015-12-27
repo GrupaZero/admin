@@ -110,7 +110,7 @@ function ContentListCtrl($scope, Utils, listParent, ContentRepository, NgTablePa
                 promise = ContentRepository.children(listParent.id, queryOptions);
             }
 
-            // Contents is a REST AngularJS service that talks to api and return promise
+            // Promise is a REST AngularJS service that talks to api and return promise
             promise.then(function(response) {
                 $scope.requestPending = false;
                 params.total(response.meta.total);

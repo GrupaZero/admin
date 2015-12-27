@@ -3,7 +3,7 @@
         <div class="col-sm-12">
             <h1>
                 {{ 'BLOCKS' | uppercase | translate }}
-                <button type="button" class="btn btn-success pull-right" ui-sref="blocks.add">
+                <button type="button" class="btn btn-success pull-right" ui-sref="blocks.add({langCode: transLang.code})">
                     <i class="glyphicon glyphicon-plus hidden-sm"></i> {{ 'ADD_BLOCK' | translate }}
                 </button>
             </h1>
@@ -38,7 +38,8 @@
                     {{ ::block.weight }}
                 </td>
                 <td data-title="'ACTION' | translate" class="text-center">
-                    <a href="" ui-sref="blocks.edit({ blockId: block.id, langCode: transLang.code})" class="btn btn-sm btn-primary"
+                    <a href="" class="btn btn-sm btn-primary"
+                       ui-sref="blocks.edit({ blockId: block.id, langCode: transLang.code})"
                        ng-click="$event.stopPropagation();">
                         {{ 'EDIT' | translate }}
                     </a>

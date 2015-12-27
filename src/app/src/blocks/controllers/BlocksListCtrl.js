@@ -41,7 +41,7 @@ function BlocksListCtrl($scope, Utils, NgTableParams, BlocksRepository) {
             // get list by default
             var promise = BlocksRepository.list(queryOptions);
 
-            // Contents is a REST AngularJS service that talks to api and return promise
+            // Promise is a REST AngularJS service that talks to api and return promise
             promise.then(function(response) {
                 $scope.requestPending = false;
                 params.total(response.meta.total);

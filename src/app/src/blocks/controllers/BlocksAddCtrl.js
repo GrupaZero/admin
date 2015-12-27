@@ -1,6 +1,6 @@
 'use strict';
 
-function BlocksAddCtrl($scope, Utils, BlocksRepository, BlockService) {
+function BlocksAddCtrl($scope, Utils, langCode, BlocksRepository, BlockService) {
     $scope.ckOptions = Utils.ckOptions;
     $scope.isEdited = false;
     // default values
@@ -8,7 +8,7 @@ function BlocksAddCtrl($scope, Utils, BlocksRepository, BlockService) {
         isActive: true,
         weight: 0,
         translations: {
-            langCode: $scope.currentLang.code
+            langCode: langCode
         }
     };
 
@@ -34,5 +34,5 @@ function BlocksAddCtrl($scope, Utils, BlocksRepository, BlockService) {
     };
 }
 
-BlocksAddCtrl.$inject = ['$scope', 'Utils', 'BlocksRepository', 'BlockService'];
+BlocksAddCtrl.$inject = ['$scope', 'Utils', 'langCode', 'BlocksRepository', 'BlockService'];
 module.exports = BlocksAddCtrl;
