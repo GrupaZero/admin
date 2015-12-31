@@ -10,6 +10,9 @@ function BlocksRepository(Restangular) {
         list: function(params) {
             return blocks.getList(params);
         },
+        listForContent: function(id) {
+            return Restangular.one(api + '/content', id).getList();
+        },
         clean: function(elem) {
             return Restangular.stripRestangular(elem);
         },

@@ -1,0 +1,71 @@
+<div class="panel">
+    <div class="panel-heading">
+        <div class="page-header no-margin-bottom no-margin-top">
+            <h1>
+                {{ 'BLOCKS' | translate }}
+            </h1>
+        </div>
+    </div>
+    <div class="panel-body">
+        <!-- START BLOCKS LIST -->
+        <div ng-repeat="(regionName, region) in blocks track by $index" ng-class="{ inactive: !block.isActive }" ng-if="regionName !== 'homepage'">
+            <h6 class="no-margin-top margin-bottom text-center block-region-name" ng-click="showRegion = !showRegion">
+                <strong>
+                    {{ 'BLOCK_REGIONS.' + regionName | uppercase | translate | uppercase }}
+                </strong>
+                <i class="fa fa-fw" ng-class="{'fa-angle-down': showRegion, 'fa-angle-up': !showRegion }">
+                    <!-- icon -->
+                </i>
+            </h6>
+
+            <div class="row" ng-show="showRegion">
+                <div class="col-md-6" ng-repeat="block in region track by block.id" ng-class-odd="'clear-left'">
+                    <div class="block" ng-class="{ inactive: !block.isActive }">
+                        <div class="block-title">
+                            <h4 class="no-margin-top" ng-if="(block.translations | getTranslation:langCode:'title')">
+                                {{ block.translations | getTranslation:langCode:'title' }}
+                            </h4>
+                            <h4 class="no-margin-top" ng-hide="(block.translations | getTranslation:langCode:'title')">
+                                <i class="glyphicon glyphicon-ban-circle hidden-sm"></i> {{ 'NO_TRANSLATION' | translate }}
+                            </h4>
+
+                            <div class="actions">
+                                <i class="fa fa-fw" ng-click="showBody = !showBody"
+                                   ng-class="{'fa-angle-down': showBody, 'fa-angle-up': !showBody }">
+                                    <!-- icon -->
+                                </i>
+                            </div>
+                        </div>
+                        <div class="block-body" ng-show="showBody">
+                            <!-- TRANSLATION IS AVAILABLE -->
+                            <div ng-show="block.translations | getTranslation:langCode:'body'"
+                                 ng-bind-html="block.translations | getTranslation:langCode:'body' | trustAsHtml">
+                            </div>
+                            <!-- TRANSLATION IS NOT AVAILABLE -->
+                            <div ng-hide="block.translations | getTranslation:langCode:'body'">
+                                {{ 'NO_TRANSLATION' | translate }}
+                            </div>
+                        </div>
+                        <div class="block-footer text-right">
+                            <ul class="list-inline pull-left">
+                                <li ng-if="!block.isActive">
+                                    <small><i>{{ 'NOT_PUBLISHED' | translate }}</i></small>
+                                </li>
+                                <li>
+                                    <small title="{{ 'WEIGHT'| translate }}">
+                                        {{ 'WEIGHT'| translate }}: {{ block.weight }}
+                                    </small>
+                                </li>
+                            </ul>
+                            <a href="" ui-sref="blocks.edit({ blockId: block.id, langCode: langCode})">
+                                {{ 'EDIT' | translate }}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END BLOCKS LIST -->
+    </div>
+</div>
+
