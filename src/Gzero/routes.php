@@ -9,7 +9,9 @@ group(
         get(
             '/',
             function () {
-                \Debugbar::disable();
+                if (class_exists('Debugbar')) {
+                    \Debugbar::disable();
+                }
                 return view('gzero-admin::admin', ['modules' => app()->make('admin.module')]);
             }
         );
