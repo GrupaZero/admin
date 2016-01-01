@@ -4,13 +4,13 @@ function BlockDeleteButton() {
     return {
         scope: true,
         restrict: 'A',
-        controller: 'BlockDeleteCtrl',
+        controller: 'BlocksDeleteCtrl',
         controllerAs: 'vm',
         bindToController: true,// because the scope is isolated
-        link: function(scope, element, attrs, BlockDeleteCtrl) {
+        link: function(scope, element, attrs, BlocksDeleteCtrl) {
             element.on('click', function() {
                 // Show a delete modal from a controller
-                BlockDeleteCtrl.deleteModal.showModal(attrs.userId);
+                BlocksDeleteCtrl.deleteModal.showModal(attrs.blockId, attrs.force === 'true');
             });
         }
     };

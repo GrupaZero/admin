@@ -26,6 +26,8 @@
         "FOOTER": "Footer"
     },
     "BLOCK_FILTER_HELP_TEXT": "Use page id's in '1/2/3/' format and '*' as wildcard.",
+    "BLOCK_HAS_BEEN_DELETED": "Block has been deleted.",
+    "BLOCK_HAS_BEEN_MOVED_TO_TRASH": "Block has been moved to trash.",
     "BLOCK_HIDE_ON_PAGES": "Hide block on pages",
     "BLOCK_SHOW_ON_PAGES": "Show block on pages",
     "BLOCKS": "Blocks",
@@ -83,6 +85,7 @@
     "LOADING": "Please wait...",
     "LOG_OUT": "Log out",
     "MENU": "Menu",
+    "MOVE_BLOCK_TO_TRASH_QUESTION": "Are you sure you want to move this block to trash?",
     "MOVE_CONTENT_TO_TRASH_QUESTION": "Are you sure you want to move this content to trash?",
     "MOVE_TO_TRASH": "Move to Trash",
     "NOT_FOUND": "Not Found",

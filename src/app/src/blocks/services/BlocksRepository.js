@@ -19,8 +19,8 @@ function BlocksRepository(Restangular) {
         create: function(newContent) {
             return blocks.post(newContent);
         },
-        delete: function(id) {
-            return Restangular.one(api, id).remove();
+        delete: function(id, forceDelete) {
+            return Restangular.one(api, id).remove({force: forceDelete});
         },
         update: function(categoryKey, data) {
             return Restangular.one(api, categoryKey).customPUT(data);

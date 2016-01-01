@@ -43,6 +43,10 @@
                        ng-click="$event.stopPropagation();">
                         {{ 'EDIT' | translate }}
                     </a>
+                    <button block-delete-button class="btn btn-danger btn-sm" block-id="{{ block.id }}" data-force="true"
+                            ng-click="$event.stopPropagation();">
+                        <i class="fa fa-times"></i>  {{ 'DELETE' | translate }}
+                    </button>
                 </td>
             </tr>
             <tr ng-repeat-end ng-show="showTranslations">
