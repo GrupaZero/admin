@@ -16,35 +16,19 @@ This documentation assumed that you have already installed and fully configured 
 ## The beginning
 First of all clone Admin package repository into your directory. For your convenience, Platform and Admin repositories should be stored in the same root directory, in exmaple 'gzero'.
 
-## Symbolic links
-Admin package is required dependency for Platform in composer. Symbolic links are required to provide the latest changes of Admin package in Platform.
+## Mounting admin package in platform
+Admin package is required dependency for Platform in composer. Mounting admin packege is required to provide the latest changes of Admin package in Platform.
 
-In your root directory type the following commands:
+In platform root directory type the following command:
 ```
-$ cd platform/vendor/gzero
-```
-Remove admin package installed from composer:
-```
-$ rm -r admin
-```
-Create symbolic link to fresh version of admin package:
-```
-$ ln -s ../../../admin
-```
-Go to public directory in platform:
-```
-$ cd ../../public/gzero/
-```
-Remove admin package assets published after installation from composer:
-```
-$ rm -r admin
-```
-Create symbolic link to fresh public assets of admin package:
-```
-$ ln -s ../../../admin/public/ admin
+$ ./scripts/link_package.sh admin mount
 ```
 From now on all changes in Admin package will be available in Platform.
 
+To unmount Admin package type the following command in platform root directory:
+```
+$ ./scripts/link_package.sh admin umount
+```
 ## Installing Node.js
 * <a href="http://nodejs.org/download" target="_blank" title="Download Node.js">Download Node.js</a>
 * <a href="https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager" target="_blank" title="Installing from package managers">Installing from package managers</a>
@@ -69,7 +53,7 @@ In Ubuntu hosts file should looks like the following:
 
 There are 2 required things, that should be done, every time before you start to develop Admin package:
 
-1. In Platform root directory start PHP build in server: `$ php artisan serve`.
+1. In Platform root directory start Docker container for platform: `$ sudo docker-compose up -d`.
 2. In `admin/src/app` directory run gulp.js: `$ gulp`.
 
 After these steps try to log in to the admin panel:
