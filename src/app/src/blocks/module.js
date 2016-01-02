@@ -71,8 +71,10 @@ angular.module('admin.blocks', [])
     .controller('BlocksListCtrl', require('./controllers/BlocksListCtrl'))
     .controller('BlocksAddCtrl', require('./controllers/BlocksAddCtrl'))
     .controller('BlocksEditCtrl', require('./controllers/BlocksEditCtrl'))
+    .controller('BlocksDeleteCtrl', require('./controllers/directives/BlocksDeleteCtrl'))
     .service('BlockService', require('./services/BlockService.js'))
     .factory('BlocksRepository', require('./services/BlocksRepository.js'))
+    .directive('blockDeleteButton', require('./directives/BlockDeleteButton.js'))
     .run([
         'NavBar',
         function(NavBar) {

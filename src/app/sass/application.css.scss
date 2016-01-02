@@ -344,3 +344,9 @@ li.active > div i,
 li.active > a i {
   color : $white !important;
 }
+
+.block-region-name {
+  background-color : darken($btn-primary-bg, 5%);
+  color            : $white;
+  padding          : $line-height-computed / 2 0;
+}

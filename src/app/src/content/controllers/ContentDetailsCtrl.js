@@ -14,6 +14,10 @@ function ContentDetailsCtrl($scope, content, langCode, ContentRepository, Utils)
         {
             title: 'HISTORY_OF_CHANGES',
             action: 'history'
+        },
+        {
+            title: 'BLOCKS',
+            action: 'blocks'
         }
     ];
 

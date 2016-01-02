@@ -116,6 +116,24 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
                         }
                     }
                 })
+                .state('content.show.blocks', {
+                    url: '/blocks',
+                    deepStateRedirect: true,
+                    sticky: true,
+                    resolve: {
+                        blocks: [
+                            '$stateParams', 'BlocksRepository', function($stateParams, BlocksRepository) {
+                                return BlocksRepository.listForContent($stateParams.contentId);
+                            }
+                        ]
+                    },
+                    views: {
+                        'contentTab': {
+                            templateUrl: viewPath + 'details/tabs/blocks.html',
+                            controller: 'ContentBlocksCtrl'
+                        }
+                    }
+                })
                 // CONTENT EDIT
                 .state('content.edit', {
                     url: '/{contentId}/edit/{langCode}',
@@ -252,6 +270,7 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
     .controller('ContentDetailsCtrl', require('./controllers/ContentDetailsCtrl'))
     .controller('ContentDetailsEditCtrl', require('./controllers/ContentDetailsEditCtrl'))
     .controller('ContentHistoryCtrl', require('./controllers/ContentHistoryCtrl'))
+    .controller('ContentBlocksCtrl', require('./controllers/ContentBlocksCtrl'))
     .controller('ContentListCtrl', require('./controllers/ContentListCtrl'))
     .controller('ContentTrashcanCtrl', require('./controllers/ContentTrashcanCtrl'))
     .controller('ContentAddTranslationCtrl', require('./controllers/ContentAddTranslationCtrl'))

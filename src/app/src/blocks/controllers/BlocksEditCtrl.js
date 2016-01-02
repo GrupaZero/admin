@@ -9,6 +9,10 @@ function BlocksEditCtrl($scope, Utils, langCode, block, BlocksRepository, BlockS
         // set active translation
         if (typeof $scope.newBlock.translations !== 'undefined') {
             $scope.newBlock.translations = _.find($scope.newBlock.translations, {'langCode': langCode});
+            // if not found, set as new
+            if (typeof $scope.newBlock.translations === 'undefined') {
+                $scope.newBlock.translations = {'langCode': langCode};
+            }
         }
     }
 
@@ -28,13 +32,13 @@ function BlocksEditCtrl($scope, Utils, langCode, block, BlocksRepository, BlockS
             if ($scope.isTranslationChanged) {
                 BlocksRepository.createTranslation(Utils.$stateParams.blockId, newBlock.translations).then(function(response) {
                     Utils.Notifications.addSuccess('THE_CHANGES_HAVE_BEEN_SAVED');
-                    Utils.$state.go('blocks.list', {}, {reload: true});
+                    Utils.redirectBack('blocks.list');
                 }, function(response) {
                     Utils.Notifications.addErrors(response.data.messages);
                 });
             } else {
                 Utils.Notifications.addSuccess('THE_CHANGES_HAVE_BEEN_SAVED');
-                Utils.$state.go('blocks.list', {}, {reload: true});
+                Utils.redirectBack('blocks.list');
             }
 
         }, function(response) {

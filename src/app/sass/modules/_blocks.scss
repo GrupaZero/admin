@@ -1,0 +1,91 @@
+// - - - - - - - - - - - - - - - - - - -
+// - - sub-title module
+// styles for the block module
+
+// - - - - - - - - - - - - - - - - - - -
+// - - layout
+
+%block-l {
+  margin-bottom : 20px;
+  padding       : 15px;
+  .block-title {
+    padding-bottom : 10px;
+    h4 {
+      display     : inline-block;
+      font-weight : 400;
+      margin      : 0;
+      padding     : 0;
+      width       : 60%;
+      overflow    : hidden;
+    }
+    .actions {
+      display : inline-block;
+      padding : 0;
+      float   : right;
+    }
+  }
+  .block-body {
+    padding : 20px 0;
+    @include clearfix;
+  }
+  .block-footer {
+    padding : 10px 0 0;
+    @include clearfix;
+  }
+}
+
+// - - - - - - - - - - - - - - - - - - -
+// - - skin
+
+%block-s {
+  margin-bottom : 20px;
+  border        : 1px solid $list-group-border;
+  .block-title {
+    background-color : $white;
+    border-bottom    : 1px solid $gray-lighter;
+  }
+  .block-body {
+    background-color : $white;
+  }
+  .block-footer {
+    border-top       : 1px solid $gray-lighter;
+    background-color : $white;
+  }
+  &.inactive {
+    color : #6f7b8a;
+  }
+}
+
+// - - - - - - - - - - - - - - - - - - -
+// - - typography
+
+%block-t {
+  .block-title {
+    h4 {
+      font-weight   : 400;
+      white-space   : nowrap;
+      text-overflow : ellipsis;
+    }
+    .actions {
+      .fa {
+        font-weight : bold;
+      }
+    }
+  }
+}
+
+// - - - - - - - - - - - - - - - - - - -
+// - - components
+
+.block {
+  @extend %block-l;
+  @extend %block-s;
+  @extend %block-t;
+}
+
+// - - - - - - - - - - - - - - - - - - -
+// - - states
+//   ___ 
+//  / __|
+//  \__ \
+//  |___/

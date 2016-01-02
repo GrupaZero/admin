@@ -26,6 +26,11 @@ function CoreCtrl($scope, Utils, Translations, NavBar, TopNavBar) {
         Utils.$state.go(Utils.$state.current, {}, {reload: true});
     };
 
+    // redirect user to previous state
+    $scope.redirectBack = function(defaultStateName) {
+        Utils.redirectBack(defaultStateName);
+    };
+
     $scope.navBar = NavBar.getItems();
     $scope.topNavBar = TopNavBar.getItems();
     // if content types are set
