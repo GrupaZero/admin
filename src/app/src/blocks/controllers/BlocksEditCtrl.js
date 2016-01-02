@@ -9,6 +9,10 @@ function BlocksEditCtrl($scope, Utils, langCode, block, BlocksRepository, BlockS
         // set active translation
         if (typeof $scope.newBlock.translations !== 'undefined') {
             $scope.newBlock.translations = _.find($scope.newBlock.translations, {'langCode': langCode});
+            // if not found, set as new
+            if (typeof $scope.newBlock.translations === 'undefined') {
+                $scope.newBlock.translations = {'langCode': langCode};
+            }
         }
     }
 
