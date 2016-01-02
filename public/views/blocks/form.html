@@ -20,7 +20,7 @@
                                            ng-model="newBlock.translations.title">
                                 </div>
                                 <div class="col-md-5 text-right">
-                                    <button ui-sref="blocks.list"
+                                    <button ng-click="redirectBack('blocks.list')"
                                             type="button"
                                             class="btn btn-primary">
                                         {{ 'CANCEL' | translate }}
