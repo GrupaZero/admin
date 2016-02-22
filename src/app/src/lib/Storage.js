@@ -9,9 +9,9 @@ function Storage() {
          * @param object
          */
         setStorageItem: function(object) {
-            storageItems =   _.merge(storageItems, object, function(objectValue, sourceValue) {
+            storageItems = _.merge(storageItems, object, function(objectValue, sourceValue) {
                 if (_.isArray(objectValue)) {
-                    return  sourceValue;
+                    return sourceValue;
                 }
             });
         },

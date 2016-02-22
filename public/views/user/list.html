@@ -30,11 +30,11 @@
                         <a href="" ui-sref="user.edit({ userId: user.id })" class="btn btn-primary btn-xs">
                             <i class="fa fa-pencil"></i>
                         </a>
-                        <button user-delete-button class="btn btn-danger btn-xs" user-id="{{ user.id }}">
+                        <button user-delete-button ng-disabled="currentUserId === user.id"
+                                class="btn btn-danger btn-xs" data-user-id="user.id">
                             <i class="fa fa-times"></i>
                         </button>
                     </td>
-
                 </tr>
                 <tr ng-if="!$data[0] || requestPending">
                     <td colspan="5" class="text-center">
@@ -46,7 +46,6 @@
             </table>
         </div>
         <!-- END USERS TABLE -->
-
     </div>
 </div>
 

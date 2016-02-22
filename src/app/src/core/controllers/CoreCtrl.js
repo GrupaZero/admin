@@ -34,17 +34,21 @@ function CoreCtrl($scope, Utils, Translations, NavBar, TopNavBar) {
     $scope.navBar = NavBar.getItems();
     $scope.topNavBar = TopNavBar.getItems();
     // if content types are set
-    if (typeof  Utils.Config.contentTypes !== 'undefined') {
+    if (typeof Utils.Config.contentTypes !== 'undefined') {
         $scope.contentTypes = Utils.Config.contentTypes;
     }
     // if block types are set
-    if (typeof  Utils.Config.blockTypes !== 'undefined') {
+    if (typeof Utils.Config.blockTypes !== 'undefined') {
         $scope.blockTypes = Utils.Config.blockTypes;
     }
     // if block regions are set
-    if (typeof  Utils.Config.blockRegions !== 'undefined') {
+    if (typeof Utils.Config.blockRegions !== 'undefined') {
         // add disabled region and pass to view
         $scope.blockRegions = _.union([null], Utils.Config.blockRegions);
+    }
+    // if current user id is set
+    if (typeof Utils.Config.currentUserId !== 'undefined') {
+        $scope.currentUserId = Utils.Config.currentUserId;
     }
     // Off canvas sidebar
     $scope.showSidebar = false;

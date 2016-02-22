@@ -39,7 +39,7 @@ function UserListCtrl($scope, Utils, UserRepository, $modal) {
             Utils.hotkeys.add({
                 combo: 'enter',
                 description: 'CONFIRM_DELETE',
-                callback: function(){
+                callback: function() {
                     self.deleteUser();
                 }
             });
@@ -53,8 +53,13 @@ function UserListCtrl($scope, Utils, UserRepository, $modal) {
         showModal: function(userId) {
             var self = this;
             vm.userId = userId;
-            self.initModal('PLEASE_CONFIRM', 'DELETE_USER_QUESTION');
-            Utils.hotkeys.del('enter');
+            if (userId !== Utils.Config.currentUserId) {
+                self.initModal('PLEASE_CONFIRM', 'DELETE_USER_QUESTION');
+                Utils.hotkeys.del('enter');
+            } else {
+                //You can not delete your own account!
+                Utils.Notifications.addError('DELETE_SELF_USER_ERROR');
+            }
         },
 
         /**

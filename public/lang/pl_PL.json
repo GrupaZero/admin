@@ -57,6 +57,7 @@
     "DELETE_NOT_EMPTY_CATEGORY_INFO": "Kategoria nie jest pusta, możesz usunąć tylko puste kategorie.",
     "DELETE_TRANSLATION_QUESTION": "Czy na pewno chcesz usunąć to tłumaczenie?",
     "DELETE_BLOCK_QUESTION": "Czy na pewno chcesz usunąć ten blok?",
+    "DELETE_SELF_USER_ERROR": "Nie możesz usunąć swojego własnego konta!",
     "DELETE_USER_QUESTION": "Czy na pewno chcesz usunąć to konto użytkownika?",
     "DETAILS": "Szczegóły",
     "DRAFT": "Szkic",

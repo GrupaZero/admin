@@ -57,6 +57,7 @@
     "DELETE_NOT_EMPTY_CATEGORY_INFO": "Category is not empty, you can delete only empty categories.",
     "DELETE_TRANSLATION_QUESTION": "Are you sure you want to delete this translation?",
     "DELETE_BLOCK_QUESTION": "Are you sure you want to delete this block?",
+    "DELETE_SELF_USER_ERROR": "You can not delete your own account!",
     "DELETE_USER_QUESTION": "Are you sure you want to delete this user account?",
     "DETAILS": "Details",
     "DRAFT": "Draft",
