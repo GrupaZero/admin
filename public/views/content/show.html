@@ -28,6 +28,14 @@
 
             <a class="btn btn-primary btn-block btn-lg"
                href="/{{ langCode }}/{{ content.route.translations | getTranslation:langCode:'url' }}"
+               ng-if="isMultiLangEnabled"
+               target="_blank">
+                <i class="fa fa-eye"></i> {{ 'PAGE_PREVIEW' | translate }}
+            </a>
+
+            <a class="btn btn-primary btn-block btn-lg"
+               href="/{{ content.route.translations | getTranslation:langCode:'url' }}"
+               ng-if="!isMultiLangEnabled"
                target="_blank">
                 <i class="fa fa-eye"></i> {{ 'PAGE_PREVIEW' | translate }}
             </a>

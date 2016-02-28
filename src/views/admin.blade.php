@@ -22,6 +22,7 @@
         var Config = {
             url: '{{ Request::root() }}',
             domain: '{{ config("gzero.domain") }}',
+            multilang: '{{ config("gzero.multilang.enabled") ? 'true' : 'false' }}',
             apiUrl: 'http://api.{{ Request::getHTTPHost()}}',
             seoDescriptionLength: '{{ config("gzero.seoDescLength") }}',
             seoDescriptionAlternativeField: '{{ config("gzero.seoDescriptionAlternativeField") }}',
@@ -74,7 +75,7 @@
                 <a class="navbar-brand" ui-sref="home">G-ZERO ADMIN</a>
             </div>
             <div class="col-xs-6 col-sm-9 col-md-10">
-                <div class="navbar-form navbar-left" ng-if="showTransLangSwitcher">
+                <div class="navbar-form navbar-left" ng-if="showTransLangSwitcher && isMultiLangEnabled">
                     <label for="langCode" class="hidden-xs">@{{ 'TRANSLATION_LANGUAGE' | translate }}</label>
                     <select id="langCode" ng-model="transLang" class="form-control" ng-change="selectLanguage(transLang)"
                             ng-options="lang.code | langName | translate for lang in langs">
@@ -104,7 +105,7 @@
                 </ul>
                 <div class="navbar-form navbar-right hidden-xs">
                     <select ng-model="currentLang" ng-change="selectAdminLang()" class="form-control"
-                            ng-disabled="showAdminLangSwitcher"
+                            ng-disabled="showAdminLangSwitcher" ng-show="isMultiLangEnabled"
                             ng-options="lang.code | langName | translate for lang in langs"></select>
                 </div>
             </div>

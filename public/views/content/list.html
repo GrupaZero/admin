@@ -62,7 +62,8 @@
             <tr ng-repeat-start="content in $data track by content.id" ng-class="{ inactive: !content.isActive }"
                 ng-click="showTranslations = !showTranslations">
                 <td class="text-center">
-                    <i class="icon fa" ng-class="{'fa-minus-square-o': showTranslations, 'fa-plus-square-o': !showTranslations }">
+                    <i class="icon fa" ng-if="isMultiLangEnabled"
+                       ng-class="{'fa-minus-square-o': showTranslations, 'fa-plus-square-o': !showTranslations }">
                         <!-- icon -->
                     </i>
                 </td>
@@ -102,7 +103,7 @@
                     </button>
                 </td>
             </tr>
-            <tr ng-repeat-end ng-show="showTranslations">
+            <tr ng-repeat-end ng-show="showTranslations && isMultiLangEnabled">
                 <td class="details" colspan="7">
                     <table ng-init="isTranslated = (content.translations | getTranslation:lang.code:'title')" class="table-inner">
                         <tbody>

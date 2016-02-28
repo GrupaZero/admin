@@ -51,8 +51,6 @@ angular.module('admin', dependencies).config([
             urlTemplate: 'gzero/{part}/lang/{lang}.json'
         });
         $translatePartialLoaderProvider.addPart('admin');
-
-        // $translateProvider.preferredLanguage('pl_PL');
         $translateProvider.preferredLanguage('en_US');
 
         // User more secure variant sanitize strategy for escaping;

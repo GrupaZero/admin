@@ -5,6 +5,7 @@ function CoreCtrl($scope, Utils, Translations, NavBar, TopNavBar) {
     Translations.getTranslations().then(function(response) {
         $scope.langs = response.langs;
         $scope.currentLang = $scope.transLang = response.currentLang;
+        Translations.selectAdminLang($scope.currentLang);
         // set CKEditor language
         Utils.ckOptions.setEditorOption({language: $scope.currentLang.code});
     });
@@ -33,6 +34,10 @@ function CoreCtrl($scope, Utils, Translations, NavBar, TopNavBar) {
 
     $scope.navBar = NavBar.getItems();
     $scope.topNavBar = TopNavBar.getItems();
+    // if multi lang is set
+    if (typeof Utils.Config.multilang !== 'undefined') {
+        $scope.isMultiLangEnabled = (Utils.Config.multilang === 'true');
+    }
     // if content types are set
     if (typeof Utils.Config.contentTypes !== 'undefined') {
         $scope.contentTypes = Utils.Config.contentTypes;
