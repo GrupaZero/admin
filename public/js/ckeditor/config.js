@@ -38,4 +38,7 @@ CKEDITOR.editorConfig = function(config) {
 
     // Allow class attribute on html elements
     config.extraAllowedContent = '*(*)';
+
+    // href="<a href=\"javascript:void(location.href=\'mailto:\'+String.fromCharCode(116,101,115,116,101,114,64,99,107,101,100,105,116,111,114,46,99,111,109)+\'?subject=subject&body=body\')\">e-mail</a>"
+    config.emailProtection = 'encode';
 };
