@@ -279,6 +279,7 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
     .controller('TranslationDeleteCtrl', require('./controllers/directives/TranslationDeleteCtrl'))
     .controller('ContentTogglePropertyCtrl', require('./controllers/directives/ContentTogglePropertyCtrl'))
     .controller('ContentWeightEditCtrl', require('./controllers/directives/ContentWeightEditCtrl'))
+    .controller('ContentThemeEditCtrl', require('./controllers/directives/ContentThemeEditCtrl'))
     .controller('ContentPublishedAtEditCtrl', require('./controllers/directives/ContentPublishedAtEditCtrl'))
     .factory('ContentRepository', require('./services/ContentRepository.js'))
     .directive('contentDeleteButton', require('./directives/ContentDeleteButton.js'))
@@ -290,6 +291,7 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
     .directive('contentPublishedAtEditButton', require('./directives/ContentPublishedAtEditButton.js'))
     .directive('contentActionsDropdown', ['$dropdown', require('./directives/ContentActionsDropdown.js')])
     .directive('contentWeightEditButton', ['$dropdown', require('./directives/ContentWeightEditButton.js')])
+    .directive('contentThemeEditButton', ['$dropdown', require('./directives/ContentThemeEditButton.js')])
     .run([
         'NavBar',
         function(NavBar) {

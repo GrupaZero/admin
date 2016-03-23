@@ -124,6 +124,17 @@
                 </div>
             </a>
         </li>
+        <li class="list-group-item clearfix"
+            content-theme-edit-button
+            content_id="{{content.id}}"
+            content_theme="{{content.theme}}">
+            <div class="pull-left field-label">
+                <i class="fa fa-css3"></i> {{ 'CSS_CLASS' | translate }}
+            </div>
+            <a class="text-right">
+                <span class="text-muted">{{ content.theme }}</span>
+            </a>
+        </li>
         <li class="list-group-item clearfix">
             <div class="pull-left field-label">
                 <i class="fa fa-calendar"></i> {{ 'PUBLISHED_AT' | translate }}

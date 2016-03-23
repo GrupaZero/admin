@@ -24,7 +24,7 @@ CKEDITOR.editorConfig = function(config) {
         {name: 'styles', groups: ['Format']}
     ];
 
-    config.extraPlugins = 'justify';
+    config.extraPlugins = 'justify,youtube';
 
     // Remove some buttons provided by the standard plugins, which are
     // not needed in the Standard(s) toolbar.
@@ -34,7 +34,7 @@ CKEDITOR.editorConfig = function(config) {
     config.format_tags = 'p;h1;h2;h3;pre';
 
     // Simplify the dialog windows.
-    config.removeDialogTabs = 'image:advanced;link:advanced';
+    //config.removeDialogTabs = 'image:advanced;link:advanced';
 
     // Allow class attribute on html elements
     config.extraAllowedContent = '*(*)';

@@ -136,6 +136,7 @@
     "TITLE": "Tytuł",
     "TOGGLE_DROPDOWN": "Włacz rozwijane menu",
     "TOGGLE_NAVIGATION": "Włącz nawigację",
+    "TRANSLATION_HAS_BEEN_DELETED": "Tłumaczenie zostało usunięte.",
     "TRANSLATIONS": "Tłumaczenia",
     "TRANSLATION_LANGUAGE": "Język tłumaczenia",
     "TRASHCAN": "Kosz",
@@ -167,6 +168,7 @@
             "SEO": "SEO"
         },
         "LABELS": {
+            "COOKIESPOLICYURL": "Adres strony z polityką cookies",
             "SITENAME": "Tytuł strony",
             "SITEDESC": "Opis strony",
             "GOOGLEANALYTICSID": "Google Analytics ID",
