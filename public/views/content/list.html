@@ -128,7 +128,7 @@
                             <!-- TRANSLATION IS NOT AVAILABLE -->
                             <td ng-show="!isTranslated && lang.code !== transLang.code" colspan="6">
                                 <span class="label label-danger">{{ lang.code }}</span>
-                                <a ui-sref="content.addTranslation({ contentId: listParent.id, langCode: lang.code })"
+                                <a ui-sref="content.addTranslation({ contentId: content.id, langCode: lang.code })"
                                    href="" class="text-muted">
                                     {{ 'NO_TRANSLATION_INFO' | translate }}
                                 </a>

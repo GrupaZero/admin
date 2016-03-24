@@ -136,6 +136,7 @@
     "TITLE": "Title",
     "TOGGLE_DROPDOWN": "Toggle Dropdown",
     "TOGGLE_NAVIGATION": "Toggle navigation",
+    "TRANSLATION_HAS_BEEN_DELETED": "Translation has been deleted.",
     "TRANSLATIONS": "Translations",
     "TRANSLATION_LANGUAGE": "Language of translation",
     "TRASHCAN": "Trashcan",
@@ -167,6 +168,7 @@
             "SEO": "SEO"
         },
         "LABELS": {
+            "COOKIESPOLICYURL": "Cookies Policy page url",
             "SITENAME": "Site title",
             "SITEDESC": "Site description",
             "GOOGLEANALYTICSID": "Google Analytics ID",

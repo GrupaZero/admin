@@ -1,9 +1,9 @@
 'use strict';
 
-function ContentWeightEditCtrl($scope, Utils, $modal, ContentRepository) {
+function ContentThemeEditCtrl($scope, Utils, $modal, ContentRepository) {
     var vm = this;
     var viewPath = 'gzero/admin/views/content/directives/';
-    // Weight modal
+    // Theme modal
     vm.editModal = {
         /**
          * Function initiates the AngularStrap modal
@@ -15,7 +15,7 @@ function ContentWeightEditCtrl($scope, Utils, $modal, ContentRepository) {
             self.modal = $modal({
                 scope: $scope,
                 title: title,
-                templateUrl: viewPath + 'contentEditWeightModal.tpl.html',
+                templateUrl: viewPath + 'contentEditThemeModal.tpl.html',
                 show: true,
                 placement: 'center'
             });
@@ -24,12 +24,12 @@ function ContentWeightEditCtrl($scope, Utils, $modal, ContentRepository) {
          * Function shows the AngularStrap modal
          *
          * @param contentId content id to be updated, it is saved in the scope
-         * @param contentWeight content weight
+         * @param contentTheme content theme
          */
-        showModal: function(contentId, contentWeight) {
+        showModal: function(contentId, contentTheme) {
             var self = this;
             vm.contentId = contentId;
-            vm.contentWeight = contentWeight;
+            vm.contentTheme = contentTheme;
             self.initModal('EDIT');
         },
         /**
@@ -47,7 +47,7 @@ function ContentWeightEditCtrl($scope, Utils, $modal, ContentRepository) {
         saveContentWeight: function() {
             var self = this;
             var content = {
-                weight: $scope.vm.contentWeight
+                theme: $scope.vm.contentTheme
             };
 
             ContentRepository.updateContent(vm.contentId, content).then(function(response) {
@@ -58,5 +58,5 @@ function ContentWeightEditCtrl($scope, Utils, $modal, ContentRepository) {
         }
     };
 }
-ContentWeightEditCtrl.$inject = ['$scope', 'Utils', '$modal', 'ContentRepository'];
-module.exports = ContentWeightEditCtrl;
+ContentThemeEditCtrl.$inject = ['$scope', 'Utils', '$modal', 'ContentRepository'];
+module.exports = ContentThemeEditCtrl;

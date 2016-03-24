@@ -66,7 +66,7 @@ function DeleteTranslationCtrl($scope, Utils, $modal, ContentRepository) {
             var self = this;
             self.closeModal();
             ContentRepository.deleteTranslation(vm.contentId, vm.translationId).then(function() {
-                Utils.Notifications.addSuccess('CONTENT_HAS_BEEN_DELETED');
+                Utils.Notifications.addSuccess('TRANSLATION_HAS_BEEN_DELETED');
                 Utils.$state.reload();
             });
         }
