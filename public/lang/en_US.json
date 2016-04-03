@@ -89,6 +89,7 @@
     "MOVE_BLOCK_TO_TRASH_QUESTION": "Are you sure you want to move this block to trash?",
     "MOVE_CONTENT_TO_TRASH_QUESTION": "Are you sure you want to move this content to trash?",
     "MOVE_TO_TRASH": "Move to Trash",
+    "NICK_NAME": "Nick name",
     "NOT_FOUND": "Not Found",
     "NOT_PUBLISHED": "Not published",
     "NO_BLOCKS": "No blocks",
