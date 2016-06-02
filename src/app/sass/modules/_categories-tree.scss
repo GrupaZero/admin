@@ -19,13 +19,14 @@
 // - - skin
 
 %categories-s-tree {
-
+  //@TODO uncomment @extend when not empty
 }
 
 // - - - - - - - - - - - - - - - - - - -
 // - - typography
 
 %categories-t-tree {
+  //@TODO uncomment @extend when not empty
 
 }
 
@@ -34,8 +35,8 @@
 
 .categories-c-tree {
   @extend %categories-l-tree;
-  @extend %categories-s-tree;
-  @extend %categories-t-tree;
+  //@extend %categories-s-tree;
+  //@extend %categories-t-tree;
 
   .angular-ui-tree-handle {
     font-weight : normal;

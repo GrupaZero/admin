@@ -38,14 +38,12 @@ function CoreCtrl($scope, Utils, Translations, NavBar, TopNavBar) {
     if (typeof Utils.Config.multilang !== 'undefined') {
         $scope.isMultiLangEnabled = (Utils.Config.multilang === 'true');
     }
-    // if content types are set
-    if (typeof Utils.Config.contentTypes !== 'undefined') {
-        $scope.contentTypes = Utils.Config.contentTypes;
-    }
-    // if block types are set
-    if (typeof Utils.Config.blockTypes !== 'undefined') {
-        $scope.blockTypes = Utils.Config.blockTypes;
-    }
+
+    // set available entities types
+    _.forEach(Utils.getEntitiesTypes(), function(value, key) {
+        $scope[key] = value;
+    });
+
     // if block regions are set
     if (typeof Utils.Config.blockRegions !== 'undefined') {
         // add disabled region and pass to view
@@ -80,9 +78,9 @@ function CoreCtrl($scope, Utils, Translations, NavBar, TopNavBar) {
     // if there is langCode param validate it
     $scope.$on('$stateChangeSuccess', function() {
         // set content translations language switcher
-        $scope.showTransLangSwitcher = Utils.$state.includes('content.list') || Utils.$state.includes('content.trashcan') || Utils.$state.includes('blocks.list');
+        $scope.showTransLangSwitcher = Utils.stateIncludes(['content.list', 'content.trashcan', 'blocks.list', 'files.list']);
         // disable admin language switcher
-        $scope.showAdminLangSwitcher = Utils.$state.includes('content.add') || Utils.$state.includes('content.edit') || Utils.$state.includes('content.addTranslation');
+        $scope.showAdminLangSwitcher = Utils.stateIncludes(['content.add', 'content.edit', 'content.addTranslation']);
         if (Utils.$stateParams.hasOwnProperty('langCode')) {
             Translations.checkIfLanguageIsAvailable(Utils.$stateParams.langCode);
         }

@@ -19,35 +19,13 @@ function ContentDetailsEditCtrl($scope, Utils, content, langCode, ContentReposit
      * CKEditor settings getter
      */
     $scope.ckOptions = Utils.ckOptions;
-
-    /**
-     * Return translation with specified lang property from translations array
-     * and fetch lang property
-     *
-     * @param translations Translations array
-     * @param langCode language code
-     * @returns Object | false
-     */
-    function getTranslationByLang(translations, langCode) {
-        var translation = translations.shift();
-
-        if(!translation){
-            return false;
-        }
-
-        if (translation.langCode === langCode) {
-            return translation;
-        } else {
-            return getTranslationByLang(translations, langCode);
-        }
-    }
-
+    
     /**
      * Currently active translation object
      *
      * @type Object
      */
-    $scope.activeTranslation = getTranslationByLang((content.translations.slice(0)), langCode);
+    $scope.activeTranslation = Utils.getTranslationByLang((content.translations.slice(0)), langCode);
 
     /**
      * save current active translation as new active translation

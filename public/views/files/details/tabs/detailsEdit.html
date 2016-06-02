@@ -1,0 +1,62 @@
+<div class="panel active-panel">
+    <form name="fileForm" novalidate ng-submit="saveFile()">
+        <div class="panel-heading">
+            <div class="page-header no-margin-bottom no-margin-top">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="title">{{ 'TITLE' | translate }}
+                            <strong class="text-danger">*</strong>
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-7">
+                        <input id="title"
+                               class="form-control"
+                               name="description"
+                               placeholder="{{'TITLE' | translate}}"
+                               type="text"
+                               required
+                               ng-model="activeTranslation.title">
+                    </div>
+                    <div class="col-md-5 text-right">
+                        <button ui-sref="files.show({ fileId: file.id, langCode: langCode })" type="button"
+                                class="btn btn-primary">
+                            {{ 'CANCEL' | translate }}
+                        </button>
+                        <button ng-disabled="fileForm.$invalid" type="submit" class="btn btn-success">
+                            {{ 'SAVE' | translate }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-6" ng-show="file.type === 'image'">
+                    <div class="img-preview margin-bottom">
+                        <img ng-src="{{::file.url}}" alt="{{ file.translations | getTranslation:langCode:'title' }}"
+                             title="{{ file.translations | getTranslation:langCode:'title' }}" class="img-responsive">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="description" class="control-label">
+                                    {{ "DESCRIPTION" | translate }}
+                                </label>
+                            </div>
+                            <div class="col-md-12">
+                             <textarea id="description" rows="10"
+                                       name="description" class="form-control"
+                                       placeholder="{{'DESCRIPTION' | translate}}"
+                                       ng-model="activeTranslation.description"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

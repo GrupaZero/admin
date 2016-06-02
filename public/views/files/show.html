@@ -1,0 +1,12 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-9">
+            <div ng-include src="'gzero/admin/views/files/details/tabs.html'"></div>
+            <div ui-view="fileTab"></div>
+        </div>
+        <div class="col-lg-3">
+            <div ui-view="langSwitcher"></div>
+            <div ui-view="fileSettings"></div>
+        </div>
+    </div>
+</div>

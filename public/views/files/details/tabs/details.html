@@ -1,0 +1,52 @@
+<div class="panel">
+    <div class="panel-heading">
+        <div class="page-header no-margin-bottom no-margin-top">
+            <h1 ng-show="file.translations | getTranslation:langCode:'title'">
+                {{ file.translations | getTranslation:langCode:'title' }}
+              <span class="pull-right">
+                  <button file-translation-delete-button
+                          translation-id="{{ activeTranslation.id }}"
+                          file-id="{{file.id}}"
+                          class="btn btn-danger">
+                      <i class="fa fa-times"></i> {{ "DELETE_TRANSLATION" | translate }}
+                  </button>
+                  <button ui-sref="files.edit.details({ fileId: file.id, langCode: langCode })"
+                          type="button" class="btn btn-primary">
+                      {{ 'EDIT' | translate }}
+                  </button>
+              </span>
+            </h1>
+
+            <h1 ng-hide="file.translations | getTranslation:langCode:'title'">
+                {{ 'NO_TRANSLATION' | translate }}
+                <button ui-sref="files.addTranslation({ fileId: file.id, langCode: langCode })"
+                        type="button" class="btn btn-warning pull-right">
+                    <i class="glyphicon glyphicon-exclamation-sign hidden-sm"></i> {{ 'NO_TRANSLATION_BUTTON' | translate }}
+                </button>
+            </h1>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-6" ng-show="file.type === 'image'">
+                <div class="img-preview margin-bottom">
+                    <img ng-src="{{::file.url}}" alt="{{ file.translations | getTranslation:langCode:'title' }}"
+                         title="{{ file.translations | getTranslation:langCode:'title' }}" class="img-responsive">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="media">
+                    <div class="media-body">
+                        <div ng-show="file.translations | getTranslation:langCode:'description'">
+                            {{ file.translations | getTranslation:langCode:'description' }}
+                        </div>
+
+                        <div ng-hide="file.translations | getTranslation:langCode:'description'">
+                            {{ 'NO_FILE_DESCRIPTION_TRANSLATION_INFO' | translate }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

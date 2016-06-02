@@ -116,13 +116,13 @@ body.mini-sidebar {
 }
 
 %sidebar-t-offcanvas {
-
+  //@TODO uncomment @extend when not empty
 }
 
 .sidebar-c-offcanvas {
   @extend %sidebar-l-offcanvas;
   @extend %sidebar-s-offcanvas;
-  @extend %sidebar-t-offcanvas;
+  //@extend %sidebar-t-offcanvas;
 }
 
 // ----- nav-sidebar-offcanvas ---- //

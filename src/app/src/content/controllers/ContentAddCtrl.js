@@ -39,7 +39,7 @@ function ContentAddCtrl($scope, Utils, listParent, ContentRepository) {
         // if parent category exists
         if (typeof $scope.listParent !== 'undefined') {
             // check for route translation in selected language
-            var route = _.pluck(_.filter($scope.listParent.route.translations, 'langCode', newContent.translations.langCode), 'url');
+            var route = _.map(_.filter($scope.listParent.route.translations, {langCode: newContent.translations.langCode}), 'url');
             if (!route.length) {
                 newContent.parentId = null; // if not found set as uncategorized
             }

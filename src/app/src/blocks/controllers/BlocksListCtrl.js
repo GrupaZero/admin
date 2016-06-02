@@ -12,7 +12,9 @@ function BlocksListCtrl($scope, Utils, NgTableParams, BlocksRepository) {
         getData: function($defer, params) {
             $scope.requestPending = true;
             // prepare options to be sent to api
-            var queryOptions = {};
+            var queryOptions = {
+                lang: Utils.Config.defaultLangCodee
+            };
 
             // lang sort options
             if (typeof $scope.transLang !== 'undefined') {

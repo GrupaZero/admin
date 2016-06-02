@@ -29,7 +29,7 @@
 //   Typography
 
 %quick-t-sidebar {
-
+  //@TODO uncomment @extend when not empty
 }
 
 // -------------------------------------
@@ -39,7 +39,7 @@
 .quick-c-sidebar {
   @extend %quick-l-sidebar;
   @extend %quick-s-sidebar;
-  @extend %quick-t-sidebar;
+  //@extend %quick-t-sidebar;
 
   .aside-header {
     background    : $blue-darker;

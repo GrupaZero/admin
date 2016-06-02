@@ -32,6 +32,58 @@ function Utils(Notifications, Storage, $state, $previousState, $stateParams, ckO
                 // otherwise go to default state
                 $state.go(defaultStateName, {}, {reload: true});
             }
+        },
+        /**
+         * function checks if one of provided state names is included in current state
+         *
+         * @param {array} stateNames the collection to iterate over
+         *
+         * @returns {bool} whether any of state exists
+         */
+        stateIncludes: function(stateNames) {
+            var includes = false;
+            if (typeof stateNames !== 'undefined') {
+                _.forEach(stateNames, function(stateName) {
+                    if ($state.includes(stateName)) {
+                        includes = true;
+                    }
+                });
+            }
+
+            return includes;
+        },
+        /**
+         * Return translation with specified lang property from translations array
+         * and fetch lang property
+         *
+         * @param translations Translations array
+         * @param langCode language code
+         * @returns Object | false
+         */
+        getTranslationByLang: function(translations, langCode) {
+            var translation = translations.shift();
+
+            if (!translation) {
+                return false;
+            }
+
+            if (translation.langCode === langCode) {
+                return translation;
+            } else {
+                return this.getTranslationByLang(translations, langCode);
+            }
+        },
+        /**
+         * Return all available entities types object from config
+         *
+         * @returns Object available entities types
+         */
+        getEntitiesTypes: function() {
+            return {
+                contentTypes: this.Config.contentTypes,
+                blockTypes: this.Config.blockTypes,
+                fileTypes: this.Config.fileTypes
+            };
         }
     };
 

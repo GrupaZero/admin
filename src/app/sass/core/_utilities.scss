@@ -58,6 +58,9 @@
 // -------------------------------------
 //   Utilities
 // -------------------------------------
+.no-margin {
+  margin : 0 !important;
+}
 .no-margin-top {
   margin-top : 0 !important;
 }
@@ -71,7 +74,9 @@
 }
 
 .margin-bottom {
-  margin-bottom : $line-height-computed;
+  &, &.alert {
+    margin-bottom : $line-height-computed;
+  }
 }
 
 .margin-top-sm {

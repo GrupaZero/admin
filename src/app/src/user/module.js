@@ -33,7 +33,7 @@ angular.module('admin.user', ['ngTable'])
                     }
                 })
                 .state('user.list', {
-                    url: '/list/{userId}?page&perPage',
+                    url: '/list?page&perPage',
                     views: {
                         'content': {
                             templateUrl: viewPath + 'list.html'

@@ -1,0 +1,26 @@
+<div class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" ng-show="title">
+                <button type="button" class="close" ng-click="vm.deleteModal.closeModal()">&times;</button>
+                <h4 class="modal-title" translate="{{title}}"></h4>
+            </div>
+            <div class="modal-body" translate="{{content}}"></div>
+            <div class="modal-footer">
+                <button type="button"
+                        class="btn btn-success"
+                        ng-click="vm.deleteModal.closeModal()">
+                    {{ (vm.hideSubmitButton) ? 'OK' : 'CANCEL' | translate }}
+                </button>
+                <button type="button"
+                        class="btn btn-danger"
+                        ng-if="!vm.hideSubmitButton"
+
+                        ng-click="vm.deleteModal.deleteFile()">
+                    <i class="fa fa-times"></i>
+                    {{ 'DELETE' | translate }}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

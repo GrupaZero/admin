@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <form name="contentForm" novalidate ng-if="isLoaded">
+    <form name="contentForm" novalidate ng-if="isLoaded" ng-submit="addNewContentTranslation()">
         <div class="row">
             <div class="col-lg-9">
                 <div class="panel panel-default margin-top">
@@ -25,12 +25,12 @@
                                             class="btn btn-default">
                                         {{ showSeoDetails ? 'HIDE_SEO_SETTINGS' : 'SHOW_SEO_SETTINGS' | translate }}
                                     </button>
-                                    <button ui-sref="content.list()"
+                                    <button ng-click="redirectBack('content.list')"
                                             type="button"
                                             class="btn btn-primary">
                                         {{ 'CANCEL' | translate }}
                                     </button>
-                                    <button type="submit" class="btn btn-success" ng-click="addnewContentTranslation(newContentTranslation)"
+                                    <button type="submit" class="btn btn-success"
                                             ng-disabled="contentForm.$invalid">
                                         {{ 'SAVE' | translate }}
                                     </button>

@@ -1,0 +1,64 @@
+<div class="container-fluid">
+    <form name="fileForm" novalidate ng-submit="addFileTranslation()">
+        <div class="row">
+            <div class="col-lg-9">
+                <div class="panel panel-default margin-top">
+                    <div class="panel-heading">
+                        <strong>{{ 'ADD_TRANSLATION' | translate | uppercase }}</strong>
+                    </div>
+                    <div class="panel-body">
+                        <div class="page-header no-margin-top">
+                            <!-- Title Form input -->
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="title">{{ 'TITLE' | translate }} <strong class="text-danger">*</strong></label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <input id="title" name="title" type="text" class="form-control margin-bottom" required
+                                           ng-model="newFileTranslation.title">
+                                </div>
+                                <div class="col-md-5 text-right">
+                                    <button ng-click="redirectBack('files.list')"
+                                            type="button"
+                                            class="btn btn-primary">
+                                        {{ 'CANCEL' | translate }}
+                                    </button>
+                                    <button type="submit" class="btn btn-success" 
+                                            ng-disabled="fileForm.$invalid">
+                                        {{ 'SAVE' | translate }}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <!--  Body Form textarea -->
+                        <div class="form-group">
+                            <label for="description">{{ 'DESCRIPTION' | translate }}</label>
+                            <textarea id="description" rows="4"
+                                      name="description" class="form-control"
+                                      placeholder="{{'DESCRIPTION' | translate}}"
+                                      ng-model="newFileTranslation.translations.description"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="panel panel-default margin-top">
+                    <div class="panel-heading">
+                        <strong>{{ 'SETTINGS' | translate | uppercase }}</strong>
+                    </div>
+                    <div class="panel-body">
+                        <!-- Lang Form input -->
+                        <div class="form-group">
+                            <label for="langCode" class="hidden-xs">{{ 'TRANSLATION_LANGUAGE' | translate }}</label>
+                            <select id="langCode" ng-model="newFileTranslation.langCode" class="form-control"
+                                    ng-options="lang.code as lang.code | langName | translate for lang in langs">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

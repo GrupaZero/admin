@@ -1,0 +1,172 @@
+<div class="container-fluid">
+    <form name="filesForm" novalidate ng-submit="save()">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default margin-top">
+                    <div class="panel-heading">
+                        <strong>
+                            {{ 'ADD' | translate | uppercase }}
+                            {{ 'FILE_TYPES.' + newFileDefaults.type.toUpperCase() | translate | uppercase }}
+                        </strong>
+                    </div>
+                    <div class="panel-body">
+                        <div class="page-header no-margin">
+                            <!-- Title Form input -->
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="langCode" class="hidden-xs">{{ 'TRANSLATION_LANGUAGE' | translate }}</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <!-- Lang Form input -->
+                                    <div class="form-group">
+                                        <select id="langCode" ng-model="newFileDefaults.translations.langCode"
+                                                class="form-control"
+                                                ng-options="lang.code as lang.code | langName | translate for lang in langs">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <!-- Is active Form input -->
+                                    <div class="form-group">
+                                        <div class="checkbox no-margin-top">
+                                            <label>
+                                                <input ng-model="newFileDefaults.isActive" ng-true-value="1" ng-false-value="0"
+                                                       type="checkbox">
+                                                {{ 'PUBLISHED' | translate }}
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-5 text-right">
+                                    <button ng-click="redirectBack('files.list')"
+                                            type="button"
+                                            class="btn btn-primary">
+                                        {{ 'CANCEL' | translate }}
+                                    </button>
+
+                                    <!-- Save button -->
+                                    <div class="btn-group">
+                                        <button type="submit" class="btn btn-success"
+                                                ng-disabled="files.length <= 0">
+                                            {{ 'SAVE' | translate }}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-show="files.length > 0">
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>{{ 'FILE_NAME' | translate }}</th>
+                                        <th width="60%">{{ 'TRANSLATION' | translate }}</th>
+                                        <th class="hidden-xs">{{ 'ACTION' | translate }}</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="file in files track by $index">
+                                        <td>
+                                            <div class="img-preview hidden-xs">
+                                                <img ngf-thumbnail="file" ngf-size="{width: 270, height: 180}"/>
+                                            </div>
+                                            <div class="margin-top-sm">
+                                                <i class="text-muted text-center">
+                                                    {{ file.name }} - {{ file.size/1024/1024|number:2 }} MB
+                                                </i>
+                                                <button type="button"
+                                                        class="btn btn-danger btn-xs visible-xs-block margin-top"
+                                                        ng-click="removeFile($index)">
+                                                    <span class="fa fa-times"></span> {{ 'DELETE' | translate }}
+                                                </button>
+                                                <div class="progress margin-top-sm"
+                                                     ng-show="progress.length > 0 && !filesForm.$invalid">
+                                                    <div class="progress-bar progress-bar progress-bar-success" role="progressbar"
+                                                         ng-style="{ 'width': progress[$index] + '%' }">
+                                                        {{progress[$index] + '%'}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td ng-if="!file.$error">
+                                            <div class="form-group margin-top-sm">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <label for="title">{{ 'TITLE' | translate }}
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <input id="title"
+                                                               class="form-control"
+                                                               name="description"
+                                                               placeholder="{{'TITLE' | translate}}"
+                                                               type="text"
+                                                               ng-disabled="isBusy"
+                                                               ng-model="file.translations.title">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <label for="description" class="control-label">
+                                                            {{ "DESCRIPTION" | translate }}
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                 <textarea id="description" rows="4"
+                                                           name="description" class="form-control"
+                                                           ng-disabled="isBusy"
+                                                           placeholder="{{'DESCRIPTION' | translate}}"
+                                                           ng-model="file.translations.description"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="hidden-xs" ng-if="!file.$error">
+                                            <button type="button" class="btn btn-danger btn-xs" ng-click="removeFile($index)">
+                                                <span class="fa fa-times"></span> {{ 'DELETE' | translate }}
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div ng-if="invalidFiles.length">
+                            <h4>{{'FILES_WILL_NOT_BE_UPLOADED' | translate}}</h4>
+                            <div ng-repeat="file in invalidFiles track by $index" ng-if="file.$error"
+                                 class="alert alert-danger margin-bottom" role="alert">
+                                <strong>
+                                    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> {{ file.name }}
+                                </strong> -
+                            <span translate="{{ 'FILE_ERRORS.' + file.$error | uppercase }}"
+                                  translate-values="{ params: file.$errorParam}"></span>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <div ngf-drop ng-model="files" multiple class="drop">
+                                <h4>
+                                    <i class="fa fa-cloud-upload fa-4x"></i><br>
+                                    {{ 'DROP_ZONE_TEXT' | translate }}
+                                </h4>
+                                <p>{{'OR' | translate}}</p>
+                                <div class="form-group">
+                                    <label>
+                                          <span class="btn btn-primary">
+                                              {{'CHOOSE_FILES' | translate}}
+                                          </span>
+                                        <input type="file" ng-model="files" ngf-select
+                                               name="files" id="files" class="hide" multiple>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

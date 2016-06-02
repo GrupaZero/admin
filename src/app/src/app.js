@@ -4,6 +4,7 @@ require('./core/module.js');
 require('./content/module.js');
 require('./blocks/module.js');
 require('./user/module.js');
+require('./files/module.js');
 require('./settings/module.js');
 
 var dependencies = [
@@ -21,8 +22,10 @@ var dependencies = [
     'admin.core',
     'admin.content',
     'admin.blocks',
+    'admin.files',
     'admin.user',
-    'admin.settings'
+    'admin.settings',
+    'ngFileUpload'
 ];
 dependencies.push.apply(dependencies, modules); // Other modules are loaded by twig
 

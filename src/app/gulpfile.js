@@ -89,7 +89,8 @@ gulp.task('compress-vendor', function() {
             'vendor/angular/angular-http-loader.js',
             'vendor/Showdown.min.js',
             'vendor/moment.js',
-            'vendor/angular/hotkeys.min.js'
+            'vendor/angular/hotkeys.min.js',
+            'vendor/angular/ng-file-upload.min.js'
         ])
         .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
         .pipe(sourcemaps.init({loadMaps: true}))
@@ -121,7 +122,8 @@ gulp.task('compress-vendor', function() {
             'vendor/angular/angular-http-loader.min.js',
             'vendor/Showdown.min.js',
             'vendor/moment.js',
-            'vendor/angular/hotkeys.min.js'
+            'vendor/angular/hotkeys.min.js',
+            'vendor/angular/ng-file-upload.min.js'
         ])
         .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
         .pipe(sourcemaps.init({loadMaps: true}))

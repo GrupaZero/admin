@@ -30,7 +30,10 @@
             currentUserId: {{ app('auth')->user()->id }},
             contentTypes: {!! json_encode(array_keys(config("gzero.content_type")), true) !!},
             blockTypes: {!! json_encode(array_keys(config("gzero.block_type")), true) !!},
-            blockRegions: {!! json_encode(config("gzero.available_blocks_regions"), true) !!}
+            fileTypes: {!! json_encode(array_keys(config("gzero.file_type")), true) !!},
+            fileExtensions: {!! json_encode(config("gzero.allowed_file_extensions"), true) !!},
+            blockRegions: {!! json_encode(config("gzero.available_blocks_regions"), true) !!},
+            defaultLangCode: {!! json_encode(config("app.locale"), true) !!}
         };
         var modules = [
             @foreach ($modules->getModulesNames() as $moduleName)

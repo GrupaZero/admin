@@ -173,9 +173,6 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
                     views: {
                         'contentTab': {
                             templateUrl: viewPath + 'details/tabs/details.html'
-                        },
-                        'contentSettings': {
-                            templateUrl: viewPath + 'details/settingsEdit.html'
                         }
                     }
                 })
@@ -184,14 +181,6 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
                     views: {
                         'contentTab': {
                             controller: 'ContentDetailsEditCtrl',
-                            templateUrl: viewPath + 'details/tabs/detailsEdit.html'
-                        }
-                    }
-                })
-                .state('content.edit.history', {
-                    url: '/history',
-                    views: {
-                        'contentTab': {
                             templateUrl: viewPath + 'details/tabs/detailsEdit.html'
                         }
                     }

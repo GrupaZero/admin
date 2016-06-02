@@ -1,0 +1,127 @@
+<div class="container-fluid">
+    <div class="row list-actions quick-c-nav">
+        <div class="col-xs-12 col-sm-12 col-lg-8 form-inline">
+            <!-- LIST FILTERS -->
+            <ul class="list-filters nav nav-pills" role="tablist">
+                <li class="subtitle">
+                    {{ 'SHOW' | translate }}
+                </li>
+                <li role="presentation" ng-class="{ active: (!activeFilter.type && !activeFilter.isActive) }">
+                    <a href="" ui-sref="files.list" ui-sref-opts="{ inherit: false }">{{ 'ALL' | translate }}</a>
+                </li>
+                <li role="presentation" ng-class="{ active: activeFilter.type == type }"
+                    ng-repeat="type in fileTypes track by $index">
+                    <a href="" ui-sref="files.list({ type: '{{type}}' })">{{ 'FILE_TYPES.' + type.toUpperCase() | translate }}</a>
+                </li>
+                <li role="presentation" ng-class="{ active: activeFilter.isActive == 1 }">
+                    <a href="" ui-sref="files.list({ isActive: 1 })">{{ 'PUBLISHED' | translate }}</a>
+                </li>
+                <li role="presentation" ng-class="{ active: activeFilter.isActive == 0 }">
+                    <a href="" ui-sref="files.list({ isActive: 0 })">{{ 'NOT_PUBLISHED' | translate }}</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.col-lg-4 -->
+        <div class="col-xs-12 col-sm-12 col-lg-4 text-right">
+            <button type="button" class="btn btn-success" states-dropdown="fileAddButtonLinks">
+                <i class="glyphicon glyphicon-plus hidden-sm"></i> {{ 'ADD' | translate }} <span class="caret"></span>
+            </button>
+            <button type="button"
+                    ng-click="refreshCurrentState()"
+                    class="btn btn-default"
+                    title="{{ 'REFRESH_LIST' | translate }}">
+                <i class="glyphicon glyphicon-refresh"></i>
+            </button>
+        </div>
+        <!-- /.col-lg-8 -->
+    </div>
+    <div class="table-box"> <!-- START USERS TABLE -->
+        <table ng-table="tableParams" template-pagination="tablePager" class="table table-striped">
+            <tbody>
+            <tr ng-repeat="file in $data">
+                <td data-title="'TITLE' | translate" sortable="'translations.title'" width="40%">
+                    <div class="media">
+                        <div class="media-left" ng-show="file.type === 'image'">
+                            <div class="img-preview">
+                                <img ng-src="{{::file.url}}" alt="{{ file.translations | getTranslation:transLang.code:'title' }}"
+                                     title="{{ file.translations | getTranslation:transLang.code:'title' }}" width="64">
+                            </div>
+                        </div>
+                        <div class="media-body">
+                            <div class="media-heading">
+                                <strong>{{ file.translations | getTranslation:transLang.code:'title' }}</strong>
+                            </div>
+                            <div class="media-heading" ng-hide="(file.translations | getTranslation:transLang.code:'title')">
+                                <a ui-sref="files.addTranslation({ fileId: file.id, langCode: transLang.code })"
+                                   href="" class="text-muted">
+                                    <i class="glyphicon glyphicon-ban-circle hidden-sm"></i>
+                                    {{ 'NO_TRANSLATION_BUTTON' | translate }}
+                                </a>
+                            </div>
+                            {{ file.translations | getTranslation:transLang.code:'description' }}
+                        </div>
+                    </div>
+                </td>
+                <td data-title="'FILE_NAME' | translate" sortable="'name'" class="text-center">
+                    {{::file.name}}.{{::file.extension}}
+                </td>
+                <td data-title="'STATUS' | translate" sortable="'isActive'" class="text-center">
+                    <i ng-if="!file.isActive">{{ 'NOT_PUBLISHED' | translate }}</i>
+                    <i ng-if="file.isActive">{{ 'PUBLISHED' | translate }}</i>
+                </td>
+                <td data-title="'SIZE' | translate" sortable="'size'" class="text-center">
+                    {{::file.size/1024/1024|number:2}} MB
+                </td>
+                <td data-title="'ACTION' | translate" class="text-center">
+                    <a ui-sref="files.show({ fileId: file.id, langCode: transLang.code })"
+                       href="" class="btn btn-primary btn-sm">
+                        <i class="fa fa-pencil hidden-sm"></i> {{ 'EDIT' | translate }}
+                    </a>
+                    <button file-delete-button class="btn btn-danger btn-sm" file-id="{{ file.id }}"
+                            ng-click="$event.stopPropagation();">
+                        <i class="fa fa-times"></i> {{ 'DELETE' | translate }}
+                    </button>
+                </td>
+            </tr>
+            <tr ng-if="!$data[0] || requestPending">
+                <td colspan="6" class="text-center">
+                    <strong ng-if="!$data[0] && !requestPending">{{ 'NO_ENTRIES' | translate }}</strong>
+                    <strong ng-if="requestPending"><i class="fa fa-spin fa-2x fa-spinner"></i></strong>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- END FILES TABLE -->
+</div>
+
+
+<!--TEMPLATE-->
+<script type="text/ng-template" id="tablePager">
+    <div class="ng-cloak ng-table-pager">
+        <ul ng-if="params.settings().counts.length" class="ng-table-counts pagination pull-right">
+            <li ng-repeat="count in params.settings().counts" ng-class="{'active':params.count() == count}">
+                <a href="" ui-sref="files.list({ page: page.number, perPage:count })">
+                    <span ng-bind="count"></span>
+                </a>
+            </li>
+        </ul>
+        <ul class="pagination ng-table-pagination">
+            <li ng-class="{'active': !page.active, 'disabled': !page.active && (page.type == 'prev' || page.type == 'next')}"
+                ng-repeat="page in pages" ng-switch="page.type">
+                <a ng-switch-when="prev" ui-sref="files.list({ page: page.number })" href="">&laquo;</a>
+                <a ng-switch-when="first" ui-sref="files.list({ page: page.number })" href="">
+                    <span ng-bind="page.number"></span>
+                </a>
+                <a ng-switch-when="page" ui-sref="files.list({ page: page.number })" href="">
+                    <span ng-bind="page.number"></span>
+                </a>
+                <a ng-switch-when="more" ui-sref="files.list({ page: page.number })" href="">&#8230;</a>
+                <a ng-switch-when="last" ui-sref="files.list({ page: page.number })" href="">
+                    <span ng-bind="page.number"></span>
+                </a>
+                <a ng-switch-when="next" ui-sref="files.list({ page: page.number })" href="">&raquo;</a>
+            </li>
+        </ul>
+    </div>
+</script>

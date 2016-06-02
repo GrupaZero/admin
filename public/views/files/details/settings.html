@@ -1,0 +1,61 @@
+<div class="panel file-settings-panel panel-default margin-top">
+    <div class="panel-heading">
+        <strong>{{ 'SETTINGS' | translate | uppercase }}</strong>
+    </div>
+    <ul class="list-group file-settings">
+        <li class="list-group-item clearfix">
+            <a file-toggle-property-button
+               file_id="{{file.id}}"
+               property_name="isActive"
+               value="{{file.isActive}}">
+                <i class="fa fa-power-off"></i> {{ 'IS_PUBLISHED' | translate }}
+                <div class="pull-right">
+                    <i class="fa" ng-class="file.isActive ? 'fa-check-circle text-success' : 'fa-times-circle text-danger'"></i>
+                </div>
+            </a>
+        </li>
+        <li class="list-group-item clearfix">
+            <div class="pull-left field-label">
+                 {{ 'TYPE' | translate }}
+            </div>
+            <div class="text-right fade-box">
+                <div>
+                    {{ 'FILE_TYPE.' + file.type.toUpperCase() | translate }}
+                </div>
+            </div>
+        </li>
+        <li class="list-group-item clearfix">
+            <div class="pull-left field-label">
+                {{ 'FILE_NAME' | translate }}
+            </div>
+            <div class="text-right fade-box">
+                <div>
+                    {{::file.name}}.{{::file.extension}}
+                </div>
+            </div>
+        </li>
+        <li class="list-group-item clearfix">
+            <div class="pull-left field-label">
+                 {{ 'SIZE' | translate }}
+            </div>
+            <div class="text-right fade-box">
+                <div>
+                    {{::file.size/1024/1024|number:2}} MB
+                </div>
+            </div>
+        </li>
+    </ul>
+    <div class="panel-footer text-right">
+        <a ui-sref="files.list"
+           class="btn btn-default pull-left">
+            {{ 'CANCEL' | translate }}
+        </a>
+        <button file-delete-button
+                data-id="{{ file.id }}"
+                type="button"
+                class="btn btn-danger">
+            <i class="fa fa-times"></i>
+            {{ 'DELETE' | translate }}
+        </button>
+    </div>
+</div>
