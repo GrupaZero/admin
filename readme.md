@@ -51,10 +51,12 @@ In Ubuntu hosts file should looks like the following:
 ...
 ```
 
-There are 2 required things, that should be done, every time before you start to develop Admin package:
+There are 3 required things, that should be done, every time before you start to develop Admin package:
 
-1. In Platform root directory start Docker container for platform: `$ sudo docker-compose up -d`.
-2. In `admin/src/app` directory run gulp.js: `$ gulp`.
+1. In Platform root directory
+ - use `./scripts/link_package.sh admin mount` to mount your version of admin package.
+ - start Docker container for platform: `$ sudo docker-compose up -d`.
+2. In Admin package run `npm start` to start gulp watch. Now each time when you save file gulp will rebuild app.
 
 After these steps try to log in to the admin panel:
 ```
@@ -68,8 +70,8 @@ If admin panel appeared, everything works fine.
 Now release your imagination and create your own magic ;-)
 
 ## JavaScript tests
-In `admin/src/app` directory run karma server:
+To run karma server:
 ```
-$ ../../node_modules/karma/bin/karma start
+$ npm test
 ```
 From now on you can write tests in `admin/src/app/tests`.

@@ -1,14 +1,22 @@
 language: php
 
 php:
-  - 5.5
-  - 5.6
-  - hhvm
+  - 7
+
+env:
+  - TRAVIS_NODE_VERSION="4.2"
 
 before_script:
-  - composer self-update
-  - composer install --prefer-source --no-interaction --dev
+  - rm -rf ~/.nvm && git clone https://github.com/creationix/nvm.git ~/.nvm && (cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`) && source ~/.nvm/nvm.sh && nvm install $TRAVIS_NODE_VERSION
+  - node --version
+  - npm install -g npm
+  - npm --version
   - npm install
+  - composer self-update
+  - cp $HOME/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini /tmp
+  - phpenv config-rm xdebug.ini # disabling xdebug to speed up composer
+  - composer install --prefer-source --no-interaction || true
+  - phpenv config-add /tmp/xdebug.ini # enabling xdebug for code coverage
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
 
@@ -19,6 +27,4 @@ script:
   - ../../node_modules/karma/bin/karma start --single-run
 
 matrix:
-  allow_failures:
-    - php: hhvm
   fast_finish: true
