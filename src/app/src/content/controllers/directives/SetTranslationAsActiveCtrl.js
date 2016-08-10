@@ -31,7 +31,6 @@ function SetTranslationAsActiveCtrl($scope, Utils, $modal, ContentRepository) {
             var self = this;
             var translation = translations.shift();
             if (parseInt(translation.id) === parseInt(id)) {
-                translation.langCode = translation.lang; // Couse we change name of this property in ContentTranslationTransformer
                 return translation;
             } else {
                 return self.getTranslationById(translations, id);
