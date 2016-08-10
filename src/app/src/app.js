@@ -25,7 +25,8 @@ var dependencies = [
     'admin.files',
     'admin.user',
     'admin.settings',
-    'ngFileUpload'
+    'ngFileUpload',
+    'ngMessages'
 ];
 dependencies.push.apply(dependencies, modules); // Other modules are loaded by twig
 

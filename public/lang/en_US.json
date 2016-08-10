@@ -156,6 +156,7 @@
     "SEO_DESCRIPTION_DESCRIPTION": "This is the description for the page, if blank, we will try to use the first few sentences of the body field (if there is one)",
     "SEO_TITLE": "SEO Title",
     "SEO_TITLE_DESCRIPTION": "This is the title of the page that will show up in the top of the browser, if you leave it blank, we will use content title.",
+    "SEO_ERROR_MAXLENGTH": "This field can not be longer than {{ maxlength }} characters.",
     "SETTINGS": "Settings",
     "SET_AS_ACTIVE": "Set as active",
     "SET_TRANSLATION_AS_ACTIVE_QUESTION": "Are you sure you want to set this translation as new active translation?",

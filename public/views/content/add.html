@@ -68,11 +68,24 @@
                                                id="contentSeoTitle"
                                                type="text"
                                                aria-describedby="seoTitleHelpBlock"
+                                               ng-maxlength="57"
+                                               ng-class="{
+                                                    'has-error': contentForm.seoTitle.$dirty && contentForm.seoTitle.$error.maxlength
+                                               }"
+                                               name="seoTitle"
                                                 />
 
                                         <p class="help-block" id="seoTitleHelpBlock">
                                             {{ 'SEO_TITLE_DESCRIPTION' | translate }}
+                                            <span class="pull-right" characters-counter count="{{ newContent.translations.seoTitle }}"></span>
                                         </p>
+
+                                        <div ng-if="contentForm.seoTitle.$invalid" ng-messages="contentForm.seoTitle.$error">
+                                            <p ng-message="maxlength"
+                                               class="text-danger" role="alert">
+                                                {{ 'SEO_ERROR_MAXLENGTH' | translate: '{ maxlength: 57 }' }}
+                                            </p>
+                                        </div>
                                     </div>
 
                                 </div>
@@ -95,11 +108,24 @@
                                                id="contentSeoDescription"
                                                type="text"
                                                aria-describedby="seoDescriptionHelpBlock"
+                                               ng-maxlength="130"
+                                               ng-class="{
+                                                    'has-error': contentForm.seoDescription.$dirty && contentForm.seoDescription.$error.maxlength
+                                               }"
+                                               name="seoDescription"
                                                 />
 
                                         <p class="help-block" id="seoDescriptionHelpBlock">
                                             {{ 'SEO_DESCRIPTION_DESCRIPTION' | translate }}
+                                            <span class="pull-right" characters-counter count="{{ newContent.translations.seoDescription }}"></span>
                                         </p>
+
+                                        <div ng-if="contentForm.seoDescription.$invalid" ng-messages="contentForm.seoDescription.$error">
+                                            <p ng-message="maxlength"
+                                               class="text-danger" role="alert">
+                                                {{ 'SEO_ERROR_MAXLENGTH' | translate: '{ maxlength: 130 }' }}
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

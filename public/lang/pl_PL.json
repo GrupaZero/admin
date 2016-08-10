@@ -156,6 +156,7 @@
     "SEO_DESCRIPTION_DESCRIPTION": "TO jest opis tej strony. Jeżeli zostawisz to pole puste spróbujemy użyć kilku pierwszych zdań treści.",
     "SEO_TITLE": "Tytuł SEO",
     "SEO_TITLE_DESCRIPTION": "To jest tytuł strony który ukaże się u góry przeglądarki. Jeżeli zostawisz to pole puste, użyjemy tytułu.",
+    "SEO_ERROR_MAXLENGTH": "To pole nie może być dłuższe niż {{ maxlength }} znaków.",
     "SETTINGS": "Ustawienia",
     "SET_AS_ACTIVE": "Aktywuj",
     "SET_TRANSLATION_AS_ACTIVE_QUESTION": "Czy na pewno chcesz ustawić to tłumaczenie jako aktywne?",

@@ -281,6 +281,7 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
     .directive('contentActionsDropdown', ['$dropdown', require('./directives/ContentActionsDropdown.js')])
     .directive('contentWeightEditButton', ['$dropdown', require('./directives/ContentWeightEditButton.js')])
     .directive('contentThemeEditButton', ['$dropdown', require('./directives/ContentThemeEditButton.js')])
+    .directive('charactersCounter', require('./directives/CharactersCounter.js'))
     .run([
         'NavBar',
         function(NavBar) {
