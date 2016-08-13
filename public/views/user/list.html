@@ -26,16 +26,10 @@
                     <td data-title="'ID' | translate" sortable="'id'" class="text-center">
                         {{ user.id }}
                     </td>
-                    <td data-title="'ACTION' | translate" class="text-center">
-                        <a href="" ui-sref="user.show({ userId: user.id })" class="btn btn-default btn-xs">
-                            <i class="fa fa-search"></i>
-                        </a>
-                        <a href="" ui-sref="user.edit({ userId: user.id })" class="btn btn-primary btn-xs">
-                            <i class="fa fa-pencil"></i>
-                        </a>
-                        <button user-delete-button ng-disabled="currentUserId === user.id"
-                                class="btn btn-danger btn-xs" data-user-id="user.id">
-                            <i class="fa fa-times"></i>
+                    <td data-title="'ACTION' | translate" class="text-center action-column">
+                        <button type="button" class="btn btn-sm btn-primary" user-actions-dropdown="userListActions"
+                            data-record="user" ng-click="$event.stopPropagation();" ng-disabled="currentUserId === user.id">
+                        {{ 'ACTION' | translate }} <span class="caret"></span>
                         </button>
                     </td>
                 </tr>

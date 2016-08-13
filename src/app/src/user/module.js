@@ -44,11 +44,12 @@ angular.module('admin.user', ['ngTable'])
         }
     ])
     .controller('UserListCtrl', require('./controllers/UserListCtrl'))
-    .controller('UserDeleteCtrl', require('./controllers/UserDeleteCtrl'))
+    .controller('UserDeleteCtrl', require('./controllers/directives/UserDeleteCtrl'))
     .controller('UserEditCtrl', require('./controllers/UserEditCtrl'))
     .controller('UserDetailsCtrl', require('./controllers/UserDetailsCtrl'))
     .factory('UserRepository', require('./services/UserRepository.js'))
     .directive('userDeleteButton', require('./directives/UserDeleteButton.js'))
+    .directive('userActionsDropdown', ['$dropdown', require('./directives/UserActionsDropdown.js')])
     .run([
         'NavBar',
         function(NavBar) {

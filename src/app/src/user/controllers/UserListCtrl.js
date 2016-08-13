@@ -59,6 +59,24 @@ function UserListCtrl($scope, Utils, UserRepository, NgTableParams) {
             });
         }
     });
+
+    $scope.userListActions = [
+        {
+            text: 'VIEW',
+            url: 'user.show({ userId: record_id })',
+            icon: 'fa fa-search'
+        },
+        {
+            text: 'EDIT',
+            href: 'user.edit({ userId: record_id })',
+            icon: 'fa fa-pencil'
+        },
+        {
+            text: 'DELETE_USER_QUESTION',
+            click: 'delete', // this will be replaced with delete action
+            icon: 'fa fa-times'
+        }
+    ];
 }
 
 UserListCtrl.$inject = ['$scope', 'Utils', 'UserRepository', 'ngTableParams'];

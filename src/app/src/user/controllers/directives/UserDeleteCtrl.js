@@ -16,6 +16,7 @@
 function UserListCtrl($scope, Utils, UserRepository, $modal) {
     var vm = this;
     var viewPath = 'gzero/admin/views/user/directives/';
+    
     // Delete modal
     vm.deleteModal = {
         /**
@@ -47,8 +48,7 @@ function UserListCtrl($scope, Utils, UserRepository, $modal) {
 
         /**
          * Function shows the AngularStrap modal
-         *
-         * @param userId user id to be removed, it is saved in the scope
+         * @param userId content id to be removed, it is saved in the scope
          */
         showModal: function(userId) {
             var self = this;
@@ -75,14 +75,13 @@ function UserListCtrl($scope, Utils, UserRepository, $modal) {
          * Function performs the RestAngular DELETE action for user id in scope
          *
          */
-        deleteUser: function() {
+        deleteUser: function(userId) {
             var self = this;
             UserRepository.delete(vm.userId).then(function(response) {
                 self.closeModal();
                 Utils.$state.go(Utils.$state.current, {}, {reload: true});
             });
         }
-
     };
 }
 

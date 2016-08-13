@@ -1,0 +1,19 @@
+<ul tabindex="-1" class="dropdown-menu" role="menu">
+    <li role="presentation" ng-class="{divider: item.divider}" ng-repeat="item in user">
+        <!-- VIEW ACTION -->
+        <a role="menuitem" tabindex="-1" ui-sref="{{item.url}}" ng-if="!item.divider && item.url"
+           ng-click="$event.stopPropagation();" target="{{item.target || ''}}">
+            <i class="{{item.icon}}" ng-if="item.icon"></i> {{item.text | translate}}
+        </a>
+        <!-- EDIT ACTION-->
+        <a role="menuitem" tabindex="-1" ui-sref="{{item.href}}" ng-if="!item.divider && item.href"
+        ng-click="$event.stopPropagation();" target="{{item.target || ''}}">
+        <i class="{{item.icon}}" ng-if="item.icon"></i> {{item.text | translate}}
+        </a>
+        <!-- DELETE ACTION -->
+        <a role="menuitem" tabindex="-1" href="" ng-if="!item.divider && item.click === 'delete'"
+        ng-click="deleteModal.showModal(record.id); $event.stopPropagation();">
+        <i class="{{item.icon}}" ng-if="item.icon"></i> {{item.text | translate}}
+        </a>
+    </li>
+</ul>
