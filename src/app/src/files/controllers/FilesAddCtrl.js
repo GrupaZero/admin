@@ -1,7 +1,6 @@
 'use strict';
 
-function FilesAddCtrl($scope, Utils, type, Upload, FilesRepository, FileService) {
-    var async = require('async');
+function FilesAddCtrl($q, $scope, Utils, type, Upload, FilesRepository, FileService) { //jshint ignore:line
     $scope.files = [];
     $scope.progress = [];
     $scope.isBusy = false;
@@ -38,33 +37,35 @@ function FilesAddCtrl($scope, Utils, type, Upload, FilesRepository, FileService)
     // file POST action
     $scope.save = function() {
         $scope.isBusy = true;
-        async.forEachOf($scope.files, function(file, index, callback) {
+        var promises = [];
+        _.each($scope.files, function(file, index) {
             var defaults = _.cloneDeep($scope.newFileDefaults);
             var data = FileService.prepareRequestData(file, defaults);
-            FilesRepository.create(data).then(function(response) {
+            promises.push(FilesRepository.create(data).then(function(response) {
                 $scope.removeFile(index);
                 Utils.Notifications.addSuccess('FILE_CREATED', {fileName: file.name});
-                callback();
             }, function(response) {
                 $scope.progress[index] = 0;
-                callback({fileName: file.name});
+                throw new Error({fileName: file.name});
             }, function(evt) {
                 // progress notify
                 $scope.progress[index] = parseInt(100.0 * evt.loaded / evt.total);
-            });
-
-        }, function(error) {
-            $scope.isBusy = false;
-            // if any of the file processing produced an error
-            if (error) {
-                // All processing will now stop.
-                Utils.Notifications.addError('FILE_CREATE_ERROR', error);
-            } else {
-                Utils.$state.go('files.list', {}, {reload: true});
-            }
+            }));
         });
+
+        $q.all(promises)
+            .then(function() {
+                $scope.isBusy = false;
+                // if any of the file processing produced an error
+                Utils.$state.go('files.list', {}, {reload: true});
+            })
+            .catch(function(error) {
+                $scope.isBusy = false;
+                Utils.Notifications.addError('FILE_CREATE_ERROR', error);
+            });
     };
 }
 
-FilesAddCtrl.$inject = ['$scope', 'Utils', 'type', 'Upload', 'FilesRepository', 'FileService'];
+FilesAddCtrl.$inject = ['$q', '$scope', 'Utils', 'type', 'Upload', 'FilesRepository', 'FileService'];
+
 module.exports = FilesAddCtrl;

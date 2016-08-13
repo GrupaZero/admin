@@ -67,7 +67,6 @@ gulp.task('scripts', function() {
 gulp.task('compress-vendor', function() {
     gulp.src([
             'vendor/lodash.js',
-            'vendor/async.js',
             'vendor/angular/angular.js',
             'vendor/angular/angular-ui-router.js',
             'vendor/angular/angular-translate.js',
@@ -101,7 +100,6 @@ gulp.task('compress-vendor', function() {
 
     gulp.src([
             'vendor/lodash.min.js',
-            'vendor/async.min.js',
             'vendor/angular/angular.min.js',
             'vendor/angular/angular-ui-router.min.js',
             'vendor/angular/angular-translate.min.js',
