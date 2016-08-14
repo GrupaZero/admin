@@ -4,7 +4,7 @@
  * Return admin view so we can run AngularJS admin panel
  */
 group(
-    ['domain' => config('gzero.domain'), 'prefix' => 'admin', 'middleware' => 'access'],
+    ['domain' => config('gzero.domain'), 'prefix' => 'admin', 'middleware' => 'admin.api.access'],
     function () {
         get(
             '/',
