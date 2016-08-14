@@ -69,6 +69,12 @@ If admin panel appeared, everything works fine.
 
 Now release your imagination and create your own magic ;-)
 
+## How to manually build?
+```
+ npm run build
+
+```
+
 ## JavaScript tests
 To run karma server:
 ```

@@ -1,6 +1,7 @@
 {
   "scripts": {
     "start": "(cd src/app && gulp)",
+    "build": "(cd src/app && gulp scripts)",
     "test": "(cd src/app && ../../node_modules/karma/bin/karma start)"
   },
   "devDependencies": {

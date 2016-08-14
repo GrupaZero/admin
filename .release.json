@@ -14,7 +14,7 @@
   "requireCleanWorkingDir": false,
   "src": {
     "pushRepo": null,
-    "beforeStartCommand": false,
+    "beforeStartCommand": "npm run build",
     "beforeStageCommand": false,
     "afterReleaseCommand": false
   },
