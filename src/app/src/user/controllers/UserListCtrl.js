@@ -72,7 +72,7 @@ function UserListCtrl($scope, Utils, UserRepository, NgTableParams) {
             icon: 'fa fa-pencil'
         },
         {
-            text: 'DELETE_USER_QUESTION',
+            text: 'DELETE',
             click: 'delete', // this will be replaced with delete action
             icon: 'fa fa-times'
         }
