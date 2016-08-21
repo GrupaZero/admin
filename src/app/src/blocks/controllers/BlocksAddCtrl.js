@@ -29,7 +29,7 @@ function BlocksAddCtrl($scope, Utils, langCode, BlocksRepository, BlockService) 
             Utils.Notifications.addSuccess('BLOCK_CREATED');
             Utils.$state.go('blocks.list', {}, {reload: true});
         }, function(response) {
-            Utils.Notifications.addErrors(response.data.messages);
+            Utils.Notifications.addError(response.data.message);
         });
     };
 }

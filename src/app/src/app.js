@@ -111,12 +111,12 @@ angular.module('admin', dependencies).config([
                 Utils.Notifications.addError('COMMON_ERROR');
                 return false; // error handled
             } else if (response.status === 500) {
-                Utils.Notifications.addError(response.data.error.message);
+                Utils.Notifications.addError(response.data.message);
             } else if (response.status === 403) {
                 localStorage.removeItem('gzero_api_token');
                 window.location.reload();
             }
-            Utils.Notifications.addErrors(response.data.messages);
+            Utils.Notifications.addError(response.data.message);
             return false; // error not handled
         });
     }

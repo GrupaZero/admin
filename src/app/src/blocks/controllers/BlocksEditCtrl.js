@@ -34,7 +34,7 @@ function BlocksEditCtrl($scope, Utils, langCode, block, BlocksRepository, BlockS
                     Utils.Notifications.addSuccess('THE_CHANGES_HAVE_BEEN_SAVED');
                     Utils.redirectBack('blocks.list');
                 }, function(response) {
-                    Utils.Notifications.addErrors(response.data.messages);
+                    Utils.Notifications.addError(response.data.message);
                 });
             } else {
                 Utils.Notifications.addSuccess('THE_CHANGES_HAVE_BEEN_SAVED');
@@ -42,7 +42,7 @@ function BlocksEditCtrl($scope, Utils, langCode, block, BlocksRepository, BlockS
             }
 
         }, function(response) {
-            Utils.Notifications.addErrors(response.data.messages);
+            Utils.Notifications.addError(response.data.message);
         });
     };
 }
