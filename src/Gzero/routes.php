@@ -4,7 +4,7 @@
  * Return admin view so we can run AngularJS admin panel
  */
 group(
-    ['domain' => config('gzero.domain'), 'prefix' => 'admin', 'middleware' => 'admin.api.access'],
+    ['domain' => config('gzero.domain'), 'prefix' => 'admin', 'middleware' => 'admin.panel.access'],
     function () {
         get(
             '/',
@@ -20,11 +20,17 @@ group(
         );
 
         get(
-            'logout',
-            function () {
-                Auth::logout();
-                return redirect(route('home'));
-            }
+            'login',
+            [
+                'as' => 'admin.login',
+                function () {
+                    if (class_exists('Debugbar')) {
+                        \Debugbar::disable();
+                    }
+                    return view('gzero-admin::login');
+                }
+            ]
+
         );
     }
 );

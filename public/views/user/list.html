@@ -34,7 +34,7 @@
                     </td>
                 </tr>
                 <tr ng-if="!$data[0] || requestPending">
-                    <td colspan="5" class="text-center">
+                    <td colspan="6" class="text-center">
                         <strong ng-if="!$data[0] && !requestPending">{{ 'NO_ENTRIES' | translate }}</strong>
                         <strong ng-if="requestPending"><i class="fa fa-spin fa-2x fa-spinner"></i></strong>
                     </td>

@@ -67,9 +67,11 @@ angular.module('admin', dependencies).config([
             withCredentials: true
         });
 
-        // Set X-Requested-With header
+        // Set default request headers
         RestangularProvider.setDefaultHeaders({
-            'X-Requested-With': 'XMLHttpRequest'
+            'X-Requested-With': 'XMLHttpRequest',
+            'Accept': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem('gzero_api_token')
         });
 
         // Rename Restangular route field to use a $ prefix for easy distinction between data and metadata
@@ -110,6 +112,9 @@ angular.module('admin', dependencies).config([
                 return false; // error handled
             } else if (response.status === 500) {
                 Utils.Notifications.addError(response.data.error.message);
+            } else if (response.status === 403) {
+                localStorage.removeItem('gzero_api_token');
+                window.location.reload();
             }
             Utils.Notifications.addErrors(response.data.messages);
             return false; // error not handled

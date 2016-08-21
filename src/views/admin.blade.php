@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>G-ZERO Admin</title>
+    <title>G-ZERO ADMIN</title>
 
     <!-- core CSS -->
     <link rel="stylesheet" href="/gzero/admin/css/application.css">
@@ -19,6 +19,16 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <script type="application/javascript">
+        var token = localStorage.getItem('gzero_api_token');
+
+        function redirectToLogin() {
+            window.location = '{{ route('admin.login') }}';
+        }
+
+        if (!token) {
+            redirectToLogin();
+        }
+
         var Config = {
             url: '{{ Request::root() }}',
             domain: '{{ config("gzero.domain") }}',
@@ -65,7 +75,7 @@
     </ul>
 </script>
 
-<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation" ng-cloak>
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-6 col-sm-3 col-md-2 brand-box">
@@ -115,7 +125,7 @@
         </div>
     </div>
 </div>
-<div class="container-fluid">
+<div class="container-fluid" ng-cloak>
     <div class="row row-offcanvas left" ng-class="{ 'is-active': showSidebar, '' : !showSidebar }">
         <div class="col-sm-3 col-md-2 sidebar-c-offcanvas">
             <ul class="nav nav-c-sidebar">
