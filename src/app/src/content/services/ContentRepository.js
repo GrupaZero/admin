@@ -38,7 +38,11 @@ function ContentRepository(Restangular) {
             return Restangular.one(api, contentId).one('translations', translationId).remove();
         },
         deleteContent: function(id, forceDelete) {
-            return Restangular.one(api, id).one(forceDelete).remove();
+            if (forceDelete) {
+                return Restangular.one(api, id).remove({force: forceDelete});
+            } else {
+                return Restangular.one(api, id).remove();
+            }
         },
         restoreContent: function(id) {
             return Restangular.one(api + '/restore', id).put();
