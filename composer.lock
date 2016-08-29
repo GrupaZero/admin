@@ -132,17 +132,17 @@
         },
         {
             "name": "gzero/core",
-            "version": "v0.3.0",
+            "version": "v0.3.2",
             "target-dir": "Gzero/Core",
             "source": {
                 "type": "git",
                 "url": "https://github.com/GrupaZero/core.git",
-                "reference": "d16d2ffc2e7a893dee35317dd91e1c45cffbef28"
+                "reference": "feddaf51d7fdf349c607b40522623a4b79f656a2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GrupaZero/core/zipball/d16d2ffc2e7a893dee35317dd91e1c45cffbef28",
-                "reference": "d16d2ffc2e7a893dee35317dd91e1c45cffbef28",
+                "url": "https://api.github.com/repos/GrupaZero/core/zipball/feddaf51d7fdf349c607b40522623a4b79f656a2",
+                "reference": "feddaf51d7fdf349c607b40522623a4b79f656a2",
                 "shasum": ""
             },
             "require": {
@@ -165,7 +165,7 @@
                     "email": "adrian.skierniewski@gmail.com"
                 }
             ],
-            "time": "2016-08-21 12:08:13"
+            "time": "2016-08-21 19:16:37"
         },
         {
             "name": "illuminate/contracts",
