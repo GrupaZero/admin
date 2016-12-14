@@ -59,6 +59,7 @@
       "module",
       "modules",
       "require",
+      "Laravel",
       "Config",
       "_",
       "PNotify",

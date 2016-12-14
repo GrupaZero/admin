@@ -11,20 +11,14 @@ angular.module('admin.core', ['CoreFilters'])
       $stateProvider
         .state('logout', {
           url: '/logout',
-          controller: [
-            'ApiRepository', function(ApiRepository) {
-              ApiRepository.logout().then(function(response) {
-                localStorage.removeItem('gzero_api_token');
-                window.location.reload();
-              });
-            }
-          ]
+          controller: function() {
+            window.location.href = Config.url + '/admin/logout';
+          }
         });
     }
   ])
   .controller('CoreCtrl', require('./controllers/CoreCtrl.js'))
   .factory('LangRepository', require('./services/LangRepository.js'))
-  .factory('ApiRepository', require('./services/ApiRepository.js'))
   .factory('NavBar', require('./services/NavBar.js'))
   .factory('TopNavBar', require('./services/TopNavBar.js'))
   .factory('Notifications', require('../lib/Notifications.js'))

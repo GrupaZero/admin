@@ -1,5 +1,6 @@
 <?php namespace Gzero\Admin;
 
+use Gzero\Admin\Middleware\AdminPanelAccess;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider as SP;
 
@@ -29,7 +30,7 @@ class ServiceProvider extends SP {
      * @var array
      */
     protected $routeMiddleware = [
-        'admin.panel.access' => \Gzero\Admin\Middleware\AdminPanelAccess::class,
+        'admin.panel.access' => AdminPanelAccess::class,
     ];
 
     /**
@@ -41,14 +42,14 @@ class ServiceProvider extends SP {
      */
     public function boot(Router $router)
     {
-        $this->registerRouteMiddleware($router);
-        $this->registerRoutes();
+        $this->loadRoutesFrom(__DIR__ . '/../../../routes/web.php');
         $this->loadViewsFrom(__DIR__ . '/../../views', 'gzero-admin');
+        $this->registerRouteMiddleware($router);
         $this->publishes(
             [
-                __DIR__ . '/../../views',
-                'gzero-admin' => base_path('resources/views/gzero/admin'),
-            ]
+                __DIR__ . '/../../views' => base_path('resources/views/gzero/admin')
+            ],
+            'views'
         );
         $this->publishes(
             [
@@ -71,11 +72,6 @@ class ServiceProvider extends SP {
                 return new ModuleRegistry();
             }
         );
-    }
-
-    private function registerRoutes()
-    {
-        require __DIR__ . '/../routes.php';
     }
 
     /**

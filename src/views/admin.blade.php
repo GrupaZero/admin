@@ -10,6 +10,13 @@
 
     <title>G-ZERO ADMIN</title>
 
+    <script>
+        window.Laravel = <?php echo json_encode([
+            'csrfToken' => csrf_token(),
+        ]); ?>
+
+    </script>
+
     <!-- core CSS -->
     <link rel="stylesheet" href="/gzero/admin/css/application.css">
 
@@ -19,25 +26,16 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <script type="application/javascript">
-        var token = localStorage.getItem('gzero_api_token');
-
-        function redirectToLogin() {
-            window.location = '{{ route('admin.login') }}';
-        }
-
-        if (!token) {
-            redirectToLogin();
-        }
 
         var Config = {
-            url: '{{ Request::root() }}',
+            url: '{{ request()->root() }}',
             domain: '{{ config("gzero.domain") }}',
             multilang: '{{ config("gzero.multilang.enabled") ? 'true' : 'false' }}',
-            apiUrl: 'http://api.{{ Request::getHTTPHost()}}',
+            apiUrl: 'http://api.{{ request()->getHTTPHost()}}',
             seoDescriptionLength: '{{ config("gzero.seoDescLength") }}',
             seoDescriptionAlternativeField: '{{ config("gzero.seoDescriptionAlternativeField") }}',
             seoTitleAlternativeField: '{{ config("gzero.seoTitleAlternativeField") }}',
-            currentUserId: {{ app('auth')->user()->id }},
+            currentUserId: {{ auth()->user()->id }},
             contentTypes: {!! json_encode(array_keys(config("gzero.content_type")), true) !!},
             blockTypes: {!! json_encode(array_keys(config("gzero.block_type")), true) !!},
             fileTypes: {!! json_encode(array_keys(config("gzero.file_type")), true) !!},
@@ -47,7 +45,7 @@
         };
         var modules = [
             @foreach ($modules->getModulesNames() as $moduleName)
-            "{{ $moduleName }}",
+                "{{ $moduleName }}",
             @endforeach
         ];
     </script>

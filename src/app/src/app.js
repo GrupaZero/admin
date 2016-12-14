@@ -71,7 +71,7 @@ angular.module('admin', dependencies).config([
         RestangularProvider.setDefaultHeaders({
             'X-Requested-With': 'XMLHttpRequest',
             'Accept': 'application/json',
-            'Authorization': 'Bearer ' + localStorage.getItem('gzero_api_token')
+            'X-CSRF-TOKEN': Laravel.csrfToken
         });
 
         // Rename Restangular route field to use a $ prefix for easy distinction between data and metadata
@@ -113,8 +113,7 @@ angular.module('admin', dependencies).config([
             } else if (response.status === 500) {
                 Utils.Notifications.addError(response.data.message);
             } else if (response.status === 403) {
-                localStorage.removeItem('gzero_api_token');
-                window.location.reload();
+                window.location.href = Config.url;
             }
             Utils.Notifications.addError(response.data.message);
             return false; // error not handled
