@@ -107,16 +107,24 @@ angular.module('admin', dependencies).config([
         $rootScope.baseUrl = Utils.Config.url;
 
         Restangular.setErrorInterceptor(function(response, deferred, responseHandler) {
-            if (response.status === 404) {
-                Utils.Notifications.addError('COMMON_ERROR');
-                return false; // error handled
-            } else if (response.status === 500) {
-                Utils.Notifications.addError(response.data.message);
-            } else if (response.status === 403) {
-                window.location.href = Config.url;
+            switch (response.status) {
+                case 422:
+                    _.forEach(response.data.error.errors, function(fieldErrors) {
+                        _.forEach(fieldErrors, function(error) {
+                            Utils.Notifications.addError(error);
+                        });
+                    });
+                    break;
+                case 404:
+                    Utils.Notifications.addError('COMMON_ERROR');
+                    break;
+                case 403:
+                    window.location.href = Config.url;
+                    break;
+                default:
+                    Utils.Notifications.addError(response.data.error.message);
             }
-            Utils.Notifications.addError(response.data.message);
-            return false; // error not handled
+            return false;
         });
     }
 ]);
