@@ -31,7 +31,7 @@
             url: '{{ request()->root() }}',
             domain: '{{ config("gzero.domain") }}',
             multilang: '{{ config("gzero.multilang.enabled") ? 'true' : 'false' }}',
-            apiUrl: 'http://api.{{ request()->getHTTPHost()}}',
+            apiUrl: '{{ request()->getScheme() }}://api.{{ request()->getHTTPHost() }}',
             seoDescriptionLength: '{{ config("gzero.seoDescLength") }}',
             seoDescriptionAlternativeField: '{{ config("gzero.seoDescriptionAlternativeField") }}',
             seoTitleAlternativeField: '{{ config("gzero.seoTitleAlternativeField") }}',
