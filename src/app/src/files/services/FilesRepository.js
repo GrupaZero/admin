@@ -32,9 +32,9 @@ function FilesRepository(Restangular, Upload) {
         },
         create: function(newFile) {
             return Upload.upload({
-                url: Restangular.configuration.baseUrl + '/' + api,
-                headers : Restangular.configuration.defaultHeaders,
-                withCredentials: Restangular.configuration.defaultHttpFields.withCredentials,
+                url: _.clone(Restangular.configuration.baseUrl) + '/' + api,
+                headers : _.clone(Restangular.configuration.defaultHeaders),
+                withCredentials: _.clone(Restangular.configuration.defaultHttpFields.withCredentials),
                 data: newFile
             });
         },

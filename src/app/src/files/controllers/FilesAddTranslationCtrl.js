@@ -6,9 +6,10 @@ function FilesAddTranslationCtrl($scope, Utils, FilesRepository) {
         langCode: Utils.$stateParams.langCode
     };
 
-    // contents POST action
+    // files translations POST action
     $scope.addFileTranslation = function() {
-        FilesRepository.newTranslation(Utils.$stateParams.fileId, $scope.newFileTranslation).then(function(response) {
+        FilesRepository.newTranslation(Utils.$stateParams.fileId, $scope.newFileTranslation)
+            .then(function(response) {
             // Redirect user to previous state or files list
             Utils.redirectBack('files.list');
         });
