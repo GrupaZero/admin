@@ -206,14 +206,14 @@
             "SEO": "SEO"
         },
         "LABELS": {
-            "COOKIESPOLICYURL": "Cookies Policy page url",
-            "SITENAME": "Site title",
-            "SITEDESC": "Site description",
-            "GOOGLEANALYTICSID": "Google Analytics ID",
-            "DEFAULTPAGESIZE": "Number of entries per page",
-            "SEOTITLEALTERNATIVEFIELD": "SEO tile alternative field",
-            "SEODESCRIPTIONALTERNATIVEFIELD": "SEO description alternative field",
-            "SEODESCLENGTH": "Site SEO description character number"
+            "ALTERNATIVE_DESC": "SEO description alternative field",
+            "ALTERNATIVE_TITLE": "SEO tile alternative field",
+            "COOKIES_POLICY_URL": "Cookies Policy page url",
+            "DEFAULT_PAGE_SIZE": "Number of entries per page",
+            "DESC_LENGTH": "Site SEO description character number",
+            "GOOGLE_ANALYTICS_ID": "Google Analytics ID",
+            "SITE_DESC": "Site description",
+            "SITE_NAME": "Site title"
         }
     },
     "LANGUAGE_NOT_FOUND": "Language not found.",
