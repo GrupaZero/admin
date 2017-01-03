@@ -20,7 +20,7 @@ Route::group(
                     'admin.panel.access'
                 ],
                 function () {
-                    if (class_exists('Barryvdh\Debugbar\ServiceProvider')) {
+                    if (isProviderLoaded('Barryvdh\Debugbar\ServiceProvider')) {
                         resolve('debugbar')->disable();
                     }
                     return view('gzero-admin::admin', ['modules' => app()->make('admin.module')]);
