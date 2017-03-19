@@ -41,9 +41,9 @@
             <tr ng-repeat="file in $data">
                 <td data-title="'TITLE' | translate" sortable="'translations.title'" width="40%">
                     <div class="media">
-                        <div class="media-left" ng-show="file.type === 'image'">
+                        <div class="media-left" ng-if="file.type === 'image'">
                             <div class="img-preview">
-                                <img ng-src="{{::file.url}}" alt="{{ file.translations | getTranslation:transLang.code:'title' }}"
+                                <img ng-src="{{::file.thumb}}" alt="{{ file.translations | getTranslation:transLang.code:'title' }}"
                                      title="{{ file.translations | getTranslation:transLang.code:'title' }}" width="64">
                             </div>
                         </div>

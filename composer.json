@@ -14,7 +14,7 @@
         }
     ],
     "require": {
-        "php": ">=7.0.0",
+        "php": ">=7.1.0",
         "gzero/core": "dev-master",
         "illuminate/routing": "5.3.*"
     },
