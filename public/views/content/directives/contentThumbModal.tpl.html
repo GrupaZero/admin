@@ -1,0 +1,81 @@
+<div class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" ng-show="title">
+                <button type="button" class="close" ng-click="vm.modal.closeModal()">&times;</button>
+                <h4 class="modal-title" translate="{{title}}"></h4>
+            </div>
+            <div class="modal-body">
+                <form name="searchForm" novalidate>
+                    <input ng-model="vm.searchQuery" class="form-control margin-bottom" id="searchQuery"
+                           ng-change="vm.modal.searchFiles(vm.searchQuery)"
+                           placeholder="{{ 'TYPE_FILE_NAME_TO_SEARCH' | translate }}"
+                           ng-model-options="{debounce: 500}" type="text"/>
+                </form>
+                <!-- START FILES TABLE -->
+                <div class="table-box border-top no-padding-bottom fixed-height">
+                    <table class="table table-striped table-condensed table-hover c-pointer">
+                        <thead>
+                        <tr>
+                            <th class="text-center">{{ 'ACTION' | translate }}</th>
+                            <th class="text-center">{{ 'FILE' | translate }}</th>
+                            <th class="text-center">{{ 'FILE_NAME' | translate }}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="file in vm.files" ng-click="vm.modal.selectFile(file)">
+                            <td class="text-center">
+                                <div class="checkbox">
+                                    <label>
+                                        <input ng-model="vm.thumbId" type="radio" ng-value="file.id"/>
+                                    </label>
+                                </div>
+                            </td>
+                            <td width="20%" class="text-center">
+                                <div class="media" ng-if="file.type === 'image'">
+                                    <div class="img-preview">
+                                        <img ng-src="{{::file.thumb}}"
+                                             alt="{{ file.translations | getTranslation:langCode:'title' }}"
+                                             title="{{ file.translations | getTranslation:langCode:'title' }}"
+                                             width="64">
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                {{::file.name}}.{{::file.extension}}
+                            </td>
+                        </tr>
+                        <tr ng-if="!vm.files[0]">
+                            <td colspan="3" class="text-center">
+                                <strong ng-if="!vm.modal.existingFiles[0]">{{ 'NO_FILES' | translate }}</strong>
+                                <strong ng-if="vm.modal.existingFiles[0]">{{ 'ALL_FILES_ALREADY_ADDED' | translate }}</strong>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- END FILES TABLE -->
+            </div>
+            <div class="modal-footer">
+                <button type="button"
+                        class="btn btn-success"
+                        ng-click="vm.modal.closeModal()">
+                    {{ 'CANCEL' | translate }}
+                </button>
+                <button type="button"
+                        class="btn btn-danger"
+                        ng-click="vm.thumbId = null; vm.modal.save()">
+                    <i class="fa fa-times hidden-sm"></i>
+                    {{ 'DELETE' | translate }}
+                </button>
+                <button type="button"
+                        class="btn btn-primary"
+                        ng-disabled="!vm.thumbId"
+                        ng-click="vm.modal.save()">
+                    <i class="glyphicon glyphicon-ok-circle"></i>
+                    {{ 'SAVE' | translate }}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

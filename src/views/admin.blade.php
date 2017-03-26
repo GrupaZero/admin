@@ -41,7 +41,8 @@
             fileTypes: {!! json_encode(array_keys(config("gzero.file_type")), true) !!},
             fileExtensions: {!! json_encode(config("gzero.upload.allowed_file_extensions"), true) !!},
             blockRegions: {!! json_encode(config("gzero.available_blocks_regions"), true) !!},
-            defaultLangCode: {!! json_encode(config("app.locale"), true) !!}
+            defaultLangCode: {!! json_encode(config("app.locale"), true) !!},
+            fallbackLangCode: {!! json_encode(config("app.fallback_locale"), true) !!}
         };
         var modules = [
             @foreach ($modules->getModulesNames() as $moduleName)
@@ -115,7 +116,7 @@
                     </li>
                 </ul>
                 <div class="navbar-form navbar-right hidden-xs">
-                    <select ng-model="currentLang" ng-change="selectAdminLang()" class="form-control"
+                    <select ng-model="currentLang" ng-change="setLang()" class="form-control"
                             ng-disabled="showAdminLangSwitcher" ng-show="isMultiLangEnabled"
                             ng-options="lang.code | langName | translate for lang in langs"></select>
                 </div>

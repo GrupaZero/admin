@@ -134,6 +134,22 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
                         }
                     }
                 })
+                .state('content.show.files', {
+                    url: '/files/{type}',
+                    deepStateRedirect: true,
+                    sticky: true,
+                    resolve:{
+                        entity: function(content){
+                            return content;
+                        }
+                    },
+                    views: {
+                        'contentTab': {
+                            templateUrl: 'gzero/admin/views/core/details/tabs/files.html',
+                            controller: 'EntityFilesCtrl'
+                        }
+                    }
+                })
                 // CONTENT EDIT
                 .state('content.edit', {
                     url: '/{contentId}/edit/{langCode}',
@@ -269,6 +285,7 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
     .controller('ContentTogglePropertyCtrl', require('./controllers/directives/ContentTogglePropertyCtrl'))
     .controller('ContentWeightEditCtrl', require('./controllers/directives/ContentWeightEditCtrl'))
     .controller('ContentThemeEditCtrl', require('./controllers/directives/ContentThemeEditCtrl'))
+    .controller('ContentThumbCtrl', require('./controllers/directives/ContentThumbCtrl'))
     .controller('ContentPublishedAtEditCtrl', require('./controllers/directives/ContentPublishedAtEditCtrl'))
     .factory('ContentRepository', require('./services/ContentRepository.js'))
     .directive('contentDeleteButton', require('./directives/ContentDeleteButton.js'))
@@ -281,6 +298,7 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
     .directive('contentActionsDropdown', ['$dropdown', require('./directives/ContentActionsDropdown.js')])
     .directive('contentWeightEditButton', ['$dropdown', require('./directives/ContentWeightEditButton.js')])
     .directive('contentThemeEditButton', ['$dropdown', require('./directives/ContentThemeEditButton.js')])
+    .directive('contentThumbButton', ['$dropdown', require('./directives/ContentThumbButton.js')])
     .directive('charactersCounter', require('./directives/CharactersCounter.js'))
     .run([
         'NavBar',

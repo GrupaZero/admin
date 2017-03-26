@@ -30,7 +30,7 @@
         <div class="row">
             <div class="col-md-6" ng-show="file.type === 'image'">
                 <div class="img-preview margin-bottom">
-                    <img ng-src="{{::file.url}}" alt="{{ file.translations | getTranslation:langCode:'title' }}"
+                    <img ng-src="{{::file.thumb}}" alt="{{ file.translations | getTranslation:langCode:'title' }}"
                          title="{{ file.translations | getTranslation:langCode:'title' }}" class="img-responsive">
                 </div>
             </div>

@@ -3,8 +3,15 @@ var controller = require('../../../src/content/controllers/ContentDetailsCtrl');
 describe('ContentDetailsCtrl', function() {
     var scope;
     var langCode = 'en';
-    var content;
-    var ContentRepository;
+    var content = {
+        id: 1,
+        path: [1]
+    };
+    var ContentRepository = {
+        clean: function() {
+            return [];
+        }
+    };
     var ctrl;
     var Utils = {};
 

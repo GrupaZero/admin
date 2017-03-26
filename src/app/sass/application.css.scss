@@ -97,6 +97,7 @@
       border-color     : #8B91A0;
     }
   }
+
   td.text-center {
     vertical-align : middle;
   }
@@ -109,6 +110,12 @@
 
     .action-column {
       width : 200px;
+    }
+  }
+
+  &.table-hover.c-pointer {
+    td:hover {
+      cursor: pointer;
     }
   }
 }
@@ -194,12 +201,18 @@ li:hover {
 .table-box {
   padding : 0 0 80px;
   margin  : 0 -15px;
+  position : relative;
   .table {
     margin-bottom : 0;
   }
   .pagination {
     margin : 0;
   }
+}
+
+.table-box.fixed-height {
+  max-height: 400px;
+  overflow: auto;
 }
 
 .mr-sm {

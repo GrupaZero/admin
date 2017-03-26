@@ -9,10 +9,6 @@ function FilesDetailsCtrl($scope, file, langCode, FilesRepository, Utils) {
             action: 'details',
             default: true // default active tab in settings edit mode
         }
-        // {
-        //     title: 'BLOCKS',
-        //     action: 'blocks'
-        // }
     ];
 
     // if lang code exists

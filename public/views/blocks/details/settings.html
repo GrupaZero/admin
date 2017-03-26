@@ -1,0 +1,38 @@
+<div class="panel content-settings-panel panel-default margin-top">
+    <div class="panel-heading">
+        <strong>{{ 'SETTINGS' | translate | uppercase }}</strong>
+    </div>
+    <ul class="list-group content-settings">
+        <li class="list-group-item clearfix">
+            <i class="fa fa-th-large"></i> {{ 'REGION' | translate }}
+
+            <div class="pull-right">
+                <strong>{{ 'BLOCK_REGIONS.' + block.region | uppercase | translate }}</strong>
+            </div>
+        </li>
+        <li class="list-group-item clearfix">
+            <i class="fa fa-power-off"></i> {{ 'IS_PUBLISHED' | translate }}
+            <div class="pull-right">
+                <i class="fa"
+                   ng-class="block.isActive ? 'fa-check-circle text-success' : 'fa-times-circle text-danger'"></i>
+            </div>
+        </li>
+        <li class="list-group-item clearfix">
+            <i class="fa fa-sort"></i> {{ 'WEIGHT' | translate }}
+
+            <div class="pull-right">
+                <strong>{{ block.weight }}</strong>
+            </div>
+        </li>
+    </ul>
+    <div class="panel-footer text-right">
+        <a ui-sref="blocks.list"
+           class="btn btn-default pull-left">
+            {{ 'CANCEL' | translate }}
+        </a>
+        <button block-delete-button class="btn btn-danger"
+                block-id="{{ block.id }}" data-force="true">
+            <i class="fa fa-times"></i>  {{ 'DELETE' | translate }}
+        </button>
+    </div>
+</div>

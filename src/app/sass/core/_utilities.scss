@@ -23,25 +23,24 @@
 //   *zoom: 1;
 // }
 
-
 // -------------------------------------
 //   Mixins
 // -------------------------------------
 
 // ----- Adds responsive breakpoints. ----- //
 @mixin breakpoint($width) {
-   @media (min-width: $width) {
-     @content;
-   }
+  @media (min-width : $width) {
+    @content;
+  }
 }
 
 // ----- Adds accessibility pseudo selectors to hover states. ----- //
 @mixin attention() {
-   &:hover,
-   &:active,
-   &:focus {
-     @content;
-   }
+  &:hover,
+  &:active,
+  &:focus {
+    @content;
+  }
 }
 
 // Rem sizing mixin with px fallback.
@@ -54,13 +53,13 @@
 //   Functions
 // -------------------------------------
 
-
 // -------------------------------------
 //   Utilities
 // -------------------------------------
 .no-margin {
   margin : 0 !important;
 }
+
 .no-margin-top {
   margin-top : 0 !important;
 }
@@ -112,13 +111,17 @@
 }
 
 .clear-left {
-  clear: left !important;
+  clear : left !important;
 }
 
 .clear-right {
-  clear: right !important;
+  clear : right !important;
 }
 
 .clear-both {
-  clear: right !important;
+  clear : right !important;
+}
+
+.border-top {
+  border-top : 1px solid $modal-header-border-color;
 }

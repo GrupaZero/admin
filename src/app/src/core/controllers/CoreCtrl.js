@@ -4,15 +4,14 @@ function CoreCtrl($scope, Utils, Translations, NavBar, TopNavBar) {
     // get translations languages
     Translations.getTranslations().then(function(response) {
         $scope.langs = response.langs;
-        $scope.currentLang = $scope.transLang = response.currentLang;
-        Translations.selectAdminLang($scope.currentLang);
-        // set CKEditor language
-        Utils.ckOptions.setEditorOption({language: $scope.currentLang.code});
+        $scope.currentLang = $scope.transLang = Translations.getDefaultLang();
+        Translations.setFallbackLang();
+        $scope.setLang();
     });
 
     // admin panel language
-    $scope.selectAdminLang = function() {
-        Translations.selectAdminLang($scope.currentLang);
+    $scope.setLang = function() {
+        Translations.setLang($scope.currentLang);
         // set CKEditor language
         Utils.ckOptions.setEditorOption({language: $scope.currentLang.code});
     };

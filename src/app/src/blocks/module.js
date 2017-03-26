@@ -27,6 +27,68 @@ angular.module('admin.blocks', [])
                     }
 
                 })
+                // BLOCK SHOW
+                .state('blocks.show', {
+                    url: '/{blockId}/show/{langCode}',
+                    abstract: [
+                        // redirect to active tab on language change
+                        '$state', function($state) {
+                            return _.startsWith($state.current.name, 'blocks.show') ? $state.current.name : '.details';
+                        }
+                    ],
+                    resolve: {
+                        langCode: [
+                            '$state', '$stateParams', function($state, $stateParams) {
+                                return $stateParams.langCode;
+                            }
+                        ],
+                        block: [
+                            '$stateParams', 'BlocksRepository', function($stateParams, BlocksRepository) {
+                                return BlocksRepository.one($stateParams.blockId);
+                            }
+                        ]
+                    },
+                    views: {
+                        'content': {
+                            templateUrl: viewPath + 'show.html',
+                            controller: 'BlocksDetailsCtrl'
+                        },
+                        'langSwitcher@blocks.show': {
+                            templateUrl: viewPath + 'details/langSwitcher.html'
+
+                        },
+                        'blockSettings@blocks.show': {
+                            templateUrl: viewPath + 'details/settings.html'
+
+                        }
+                    }
+                })
+                .state('blocks.show.details', {
+                    url: '/details',
+                    deepStateRedirect: true,
+                    sticky: true,
+                    views: {
+                        'contentTab': {
+                            templateUrl: viewPath + 'details/tabs/details.html'
+                        }
+                    }
+                })
+                .state('blocks.show.files', {
+                    url: '/files/{type}',
+                    deepStateRedirect: true,
+                    sticky: true,
+                    resolve:{
+                        entity: function(block){
+                            return block;
+                        }
+                    },
+                    views: {
+                        'contentTab': {
+                            templateUrl: 'gzero/admin/views/core/details/tabs/files.html',
+                            controller: 'EntityFilesCtrl'
+                        }
+                    }
+                })
                 // BLOCK ADD
                 .state('blocks.add', {
                     url: '/add/{langCode}',
@@ -68,6 +130,7 @@ angular.module('admin.blocks', [])
                 });
         }
     ])
+    .controller('BlocksDetailsCtrl', require('./controllers/BlocksDetailsCtrl'))
     .controller('BlocksListCtrl', require('./controllers/BlocksListCtrl'))
     .controller('BlocksAddCtrl', require('./controllers/BlocksAddCtrl'))
     .controller('BlocksEditCtrl', require('./controllers/BlocksEditCtrl'))

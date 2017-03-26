@@ -18,6 +18,9 @@ angular.module('admin.core', ['CoreFilters'])
     }
   ])
   .controller('CoreCtrl', require('./controllers/CoreCtrl.js'))
+  .controller('EntityFilesCtrl', require('./controllers/EntityFilesCtrl.js'))
+  .controller('AddFilesButtonCtrl', require('./controllers/directives/AddFilesButtonCtrl'))
+  .factory('FilesRepository', require('../files/services/FilesRepository'))
   .factory('LangRepository', require('./services/LangRepository.js'))
   .factory('NavBar', require('./services/NavBar.js'))
   .factory('TopNavBar', require('./services/TopNavBar.js'))
@@ -27,6 +30,7 @@ angular.module('admin.core', ['CoreFilters'])
   .factory('Storage', require('../lib/Storage.js'))
   .factory('Utils', require('./services/Utils.js'))
   .directive('statesDropdown', ['$dropdown', require('./directives/StatesDropdown.js')])
+  .directive('addFilesButton', ['$dropdown', require('./directives/AddFilesButton.js')])
   .run([
     'TopNavBar',
     'UserRepository',

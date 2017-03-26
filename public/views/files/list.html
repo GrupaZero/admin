@@ -38,14 +38,15 @@
     <div class="table-box"> <!-- START USERS TABLE -->
         <table ng-table="tableParams" template-pagination="gzero/admin/views/partials/pagination.html" class="table table-striped">
             <tbody>
-            <tr ng-repeat="file in $data">
+            <tr ng-repeat="file in $data" ng-class="{ inactive: !file.isActive }">
                 <td data-title="'TITLE' | translate" sortable="'translations.title'" width="40%">
                     <div class="media">
-                        <div class="media-left" ng-if="file.type === 'image'">
-                            <div class="img-preview">
+                        <div class="media-left">
+                            <div class="img-preview" ng-if="file.type === 'image'">
                                 <img ng-src="{{::file.thumb}}" alt="{{ file.translations | getTranslation:transLang.code:'title' }}"
                                      title="{{ file.translations | getTranslation:transLang.code:'title' }}" width="64">
                             </div>
+                            <i ng-if="file.type === 'document'" class="fa fa-file-pdf-o fa-2x"></i>
                         </div>
                         <div class="media-body">
                             <div class="media-heading">
@@ -79,7 +80,7 @@
                     </a>
                     <button file-delete-button class="btn btn-danger btn-sm" file-id="{{ file.id }}"
                             ng-click="$event.stopPropagation();">
-                        <i class="fa fa-times"></i> {{ 'DELETE' | translate }}
+                        <i class="fa fa-times hidden-sm"></i> {{ 'DELETE' | translate }}
                     </button>
                 </td>
             </tr>

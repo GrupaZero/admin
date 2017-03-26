@@ -3,6 +3,21 @@
         <strong>{{ 'SETTINGS' | translate | uppercase }}</strong>
     </div>
     <ul class="list-group content-settings">
+        <li class="list-group-item clearfix">
+            <a content-thumb-button
+               content_id="{{content.id}}"
+               thumb-id="{{content.thumb.id}}">
+                <i class="fa fa-image"></i> {{ 'THUMBNAIL' | translate }}
+                <div class="pull-right" ng-if="!content.thumb">
+                    {{ 'NONE' | translate }}
+                </div>
+                <div class="img-preview clear-both" ng-if="content.thumb">
+                    <img ng-src="{{::content.thumb.thumb}}" class="img-responsive"
+                         alt="{{ content.thumb.translations | getTranslation:transLang.code:'title' }}"
+                         title="{{ content.thumb.translations | getTranslation:transLang.code:'title' }}">
+                </div>
+            </a>
+        </li>
         <li class="list-group-item clearfix"
             ng-init="contentUrl = (content.route.translations | getTranslation:langCode:'url')"
             ng-show="contentUrl">
@@ -16,7 +31,9 @@
                data-route="{{ contentUrl }}"
                title="{{ contentUrl }}"
                data-lang="{{ langCode }}">
-                <span class="text-primary">{{ contentUrl.substr(contentUrl.lastIndexOf('/') + 1)}}</span>
+                <span class="text-primary">
+                    {{ contentUrl.substr(contentUrl.lastIndexOf('/') + 1 )}}
+                </span>
             </a>
 
             <div ng-if="content.type === 'category'">

@@ -1,0 +1,25 @@
+<div class="panel panel-default  margin-top">
+    <div class="panel-heading">
+        <strong>{{ 'TRANSLATION_LANGUAGE' | translate | uppercase }}</strong>
+    </div>
+    <div class="list-group action-group">
+        <div ng-repeat="lang in langs" ng-switch="lang.code" ui-sref="blocks.show({ langCode: lang.code })"
+             class="list-group-item"
+             ng-class="{
+             'inactive': !(block.translations | getTranslation:lang.code:'title'),
+             'active': lang.code === langCode
+             }">
+
+            <h4 class="list-group-item-heading" translate="{{ lang.code | langName }}"></h4>
+
+            <div ng-hide="(block.translations | getTranslation:lang.code:'title')">
+
+                <p class="list-group-item-text">
+                    <small>
+                        {{ 'NO_TRANSLATION' | translate }}
+                    </small>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

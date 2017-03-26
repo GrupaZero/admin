@@ -1,0 +1,80 @@
+<div class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" ng-show="title">
+        <button type="button" class="close" ng-click="vm.filesModal.closeModal()">&times;</button>
+        <h4 class="modal-title" translate="{{title}}"></h4>
+      </div>
+      <div class="modal-body no-padding-bottom">
+        <form name="searchForm" class="form" novalidate>
+          <input ng-model="vm.searchQuery" class="form-control margin-bottom" id="searchQuery"
+                 ng-change="vm.filesModal.searchFiles(vm.searchQuery)"
+                 placeholder="{{ 'TYPE_FILE_NAME_TO_SEARCH' | translate }}"
+                 ng-disabled="!vm.availableFiles[0] && vm.filesModal.existingFiles[0]"
+                 ng-model-options="{debounce: 500}" type="text"/>
+        </form>
+        <!-- START FILES TABLE -->
+        <div class="table-box border-top no-padding-bottom fixed-height">
+          <table class="table table-striped table-condensed table-hover c-pointer">
+            <thead>
+            <tr>
+              <th class="text-center">{{ 'ACTION' | translate }}</th>
+              <th class="text-center">{{ 'FILE' | translate }}</th>
+              <th class="text-center">{{ 'FILE_NAME' | translate }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="file in vm.availableFiles" ng-click="vm.filesModal.selectFile(file)">
+              <td class="text-center">
+                <div class="checkbox">
+                  <label>
+                    <input ng-model="file.isSelected" type="checkbox"
+                           ng-click="vm.filesModal.selectFile(file)"
+                           ng-true-value="true"
+                           ng-false-value="false"/>
+                  </label>
+                </div>
+              </td>
+              <td width="20%" class="text-center">
+                <div class="media" ng-if="file.type === 'image'">
+                  <div class="img-preview">
+                    <img ng-src="{{::file.thumb}}"
+                         alt="{{ file.translations | getTranslation:langCode:'title' }}"
+                         title="{{ file.translations | getTranslation:langCode:'title' }}"
+                         width="64">
+                  </div>
+                </div>
+                <i ng-if="file.type === 'document'" class="fa fa-file-pdf-o fa-2x"></i>
+              </td>
+              <td class="text-center">
+                {{::file.name}}.{{::file.extension}}
+              </td>
+            </tr>
+            <tr ng-if="!vm.availableFiles[0]">
+              <td colspan="3" class="text-center">
+                <strong ng-if="!vm.filesModal.existingFiles[0]">{{ 'NO_FILES' | translate }}</strong>
+                <strong ng-if="vm.filesModal.existingFiles[0]">{{ 'ALL_FILES_ALREADY_ADDED' | translate }}</strong>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- END FILES TABLE -->
+      </div>
+      <div class="modal-footer">
+        <button type="button"
+                class="btn btn-success"
+                ng-click="vm.filesModal.closeModal()">
+          {{ 'CANCEL' | translate }}
+        </button>
+        <button type="button"
+                class="btn btn-primary"
+                ng-disabled="!vm.filesModal.filesToAdd.length"
+                ng-click="vm.filesModal.addFiles()">
+          <i class="glyphicon glyphicon-ok-circle"></i>
+          {{ 'ADD' | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

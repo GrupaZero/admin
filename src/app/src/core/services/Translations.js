@@ -7,13 +7,20 @@ function Translations($q, $translate, LangRepository, Utils) {
 
     //get languages
     LangRepository.list().then(function(response) {
-        languages.langs = response;
-        languages.currentLang = languages.transLang = response[0];
+        languages.langs = LangRepository.clean(response);
         // resolve the promise
         deferred.resolve(languages);
     });
 
     return {
+        /**
+         * Function returns the language with isDefault flag set to true
+         *
+         * @returns {object}
+         */
+        getDefaultLang: function() {
+            return _.find(languages.langs, 'isDefault');
+        },
         /**
          * Function returns the object of languages
          *
@@ -23,13 +30,22 @@ function Translations($q, $translate, LangRepository, Utils) {
             return deferred.promise;
         },
         /**
+         * Function sets the fallback language of the translation for the angular-translate module
+         *
+         * @returns {object}
+         */
+        setFallbackLang: function() {
+            $translate.fallbackLanguage([Utils.Config.fallbackLangCode]);
+        },
+        /**
          * Function sets the language of the translation for the angular-translate module
          *
          * @param lang object that will be used to translate
          */
-        selectAdminLang: function(lang) {
-            $translate.fallbackLanguage(['en_US']);
-            $translate.use(lang.i18n);
+        setLang: function(lang) {
+            if (!_.isUndefined(lang)) {
+                $translate.use(lang.code);
+            }
         },
         /**
          * Redirect if user try to access non existing language

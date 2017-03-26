@@ -1,0 +1,87 @@
+<div class="panel">
+  <div class="panel-heading no-padding-bottom">
+    <div class="page-header no-margin-bottom no-margin-top">
+      <h1>
+        {{ 'FILES' | translate }}
+        <button type="button" ng-disabled="!blockers.isDirty"
+                class="btn btn-success pull-right" ng-click="syncFiles()">
+          {{ 'SAVE' | translate }}
+        </button>
+        <button add-files-button data-entity="entity" data-lang="{{ langCode }}"
+                data-files="files[type]" data-type="type"
+                type="button" class="btn btn-primary mr-sm pull-right">
+          <i class="glyphicon glyphicon-plus"></i> {{ 'ADD' | translate }}
+        </button>
+      </h1>
+    </div>
+  </div>
+  <div class="panel-body no-padding-top">
+    <div class="table-box"> <!-- START FILES TABLE -->
+      <table ui-tree class="table table-striped table-hover angular-ui-tree">
+        <thead>
+        <tr>
+          <th class="text-center" width="20%">{{ 'TITLE' | translate }}</th>
+          <th class="text-center">{{ 'FILE_NAME' | translate }}</th>
+          <th class="text-center">{{ 'STATUS' | translate }}</th>
+          <th class="text-center">{{ 'SIZE' | translate }}</th>
+          <th class="text-center">{{ 'ACTION' | translate }}</th>
+        </tr>
+        </thead>
+        <tbody ui-tree-nodes ng-model="files[type]" class="angular-ui-tree-nodes">
+        <tr ng-repeat="file in files[type]" class="angular-ui-tree-node" ui-tree-node
+            ng-class="{ inactive: !file.isActive }">
+          <td>
+            <div class="media">
+              <div class="media-left">
+                <div class="img-preview" ng-if="file.type === 'image'">
+                  <img ng-src="{{::file.thumb}}" alt="{{ file.translations | getTranslation:langCode:'title' }}"
+                       title="{{ file.translations | getTranslation:langCode:'title' }}" width="64">
+                </div>
+                <i ng-if="file.type === 'document'" class="fa fa-file-pdf-o fa-2x"></i>
+              </div>
+              <div class="media-body media-middle">
+                <div class="media-heading">
+                  <strong>{{ file.translations | getTranslation:langCode:'title' }}</strong>
+                </div>
+                <div class="media-heading"
+                     ng-if="!(file.translations | getTranslation:langCode:'title')">
+                  <a ui-sref="files.addTranslation({ fileId: file.id, langCode: langCode })"
+                     href="" data-nodrag class="text-muted">
+                    <i class="glyphicon glyphicon-ban-circle hidden-sm"></i>
+                    {{ 'NO_TRANSLATION_BUTTON' | translate }}
+                  </a>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="text-center">
+            {{::file.name}}.{{::file.extension}}
+          </td>
+          <td class="text-center">
+            <i ng-if="!file.isActive">{{ 'NOT_PUBLISHED' | translate }}</i>
+            <i ng-if="file.isActive">{{ 'PUBLISHED' | translate }}</i>
+          </td>
+          <td class="text-center">
+            {{::file.size/1024/1024|number:2}} MB
+          </td>
+          <td class="text-center">
+            <a ui-sref="files.show({ fileId: file.id, langCode: transLang.code })"
+               href="" class="btn btn-primary btn-sm" data-nodrag>
+              <i class="fa fa-pencil hidden-sm"></i> {{ 'EDIT' | translate }}
+            </a>
+            <button class="btn btn-danger btn-sm" data-nodrag ng-click="detachFile(file.id)">
+              <i class="fa fa-times hidden-sm"></i> {{ 'DELETE' | translate }}
+            </button>
+          </td>
+        </tr>
+        <tr ng-if="!files[type][0]">
+          <td colspan="6" class="text-center">
+            <strong>{{ 'NO_FILES' | translate }}</strong>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- END FILES TABLE -->
+  </div>
+</div>

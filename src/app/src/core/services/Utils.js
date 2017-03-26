@@ -25,7 +25,7 @@ function Utils(Notifications, Storage, $state, $previousState, $stateParams, ckO
             }
 
             // if there is a previousState
-            if (previousState !== null) {
+            if (previousState !== null && $state.current.name !== previousState.state.name) {
                 // redirected back to the state we came from
                 $state.go(previousState.state.name, previousState.params, {reload: true});
             } else {
@@ -76,13 +76,14 @@ function Utils(Notifications, Storage, $state, $previousState, $stateParams, ckO
         /**
          * Return all available entities types object from config
          *
+         * // @TODO include 'music' and 'video' back
          * @returns Object available entities types
          */
         getEntitiesTypes: function() {
             return {
                 contentTypes: this.Config.contentTypes,
                 blockTypes: this.Config.blockTypes,
-                fileTypes: this.Config.fileTypes
+                fileTypes: _.without(this.Config.fileTypes, 'music', 'video')
             };
         }
     };

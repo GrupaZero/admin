@@ -16,6 +16,16 @@ function ContentDetailsCtrl($scope, content, langCode, ContentRepository, Utils)
             action: 'history'
         },
         {
+            title: 'FILE_TYPES.IMAGE',
+            action: 'files',
+            params: { contentId: content.id, langCode: langCode, type: 'image' }
+        },
+        {
+            title: 'FILE_TYPES.DOCUMENT',
+            action: 'files',
+            params: { contentId: content.id, langCode: langCode, type: 'document' }
+        },
+        {
             title: 'BLOCKS',
             action: 'blocks'
         }
