@@ -15,8 +15,7 @@
     ],
     "require": {
         "php": ">=7.1.0",
-        "gzero/core": "dev-master",
-        "illuminate/routing": "5.3.*"
+        "gzero/core": "^1.0"
     },
     "require-dev": {
         "phpunit/phpunit": "5.6.*"
