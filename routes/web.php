@@ -3,6 +3,8 @@
 /**
  * Return admin view so we can run AngularJS admin panel
  */
+use Gzero\Admin\Middleware\AdminPanelAccess;
+
 Route::group(
     [
         'domain'     => config('gzero.domain'),
@@ -17,7 +19,7 @@ Route::group(
             [
                 'as'         => 'admin',
                 'middleware' => [
-                    'admin.panel.access'
+                    AdminPanelAccess::class
                 ],
                 function () {
                     if (isProviderLoaded('Barryvdh\Debugbar\ServiceProvider')) {

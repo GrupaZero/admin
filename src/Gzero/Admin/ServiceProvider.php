@@ -1,7 +1,5 @@
 <?php namespace Gzero\Admin;
 
-use Gzero\Admin\Middleware\AdminPanelAccess;
-use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider as SP;
 
 /**
@@ -25,26 +23,14 @@ class ServiceProvider extends SP {
     protected $defer = false;
 
     /**
-     * The application's route middleware.
-     *
-     * @var array
-     */
-    protected $routeMiddleware = [
-        'admin.panel.access' => AdminPanelAccess::class,
-    ];
-
-    /**
      * Bootstrap the application events.
-     *
-     * @param Router $router Laravel router
      *
      * @return void
      */
-    public function boot(Router $router)
+    public function boot()
     {
         $this->loadRoutesFrom(__DIR__ . '/../../../routes/web.php');
         $this->loadViewsFrom(__DIR__ . '/../../views', 'gzero-admin');
-        $this->registerRouteMiddleware($router);
         $this->publishes(
             [
                 __DIR__ . '/../../views' => base_path('resources/views/gzero/admin')
@@ -68,23 +54,9 @@ class ServiceProvider extends SP {
     {
         $this->app->singleton(
             'admin.module',
-            function ($app) {
+            function () {
                 return new ModuleRegistry();
             }
         );
     }
-
-    /**
-     * Register additional route middleware
-     *
-     * @param Router $router Laravel router
-     *
-     * @return void
-     */
-    private function registerRouteMiddleware(Router $router)
-    {
-        foreach ($this->routeMiddleware as $name => $class) {
-            $router->middleware($name, $class);
-        }
-    }
-} 
+}
