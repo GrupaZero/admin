@@ -157,7 +157,7 @@
     "SELECT_CATEGORY": "Wybierz kategorię",
     "SELECT_FILES_TO_ADD": "Wybierz pliki które chcesz dodać",
     "SEO_DESCRIPTION": "Opis SEO",
-    "SEO_DESCRIPTION_DESCRIPTION": "TO jest opis tej strony. Jeżeli zostawisz to pole puste spróbujemy użyć kilku pierwszych zdań treści.",
+    "SEO_DESCRIPTION_DESCRIPTION": "To jest opis tej strony. Jeżeli zostawisz to pole puste spróbujemy użyć kilku pierwszych zdań treści.",
     "SEO_TITLE": "Tytuł SEO",
     "SEO_TITLE_DESCRIPTION": "To jest tytuł strony który ukaże się u góry przeglądarki. Jeżeli zostawisz to pole puste, użyjemy tytułu.",
     "SEO_ERROR_MAXLENGTH": "To pole nie może być dłuższe niż {{ maxlength }} znaków.",
