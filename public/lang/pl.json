@@ -217,7 +217,7 @@
             "COOKIES_POLICY_URL": "Adres strony z polityką cookies",
             "DEFAULT_PAGE_SIZE": "Ilośc wpisów na stronę",
             "DESC_LENGTH": "Ilość znaków w opisie SEO strony",
-            "GOOGLE_ANALYTICS_ID": "Google Analytics ID",
+            "GOOGLE_TAG_MANAGER_ID": "Google Tag Manager ID",
             "SITE_DESC": "Opis strony",
             "SITE_NAME": "Tytuł strony"
         }

@@ -217,7 +217,7 @@
             "COOKIES_POLICY_URL": "Cookies Policy page url",
             "DEFAULT_PAGE_SIZE": "Number of entries per page",
             "DESC_LENGTH": "Site SEO description character number",
-            "GOOGLE_ANALYTICS_ID": "Google Analytics ID",
+            "GOOGLE_TAG_MANAGER_ID": "Google Tag Manager ID",
             "SITE_DESC": "Site description",
             "SITE_NAME": "Site title"
         }
