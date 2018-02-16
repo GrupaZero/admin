@@ -12,7 +12,7 @@
 'use strict';
 
 function FilesRepository(Restangular, Upload, Utils) {
-    var api = 'admin/files';
+    var api = 'files';
     var files = Restangular.all(api);
     return {
         one: function(id, params) {
@@ -28,15 +28,14 @@ function FilesRepository(Restangular, Upload, Utils) {
         },
         syncWithEntity: function(entity, files) {
             return Restangular.one(this.getEntityEndpoint(entity), entity.id)
-            .customPUT({data: files}, 'files/sync');
+            .customPUT({data: files}, 'files');
         },
         delete: function(id) {
             return Restangular.one(api, id)
             .remove();
         },
         update: function(id, file) {
-            return Restangular.one(api, id)
-            .customPUT(file);
+            return Restangular.one(api, id).patch(file);
         },
         create: function(newFile) {
             return Upload.upload({
@@ -61,11 +60,11 @@ function FilesRepository(Restangular, Upload, Utils) {
         },
         getEntityEndpoint: function(entity) {
             if (_.indexOf(Utils.Config.contentTypes, entity.type) !== -1) {
-                return 'admin/contents';
+                return 'contents';
             }
 
             if (_.indexOf(Utils.Config.blockTypes, entity.type) !== -1) {
-                return 'admin/blocks';
+                return 'blocks';
             }
 
             return api;

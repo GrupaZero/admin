@@ -6,20 +6,20 @@
         <li class="list-group-item clearfix">
             <a content-thumb-button
                content_id="{{content.id}}"
-               thumb-id="{{content.thumb.id}}">
+               thumb-id="{{content.thumbnail.id}}">
                 <i class="fa fa-image"></i> {{ 'THUMBNAIL' | translate }}
-                <div class="pull-right" ng-if="!content.thumb">
+                <div class="pull-right" ng-if="!content.thumbnail">
                     {{ 'NONE' | translate }}
                 </div>
-                <div class="img-preview clear-both" ng-if="content.thumb">
-                    <img ng-src="{{::content.thumb.thumb}}" class="img-responsive"
-                         alt="{{ content.thumb.translations | getTranslation:transLang.code:'title' }}"
-                         title="{{ content.thumb.translations | getTranslation:transLang.code:'title' }}">
+                <div class="img-preview clear-both" ng-if="content.thumbnail.thumb">
+                    <img ng-src="{{::content.thumbnail.thumb}}" class="img-responsive"
+                         alt="{{ content.thumbnail.translations | getTranslation:transLang.code:'title' }}"
+                         title="{{ content.thumbnail.translations | getTranslation:transLang.code:'title' }}">
                 </div>
             </a>
         </li>
         <li class="list-group-item clearfix"
-            ng-init="contentUrl = (content.route.translations | getTranslation:langCode:'url')"
+            ng-init="contentUrl = (content.routes | getTranslation:langCode:'path')"
             ng-show="contentUrl">
             <div class="pull-left field-label">
                 <i class="fa fa-link"></i> {{ 'URL_ADDRESS' | translate }}
@@ -62,73 +62,68 @@
                 </div>
             </div>
         </li>
-        <li class="list-group-item clearfix" ng-if="content.author">
+        <li class="list-group-item clearfix" ng-if="author">
             <div class="pull-left field-label">
                 <i class="fa fa-user"></i> {{ 'AUTHOR' | translate }}
             </div>
-            <a href="#" class="text-right" ui-sref="user.show({ userId: content.author.id })">
-                <span class="text-primary">{{ content.author.firstName }} {{ content.author.lastName }}</span>
+            <a href="#" class="text-right" ui-sref="user.show({ userId: author.id })">
+                <span class="text-primary">{{ author.first_name }} {{ author.last_name }}</span>
             </a>
         </li>
         <li class="list-group-item clearfix">
             <a content-toggle-property-button
                content_id="{{content.id}}"
-               property_name="isOnHome"
-               value="{{content.isOnHome}}">
+               property_name="is_on_home"
+               value="{{content.is_on_home}}">
                 <i class="fa fa-home"></i> {{ 'IS_ON_HOME' | translate }}
                 <div class="pull-right">
                     <i class="fa"
-                       ng-class="content.isOnHome ? 'fa-check-circle text-success' : 'fa-times-circle text-danger'"></i>
+                       ng-class="content.is_on_home ? 'fa-check-circle text-success' : 'fa-times-circle text-danger'"></i>
                 </div>
             </a>
         </li>
         <li class="list-group-item clearfix">
             <a content-toggle-property-button
                content_id="{{content.id}}"
-               property_name="isCommentAllowed"
-               value="{{content.isCommentAllowed}}">
+               property_name="is_comment_allowed"
+               value="{{content.is_comment_allowed}}">
                 <i class="fa fa-comment-o"></i> {{ 'IS_COMMENT_ALLOWED' | translate }}
                 <div class="pull-right">
                     <i class="fa"
-                       ng-class="content.isCommentAllowed ? 'fa-check-circle text-success' : 'fa-times-circle text-danger'"></i>
+                       ng-class="content.is_comment_allowed ? 'fa-check-circle text-success' : 'fa-times-circle text-danger'"></i>
                 </div>
             </a>
         </li>
         <li class="list-group-item clearfix">
             <a content-toggle-property-button
                content_id="{{content.id}}"
-               property_name="isPromoted"
-               value="{{content.isPromoted}}">
+               property_name="is_promoted"
+               value="{{content.is_promoted}}">
                 <i class="fa fa-star-o"></i> {{ 'IS_PROMOTED' | translate }}
                 <div class="pull-right">
                     <i class="fa"
-                       ng-class="content.isPromoted ? 'fa-check-circle text-success' : 'fa-times-circle text-danger'"></i>
+                       ng-class="content.is_promoted ? 'fa-check-circle text-success' : 'fa-times-circle text-danger'"></i>
                 </div>
             </a>
         </li>
         <li class="list-group-item clearfix">
             <a content-toggle-property-button
                content_id="{{content.id}}"
-               property_name="isSticky"
-               value="{{content.isSticky}}">
+               property_name="is_sticky"
+               value="{{content.is_sticky}}">
                 <i class="fa fa-thumb-tack"></i> {{ 'IS_STICKY' | translate }}
                 <div class="pull-right">
                     <i class="fa"
-                       ng-class="content.isSticky ? 'fa-check-circle text-success' : 'fa-times-circle text-danger'"></i>
+                       ng-class="content.is_sticky ? 'fa-check-circle text-success' : 'fa-times-circle text-danger'"></i>
                 </div>
             </a>
         </li>
         <li class="list-group-item clearfix">
-            <a content-toggle-property-button
-               content_id="{{content.id}}"
-               property_name="isActive"
-               value="{{content.isActive}}">
-                <i class="fa fa-power-off"></i> {{ 'IS_PUBLISHED' | translate }}
-                <div class="pull-right">
-                    <i class="fa"
-                       ng-class="content.isActive ? 'fa-check-circle text-success' : 'fa-times-circle text-danger'"></i>
-                </div>
-            </a>
+            <i class="fa fa-power-off"></i> {{ 'IS_PUBLISHED' | translate }}
+            <div class="pull-right">
+                <i class="fa"
+                   ng-class="(content | isContentActive:langCode) ? 'fa-check-circle text-success' : 'fa-times-circle text-danger'"></i>
+            </div>
         </li>
         <li class="list-group-item clearfix">
             <a content-weight-edit-button
@@ -159,8 +154,8 @@
             <a content-published-at-edit-button
                class="text-right"
                content_id="{{content.id}}"
-               content_published_at="{{content.publishedAt}}">
-                {{ content.publishedAt }}
+               content_published_at="{{content.published_at}}">
+                {{ content.published_at | date:'yyyy-MM-dd HH:mm:ss' }}
             </a>
         </li>
     </ul>

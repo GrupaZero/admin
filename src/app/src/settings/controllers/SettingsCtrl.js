@@ -22,7 +22,7 @@ function SettingsCtrl($scope, Utils, SettingsRepository, categories, settings) {
 
     // settings exists
     if (typeof settings !== 'undefined') {
-        $scope.settings = SettingsRepository.clean(settings); // category settings
+        $scope.settings = SettingsRepository.clean(settings).data; // category settings
     }
 
     // we need integer values for number type inputs

@@ -21,7 +21,7 @@
                                 <div class="col-md-4">
                                     <!-- Lang Form input -->
                                     <div class="form-group">
-                                        <select id="langCode" ng-model="newFileDefaults.translations.langCode"
+                                        <select id="langCode" ng-model="newFileDefaults.language_code"
                                                 class="form-control"
                                                 ng-options="lang.code as lang.code | langName | translate for lang in langs">
                                         </select>
@@ -32,7 +32,7 @@
                                     <div class="form-group">
                                         <div class="checkbox no-margin-top">
                                             <label>
-                                                <input ng-model="newFileDefaults.isActive" ng-true-value="1" ng-false-value="0"
+                                                <input ng-model="newFileDefaults.is_active" ng-true-value="1" ng-false-value="0"
                                                        type="checkbox">
                                                 {{ 'PUBLISHED' | translate }}
                                             </label>
@@ -49,7 +49,7 @@
                                     <!-- Save button -->
                                     <div class="btn-group">
                                         <button type="submit" class="btn btn-success"
-                                                ng-disabled="files.length <= 0">
+                                                ng-disabled="files.length <= 0 || filesForm.$invalid">
                                             {{ 'SAVE' | translate }}
                                         </button>
                                     </div>
@@ -103,8 +103,9 @@
                                                                name="description"
                                                                placeholder="{{'TITLE' | translate}}"
                                                                type="text"
+                                                               required
                                                                ng-disabled="isBusy"
-                                                               ng-model="file.translations.title">
+                                                               ng-model="file.title">
                                                     </div>
                                                 </div>
                                             </div>
@@ -120,7 +121,7 @@
                                                            name="description" class="form-control"
                                                            ng-disabled="isBusy"
                                                            placeholder="{{'DESCRIPTION' | translate}}"
-                                                           ng-model="file.translations.description"></textarea>
+                                                           ng-model="file.description"></textarea>
                                                     </div>
                                                 </div>
                                             </div>

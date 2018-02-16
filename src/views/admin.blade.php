@@ -30,17 +30,17 @@
         var Config = {
             url: '{{ request()->root() }}',
             domain: '{{ config("gzero.domain") }}',
-            multilang: '{{ config("gzero.multilang.enabled") ? 'true' : 'false' }}',
+            multilang: '{{ config("gzero.ml") ? 'true' : 'false' }}',
             apiUrl: '{{ request()->getScheme() }}://api.{{ request()->getHTTPHost() }}',
             seoDescriptionLength: '{{ config("gzero.seoDescLength") }}',
             seoDescriptionAlternativeField: '{{ config("gzero.seoDescriptionAlternativeField") }}',
             seoTitleAlternativeField: '{{ config("gzero.seoTitleAlternativeField") }}',
             currentUserId: {{ auth()->user()->id }},
-            contentTypes: {!! json_encode(array_keys(config("gzero.content_type")), true) !!},
-            blockTypes: {!! json_encode(array_keys(config("gzero.block_type")), true) !!},
-            fileTypes: {!! json_encode(array_keys(config("gzero.file_type")), true) !!},
-            fileExtensions: {!! json_encode(config("gzero.upload.allowed_file_extensions"), true) !!},
-            blockRegions: {!! json_encode(config("gzero.available_blocks_regions"), true) !!},
+            contentTypes: {!! json_encode(array_get($settings, 'content_types'), true) !!},
+            blockTypes: {!! json_encode(array_get($settings, 'block_types'), true) !!},
+            fileTypes: {!! json_encode(array_get($settings, 'file_types'), true) !!},
+            fileExtensions: {!! json_encode(array_get($settings, 'allowed_file_extensions'), true) !!},
+            blockRegions: {!! json_encode(array_get($settings, 'blocks_regions'), true) !!},
             defaultLangCode: {!! json_encode(config("app.locale"), true) !!},
             fallbackLangCode: {!! json_encode(config("app.fallback_locale"), true) !!}
         };

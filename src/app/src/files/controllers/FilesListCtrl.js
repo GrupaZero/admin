@@ -30,21 +30,14 @@ function FilesListCtrl($scope, Utils, FilesRepository, NgTableParams) {
     $scope.tableParams = new NgTableParams({
         count: 25, // count per page
         sorting: {
-            'translations.title': 'asc' // initial sorting
+            'created_at': 'desc' // initial sorting
         }
     }, {
         total: 0, // length of data
         getData: function($defer, params) {
             $scope.requestPending = true;
             // prepare options to be sent to api
-            var queryOptions = {
-                lang: Utils.Config.defaultLangCode
-            };
-
-            // lang sort options
-            if (typeof $scope.transLang !== 'undefined') {
-                queryOptions.lang = $scope.transLang.code;
-            }
+            var queryOptions = {};
 
             // params.count() - number of items per page declared in view
             if (typeof Utils.$stateParams.perPage !== 'undefined') {

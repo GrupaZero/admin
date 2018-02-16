@@ -3,7 +3,7 @@
 function FilesAddTranslationCtrl($scope, Utils, FilesRepository) {
     // default translations lang code
     $scope.newFileTranslation = {
-        langCode: Utils.$stateParams.langCode
+        language_code: Utils.$stateParams.langCode
     };
 
     // files translations POST action

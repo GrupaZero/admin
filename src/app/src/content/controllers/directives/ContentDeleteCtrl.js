@@ -62,30 +62,44 @@ function ContentDeleteCtrl($scope, Utils, $modal, ContentRepository) { // jshint
         },
         /**
          * Function performs the RestAngular DELETE action for content id in scope
-         *
          */
         deleteContent: function() {
             var self = this;
-            ContentRepository.deleteContent(vm.contentId, vm.forceDelete).then(function() {
-                self.closeModal();
-                // refresh current state
-                if (vm.contentType === 'category') {
-                    // removed category
-                    Utils.Storage.removeStorageItem('contentListParent');
-                    Utils.$state.go('content.list', {contentId: null}, {reload: true, inherit: false});
-                    Utils.Notifications.addSuccess('CATEGORY_HAS_BEEN_DELETED');
-                } else {
-                    // removed content
-                    if (Utils.$state.$current.name === 'content.show.details') {
-                        Utils.$state.go('content.trashcan', {contentId: null}, {reload: true, inherit: false});
+
+            if (vm.forceDelete) {
+                ContentRepository.forceDelete(vm.contentId).then(function() {
+                    self.closeModal();
+                    // refresh current state
+                    if (vm.contentType === 'category') {
+                        // removed category
+                        Utils.Storage.removeStorageItem('contentListParent');
+                        Utils.Notifications.addSuccess('CATEGORY_HAS_BEEN_DELETED');
                     } else {
-                        Utils.$state.go(Utils.$state.current, {}, {reload: true});
+                        Utils.Notifications.addSuccess('CONTENT_HAS_BEEN_DELETED');
                     }
-                    Utils.Notifications.addSuccess(
-                        vm.forceDelete ? 'CONTENT_HAS_BEEN_DELETED' : 'CONTENT_HAS_BEEN_MOVED_TO_TRASH'
-                    );
-                }
-            });
+
+                    Utils.$state.go('content.trashcan', {contentId: null}, {reload: true, inherit: false});
+                });
+            } else {
+                ContentRepository.delete(vm.contentId).then(function() {
+                    self.closeModal();
+                    // refresh current state
+                    if (vm.contentType === 'category') {
+                        // removed category
+                        Utils.Storage.removeStorageItem('contentListParent');
+                        Utils.$state.go('content.list', {contentId: null}, {reload: true, inherit: false});
+                        Utils.Notifications.addSuccess('CATEGORY_HAS_BEEN_DELETED');
+                    } else {
+                        // removed content
+                        if (Utils.$state.$current.name === 'content.show.details') {
+                            Utils.$state.go('content.trashcan', {contentId: null}, {reload: true, inherit: false});
+                        } else {
+                            Utils.$state.go(Utils.$state.current, {}, {reload: true});
+                        }
+                        Utils.Notifications.addSuccess('CONTENT_HAS_BEEN_MOVED_TO_TRASH');
+                    }
+                });
+            }
         }
     };
 

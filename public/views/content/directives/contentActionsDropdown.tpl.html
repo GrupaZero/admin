@@ -12,8 +12,15 @@
         <!-- PUBLIC URL ACTION -->
         <a role="menuitem" tabindex="-1" target="_blank" ng-click="$event.stopPropagation();"
            title="{{item.text | translate }} {{ record.translations | getTranslation:lang.code:'title'}}"
-           ng-if="(!item.divider && item.url === 'publicUrl') && (record.route.translations | getTranslation:lang.code:'url')"
-           href="{{ baseUrl }}/{{ lang.code }}/{{ record.route.translations | getTranslation:lang.code:'url' }}">
+           ng-if="(!item.divider && item.url === 'publicUrl' && !lang.is_default) && (record.routes | getTranslation:lang.code:'path')"
+           href="{{ baseUrl }}/{{ lang.code }}/{{ record.routes | getTranslation:lang.code:'path' }}">
+            <i class="{{item.icon}}" ng-if="item.icon"></i> {{item.text | translate}}
+        </a>
+        <!-- PUBLIC URL ACTION DEFAULT LANGUAGE -->
+        <a role="menuitem" tabindex="-1" target="_blank" ng-click="$event.stopPropagation();"
+           title="{{item.text | translate }} {{ record.translations | getTranslation:lang.code:'title'}}"
+           ng-if="(!item.divider && item.url === 'publicUrl' && lang.is_default) && (record.routes | getTranslation:lang.code:'path')"
+           href="{{ baseUrl }}/{{ record.routes | getTranslation:lang.code:'path' }}">
             <i class="{{item.icon}}" ng-if="item.icon"></i> {{item.text | translate}}
         </a>
     </li>

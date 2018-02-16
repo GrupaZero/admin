@@ -19,7 +19,7 @@ function Translations($q, $translate, LangRepository, Utils) {
          * @returns {object}
          */
         getDefaultLang: function() {
-            return _.find(languages.langs, 'isDefault');
+            return _.find(languages.langs, 'is_default');
         },
         /**
          * Function returns the object of languages

@@ -14,7 +14,7 @@
 'use strict';
 
 function UserRepository(Restangular) {
-    var api = 'admin/users';
+    var api = 'users';
     var users = Restangular.all(api);
     return {
         one: function(id, params) {
@@ -33,7 +33,7 @@ function UserRepository(Restangular) {
             return Restangular.one(api, id).remove();
         },
         update: function(id, user) {
-            return Restangular.one(api, id).customPUT(user);
+            return Restangular.one(api, id).patch(user);
         }
     };
 }

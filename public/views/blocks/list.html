@@ -13,14 +13,14 @@
     <div class="table-box">
         <table ng-table="tableParams" template-pagination="gzero/admin/views/partials/pagination.html" class="table table-striped">
             <tbody>
-            <tr ng-repeat-start="block in $data track by block.id" ng-class="{ inactive: !block.isActive }"
+            <tr ng-repeat-start="block in $data track by $index" ng-class="{ inactive: !block.is_active }"
                 ng-click="showTranslations = !showTranslations">
                 <td class="text-center">
                     <i class="icon fa" ng-class="{'fa-minus-square-o': showTranslations, 'fa-plus-square-o': !showTranslations }">
                         <!-- icon -->
                     </i>
                 </td>
-                <td data-title="'TITLE' | translate" sortable="'translations.title'">
+                <td data-title="'TITLE' | translate">
                     <h5 ng-if="(block.translations | getTranslation:transLang.code:'title')">
                         {{ block.translations | getTranslation:transLang.code:'title' }}
                     </h5>

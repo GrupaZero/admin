@@ -13,7 +13,7 @@
                             <span class="semi-bold" ng-hide="content.translations | getTranslation:langCode:'title'">
                                 {{ 'NO_TRANSLATION' | translate }}
                             </span>
-                            <small class="fade-box" ng-if="!content.isActive">
+                            <small class="fade-box" ng-if="!(content | isContentActive:langCode)">
                                 <i>({{ 'NOT_PUBLISHED' | translate }})</i>
                             </small>
                         </h2>
@@ -27,15 +27,15 @@
             <div ui-view="langSwitcher"></div>
 
             <a class="btn btn-primary btn-block btn-lg"
-               href="/{{ langCode }}/{{ content.route.translations | getTranslation:langCode:'url' }}"
-               ng-if="isMultiLangEnabled"
+               href="/{{ langCode }}/{{ content.routes | getTranslation:langCode:'path' }}"
+               ng-if="(isMultiLangEnabled && langCode !== $parent.defaultLang.code)"
                target="_blank">
                 <i class="fa fa-eye"></i> {{ 'PAGE_PREVIEW' | translate }}
             </a>
 
             <a class="btn btn-primary btn-block btn-lg"
-               href="/{{ content.route.translations | getTranslation:langCode:'url' }}"
-               ng-if="!isMultiLangEnabled"
+               href="/{{ content.routes | getTranslation:langCode:'path' }}"
+               ng-if="(!isMultiLangEnabled || langCode === $parent.defaultLang.code)"
                target="_blank">
                 <i class="fa fa-eye"></i> {{ 'PAGE_PREVIEW' | translate }}
             </a>

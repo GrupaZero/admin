@@ -7,17 +7,18 @@ describe('ContentDetailsCtrl', function() {
         id: 1,
         path: [1]
     };
+    var author = {};
     var ContentRepository = {
         clean: function() {
             return [];
         }
     };
     var ctrl;
-    var Utils = {};
+    var Utils = {Config: {}};
 
     beforeEach(function() {
         scope = {};
-        ctrl = new controller(scope, content, langCode, ContentRepository, Utils);
+        ctrl = new controller(scope, content, langCode, author, ContentRepository, Utils);
     });
 
     it('should set lang code', function() {

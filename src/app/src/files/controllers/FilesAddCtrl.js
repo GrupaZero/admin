@@ -6,16 +6,14 @@ function FilesAddCtrl($q, $scope, Utils, type, Upload, FilesRepository, FileServ
     $scope.isBusy = false;
     // default file record values
     $scope.newFileDefaults = {
-        isActive: 1,
         type: type,
-        translations: {
-            langCode: Utils.Config.defaultLangCode
-        }
+        is_active: 1,
+        language_code: Utils.Config.defaultLangCode
     };
 
     // set translations lang code
     if (typeof $scope.transLang !== 'undefined') {
-        $scope.newFileDefaults.translations.langCode = $scope.transLang.code;
+        $scope.newFileDefaults.language_code = $scope.transLang.code;
     }
 
     // remove file from files queue

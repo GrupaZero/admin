@@ -6,18 +6,18 @@ function ContentAddTranslationCtrl($scope, $translate, Utils, content, ContentRe
 
     // default translations lang code
     $scope.newContentTranslation = {
-        contentId: Utils.$stateParams.contentId,
-        langCode: Utils.$stateParams.langCode
+        content_id: Utils.$stateParams.contentId,
+        language_code: Utils.$stateParams.langCode
     };
 
     // if parent category exists
-    if (content.parentId !== null) {
+    if (content.parent_id !== null) {
         $scope.isLoaded = false; // hide form
         // get parent category
-        ContentRepository.one(content.parentId).then(function(response) {
+        ContentRepository.one(content.parent_id).then(function(response) {
             var parent = ContentRepository.clean(response);
             // check for route translation in selected language
-            var route = _.map(_.filter(parent.route.translations, {langCode: $scope.newContentTranslation.langCode}), 'url');
+            var route = _.map(_.filter(parent.routes, {langCode: $scope.newContentTranslation.language_code}), 'path');
             if (!route.length) {
                 // Redirect user to previous state or content list
                 Utils.redirectBack('content.list');

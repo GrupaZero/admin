@@ -52,7 +52,7 @@
                         <!-- Lang Form input -->
                         <div class="form-group">
                             <label for="langCode" class="hidden-xs">{{ 'TRANSLATION_LANGUAGE' | translate }}</label>
-                            <select id="langCode" ng-model="newFileTranslation.langCode" class="form-control"
+                            <select id="langCode" ng-model="newFileTranslation.language_code" class="form-control"
                                     ng-options="lang.code as lang.code | langName | translate for lang in langs">
                             </select>
                         </div>

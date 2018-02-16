@@ -26,15 +26,17 @@
                 <div class="col-md-12">
                     <hr/>
                     <p class="googleResultTitle">
-                        {{ (content.translations | getTranslation:langCode:'seoTitle') ? (content.translations | getTranslation:langCode:'seoTitle') : (content.translations | getTranslation:langCode:'title')}}
+                        {{ (content.translations | getTranslation:langCode:'seo_title') ? (content.translations | getTranslation:langCode:'seo_title') : (content.translations | getTranslation:langCode:'title')}}
                     </p>
 
                     <p class="googleResultUrl">
-                        {{ baseUrl }}/{{ transLang.code }}/{{ content.route.translations | getTranslation:transLang.code:'url' }}
+                        {{ baseUrl }}/{{ transLang.code }}/{{ content.routes | getTranslation:transLang.code:'path' }}
                     </p>
 
                     <p class="googleResultDescription">
-                        {{ (content.translations | getTranslation:langCode:'seoDescription') ? (content.translations | getTranslation:langCode:'seoDescription') : (content.translations | getTranslation:langCode:Config.seoDescriptionAlternativeField | stripTagsAndTrim:Config.seoDescriptionLength)}}
+                        {{ (content.translations | getTranslation:langCode:'seo_description') ? (content.translations |
+                        getTranslation:langCode:'seo_description') : (content.translations |
+                        getTranslation:langCode:Config.seoDescriptionAlternativeField | stripTagsAndTrim:Config.seoDescriptionLength)}}
                     </p>
                 </div>
             </div>

@@ -24,9 +24,7 @@ function ContentTrashcanCtrl($scope, ContentRepository, NgTableParams, Utils) {
         getData: function($defer, params) {
             $scope.requestPending = true;
             // prepare options to be sent to api
-            var queryOptions = {
-                lang: $scope.transLang.code
-            };
+            var queryOptions = {};
 
             // params.count() - number of items per page declared in view
             if (typeof Utils.$stateParams.perPage !== 'undefined') {
@@ -48,8 +46,16 @@ function ContentTrashcanCtrl($scope, ContentRepository, NgTableParams, Utils) {
             }
 
             // Utils.$stateParams filters
-            queryOptions = _.merge(queryOptions, Utils.$stateParams);
+            queryOptions = _.merge(queryOptions, _.omit(Utils.$stateParams, 'is_active'));
             $scope.activeFilter = Utils.$stateParams;
+
+            if (!_.isUndefined(Utils.$stateParams.is_active)) {
+                if (Utils.$stateParams.is_active === '1') {
+                    Utils.$stateParams.only_published = true;
+                } else {
+                    Utils.$stateParams.only_not_published = true;
+                }
+            }
 
             // get list by default
             var promise = ContentRepository.deleted(queryOptions);

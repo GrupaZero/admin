@@ -6,11 +6,11 @@
         <li class="list-group-item clearfix">
             <a file-toggle-property-button
                file_id="{{file.id}}"
-               property_name="isActive"
-               value="{{file.isActive}}">
+               property_name="is_active"
+               value="{{file.is_active}}">
                 <i class="fa fa-power-off"></i> {{ 'IS_PUBLISHED' | translate }}
                 <div class="pull-right">
-                    <i class="fa" ng-class="file.isActive ? 'fa-check-circle text-success' : 'fa-times-circle text-danger'"></i>
+                    <i class="fa" ng-class="file.is_active ? 'fa-check-circle text-success' : 'fa-times-circle text-danger'"></i>
                 </div>
             </a>
         </li>

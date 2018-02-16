@@ -59,10 +59,13 @@ function FilesDeleteCtrl($scope, Utils, FilesRepository, $modal) {
          */
         deleteFile: function() {
             var self = this;
-            // Force delete File
             FilesRepository.delete(vm.FileId).then(function(response) {
                 self.closeModal();
-                Utils.$state.go(Utils.$state.current, {}, {reload: true});
+                if (Utils.$state.$current.name === 'files.show.details') {
+                    Utils.$state.go('files.list', null, {reload: true, inherit: false});
+                } else {
+                    Utils.$state.go(Utils.$state.current, {}, {reload: true});
+                }
                 Utils.Notifications.addSuccess('FILE_HAS_BEEN_DELETED');
             });
         }

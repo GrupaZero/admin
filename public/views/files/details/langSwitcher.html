@@ -6,10 +6,25 @@
         <div ng-repeat="lang in langs" ng-switch="lang.code" ui-sref="files.show({ langCode: lang.code })"
              class="list-group-item"
              ng-class="{
-             'inactive': !(file.translations | getTranslation:lang.code:'title'),
+             'inactive': !(file.translations | getTranslation:lang.code:'title') || !lang.is_enabled,
              'active': lang.code === langCode
              }">
-            <h4 class="list-group-item-heading" translate="{{ lang.code | langName }}"></h4>
+
+            <h4 class="list-group-item-heading">
+                {{ lang.code | langName | translate }}
+                <small ng-hide="lang.is_enabled">
+                    - {{ 'THIS_LANGUAGE_IS_DISABLED' | translate }}
+                </small>
+            </h4>
+
+            <div ng-hide="(file.translations | getTranslation:lang.code:'title')">
+
+                <p class="list-group-item-text">
+                    <small>
+                        {{ 'NO_TRANSLATION' | translate }}
+                    </small>
+                </p>
+            </div>
         </div>
     </div>
 </div>

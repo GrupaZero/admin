@@ -54,14 +54,14 @@ function ContentPublishedAtEditCtrl($scope, Utils, $modal, ContentRepository) {
             self.modal.hide();
         },
         /**
-         * Function performs the RestAngular customPUT function for content in scope
+         * Function performs the RestAngular patch function for content in scope
          *
          */
         saveContentPublishedAt: function() {
             var self = this;
-            var dateTime = moment($scope.vm.contentPublishedAt).format('YYYY-MM-DD HH:mm:ss');
+            var dateTime = moment($scope.vm.contentPublishedAt).utc().format('YYYY-MM-DD HH:mm:ss');
             var content = {
-                publishedAt: dateTime
+                published_at: dateTime
             };
 
             ContentRepository.updateContent(vm.contentId, content).then(function(response) {

@@ -61,7 +61,7 @@ function ContentListCtrl($scope, Utils, listParent, ContentRepository, NgTablePa
     $scope.tableParams = new NgTableParams({
         count: 25, // count per page
         sorting: {
-            'translations.title': 'asc' // initial sorting
+            'created_at': 'desc' // initial sorting
         }
     }, {
         total: 0, // length of data
@@ -69,7 +69,6 @@ function ContentListCtrl($scope, Utils, listParent, ContentRepository, NgTablePa
             $scope.requestPending = true;
             // prepare options to be sent to api
             var queryOptions = {
-                lang: $scope.transLang.code,
                 type: 'content'
             };
 
@@ -94,8 +93,16 @@ function ContentListCtrl($scope, Utils, listParent, ContentRepository, NgTablePa
 
             // Utils.$stateParams - filters without contentId
             var filters = _.omit(Utils.$stateParams, 'contentId');
-            queryOptions = _.merge(queryOptions, filters);
+            queryOptions = _.merge(queryOptions, _.omit(filters, 'is_active'));
             $scope.activeFilter = filters;
+
+            if (!_.isUndefined(filters.is_active)) {
+                if (filters.is_active === '1') {
+                    queryOptions.only_published = true;
+                } else {
+                    queryOptions.only_not_published = true;
+                }
+            }
 
             // list promise
             var promise = {};

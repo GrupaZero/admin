@@ -50,7 +50,7 @@
                                 <div class="row">
 
                                     <div class="col-md-12">
-                                        <input ng-model="newContentTranslation.seoTitle"
+                                        <input ng-model="newContentTranslation.seo_title"
                                                class="form-control"
                                                id="contentSeoTitle"
                                                type="text"
@@ -75,7 +75,7 @@
 
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <input ng-model="newContentTranslation.seoDescription"
+                                        <input ng-model="newContentTranslation.seo_description"
                                                class="form-control"
                                                id="contentSeoDescription"
                                                type="text"
@@ -136,7 +136,7 @@
                         <!-- Lang Form input -->
                         <div class="form-group">
                             <label for="langCode" class="hidden-xs">{{ 'TRANSLATION_LANGUAGE' | translate }}</label>
-                            <select id="langCode" ng-model="newContentTranslation.langCode" class="form-control"
+                            <select id="langCode" ng-model="newContentTranslation.language_code" class="form-control"
                                     ng-options="lang.code as lang.code | langName | translate for lang in langs">
                             </select>
                         </div>

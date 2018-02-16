@@ -8,7 +8,7 @@
     </div>
     <div class="panel-body">
         <!-- START BLOCKS LIST -->
-        <div ng-repeat="(regionName, region) in blocks track by $index" ng-class="{ inactive: !block.isActive }" ng-if="regionName !== 'homepage'">
+        <div ng-repeat="(regionName, region) in blocks track by $index" ng-class="{ inactive: !block.is_active }" ng-if="regionName !== 'homepage'">
             <h6 class="no-margin-top margin-bottom text-center block-region-name" ng-click="showRegion = !showRegion">
                 <strong>
                     {{ 'BLOCK_REGIONS.' + regionName | uppercase | translate | uppercase }}
@@ -20,7 +20,7 @@
 
             <div class="row" ng-show="showRegion">
                 <div class="col-md-6" ng-repeat="block in region track by block.id" ng-class-odd="'clear-left'">
-                    <div class="block" ng-class="{ inactive: !block.isActive }">
+                    <div class="block" ng-class="{ inactive: !block.is_active }">
                         <div class="block-title">
                             <h4 class="no-margin-top" ng-if="(block.translations | getTranslation:langCode:'title')">
                                 {{ block.translations | getTranslation:langCode:'title' }}
@@ -48,7 +48,7 @@
                         </div>
                         <div class="block-footer text-right">
                             <ul class="list-inline pull-left">
-                                <li ng-if="!block.isActive">
+                                <li ng-if="!block.is_active">
                                     <small><i>{{ 'NOT_PUBLISHED' | translate }}</i></small>
                                 </li>
                                 <li>

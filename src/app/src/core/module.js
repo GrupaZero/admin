@@ -39,7 +39,7 @@ angular.module('admin.core', ['CoreFilters'])
 
       UserRepository.one(Utils.Config.currentUserId).then(function(response) {
         var user = response;
-        user.fullName = user.firstName + ' ' + user.lastName;
+        user.fullName = user.first_name + ' ' + user.last_name;
 
         TopNavBar.add(
           {

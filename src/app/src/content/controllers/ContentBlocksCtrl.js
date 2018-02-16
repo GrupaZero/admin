@@ -3,7 +3,7 @@
 function ContentBlocksCtrl($scope, Utils, blocks, BlocksRepository) {
     // if there are blocks available
     if (typeof blocks !== 'undefined') {
-        $scope.blocks = _.groupBy(BlocksRepository.clean(blocks), 'region');
+        $scope.blocks = _.groupBy(_.first(BlocksRepository.clean(blocks)), 'region');
     }
     // visibility settings
     $scope.showBody = true; // show all blocks body by default

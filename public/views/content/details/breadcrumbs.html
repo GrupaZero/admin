@@ -6,7 +6,7 @@
                     {{ 'YOU_ARE_HERE' | translate | uppercase }}
                 </p>
             </li>
-            <li ng-repeat="link in (content.route.translations | getTranslation:langCode:'url').split('/')">
+            <li ng-repeat="link in (content.routes | getTranslation:langCode:'path').split('/')">
                 <a href="#"
                    ng-class="{ active: content.path[$index] === content.id }"
                    ui-sref="content.show({ contentId: content.path[$index], langCode: langCode })">
@@ -16,7 +16,7 @@
                         </span>
                 </a>
             </li>
-            <li ng-hide="(content.route.translations | getTranslation:langCode:'url').length">
+            <li ng-hide="(content.routes | getTranslation:langCode:'path').length">
                 {{ 'NO_TRANSLATION' | translate }}
             </li>
         </ol>

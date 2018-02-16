@@ -4,6 +4,7 @@ function CoreCtrl($scope, Utils, Translations, NavBar, TopNavBar) {
     // get translations languages
     Translations.getTranslations().then(function(response) {
         $scope.langs = response.langs;
+        $scope.defaultLang = _.find($scope.langs, {is_default: true});
         $scope.currentLang = $scope.transLang = Translations.getDefaultLang();
         Translations.setFallbackLang();
         $scope.setLang();

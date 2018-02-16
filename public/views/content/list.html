@@ -31,14 +31,18 @@
                 <li class="subtitle">
                     {{ 'SHOW' | translate }}
                 </li>
-                <li role="presentation" ng-class="{ active: !activeFilter.isActive }">
+                <li role="presentation" ng-class="{ active: !activeFilter.is_active }">
                     <a href="" ui-sref="content.list" ui-sref-opts="{ inherit: false }">{{ 'ALL' | translate }}</a>
                 </li>
-                <li role="presentation" ng-class="{ active: activeFilter.isActive == 1 }">
-                    <a href="" ui-sref="content.list({ isActive: 1 })">{{ 'PUBLISHED' | translate }}</a>
+                <li role="presentation" ng-class="{ active: activeFilter.is_active == 1 }">
+                    <a href="" ui-sref="content.list({ is_active: 1 })">
+                        {{ 'PUBLISHED' | translate }}
+                    </a>
                 </li>
-                <li role="presentation" ng-class="{ active: activeFilter.isActive == 0 }">
-                    <a href="" ui-sref="content.list({ isActive: 0 })">{{ 'NOT_PUBLISHED' | translate }}</a>
+                <li role="presentation" ng-class="{ active: activeFilter.is_active == 0 }">
+                    <a href="" ui-sref="content.list({ is_active: 0 })">
+                        {{ 'NOT_PUBLISHED' | translate }}
+                    </a>
                 </li>
             </ul>
         </div>
@@ -59,7 +63,8 @@
     <div class="table-box">
         <table ng-table="tableParams" template-pagination="gzero/admin/views/partials/pagination.html" class="table table-striped table-hover">
             <tbody>
-            <tr ng-repeat-start="content in $data track by content.id" ng-class="{ inactive: !content.isActive }"
+            <tr ng-repeat-start="content in $data track by content.id"
+                ng-class="{ inactive: !(content | isContentActive:transLang.code) }"
                 ng-click="showTranslations = !showTranslations">
                 <td class="text-center">
                     <i class="icon fa" ng-if="isMultiLangEnabled"
@@ -67,10 +72,10 @@
                         <!-- icon -->
                     </i>
                 </td>
-                <td data-title="'TITLE' | translate" sortable="'translations.title'">
+                <td data-title="'TITLE' | translate">
                     <h5 ng-if="(content.translations | getTranslation:transLang.code:'title')">
                         <a href="" ui-sref="content.show({ contentId: content.id, langCode: transLang.code })"
-                           ng-show="(content.route.translations | getTranslation:transLang.code:'url')"
+                           ng-show="(content.routes | getTranslation:transLang.code:'path')"
                            ng-click="$event.stopPropagation();">
                             {{ content.translations | getTranslation:transLang.code:'title' }}
                         </a>
@@ -83,12 +88,12 @@
                         </a>
                     </h5>
                 </td>
-                <td data-title="'STATUS' | translate" sortable="'isActive'" class="text-center">
-                    <i ng-if="!content.isActive">{{ 'NOT_PUBLISHED' | translate }}</i>
-                    <i ng-if="content.isActive">{{ 'PUBLISHED' | translate }}</i>
+                <td data-title="'STATUS' | translate" class="text-center">
+                    <i ng-if="!(content | isContentActive:transLang.code)">{{ 'NOT_PUBLISHED' | translate }}</i>
+                    <i ng-if="content | isContentActive:transLang.code">{{ 'PUBLISHED' | translate }}</i>
                 </td>
-                <td data-title="'AUTHOR' | translate" sortable="'author.firstName'" class="text-center">
-                    {{ content.author.firstName }} {{ content.author.lastName }}
+                <td data-title="'PUBLISHED_AT' | translate" sortable="'published_at'" class="text-center">
+                    {{ content.published_at | date:'yyyy-MM-dd HH:mm:ss' }}
                 </td>
                 <td data-title="'ORDER' | translate" sortable="'weight'" class="text-center">
                     {{ content.weight }}
@@ -110,7 +115,7 @@
                         <tr ng-repeat="lang in langs track by lang.code"
                             ng-init="isTranslated = (content.translations | getTranslation:lang.code:'title')">
                             <!-- TRANSLATION IS AVAILABLE -->
-                            <td ng-show="isTranslated && lang.code !== transLang.code" colspan="6">
+                            <td ng-show="isTranslated && lang.code !== transLang.code" colspan="5">
                                 <span class="label label-primary">{{ lang.code }}</span>
                                 <a href=""
                                    title="{{ isTranslated }}"
@@ -118,6 +123,8 @@
                                    ui-sref="content.show({ contentId: content.id, langCode: lang.code })">
                                     {{ content.translations | getTranslation:lang.code:'title' }}
                                 </a>
+                                <i ng-if="!(content | isContentActive:lang.code)">({{ 'NOT_PUBLISHED' | translate }})</i>
+                                <i ng-if="content | isContentActive:lang.code">({{ 'PUBLISHED' | translate }})</i>
                             </td>
                             <td ng-show="isTranslated && lang.code !== transLang.code" class="action-column">
                                 <a href="" ui-sref="content.show({ contentId: content.id, langCode: lang.code })"
@@ -126,12 +133,14 @@
                                 </a>
                             </td>
                             <!-- TRANSLATION IS NOT AVAILABLE -->
-                            <td ng-show="!isTranslated && lang.code !== transLang.code" colspan="6">
+                            <td ng-show="!isTranslated && lang.code !== transLang.code" colspan="5">
                                 <span class="label label-danger">{{ lang.code }}</span>
                                 <a ui-sref="content.addTranslation({ contentId: content.id, langCode: lang.code })"
                                    href="" class="text-muted">
                                     {{ 'NO_TRANSLATION_INFO' | translate }}
                                 </a>
+                                <i ng-if="!(content | isContentActive:lang.code)">({{ 'NOT_PUBLISHED' | translate }})</i>
+                                <i ng-if="content | isContentActive:lang.code">({{ 'PUBLISHED' | translate }})</i>
                             </td>
                             <td ng-show="!isTranslated && lang.code !== transLang.code" class="action-column">
                                 <a class="btn btn-default btn-sm btn-block" href=""

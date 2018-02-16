@@ -17,6 +17,16 @@ function BlockService() {
                     block.filter = null;
                 }
             }
+            // handle block translation custom fields
+            if (block.translations !== null && typeof block.translations !== 'undefined') {
+                if (block.translations.custom_fields === null) {
+                    block.translations.custom_fields = [];
+                }
+
+                block.title = block.translations.title;
+                block.body = block.translations.body;
+                block.custom_fields = block.translations.custom_fields;
+            }
             return block;
         }
     };

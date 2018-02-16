@@ -35,7 +35,7 @@
   "jshintConfig": {
     "maxerr": 50,
     "bitwise": true,
-    "camelcase": true,
+    "camelcase": false,
     "curly": true,
     "eqeqeq": true,
     "forin": true,
@@ -53,7 +53,7 @@
     "indent": 4,
     "maxparams": 6,
     "maxdepth": 3,
-    "maxcomplexity": 6,
+    "maxcomplexity": 8,
     "predef": [
       "angular",
       "module",

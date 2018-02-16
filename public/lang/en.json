@@ -217,12 +217,14 @@
             "COOKIES_POLICY_URL": "Cookies Policy page url",
             "DEFAULT_PAGE_SIZE": "Number of entries per page",
             "DESC_LENGTH": "Site SEO description character number",
+            "GOOGLE_ANALYTICS_ID": "Google Analytics ID",
             "GOOGLE_TAG_MANAGER_ID": "Google Tag Manager ID",
             "SITE_DESC": "Site description",
             "SITE_NAME": "Site title"
         }
     },
     "LANGUAGE_NOT_FOUND": "Language not found.",
+    "THIS_LANGUAGE_IS_DISABLED": "This language is disabled",
     "CONFIRM_MOVE_TO_TRASH": "Confirm move to trash",
     "CONFIRM_CONTENT_RESTORE": "Confirm content restore",
     "CONFIRM_DELETE": "Confirm delete"

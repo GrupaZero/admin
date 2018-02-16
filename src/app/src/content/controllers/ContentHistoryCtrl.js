@@ -17,14 +17,14 @@ function ContentHistoryCtrl($scope, Utils, content, langCode, ContentRepository,
     $scope.tableParams = new NgTableParams({
         count: 25, // count per page
         sorting: {
-            'createdAt': 'desc' // initial sorting
+            'created_at': 'desc' // initial sorting
         }
     }, {
         total: 0, // length of data
         getData: function($defer, params) {
             // prepare options to be sent to api
             var queryOptions = {
-                langCode: langCode
+                language_code: langCode
             };
 
             // params.count() - number of items per page declared in view

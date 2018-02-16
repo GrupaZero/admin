@@ -10,7 +10,7 @@ function FileDeleteButton() {
         link: function(scope, element, attrs, FilesDeleteCtrl) {
             element.on('click', function() {
                 // Show a delete modal from a controller
-                FilesDeleteCtrl.deleteModal.showModal(attrs.fileId);
+                FilesDeleteCtrl.deleteModal.showModal(attrs.id);
             });
         }
     };

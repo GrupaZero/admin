@@ -13,11 +13,12 @@ function FileService(Utils) {
             var output = {
                 file: file
             };
-            // set translations if there any of them is filled, because translations are not required.
-            if (typeof file.translations !== 'undefined') {
-                output.translations = file.translations;
-            } else {
-                defaults = _.omit(defaults, ['translations']);
+            // set translations title and description
+            if (typeof file.title !== 'undefined') {
+                output.title = file.title;
+            }
+            if (typeof file.description !== 'undefined') {
+                output.description = file.description;
             }
             return _.merge(defaults, output);
         },

@@ -67,7 +67,7 @@ function Utils(Notifications, Storage, $state, $previousState, $stateParams, ckO
                 return false;
             }
 
-            if (translation.langCode === langCode) {
+            if (translation.language_code === langCode) {
                 return translation;
             } else {
                 return this.getTranslationByLang(translations, langCode);
@@ -85,6 +85,20 @@ function Utils(Notifications, Storage, $state, $previousState, $stateParams, ckO
                 blockTypes: this.Config.blockTypes,
                 fileTypes: _.without(this.Config.fileTypes, 'music', 'video')
             };
+        },
+        /**
+         * Checks if specified content is active
+         *
+         * @param content content
+         * @param langCode language code
+         *
+         * @returns Boolean
+         */
+        isContentActive: function(content, langCode) {
+            var activeRoute = _.find(content.routes, {language_code: langCode, is_active: true});
+            var activeTranslation = _.find(content.translations, {language_code: langCode, is_active: true});
+
+            return (activeRoute && activeTranslation && moment().utc().isAfter(content.published_at));
         }
     };
 

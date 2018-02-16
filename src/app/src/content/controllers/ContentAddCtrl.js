@@ -3,7 +3,6 @@
 function ContentAddCtrl($scope, Utils, listParent, ContentRepository) {
     var parentId = null;
     $scope.contentType = Utils.$stateParams.type;
-
     $scope.ckOptions = Utils.ckOptions;
 
     // if parent category exists
@@ -14,10 +13,8 @@ function ContentAddCtrl($scope, Utils, listParent, ContentRepository) {
     // default translations lang code
     $scope.newContent = {
         type: Utils.$stateParams.type,
-        isActive: true,
-        translations: {
-            langCode: $scope.transLang.code
-        }
+        is_active: true,
+        language_code: $scope.transLang.code
     };
 
     // Angular strap dropdown for save button
@@ -34,14 +31,14 @@ function ContentAddCtrl($scope, Utils, listParent, ContentRepository) {
 
     // contents POST action
     $scope.addNewContent = function addNewContent(newContent, redirect) {
-        newContent.parentId = parentId; // set parent category as null
-        newContent.publishedAt = new Date().toISOString().slice(0, 19).replace('T', ' '); // set publish at date
+        newContent.parent_id = parentId; // set parent category as null
+        newContent.published_at = new Date().toISOString().slice(0, 19).replace('T', ' '); // set publish at date
         // if parent category exists
         if (typeof $scope.listParent !== 'undefined') {
             // check for route translation in selected language
-            var route = _.map(_.filter($scope.listParent.route.translations, {langCode: newContent.translations.langCode}), 'url');
+            var route = _.map(_.filter($scope.listParent.routes, {language_code: newContent.language_code}), 'path');
             if (!route.length) {
-                newContent.parentId = null; // if not found set as uncategorized
+                newContent.parent_id = null; // if not found set as uncategorized
             }
         }
         ContentRepository.newContent(newContent).then(function(response) {
@@ -51,7 +48,7 @@ function ContentAddCtrl($scope, Utils, listParent, ContentRepository) {
             if (typeof redirect !== 'undefined') {
                 var params = (redirect === 'content.edit.details') ? {
                     contentId: response.id,
-                    langCode: newContent.translations.langCode
+                    langCode: newContent.language_code
                 } : {type: Utils.$stateParams.type};
 
                 Utils.$state.go(redirect, params, {reload: true});

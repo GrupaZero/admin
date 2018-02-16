@@ -122,7 +122,7 @@ angular.module('admin', dependencies).config([
                     window.location.href = Config.url;
                     break;
                 default:
-                    Utils.Notifications.addError(response.data.error.message);
+                    Utils.Notifications.addError(response.data.message);
             }
             return false;
         });

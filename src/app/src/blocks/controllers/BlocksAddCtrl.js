@@ -7,9 +7,7 @@ function BlocksAddCtrl($scope, Utils, langCode, BlocksRepository, BlockService) 
     $scope.newBlock = {
         isActive: true,
         weight: 0,
-        translations: {
-            langCode: langCode
-        }
+        language_code: langCode
     };
 
     // if block types are set

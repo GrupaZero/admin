@@ -3,6 +3,7 @@
 /**
  * Return admin view so we can run AngularJS admin panel
  */
+
 use Gzero\Admin\Middleware\AdminPanelAccess;
 
 Route::group(
@@ -25,7 +26,29 @@ Route::group(
                     if (isProviderLoaded('Barryvdh\Debugbar\ServiceProvider')) {
                         resolve('debugbar')->disable();
                     }
-                    return view('gzero-admin::admin', ['modules' => app()->make('admin.module')]);
+                    // @TODO get this settings and types from api
+                    $settings = [
+                        'allowed_file_extensions'  => [
+                            'image'    => ['png', 'jpg', 'jpeg', 'tif'],
+                            'document' => ['pdf', 'odt', 'ods', 'doc', 'docx', 'xls', 'xlsx', 'txt'],
+                            'video'    => ['mp4'],
+                            'music'    => ['mp3']
+                        ],
+                        'content_types'            => ['content', 'category'],
+                        'block_types'              => ['basic', 'menu', 'slider'],
+                        'file_types'               => ['image', 'document', 'video', 'music'],
+                        'blocks_regions' => [
+                            'header',
+                            'homepage',
+                            'featured',
+                            'contentHeader',
+                            'sidebarLeft',
+                            'sidebarRight',
+                            'contentFooter',
+                            'footer'
+                        ]
+                    ];
+                    return view('gzero-admin::admin', ['modules' => app()->make('admin.module'), 'settings' => $settings]);
                 }
             ]
         );

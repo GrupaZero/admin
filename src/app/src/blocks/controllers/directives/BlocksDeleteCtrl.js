@@ -69,9 +69,13 @@ function BlocksDeleteCtrl($scope, Utils, BlocksRepository, $modal) {
             var self = this;
             // Soft and force delete block @TODO handle soft delete
             BlocksRepository.delete(vm.blockId).then(function(response) {
-                BlocksRepository.delete(vm.blockId, vm.forceDelete).then(function(response) {
+                BlocksRepository.forceDelete(vm.blockId).then(function(response) {
                     self.closeModal();
-                    Utils.$state.go(Utils.$state.current, {}, {reload: true});
+                    if (Utils.$state.$current.name === 'blocks.show.details') {
+                        Utils.$state.go('blocks.list', {}, {reload: true, inherit: false});
+                    } else {
+                        Utils.$state.go(Utils.$state.current, {}, {reload: true});
+                    }
                     Utils.Notifications.addSuccess(
                         vm.forceDelete ? 'BLOCK_HAS_BEEN_DELETED' : 'BLOCK_HAS_BEEN_MOVED_TO_TRASH'
                     );

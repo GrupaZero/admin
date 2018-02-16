@@ -62,7 +62,7 @@
                         <!-- Lang Form input -->
                         <div class="form-group" ng-if="!isEdited">
                             <label for="langCode" class="hidden-xs">{{ 'TRANSLATION_LANGUAGE' | translate }}</label>
-                            <select id="langCode" ng-model="newBlock.translations.langCode" class="form-control"
+                            <select id="langCode" ng-model="newBlock.language_code" class="form-control"
                                     ng-options="lang.code as lang.code | langName | translate for lang in langs">
                             </select>
                         </div>
@@ -115,7 +115,7 @@
                         <div class="form-group">
                             <div class="checkbox">
                                 <label>
-                                    <input ng-model="newBlock.isActive" type="checkbox">{{ 'PUBLISHED' | translate }}
+                                    <input ng-model="newBlock.is_active" type="checkbox">{{ 'PUBLISHED' | translate }}
                                 </label>
                             </div>
                         </div>

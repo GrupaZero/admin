@@ -60,8 +60,7 @@
         <a href="" ui-sref="content.list({ contentId: category.id })" ui-sref-opts="{ inherit: false, reload: false }"
            title="{{category.translations | getTranslation:transLang.code:'title'}}"
            class="category"
-           ng-class="category.isActive ? 'activeCategory' : 'unactiveCategory'"
-                >
+           ng-class="(category | isContentActive:transLang.code) ? 'activeCategory' : 'inactiveCategory'">
             <i class="fa fa-fw"
                ng-class="(collapsed || !category.children.length) ? 'fa-folder-o' : 'fa-folder-open-o'">
             </i>

@@ -50,12 +50,12 @@ function ContentRouteCtrl($scope, Utils, $modal, ContentRepository) {
         saveContentRoute: function() {
             var self = this;
             var newRoute = {
-                langCode: vm.langCode,
-                url: vm.contentRoute
+                language_code: vm.langCode,
+                path: vm.contentRoute
             };
             // only when route has been changed
             if (vm.contentRoute !== vm.oldRoute) {
-                ContentRepository.newContentRoute(vm.contentId, newRoute).then(function(response) {
+                ContentRepository.updateContentRoute(vm.contentId, newRoute).then(function(response) {
                     self.closeModal();
                     Utils.$state.go(Utils.$state.current, {}, {reload: true});
                 });

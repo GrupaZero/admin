@@ -1,6 +1,6 @@
 'use strict';
 
-function ContentDetailsCtrl($scope, content, langCode, ContentRepository, Utils) {
+function ContentDetailsCtrl($scope, content, langCode, author, ContentRepository, Utils) {
 
     $scope.Config = Utils.Config;
 
@@ -36,9 +36,14 @@ function ContentDetailsCtrl($scope, content, langCode, ContentRepository, Utils)
         $scope.langCode = langCode;
     }
 
+    if (typeof author !== 'undefined') {
+        $scope.author = author;
+    }
+
     // if content exists
     if (typeof content !== 'undefined') {
         $scope.content = ContentRepository.clean(content);
+
         // if content parent exists
         if (content.path.length > 1) {
             // the last but one id number from path
@@ -58,5 +63,5 @@ function ContentDetailsCtrl($scope, content, langCode, ContentRepository, Utils)
     };
 
 }
-ContentDetailsCtrl.$inject = ['$scope', 'content', 'langCode', 'ContentRepository', 'Utils'];
+ContentDetailsCtrl.$inject = ['$scope', 'content', 'langCode','author', 'ContentRepository', 'Utils'];
 module.exports = ContentDetailsCtrl;

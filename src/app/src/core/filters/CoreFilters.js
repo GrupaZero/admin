@@ -25,7 +25,7 @@ angular.module('CoreFilters', [])
         'use strict';
         return function(translations, langCode, field) {
             var currentTranslation = _.filter(translations, function(translation) {
-                return translation.langCode === langCode;
+                return translation.language_code === langCode;
             }).shift();
             if (_.has(currentTranslation, field)) {
                 return currentTranslation[field];
@@ -108,5 +108,23 @@ angular.module('CoreFilters', [])
             } catch (e) {
                 return '';
             }
+        };
+    })
+
+    /**
+     * Checks if specified content is active
+     *
+     * @param content content
+     * @param langCode language code
+     *
+     * @returns Boolean
+     */
+    .filter('isContentActive', function() {
+        'use strict';
+        return function(content, langCode) {
+            var activeRoute = _.find(content.routes, {language_code: langCode, is_active: true});
+            var activeTranslation = _.find(content.translations, {language_code: langCode, is_active: true});
+
+            return (activeRoute && activeTranslation && moment().utc().isAfter(content.published_at));
         };
     });

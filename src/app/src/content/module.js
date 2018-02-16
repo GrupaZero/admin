@@ -16,7 +16,7 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
                             'ContentRepository', function(ContentRepository) {
                                 // get tree of all categories
                                 return ContentRepository.tree({
-                                    type: 'category'
+                                    only_categories: true
                                 });
                             }
                         ]
@@ -24,7 +24,7 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
                 })
                 // CONTENT LIST
                 .state('content.list', {
-                    url: '/list/{contentId}?isActive&page&perPage',
+                    url: '/list/{contentId}?is_active&page&perPage',
                     resolve: {
                         listParent: [
                             '$stateParams', 'Utils', 'ContentRepository', function($stateParams, Utils, ContentRepository) {
@@ -78,6 +78,11 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
                             '$stateParams', 'ContentRepository', function($stateParams, ContentRepository) {
                                 return ContentRepository.one($stateParams.contentId);
                             }
+                        ],
+                        author: [
+                            'content', 'UserRepository', function(content, UserRepository) {
+                                return UserRepository.one(content.author_id);
+                            }
                         ]
                     },
                     views: {
@@ -122,8 +127,8 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
                     sticky: true,
                     resolve: {
                         blocks: [
-                            '$stateParams', 'BlocksRepository', function($stateParams, BlocksRepository) {
-                                return BlocksRepository.listForContent($stateParams.contentId);
+                            '$stateParams', 'ContentRepository', function($stateParams, ContentRepository) {
+                                return ContentRepository.blocks($stateParams.contentId, {language_code: $stateParams.langCode});
                             }
                         ]
                     },
@@ -164,6 +169,11 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
                             '$stateParams', 'ContentRepository', function($stateParams, ContentRepository) {
                                 return ContentRepository.one($stateParams.contentId);
                             }
+                        ],
+                        author: [
+                            'content', 'UserRepository', function(content, UserRepository) {
+                                return UserRepository.one(content.author_id);
+                            }
                         ]
                     },
                     data: {
@@ -203,7 +213,7 @@ angular.module('admin.content', ['ngTable', 'ui.tree'])
                 })
                 // CONTENT TRASHCAN
                 .state('content.trashcan', {
-                    url: '/trashcan?isActive&type&page&perPage',
+                    url: '/trashcan?is_active&type&page&perPage',
                     resolve: {
                         listParent: [
                             function() {

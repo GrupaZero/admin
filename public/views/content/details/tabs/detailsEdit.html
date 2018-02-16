@@ -54,24 +54,22 @@
                     <div class="row">
 
                         <div class="col-md-12">
-                            <input ng-model="activeTranslation.seoTitle"
+                            <input ng-model="activeTranslation.seo_title"
                                    class="form-control"
                                    id="contentSeoTitle"
                                    type="text"
                                    aria-describedby="seoTitleHelpBlock"
                                    ng-maxlength="57"
-                                   ng-class="{
-                                                    'has-error': contentForm.seoTitle.$dirty && contentForm.seoTitle.$error.maxlength
-                                               }"
-                                   name="seoTitle"
+                                   ng-class="{'has-error': contentForm.seo_title.$dirty && contentForm.seo_title.$error.maxlength}"
+                                   name="seo_title"
                                     />
 
                             <p class="help-block" id="seoTitleHelpBlock">
                                 {{ 'SEO_TITLE_DESCRIPTION' | translate }}
-                                <span class="pull-right" characters-counter count="{{ activeTranslation.seoTitle }}"></span>
+                                <span class="pull-right" characters-counter count="{{ activeTranslation.seo_title }}"></span>
                             </p>
 
-                            <div ng-if="contentForm.seoTitle.$invalid" ng-messages="contentForm.seoTitle.$error">
+                            <div ng-if="contentForm.seo_title.$invalid" ng-messages="contentForm.seo_title.$error">
                                 <p ng-message="maxlength"
                                    class="text-danger" role="alert">
                                     {{ 'SEO_ERROR_MAXLENGTH' | translate: '{ maxlength: 57 }' }}
@@ -92,24 +90,24 @@
                     <div class="row">
 
                         <div class="col-md-12">
-                            <input ng-model="activeTranslation.seoDescription"
+                            <input ng-model="activeTranslation.seo_description"
                                    class="form-control"
                                    id="contentSeoDescription"
                                    type="text"
                                    aria-describedby="seoDescriptionHelpBlock"
                                    ng-maxlength="130"
                                    ng-class="{
-                                                    'has-error': contentForm.seoDescription.$dirty && contentForm.seoDescription.$error.maxlength
+                                                    'has-error': contentForm.seo_description.$dirty && contentForm.seo_description.$error.maxlength
                                                }"
-                                   name="seoDescription"
+                                   name="seo_description"
                                     />
 
                             <p class="help-block" id="seoDescriptionHelpBlock">
                                 {{ 'SEO_DESCRIPTION_DESCRIPTION' | translate }}
-                                <span class="pull-right" characters-counter count="{{ activeTranslation.seoDescription }}"></span>
+                                <span class="pull-right" characters-counter count="{{ activeTranslation.seo_description }}"></span>
                             </p>
 
-                            <div ng-if="contentForm.seoDescription.$invalid" ng-messages="contentForm.seoDescription.$error">
+                            <div ng-if="contentForm.seo_description.$invalid" ng-messages="contentForm.seo_description.$error">
                                 <p ng-message="maxlength"
                                    class="text-danger" role="alert">
                                     {{ 'SEO_ERROR_MAXLENGTH' | translate: '{ maxlength: 130 }' }}

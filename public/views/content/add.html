@@ -17,7 +17,7 @@
                             <div class="row">
                                 <div class="col-md-7">
                                     <input id="title" name="title" type="text" class="form-control margin-bottom" required
-                                           ng-model="newContent.translations.title">
+                                           ng-model="newContent.title">
                                 </div>
                                 <div class="col-md-5 text-right">
                                     <button ng-click="showSeoDetails = !showSeoDetails"
@@ -63,24 +63,24 @@
                                 <div class="row">
 
                                     <div class="col-md-12">
-                                        <input ng-model="newContent.translations.seoTitle"
+                                        <input ng-model="newContent.seo_title"
                                                class="form-control"
                                                id="contentSeoTitle"
                                                type="text"
                                                aria-describedby="seoTitleHelpBlock"
                                                ng-maxlength="57"
                                                ng-class="{
-                                                    'has-error': contentForm.seoTitle.$dirty && contentForm.seoTitle.$error.maxlength
+                                                    'has-error': contentForm.seo_title.$dirty && contentForm.seo_title.$error.maxlength
                                                }"
-                                               name="seoTitle"
+                                               name="seo_title"
                                                 />
 
                                         <p class="help-block" id="seoTitleHelpBlock">
                                             {{ 'SEO_TITLE_DESCRIPTION' | translate }}
-                                            <span class="pull-right" characters-counter count="{{ newContent.translations.seoTitle }}"></span>
+                                            <span class="pull-right" characters-counter count="{{ newContent.translations.seo_title }}"></span>
                                         </p>
 
-                                        <div ng-if="contentForm.seoTitle.$invalid" ng-messages="contentForm.seoTitle.$error">
+                                        <div ng-if="contentForm.seo_title.$invalid" ng-messages="contentForm.seo_title.$error">
                                             <p ng-message="maxlength"
                                                class="text-danger" role="alert">
                                                 {{ 'SEO_ERROR_MAXLENGTH' | translate: '{ maxlength: 57 }' }}
@@ -103,24 +103,24 @@
                                 <div class="row">
 
                                     <div class="col-md-12">
-                                        <input ng-model="newContent.translations.seoDescription"
+                                        <input ng-model="newContent.seo_description"
                                                class="form-control"
                                                id="contentSeoDescription"
                                                type="text"
                                                aria-describedby="seoDescriptionHelpBlock"
                                                ng-maxlength="130"
                                                ng-class="{
-                                                    'has-error': contentForm.seoDescription.$dirty && contentForm.seoDescription.$error.maxlength
+                                                    'has-error': contentForm.seo_description.$dirty && contentForm.seo_description.$error.maxlength
                                                }"
-                                               name="seoDescription"
+                                               name="seo_description"
                                                 />
 
                                         <p class="help-block" id="seoDescriptionHelpBlock">
                                             {{ 'SEO_DESCRIPTION_DESCRIPTION' | translate }}
-                                            <span class="pull-right" characters-counter count="{{ newContent.translations.seoDescription }}"></span>
+                                            <span class="pull-right" characters-counter count="{{ newContent.translations.seo_description }}"></span>
                                         </p>
 
-                                        <div ng-if="contentForm.seoDescription.$invalid" ng-messages="contentForm.seoDescription.$error">
+                                        <div ng-if="contentForm.seo_description.$invalid" ng-messages="contentForm.seo_description.$error">
                                             <p ng-message="maxlength"
                                                class="text-danger" role="alert">
                                                 {{ 'SEO_ERROR_MAXLENGTH' | translate: '{ maxlength: 130 }' }}
@@ -155,7 +155,7 @@
                                     <textarea id="teaser"
                                               ckeditor="ckOptions.getEditorOptions({height:'100px'})"
                                               name="teaser" class="form-control"
-                                              ng-model="newContent.translations.teaser"></textarea>
+                                              ng-model="newContent.teaser"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -165,7 +165,7 @@
                             <textarea id="body" name="body"
                                       ckeditor="ckOptions.getEditorOptions({height:'300px'})"
                                       class="form-control" rows="20"
-                                      ng-model="newContent.translations.body"></textarea>
+                                      ng-model="newContent.body"></textarea>
                         </div>
                     </div>
                 </div>
@@ -180,21 +180,21 @@
                         <!-- Lang Form input -->
                         <div class="form-group">
                             <label for="langCode" class="hidden-xs">{{ 'TRANSLATION_LANGUAGE' | translate }}</label>
-                            <select id="langCode" ng-model="newContent.translations.langCode" class="form-control"
+                            <select id="langCode" ng-model="newContent.language_code" class="form-control"
                                     ng-options="lang.code as lang.code | langName | translate for lang in langs">
                             </select>
                         </div>
                         <!-- Parent id Form input -->
                         <div class="form-group">
                             <label for="parentId" class="hidden-xs">{{ 'CATEGORY' | translate }}</label>
-                            <input id="parentId" name="parentId" type="text" class="form-control"
-                                   ng-model="newContent.parentId" disabled="disabled"
-                                   placeholder="{{ (listParent.translations | getTranslation:newContent.translations.langCode:'title') ?
-                                   (listParent.translations | getTranslation:newContent.translations.langCode:'title') :
+                            <input id="parentId" name="parent_id" type="text" class="form-control"
+                                   ng-model="newContent.parent_id" disabled="disabled"
+                                   placeholder="{{ (listParent.translations | getTranslation:newContent.language_code:'title') ?
+                                   (listParent.translations | getTranslation:newContent.language_code:'title') :
                                     'UNCATEGORIZED' | translate }}">
                         </div>
                         <div ng-if="listParent"
-                             ng-hide="(listParent.translations | getTranslation:newContent.translations.langCode:'title')"
+                             ng-hide="(listParent.translations | getTranslation:newContent.language_code:'title')"
                              class="text-danger">
                             <i class="glyphicon glyphicon-exclamation-sign"></i> {{ 'NO_PARENT_TRANSLATION_INFO' | translate }}
                         </div>
@@ -203,7 +203,7 @@
                         <div class="form-group">
                             <div class="checkbox">
                                 <label>
-                                    <input ng-model="newContent.isActive" type="checkbox">{{ 'PUBLISHED' | translate }}
+                                    <input ng-model="newContent.is_active" type="checkbox">{{ 'PUBLISHED' | translate }}
                                 </label>
                             </div>
                         </div>

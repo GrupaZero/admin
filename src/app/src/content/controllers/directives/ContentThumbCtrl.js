@@ -46,9 +46,12 @@ function ContentThumbCtrl($scope, Utils, $modal, ContentRepository, FilesReposit
         searchFiles: function(fileName) {
             var params = {
                 type: 'image',
-                q: fileName,
                 limit: 20
             };
+
+            if (fileName) {
+                params.q = fileName;
+            }
 
             vm.thumbId = null;
             this.loadFiles(params);
@@ -73,13 +76,13 @@ function ContentThumbCtrl($scope, Utils, $modal, ContentRepository, FilesReposit
             });
         },
         /**
-         * Function performs the RestAngular customPUT function for content in scope
+         * Function performs the RestAngular patch function for content in scope
          *
          */
         save: function() {
             var self = this;
             var content = {
-                thumbId: vm.thumbId
+                thumb_id: vm.thumbId
             };
 
             ContentRepository.updateContent(vm.contentId, content).then(function(response) {

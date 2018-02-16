@@ -41,7 +41,7 @@ function ContentThemeEditCtrl($scope, Utils, $modal, ContentRepository) {
             self.modal.hide();
         },
         /**
-         * Function performs the RestAngular customPUT function for content in scope
+         * Function performs the RestAngular patch function for content in scope
          *
          */
         saveContentWeight: function() {

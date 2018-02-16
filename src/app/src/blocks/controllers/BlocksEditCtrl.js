@@ -8,10 +8,10 @@ function BlocksEditCtrl($scope, Utils, langCode, block, BlocksRepository, BlockS
         $scope.newBlock = BlocksRepository.clean(block);
         // set active translation
         if (typeof $scope.newBlock.translations !== 'undefined') {
-            $scope.newBlock.translations = _.find($scope.newBlock.translations, {'langCode': langCode});
+            $scope.newBlock.translations = _.find($scope.newBlock.translations, {'language_code': langCode});
             // if not found, set as new
             if (typeof $scope.newBlock.translations === 'undefined') {
-                $scope.newBlock.translations = {'langCode': langCode};
+                $scope.newBlock.translations = {'language_code': langCode};
             }
         }
     }

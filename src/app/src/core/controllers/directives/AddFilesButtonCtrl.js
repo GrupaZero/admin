@@ -67,9 +67,12 @@ function AddFilesButtonCtrl($scope, $q, Utils, $modal, FilesRepository) {
         searchFiles: function(fileName) {
             var params = {
                 type: this.filesType,
-                q: fileName,
                 limit: 20
             };
+
+            if (fileName) {
+                params.q = fileName;
+            }
 
             this.loadFiles(params);
         },

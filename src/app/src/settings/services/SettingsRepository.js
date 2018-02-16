@@ -1,7 +1,7 @@
 'use strict';
 
 function SettingsRepository(Restangular) {
-    var api = 'admin/options';
+    var api = 'options';
     var option = Restangular.all(api);
     return {
         one: function(id, params) {

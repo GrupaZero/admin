@@ -6,18 +6,18 @@
                 <li class="subtitle">
                     {{ 'SHOW' | translate }}
                 </li>
-                <li role="presentation" ng-class="{ active: (!activeFilter.type && !activeFilter.isActive) }">
+                <li role="presentation" ng-class="{ active: (!activeFilter.type && !activeFilter.is_active) }">
                     <a href="" ui-sref="files.list" ui-sref-opts="{ inherit: false }">{{ 'ALL' | translate }}</a>
                 </li>
                 <li role="presentation" ng-class="{ active: activeFilter.type == type }"
                     ng-repeat="type in fileTypes track by $index">
                     <a href="" ui-sref="files.list({ type: '{{type}}' })">{{ 'FILE_TYPES.' + type.toUpperCase() | translate }}</a>
                 </li>
-                <li role="presentation" ng-class="{ active: activeFilter.isActive == 1 }">
-                    <a href="" ui-sref="files.list({ isActive: 1 })">{{ 'PUBLISHED' | translate }}</a>
+                <li role="presentation" ng-class="{ active: activeFilter.is_active == 1 }">
+                    <a href="" ui-sref="files.list({ is_active: 1 })">{{ 'PUBLISHED' | translate }}</a>
                 </li>
-                <li role="presentation" ng-class="{ active: activeFilter.isActive == 0 }">
-                    <a href="" ui-sref="files.list({ isActive: 0 })">{{ 'NOT_PUBLISHED' | translate }}</a>
+                <li role="presentation" ng-class="{ active: activeFilter.is_active == 0 }">
+                    <a href="" ui-sref="files.list({ is_active: 0 })">{{ 'NOT_PUBLISHED' | translate }}</a>
                 </li>
             </ul>
         </div>
@@ -38,8 +38,8 @@
     <div class="table-box"> <!-- START USERS TABLE -->
         <table ng-table="tableParams" template-pagination="gzero/admin/views/partials/pagination.html" class="table table-striped">
             <tbody>
-            <tr ng-repeat="file in $data" ng-class="{ inactive: !file.isActive }">
-                <td data-title="'TITLE' | translate" sortable="'translations.title'" width="40%">
+            <tr ng-repeat="file in $data" ng-class="{ inactive: !file.is_active }">
+                <td data-title="'TITLE' | translate" width="40%">
                     <div class="media">
                         <div class="media-left">
                             <div class="img-preview" ng-if="file.type === 'image'">
@@ -66,9 +66,9 @@
                 <td data-title="'FILE_NAME' | translate" sortable="'name'" class="text-center">
                     {{::file.name}}.{{::file.extension}}
                 </td>
-                <td data-title="'STATUS' | translate" sortable="'isActive'" class="text-center">
-                    <i ng-if="!file.isActive">{{ 'NOT_PUBLISHED' | translate }}</i>
-                    <i ng-if="file.isActive">{{ 'PUBLISHED' | translate }}</i>
+                <td data-title="'STATUS' | translate" sortable="'is_active'" class="text-center">
+                    <i ng-if="!file.is_active">{{ 'NOT_PUBLISHED' | translate }}</i>
+                    <i ng-if="file.is_active">{{ 'PUBLISHED' | translate }}</i>
                 </td>
                 <td data-title="'SIZE' | translate" sortable="'size'" class="text-center">
                     {{::file.size/1024/1024|number:2}} MB
@@ -78,7 +78,7 @@
                        href="" class="btn btn-primary btn-sm">
                         <i class="fa fa-pencil hidden-sm"></i> {{ 'EDIT' | translate }}
                     </a>
-                    <button file-delete-button class="btn btn-danger btn-sm" file-id="{{ file.id }}"
+                    <button file-delete-button class="btn btn-danger btn-sm" id="{{ file.id }}"
                             ng-click="$event.stopPropagation();">
                         <i class="fa fa-times hidden-sm"></i> {{ 'DELETE' | translate }}
                     </button>

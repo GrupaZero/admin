@@ -16,7 +16,7 @@ angular.module('admin.files', ['ngTable'])
                     templateUrl: viewPath + 'index.html'
                 })
                 .state('files.list', {
-                    url: '/list?type&isActive&page&perPage',
+                    url: '/list?type&is_active&page&perPage',
                     views: {
                         'content': {
                             templateUrl: viewPath + 'list.html',
