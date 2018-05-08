@@ -32,9 +32,9 @@
             domain: '{{ config("gzero.domain") }}',
             multilang: '{{ config("gzero.ml") ? 'true' : 'false' }}',
             apiUrl: '{{ request()->getScheme() }}://api.{{ request()->getHTTPHost() }}',
-            seoDescriptionLength: '{{ config("gzero.seoDescLength") }}',
-            seoDescriptionAlternativeField: '{{ config("gzero.seoDescriptionAlternativeField") }}',
-            seoTitleAlternativeField: '{{ config("gzero.seoTitleAlternativeField") }}',
+            seoDescriptionLength: '{{ option('seo', 'desc_length', config('gzero.seo.desc_length', 160)) }}',
+            seoDescriptionAlternativeField: '{{ config("gzero-cms.seo.alternative_desc") ?? 'body' }}',
+            seoTitleAlternativeField: '{{ config("gzero-cms.seo.alternative_title") ?? 'title' }}',
             currentUserId: {{ auth()->user()->id }},
             contentTypes: {!! json_encode(array_get($settings, 'content_types'), true) !!},
             blockTypes: {!! json_encode(array_get($settings, 'block_types'), true) !!},
@@ -46,7 +46,7 @@
         };
         var modules = [
             @foreach ($modules->getModulesNames() as $moduleName)
-                "{{ $moduleName }}",
+                    "{{ $moduleName }}",
             @endforeach
         ];
     </script>
