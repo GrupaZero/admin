@@ -1,6 +1,6 @@
 {
   "name": "admin",
-  "version": "3.0.0",
+  "version": "3.0.2",
   "scripts": {
     "start": "(cd src/app && gulp)",
     "build": "(cd src/app && gulp scripts)",
