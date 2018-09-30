@@ -77,7 +77,9 @@
     "FILE_CREATE_ERROR": "{{fileName}} there was an error while uploading this file!",
     "FILE_CREATED": "{{fileName}} was successfully added.",
     "FILE_ERRORS": {
-        "PATTERN": "Invalid file format. Make sure that you’re using one of the following formats: ({{params}})"
+        "PATTERN": "Invalid file format. Make sure that you’re using one of the following formats: ({{params}})",
+        "MAXFILES": "The maximum number of files uploaded has been exceeded",
+        "MAXTOTALSIZE": "The maximum size of uploaded files has been exceeded"
     },
     "FILE_HAS_BEEN_DELETED": "File has been deleted.",
     "FILE_TYPE": {

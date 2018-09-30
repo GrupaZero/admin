@@ -77,7 +77,9 @@
     "FILE_CREATE_ERROR": "{{fileName}} wystąpił błąd podczas przesyłania tego pliku!",
     "FILE_CREATED": "{{fileName}} został pomyślnie dodany.",
     "FILE_ERRORS": {
-        "PATTERN": "Nieprawidłowy format pliku. Upewnij się, że używasz jednego z następujących formatów: ({{ params }})"
+        "PATTERN": "Nieprawidłowy format pliku. Upewnij się, że używasz jednego z następujących formatów: ({{ params }})",
+        "MAXFILES": "Przekroczono maksymalną ilość przesłanych plików",
+        "MAXTOTALSIZE": "Przekroczono maksymalny rozmiar przesłanych plików"
     },
     "FILE_HAS_BEEN_DELETED": "Plik został usunięty.",
     "FILE_TYPE": {

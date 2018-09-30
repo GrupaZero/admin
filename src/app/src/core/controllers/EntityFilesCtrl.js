@@ -2,7 +2,9 @@
 
 function EntityFilesCtrl($scope, $timeout, $stateParams, Utils, entity, langCode, FilesRepository) { //jshint ignore:line
     var type = $stateParams.type;
-    var params = {};
+    var params = {
+      'perPage': 1000 // hax to not paginate the results since we want to sort them by weight
+    };
 
     $scope.files = [];
     $scope.blockers = {

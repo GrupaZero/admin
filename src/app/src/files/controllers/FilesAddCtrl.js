@@ -25,9 +25,9 @@ function FilesAddCtrl($q, $scope, Utils, type, Upload, FilesRepository, FileServ
     /* Set the default values for ngf-select and ngf-drop directives*/
     $scope.invalidFiles = [];
     Upload.setDefaults({
-        ngfMaxTotalSize: '5MB', //@TODO allowed total files size
+        ngfMaxTotalSize: Utils.Config.uploadMaxTotalSize, // allowed total files size
         ngfKeep: '"distinct"',
-        ngfMaxFiles: 10, //@TODO allowed max files number
+        ngfMaxFiles: Utils.Config.uploadMaxFiles, // allowed max files number
         ngfValidate: {pattern: FileService.getTypeExtensionsPattern(type)}, //allowed type files extensions
         ngfModelInvalid: 'invalidFiles'
     });

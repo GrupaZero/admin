@@ -42,7 +42,9 @@
             fileExtensions: {!! json_encode(array_get($settings, 'allowed_file_extensions'), true) !!},
             blockRegions: {!! json_encode(array_get($settings, 'blocks_regions'), true) !!},
             defaultLangCode: {!! json_encode(config("app.locale"), true) !!},
-            fallbackLangCode: {!! json_encode(config("app.fallback_locale"), true) !!}
+            fallbackLangCode: {!! json_encode(config("app.fallback_locale"), true) !!},
+            uploadMaxTotalSize: '{{ config("gzero.upload_max_total_size", '20MB') }}',
+            uploadMaxFiles: '{{ config("gzero.upload_max_files", 20) }}'
         };
         var modules = [
             @foreach ($modules->getModulesNames() as $moduleName)
