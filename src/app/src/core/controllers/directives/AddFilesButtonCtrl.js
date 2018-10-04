@@ -59,7 +59,8 @@ function AddFilesButtonCtrl($scope, $q, Utils, $modal, FilesRepository) {
         getFiles: function() {
             var params = {
                 type: this.filesType,
-                limit: 1000
+                perPage: 100,
+                limit: 100
             };
 
             this.loadFiles(params);
@@ -67,7 +68,8 @@ function AddFilesButtonCtrl($scope, $q, Utils, $modal, FilesRepository) {
         searchFiles: function(fileName) {
             var params = {
                 type: this.filesType,
-                limit: 20
+                perPage: 100,
+                limit: 100
             };
 
             if (fileName) {
