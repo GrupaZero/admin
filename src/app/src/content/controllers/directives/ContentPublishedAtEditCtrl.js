@@ -61,7 +61,7 @@ function ContentPublishedAtEditCtrl($scope, Utils, $modal, ContentRepository) {
             var self = this;
             var dateTime = moment($scope.vm.contentPublishedAt).utc().format('YYYY-MM-DD HH:mm:ss');
             var content = {
-                published_at: dateTime
+                published_at: $scope.vm.contentPublishedAt ? dateTime : null
             };
 
             ContentRepository.updateContent(vm.contentId, content).then(function(response) {

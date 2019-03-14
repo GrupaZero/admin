@@ -19,7 +19,8 @@
             </a>
         </li>
         <li class="list-group-item clearfix"
-            ng-init="contentUrl = (content.routes | getTranslation:langCode:'path')"
+            ng-init="contentUrl = (content.routes | getTranslation:langCode:'path');
+            isRouteActive = (content.routes | getTranslation:langCode:'is_active')"
             ng-show="contentUrl">
             <div class="pull-left field-label">
                 <i class="fa fa-link"></i> {{ 'URL_ADDRESS' | translate }}
@@ -29,6 +30,7 @@
                ng-if="content.type != 'category'"
                data-id="{{ content.id }}"
                data-route="{{ contentUrl }}"
+               data-is-route-active="{{ isRouteActive }}"
                title="{{ contentUrl }}"
                data-lang="{{ langCode }}">
                 <span class="text-primary">
@@ -155,7 +157,8 @@
                class="text-right"
                content_id="{{content.id}}"
                content_published_at="{{content.published_at}}">
-                {{ content.published_at | date:'yyyy-MM-dd HH:mm:ss' }}
+               <span ng-if="content.published_at">{{ content.published_at | date:'yyyy-MM-dd HH:mm:ss' }}</span>
+               <span ng-if="!content.published_at">{{ 'NOT_PUBLISHED' | translate }}</span>
             </a>
         </li>
     </ul>
